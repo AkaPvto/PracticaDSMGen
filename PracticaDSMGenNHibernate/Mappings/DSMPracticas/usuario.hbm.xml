@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="PracticaDSMGenNHibernate"
+		                   namespace="PracticaDSMGenNHibernate.EN.DSMPracticas">
+		    
+		    
+			
+				<class name="UsuarioEN" table="Usuario"> 
+				  	
+						<id name="Id" column="attribute" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="User" type="string"> 
+						<column name="user"  not-null="true"/>
+					</property>
+					<property name="Nombre" type="string"> 
+						<column name="nombre"  not-null="true"/>
+					</property>
+					<property name="Apellidos" type="string"> 
+						<column name="apellidos"  not-null="true"/>
+					</property>
+					<property name="Email" type="string"> 
+						<column name="email"  unique="true" not-null="true"/>
+					</property>
+					<property name="Telefono" type="integer"> 
+						<column name="telefono"  not-null="true"/>
+					</property>
+					<property name="Direccion" type="string"> 
+						<column name="direccion"  not-null="true"/>
+					</property>
+					<property name="Foto" type="string"> 
+						<column name="foto"  not-null="true"/>
+					</property>
+					<property name="Pass" type="string"> 
+						<column name="pass"  not-null="true"/>
+					</property>
+					<property name="Baneado" type="boolean"> 
+						<column name="baneado"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		  			
+						<bag name="Juego" table="[juego_usuario]" inverse="true" >
+							<key>
+								
+									<column name="FK_attribute_idUsuario"/> 
+							</key>
+      						<many-to-many class="PracticaDSMGenNHibernate.EN.DSMPracticas.JuegoEN">
+									<column name="FK_attribute_idJuego"/> 
+      						</many-to-many>
+    					</bag>
+			
+		  			
+						<bag name="Comunidad" table="[comunidad_usuario]" inverse="true" >
+							<key>
+								
+									<column name="FK_attribute_idUsuario"/> 
+							</key>
+      						<many-to-many class="PracticaDSMGenNHibernate.EN.DSMPracticas.ComunidadEN">
+									<column name="FK_attribute_idComunidad"/> 
+      						</many-to-many>
+    					</bag>
+			
+		  			
+						<bag name="Post" >
+							<key>
+							
+								
+								<column name="FK_attribute_idUsuario"/>
+					      	</key>
+							<one-to-many class="PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN"/>
+					    </bag>
+					
+			
+		  			
+						<bag name="Comentario" >
+							<key>
+							
+								
+								<column name="FK_attribute_idUsuario"/>
+					      	</key>
+							<one-to-many class="PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN"/>
+					    </bag>
+					
+			
+		  			
+						<bag name="Notificacion" table="[notificacion_usuario]" inverse="true" >
+							<key>
+								
+									<column name="FK_attribute_idUsuario"/> 
+							</key>
+      						<many-to-many class="PracticaDSMGenNHibernate.EN.DSMPracticas.NotificacionEN">
+									<column name="FK_idNotificacion_idNotificacion"/> 
+      						</many-to-many>
+    					</bag>
+			
+			
+		  			
+						<bag name="Aviso" >
+							<key>
+							
+								
+								<column name="FK_attribute_idUsuario"/>
+					      	</key>
+							<one-to-many class="PracticaDSMGenNHibernate.EN.DSMPracticas.AvisoEN"/>
+					    </bag>
+					
+			
+			
+			
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+						<bag name="Usuario" table="usuario_usuario_0" > 
+							<key>
+								
+									<column name="FK_attribute_idUsuario"/> 
+							</key>
+      						<many-to-many class="PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN">
+									<column name="FK_attribute_idUsuario_0" unique="true"/> 
+      						</many-to-many>
+    					</bag>
+    				
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="UsuarioENReadAllHQL">from UsuarioEN</query>
+		  <query name="UsuarioENgetComunidadUsuHQL"><![CDATA[FROM UsuarioEN as usuario WHERE usuario.Comunidad.Nombre = :comunidad]]></query>
+		</hibernate-mapping>
+	

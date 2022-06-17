@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="PracticaDSMGenNHibernate"
+		                   namespace="PracticaDSMGenNHibernate.EN.DSMPracticas">
+		    
+		    
+			
+				<class name="JuegoEN" table="Juego"> 
+						<id name="Nombre" column="attribute"/> 
+			
+					
+					<property name="Descripcion" type="string"> 
+						<column name="descripcion"  not-null="true"/>
+					</property>
+					<property name="Portada" type="string"> 
+						<column name="portada"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+		  			
+						<bag name="Usuario" table="[juego_usuario]"  >
+							<key>
+								
+									<column name="FK_attribute_idJuego"/> 
+							</key>
+      						<many-to-many class="PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN">
+									<column name="FK_attribute_idUsuario"/> 
+      						</many-to-many>
+    					</bag>
+			
+		  			
+					
+							<many-to-one name="Comunidad" class="PracticaDSMGenNHibernate.EN.DSMPracticas.ComunidadEN" cascade="delete">
+								<column name="FK_attribute_idComunidad"/> 
+        					</many-to-one>
+					 
+						
+			
+			
+		  			
+						<bag name="Genero" table="[juego_genero]"  >
+							<key>
+								
+									<column name="FK_attribute_idJuego"/> 
+							</key>
+      						<many-to-many class="PracticaDSMGenNHibernate.EN.DSMPracticas.GeneroEN">
+									<column name="FK_nombreGenero_idGenero"/> 
+      						</many-to-many>
+    					</bag>
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="JuegoENReadAllHQL">from JuegoEN</query>
+		  <query name="JuegoENbusquedaHQL"><![CDATA[FROM JuegoEN]]></query>
+		</hibernate-mapping>
+	

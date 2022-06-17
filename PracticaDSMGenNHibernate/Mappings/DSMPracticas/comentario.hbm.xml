@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="PracticaDSMGenNHibernate"
+		                   namespace="PracticaDSMGenNHibernate.EN.DSMPracticas">
+		    
+		    
+			
+				<class name="ComentarioEN" table="Comentario"> 
+				  	
+						<id name="Id" column="id" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Contenido" type="string"> 
+						<column name="contenido"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+		  			
+						<many-to-one name="Usuario" class="PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN" >	
+								<column name="FK_attribute_idUsuario"/> 
+						</many-to-one>
+											 					
+			
+		  			
+						<many-to-one name="Post" class="PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN" >	
+								<column name="FK_id_idPost"/> 
+						</many-to-one>
+											 					
+			
+		  			
+						<bag name="ComentariosHijos" cascade="delete">
+							<key>
+							
+								
+								<column name="FK_id_idComentario"/>
+					      	</key>
+							<one-to-many class="PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN"/>
+					    </bag>
+					
+			
+		  			
+						<many-to-one name="ComentarioPadre" class="PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN" >	
+								<column name="FK_id_idComentario"/> 
+						</many-to-one>
+											 					
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="ComentarioENReadAllHQL">from ComentarioEN</query>
+		  <query name="ComentarioENgetComentariosOrdenadosHQL"><![CDATA[FROM ComentarioEN]]></query>
+		</hibernate-mapping>
+	

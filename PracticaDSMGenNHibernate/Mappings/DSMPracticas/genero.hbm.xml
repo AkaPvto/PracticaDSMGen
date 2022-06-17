@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="PracticaDSMGenNHibernate"
+		                   namespace="PracticaDSMGenNHibernate.EN.DSMPracticas">
+		    
+		    
+			
+				<class name="GeneroEN" table="Genero"> 
+						<id name="Nombre" column="nombreGenero"/> 
+			
+					
+			
+			
+			
+		  			
+						<bag name="Juego" table="[juego_genero]" inverse="true" >
+							<key>
+								
+									<column name="FK_nombreGenero_idGenero"/> 
+							</key>
+      						<many-to-many class="PracticaDSMGenNHibernate.EN.DSMPracticas.JuegoEN">
+									<column name="FK_attribute_idJuego"/> 
+      						</many-to-many>
+    					</bag>
+					
+					
+		
+		 </class>	
+		  
+		  <query name="GeneroENReadAllHQL">from GeneroEN</query>
+		</hibernate-mapping>
+	

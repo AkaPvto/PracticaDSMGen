@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="PracticaDSMGenNHibernate"
+		                   namespace="PracticaDSMGenNHibernate.EN.DSMPracticas">
+		    
+		    
+			
+				<class name="PostEN" table="Post"> 
+				  	
+						<id name="Id" column="id" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Contenido" type="string"> 
+						<column name="contenido"  not-null="true"/>
+					</property>
+					<property name="Categoria" > 
+						<column name="categoria"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+		  			
+						<many-to-one name="Usuario" class="PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN" >	
+								<column name="FK_attribute_idUsuario"/> 
+						</many-to-one>
+											 					
+			
+		  			
+						<many-to-one name="Comunidad" class="PracticaDSMGenNHibernate.EN.DSMPracticas.ComunidadEN" >	
+								<column name="FK_attribute_idComunidad"/> 
+						</many-to-one>
+											 					
+			
+		  			
+						<bag name="Comentario" cascade="delete">
+							<key>
+							
+								
+								<column name="FK_id_idPost"/>
+					      	</key>
+							<one-to-many class="PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN"/>
+					    </bag>
+					
+			
+		  			
+						<bag name="Notificacion" >
+							<key>
+							
+								
+								<column name="FK_id_idPost"/>
+					      	</key>
+							<one-to-many class="PracticaDSMGenNHibernate.EN.DSMPracticas.NotificacionEN"/>
+					    </bag>
+					
+			
+					
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="PostENReadAllHQL">from PostEN</query>
+		  <query name="PostENgetPostsUsuHQL"><![CDATA[FROM PostEN as post WHERE post.Usuario.Id = :usu]]></query>
+		  <query name="PostENgetPostPorCategoriaHQL"><![CDATA[FROM PostEN as post WHERE post.Categoria = :categoria]]></query>
+		</hibernate-mapping>
+	

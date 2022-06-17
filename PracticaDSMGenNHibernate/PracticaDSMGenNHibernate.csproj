@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+		<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		  <PropertyGroup>
+		    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+		    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+		    <ProductVersion>8.0.30703</ProductVersion>
+		    <SchemaVersion>2.0</SchemaVersion>
+		    <ProjectGuid>{66C66636-FD6A-4A3F-A7C5-FE88BBA117AF}</ProjectGuid>
+		    <OutputType>Library</OutputType>
+		    <AppDesignerFolder>Properties</AppDesignerFolder>
+		    <RootNamespace>PracticaDSMGenNHibernate</RootNamespace>
+		    <AssemblyName>PracticaDSMGenNHibernate</AssemblyName>
+		    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+		    <FileAlignment>512</FileAlignment>
+		    <PublishUrl>publish\</PublishUrl>
+		    <Install>true</Install>
+		    <InstallFrom>Disk</InstallFrom>
+		    <UpdateEnabled>false</UpdateEnabled>
+		    <UpdateMode>Foreground</UpdateMode>
+		    <UpdateInterval>7</UpdateInterval>
+		    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+		    <UpdatePeriodically>false</UpdatePeriodically>
+		    <UpdateRequired>false</UpdateRequired>
+		    <MapFileExtensions>true</MapFileExtensions>
+		    <ApplicationRevision>0</ApplicationRevision>
+		    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+		    <IsWebBootstrapper>false</IsWebBootstrapper>
+		    <UseApplicationTrust>false</UseApplicationTrust>
+		    <BootstrapperEnabled>true</BootstrapperEnabled>
+		  </PropertyGroup>
+		  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+		    <DebugSymbols>true</DebugSymbols>
+		    <DebugType>full</DebugType>
+		    <Optimize>false</Optimize>
+		    <OutputPath>bin\Debug\</OutputPath>
+		    <DefineConstants>DEBUG;TRACE</DefineConstants>
+		    <ErrorReport>prompt</ErrorReport>
+		    <WarningLevel>4</WarningLevel>
+		  </PropertyGroup>
+		  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+		    <DebugType>pdbonly</DebugType>
+		    <Optimize>true</Optimize>
+		    <OutputPath>bin\Release\</OutputPath>
+		    <DefineConstants>TRACE</DefineConstants>
+		    <ErrorReport>prompt</ErrorReport>
+		    <WarningLevel>4</WarningLevel>
+		  </PropertyGroup>
+		<ItemGroup>
+		    <Reference Include="Castle.DynamicProxy2, Version=2.1.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+		      <SpecificVersion>False</SpecificVersion>
+		      <HintPath>..\PracticaDSMGenNHibernate\AppLib\Castle.DynamicProxy2.dll</HintPath>
+		    </Reference>
+		    <Reference Include="LinFu.DynamicProxy, Version=1.0.3.14911, Culture=neutral, PublicKeyToken=62a6874124340d6e, processorArchitecture=MSIL">
+		      <SpecificVersion>False</SpecificVersion>
+		      <HintPath>..\PracticaDSMGenNHibernate\AppLib\LinFu.DynamicProxy.dll</HintPath>
+		    </Reference>
+		    <Reference Include="NHibernate, Version=2.1.2.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+		      <SpecificVersion>False</SpecificVersion>
+		      <HintPath>..\PracticaDSMGenNHibernate\AppLib\NHibernate.dll</HintPath>
+		    </Reference>
+		    <Reference Include="NHibernate.ByteCode.Castle, Version=2.1.2.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+		      <SpecificVersion>False</SpecificVersion>
+		      <HintPath>..\PracticaDSMGenNHibernate\AppLib\NHibernate.ByteCode.Castle.dll</HintPath>
+		    </Reference>
+		    <Reference Include="NHibernate.ByteCode.LinFu, Version=2.1.2.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+		      <SpecificVersion>False</SpecificVersion>
+		      <HintPath>..\PracticaDSMGenNHibernate\AppLib\NHibernate.ByteCode.LinFu.dll</HintPath>
+		    </Reference>
+		    <Reference Include="Newtonsoft.Json, Version=4.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+		      <SpecificVersion>False</SpecificVersion>
+		      <HintPath>..\PracticaDSMGenNHibernate\AppLib\Newtonsoft.Json.dll</HintPath>
+		    </Reference>
+		     <Reference Include="jose-jwt, Version=4.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+		      <SpecificVersion>False</SpecificVersion>
+		      <HintPath>..\PracticaDSMGenNHibernate\AppLib\jose-jwt.dll</HintPath>
+		    </Reference>
+		    <Reference Include="System" />
+		    <Reference Include="System.Core">
+		      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+		    </Reference>
+		    
+		    <Reference Include="System.Transactions" />
+		    <Reference Include="System.Xml.Linq">
+		      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+		    </Reference>
+		    <Reference Include="System.Data.DataSetExtensions">
+		      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+		    </Reference>
+		    <Reference Include="System.Data" />
+		    <Reference Include="System.Xml" />
+		</ItemGroup>
+		
+		<ItemGroup>
+		    <Content Include="..\PracticaDSMGenNHibernate\AppLib\Antlr3.Runtime.dll" />
+		    <Content Include="..\PracticaDSMGenNHibernate\AppLib\Castle.DynamicProxy2.dll" />
+		    <Content Include="..\PracticaDSMGenNHibernate\AppLib\Iesi.Collections.dll" />
+		    <Content Include="..\PracticaDSMGenNHibernate\AppLib\LinFu.DynamicProxy.dll" />
+		    <Content Include="..\PracticaDSMGenNHibernate\AppLib\log4net.dll" />
+		    <Content Include="..\PracticaDSMGenNHibernate\AppLib\NHibernate.ByteCode.Castle.dll" />
+		    <Content Include="..\PracticaDSMGenNHibernate\AppLib\NHibernate.ByteCode.LinFu.dll" />
+		    <Content Include="..\PracticaDSMGenNHibernate\AppLib\NHibernate.dll" />
+		    <Content Include="..\PracticaDSMGenNHibernate\AppLib\nunit.core.dll" />
+		    <Content Include="..\PracticaDSMGenNHibernate\AppLib\nunit.framework.dll" />
+  		    <Content Include="..\PracticaDSMGenNHibernate\AppLib\jose-jwt.dll" />
+  		</ItemGroup>
+  		
+		<ItemGroup>
+			<Compile Include="NHibernateHelper.cs" />
+		    <Compile Include="Utils\Util.cs" />
+		    <Compile Include="Exceptions\ModelException.cs"/>
+		    <Compile Include="Exceptions\DataLayerException.cs"/>
+		    
+	<Compile Include="CAD\BasicCAD.cs"/>
+	<Compile Include="CP\BasicCP.cs"/>
+	<Compile Include="EN\DSMPracticas\ComentarioEN.cs" />
+	<Compile Include="CEN\DSMPracticas\ComentarioCEN.cs" />
+	<Compile Include="CAD\DSMPracticas\IComentarioCAD.cs" />
+	<Compile Include="CAD\DSMPracticas\ComentarioCAD.cs" />
+	<Compile Include="CP\DSMPracticas\ComentarioCP.cs" />
+			<Compile Include="CP\DSMPracticas\ComentarioCP_NewHijo.cs" />
+			
+			
+			
+			
+			
+			<Compile Include="CEN\DSMPracticas\ComentarioCEN_GetComentariosOrdenados.cs" />
+			
+			
+			
+	<Compile Include="EN\DSMPracticas\PostEN.cs" />
+	<Compile Include="CEN\DSMPracticas\PostCEN.cs" />
+	<Compile Include="CAD\DSMPracticas\IPostCAD.cs" />
+	<Compile Include="CAD\DSMPracticas\PostCAD.cs" />
+	<Compile Include="CP\DSMPracticas\PostCP.cs" />
+			
+			
+			
+			
+			
+			
+			
+			
+			
+	<Compile Include="EN\DSMPracticas\UsuarioEN.cs" />
+	<Compile Include="CEN\DSMPracticas\UsuarioCEN.cs" />
+	<Compile Include="CAD\DSMPracticas\IUsuarioCAD.cs" />
+	<Compile Include="CAD\DSMPracticas\UsuarioCAD.cs" />
+	<Compile Include="CP\DSMPracticas\UsuarioCP.cs" />
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<Compile Include="CEN\DSMPracticas\UsuarioCEN_BanearUsuario.cs" />
+			
+			
+			<Compile Include="CP\DSMPracticas\UsuarioCP_AddFollowing.cs" />
+			
+			<Compile Include="CP\DSMPracticas\UsuarioCP_BorrarFollowing.cs" />
+			
+			
+	<Compile Include="EN\DSMPracticas\JuegoEN.cs" />
+	<Compile Include="CEN\DSMPracticas\JuegoCEN.cs" />
+	<Compile Include="CAD\DSMPracticas\IJuegoCAD.cs" />
+	<Compile Include="CAD\DSMPracticas\JuegoCAD.cs" />
+	<Compile Include="CP\DSMPracticas\JuegoCP.cs" />
+			
+			
+			
+			
+			
+			
+			<Compile Include="CEN\DSMPracticas\JuegoCEN_RecomendarJuego.cs" />
+			
+	<Compile Include="EN\DSMPracticas\ComunidadEN.cs" />
+	<Compile Include="CEN\DSMPracticas\ComunidadCEN.cs" />
+	<Compile Include="CAD\DSMPracticas\IComunidadCAD.cs" />
+	<Compile Include="CAD\DSMPracticas\ComunidadCAD.cs" />
+	<Compile Include="CP\DSMPracticas\ComunidadCP.cs" />
+			
+			
+			
+			
+			
+			
+			
+			
+			
+	<Compile Include="EN\DSMPracticas\NotificacionEN.cs" />
+	<Compile Include="CEN\DSMPracticas\NotificacionCEN.cs" />
+	<Compile Include="CAD\DSMPracticas\INotificacionCAD.cs" />
+	<Compile Include="CAD\DSMPracticas\NotificacionCAD.cs" />
+	<Compile Include="CP\DSMPracticas\NotificacionCP.cs" />
+			
+			
+			
+			
+			
+			<Compile Include="CEN\DSMPracticas\NotificacionCEN_EnviarNotificacion.cs" />
+			
+	<Compile Include="EN\DSMPracticas\AvisoEN.cs" />
+	<Compile Include="CEN\DSMPracticas\AvisoCEN.cs" />
+	<Compile Include="CAD\DSMPracticas\IAvisoCAD.cs" />
+	<Compile Include="CAD\DSMPracticas\AvisoCAD.cs" />
+	<Compile Include="CP\DSMPracticas\AvisoCP.cs" />
+			
+			
+			
+			
+			
+			
+	<Compile Include="EN\DSMPracticas\GeneroEN.cs" />
+	<Compile Include="CEN\DSMPracticas\GeneroCEN.cs" />
+	<Compile Include="CAD\DSMPracticas\IGeneroCAD.cs" />
+	<Compile Include="CAD\DSMPracticas\GeneroCAD.cs" />
+	<Compile Include="CP\DSMPracticas\GeneroCP.cs" />
+			
+			
+			
+	<Compile Include="Enumerated\DSMPracticas\Categoria_PostEnum.cs" />
+	
+	
+
+		    
+	
+
+		    <Compile Include="Properties\AssemblyInfo.cs" />
+		    <Compile Include="Properties\Settings.Designer.cs">
+		      <AutoGen>True</AutoGen>
+		      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+		      <DependentUpon>Settings.settings</DependentUpon>
+		    </Compile>
+		  </ItemGroup>
+		  <ItemGroup>
+		  
+	<EmbeddedResource Include="Mappings\DSMPracticas\comentario.hbm.xml" />
+	<EmbeddedResource Include="Mappings\DSMPracticas\post.hbm.xml" />
+	<EmbeddedResource Include="Mappings\DSMPracticas\usuario.hbm.xml" />
+	<EmbeddedResource Include="Mappings\DSMPracticas\juego.hbm.xml" />
+	<EmbeddedResource Include="Mappings\DSMPracticas\comunidad.hbm.xml" />
+	<EmbeddedResource Include="Mappings\DSMPracticas\notificacion.hbm.xml" />
+	<EmbeddedResource Include="Mappings\DSMPracticas\aviso.hbm.xml" />
+	<EmbeddedResource Include="Mappings\DSMPracticas\genero.hbm.xml" />
+	
+	
+
+		  </ItemGroup>
+		  <ItemGroup>
+		    <Content Include="hibernate.cfg.xml">
+		      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		    </Content>
+		  </ItemGroup>
+		  <ItemGroup>
+		    <None Include="app.config" />
+		    <None Include="Properties\Settings.settings">
+		      <Generator>SettingsSingleFileGenerator</Generator>
+		      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+		    </None>
+		        <None Include="Resources\xsd\nhibernate-configuration.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Resources\xsd\nhibernate-mapping.xsd">
+      <SubType>Designer</SubType>
+    </None>
+		  </ItemGroup>
+	 	
+		
+	
+		<ItemGroup>
+		    <ProjectReference Include="..\APIExterna\APIExterna.csproj">
+		      <Project>{4ade35c8-a0c3-49da-9e1a-11a53ca19214}</Project>
+		      <Name>APIExterna</Name>
+		    </ProjectReference>
+	    </ItemGroup>
+	    
+		  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+		  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+		       Other similar extension points exist, see Microsoft.Common.targets.
+		  <Target Name="BeforeBuild">
+		  </Target>
+		  <Target Name="AfterBuild">
+		  </Target>
+		  -->
+		</Project>

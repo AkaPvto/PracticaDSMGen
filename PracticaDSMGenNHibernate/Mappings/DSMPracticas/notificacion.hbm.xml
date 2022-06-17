@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="PracticaDSMGenNHibernate"
+		                   namespace="PracticaDSMGenNHibernate.EN.DSMPracticas">
+		    
+		    
+			
+				<class name="NotificacionEN" table="Notificacion"> 
+				  	
+						<id name="Id" column="idNotificacion" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Texto" type="string"> 
+						<column name="texto"  not-null="true"/>
+					</property>
+					<property name="Visto" type="boolean"> 
+						<column name="visto"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+			
+		  			
+						<bag name="Usuario" table="[notificacion_usuario]"  >
+							<key>
+								
+									<column name="FK_idNotificacion_idNotificacion"/> 
+							</key>
+      						<many-to-many class="PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN">
+									<column name="FK_attribute_idUsuario"/> 
+      						</many-to-many>
+    					</bag>
+			
+		  			
+						<many-to-one name="Post" class="PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN" >	
+								<column name="FK_id_idPost"/> 
+						</many-to-one>
+											 					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="NotificacionENReadAllHQL">from NotificacionEN</query>
+		</hibernate-mapping>
+	
