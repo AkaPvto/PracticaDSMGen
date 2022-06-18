@@ -8,6 +8,8 @@ using System.Data;
 using PracticaDSMGenNHibernate.EN.DSMPracticas;
 using PracticaDSMGenNHibernate.CEN.DSMPracticas;
 using PracticaDSMGenNHibernate.CAD.DSMPracticas;
+using PracticaDSMGenNHibernate.Enumerated.DSMPracticas;
+using PracticaDSMGenNHibernate.CP.DSMPracticas;
 
 /*PROTECTED REGION END*/
 namespace InitializeDB
@@ -81,11 +83,11 @@ public static void InitializeData ()
 
                 Console.WriteLine ("Introducimos usuarios a la bbdd...");
                 UsuarioCEN usuarioCEN = new UsuarioCEN ();
-                usuarioCEN.New_ ("Kaese", "Sergio", "Miedes", "kaeseks@gmail.com", 666666666, "C/carton", "fotoejemplo", "1234", false);
-                usuarioCEN.New_ ("FroggyChair", "Candela", "Urh", "princesita23@gmail.com", 666999666, "C/cartulina", "fotoejemplo2", "1234", false);
-                usuarioCEN.New_ ("Jaxtified", "Carlos", "Izquierdo", "carlosesetio@gmail.com", 666999888, "C/carta", "fotoejemplo3", "1234", false);
-                usuarioCEN.New_ ("Akapvto", "Jorge", "Reig", "akayamiakuma@gmail.com", 666222888, "C/cartones", "fotoejemplo4", "1234", false);
-                usuarioCEN.New_ ("Sariwii", "Sara", "Morote", "sariwicondosies@gmail.com", 666999222, "C/cartulinas", "fotoejemplo5", "1234", false);
+                int sergio = usuarioCEN.New_ ("Kaese", "Sergio", "Miedes", "kaeseks@gmail.com", 666666666, "C/carton", "fotoejemplo", "1234", false);
+                int candela = usuarioCEN.New_ ("FroggyChair", "Candela", "Urh", "princesita23@gmail.com", 666999666, "C/cartulina", "fotoejemplo2", "1234", false);
+                int carlos = usuarioCEN.New_ ("Jaxtified", "Carlos", "Izquierdo", "carlosesetio@gmail.com", 666999888, "C/carta", "fotoejemplo3", "1234", false);
+                int jorge = usuarioCEN.New_ ("Akapvto", "Jorge", "Reig", "akayamiakuma@gmail.com", 666222888, "C/cartones", "fotoejemplo4", "1234", false);
+                int sara = usuarioCEN.New_ ("Sariwii", "Sara", "Morote", "sariwicondosies@gmail.com", 666999222, "C/cartulinas", "fotoejemplo5", "1234", false);
 
                 Console.WriteLine ("Introducimos los generos a laa bbdd...");
                 GeneroCEN generoCEN = new GeneroCEN ();
@@ -114,12 +116,19 @@ public static void InitializeData ()
 
                 Console.WriteLine ("Introducimos comunidades a la bbdd...");
                 ComunidadCEN comunidadCEN = new ComunidadCEN ();
+                string com_rl = comunidadCEN.New_("Rocket League", "Comunidad de Rocket League. ¡Calienten motores!", new DateTime(2022, 1, 1), "Rocket League");
+                string com_hks = comunidadCEN.New_("Silksong", "Comunidad del Silksong. ¡Preparen las pelucas, SIUUUUU!", new DateTime(2019, 11, 15), "Hollow Knight: Silksong");
+
+                Console.WriteLine("Introducimos postst a la bbdd...");
+                PostCEN postCEN = new PostCEN();
+                int post1 = postCEN.New_("Busco gente para jugar", sergio, com_rl, Categoria_PostEnum.blanco);
+                int post2 = postCEN.New_("No jugueis con el BMW-200 (octane), es muy malo", candela, com_rl, Categoria_PostEnum.opinion);
 
 
 
 
                 /*PROTECTED REGION END*/
-        }
+            }
         catch (Exception ex)
         {
                 System.Console.WriteLine (ex.InnerException);
