@@ -127,13 +127,21 @@ public static void InitializeData ()
 
                 Console.WriteLine ("Introducimos comentarios a la bbdd...");
                 ComentarioCEN comentarioCEN = new ComentarioCEN ();
-                comentarioCEN.NewRaiz("Yo puedo jugar contigo",candela, post1, );
+                comentarioCEN.NewRaiz("Yo puedo jugar contigo",candela, post1, DateTime.Parse("3/1/2022"), DateTime.Parse("17:45:00"), 0);
+                comentarioCEN.NewRaiz("Nunca va a salir. Deja de hacerte ilusiones en cada Nintendo Direct.", carlos, post3, DateTime.Parse("17/5/2020"), DateTime.Parse("13:11:00"), 0);
 
+                Console.WriteLine("Introducimos notificaciones a la bbdd...");
+                NotificacionCEN notificacionCEN = new NotificacionCEN();
+                notificacionCEN.New_("Se ha subido un nuevo post a la comunidad de Rocket League. No te lo pierdas!", com_rl, post1);
+                notificacionCEN.New_("Se ha subido un nuevo post a la comunidad de SilkSong. No te lo pierdas!", com_hks, post3);
 
+                Console.WriteLine("Introducimos avisos a la bbdd...");
+                AvisoCEN avisoCEN = new AvisoCEN();
+                avisoCEN.New_("Insultaste y/u ofendiste a un compañero.", sara, DateTime.Parse("7/12/2021"), DateTime.Parse("02:39:00"));
 
 
                 /*PROTECTED REGION END*/
-        }
+            }
         catch (Exception ex)
         {
                 System.Console.WriteLine (ex.InnerException);
