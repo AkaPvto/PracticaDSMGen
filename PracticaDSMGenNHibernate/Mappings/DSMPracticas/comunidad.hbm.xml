@@ -9,16 +9,12 @@
 						<id name="Nombre" column="attribute"/> 
 			
 					
-					<property name="CodigoComunidad" type="integer"> 
-						<column name="codigoComunidad"  not-null="true"/>
-					</property>
 					<property name="Descripcion" type="string"> 
 						<column name="descripcion"  not-null="true"/>
 					</property>
 					<property name="FechaCreacion" type="date"> 
 						<column name="fechaCreacion"  not-null="true"/>
 					</property>
-			
 			
 			
 			
@@ -51,7 +47,6 @@
 							   <one-to-one name="Juego" class="PracticaDSMGenNHibernate.EN.DSMPracticas.JuegoEN" property-ref="Comunidad" />							
 					 
 						
-					
 					
 					
 					

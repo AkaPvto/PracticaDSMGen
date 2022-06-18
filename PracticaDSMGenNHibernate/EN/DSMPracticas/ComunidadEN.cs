@@ -13,13 +13,6 @@ private string nombre;
 
 
 /**
- *	Atributo codigoComunidad
- */
-private int codigoComunidad;
-
-
-
-/**
  *	Atributo descripcion
  */
 private string descripcion;
@@ -59,12 +52,6 @@ private PracticaDSMGenNHibernate.EN.DSMPracticas.JuegoEN juego;
 
 public virtual string Nombre {
         get { return nombre; } set { nombre = value;  }
-}
-
-
-
-public virtual int CodigoComunidad {
-        get { return codigoComunidad; } set { codigoComunidad = value;  }
 }
 
 
@@ -109,25 +96,23 @@ public ComunidadEN()
 
 
 
-public ComunidadEN(string nombre, int codigoComunidad, string descripcion, Nullable<DateTime> fechaCreacion, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> usuario, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN> post, PracticaDSMGenNHibernate.EN.DSMPracticas.JuegoEN juego
+public ComunidadEN(string nombre, string descripcion, Nullable<DateTime> fechaCreacion, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> usuario, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN> post, PracticaDSMGenNHibernate.EN.DSMPracticas.JuegoEN juego
                    )
 {
-        this.init (Nombre, codigoComunidad, descripcion, fechaCreacion, usuario, post, juego);
+        this.init (Nombre, descripcion, fechaCreacion, usuario, post, juego);
 }
 
 
 public ComunidadEN(ComunidadEN comunidad)
 {
-        this.init (Nombre, comunidad.CodigoComunidad, comunidad.Descripcion, comunidad.FechaCreacion, comunidad.Usuario, comunidad.Post, comunidad.Juego);
+        this.init (Nombre, comunidad.Descripcion, comunidad.FechaCreacion, comunidad.Usuario, comunidad.Post, comunidad.Juego);
 }
 
 private void init (string nombre
-                   , int codigoComunidad, string descripcion, Nullable<DateTime> fechaCreacion, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> usuario, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN> post, PracticaDSMGenNHibernate.EN.DSMPracticas.JuegoEN juego)
+                   , string descripcion, Nullable<DateTime> fechaCreacion, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> usuario, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN> post, PracticaDSMGenNHibernate.EN.DSMPracticas.JuegoEN juego)
 {
         this.Nombre = nombre;
 
-
-        this.CodigoComunidad = codigoComunidad;
 
         this.Descripcion = descripcion;
 

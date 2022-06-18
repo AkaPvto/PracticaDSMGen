@@ -45,7 +45,7 @@ public void DeletePost (string p_Comunidad_OID, System.Collections.Generic.IList
 
         _IComunidadCAD.DeletePost (p_Comunidad_OID, p_post_OIDs);
 }
-public string New_ (string p_nombre, int p_codigoComunidad, string p_descripcion, Nullable<DateTime> p_fechaCreacion, string p_juego)
+public string New_ (string p_nombre, string p_descripcion, Nullable<DateTime> p_fechaCreacion, string p_juego)
 {
         ComunidadEN comunidadEN = null;
         string oid;
@@ -53,8 +53,6 @@ public string New_ (string p_nombre, int p_codigoComunidad, string p_descripcion
         //Initialized ComunidadEN
         comunidadEN = new ComunidadEN ();
         comunidadEN.Nombre = p_nombre;
-
-        comunidadEN.CodigoComunidad = p_codigoComunidad;
 
         comunidadEN.Descripcion = p_descripcion;
 
@@ -74,14 +72,13 @@ public string New_ (string p_nombre, int p_codigoComunidad, string p_descripcion
         return oid;
 }
 
-public void Modify (string p_Comunidad_OID, int p_codigoComunidad, string p_descripcion, Nullable<DateTime> p_fechaCreacion)
+public void Modify (string p_Comunidad_OID, string p_descripcion, Nullable<DateTime> p_fechaCreacion)
 {
         ComunidadEN comunidadEN = null;
 
         //Initialized ComunidadEN
         comunidadEN = new ComunidadEN ();
         comunidadEN.Nombre = p_Comunidad_OID;
-        comunidadEN.CodigoComunidad = p_codigoComunidad;
         comunidadEN.Descripcion = p_descripcion;
         comunidadEN.FechaCreacion = p_fechaCreacion;
         //Call to ComunidadCAD

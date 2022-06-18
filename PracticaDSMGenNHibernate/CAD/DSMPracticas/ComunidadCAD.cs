@@ -91,9 +91,6 @@ public void ModifyDefault (ComunidadEN comunidad)
                 SessionInitializeTransaction ();
                 ComunidadEN comunidadEN = (ComunidadEN)session.Load (typeof(ComunidadEN), comunidad.Nombre);
 
-                comunidadEN.CodigoComunidad = comunidad.CodigoComunidad;
-
-
                 comunidadEN.Descripcion = comunidad.Descripcion;
 
 
@@ -198,9 +195,6 @@ public void Modify (ComunidadEN comunidad)
         {
                 SessionInitializeTransaction ();
                 ComunidadEN comunidadEN = (ComunidadEN)session.Load (typeof(ComunidadEN), comunidad.Nombre);
-
-                comunidadEN.CodigoComunidad = comunidad.CodigoComunidad;
-
 
                 comunidadEN.Descripcion = comunidad.Descripcion;
 

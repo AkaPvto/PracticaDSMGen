@@ -74,54 +74,53 @@ public static void Create (string databaseArg, string userArg, string passArg)
 
 public static void InitializeData ()
 {
-            /*PROTECTED REGION ID(initializeDataMethod) ENABLED START*/
-            try
-            {
+        /*PROTECTED REGION ID(initializeDataMethod) ENABLED START*/
+        try
+        {
                 // Insert the initilizations of entities using the CEN classes
 
-                Console.WriteLine("Introducimos usuarios a la bbdd...");
-                UsuarioCEN usuarioCEN = new UsuarioCEN();
-                usuarioCEN.New_("Kaese", "Sergio", "Miedes", "kaeseks@gmail.com", 666666666, "C/carton", "fotoejemplo", "1234", false);
-                usuarioCEN.New_("FroggyChair", "Candela", "Urh", "princesita23@gmail.com", 666999666, "C/cartulina", "fotoejemplo2", "1234", false);
-                usuarioCEN.New_("Jaxtified", "Carlos", "Izquierdo", "carlosesetio@gmail.com", 666999888, "C/carta", "fotoejemplo3", "1234", false);
-                usuarioCEN.New_("Akapvto", "Jorge", "Reig", "akayamiakuma@gmail.com", 666222888, "C/cartones", "fotoejemplo4", "1234", false);
-                usuarioCEN.New_("Sariwii", "Sara", "Morote", "sariwicondosies@gmail.com", 666999222, "C/cartulinas", "fotoejemplo5", "1234", false);
+                Console.WriteLine ("Introducimos usuarios a la bbdd...");
+                UsuarioCEN usuarioCEN = new UsuarioCEN ();
+                usuarioCEN.New_ ("Kaese", "Sergio", "Miedes", "kaeseks@gmail.com", 666666666, "C/carton", "fotoejemplo", "1234", false);
+                usuarioCEN.New_ ("FroggyChair", "Candela", "Urh", "princesita23@gmail.com", 666999666, "C/cartulina", "fotoejemplo2", "1234", false);
+                usuarioCEN.New_ ("Jaxtified", "Carlos", "Izquierdo", "carlosesetio@gmail.com", 666999888, "C/carta", "fotoejemplo3", "1234", false);
+                usuarioCEN.New_ ("Akapvto", "Jorge", "Reig", "akayamiakuma@gmail.com", 666222888, "C/cartones", "fotoejemplo4", "1234", false);
+                usuarioCEN.New_ ("Sariwii", "Sara", "Morote", "sariwicondosies@gmail.com", 666999222, "C/cartulinas", "fotoejemplo5", "1234", false);
 
-                Console.WriteLine("Introducimos los generos a laa bbdd...");
-                GeneroCEN generoCEN = new GeneroCEN();
-                generoCEN.New_("Coches");
-                generoCEN.New_("Accion");
-                generoCEN.New_("Aventuras");
-                generoCEN.New_("Metroidvania");
-                generoCEN.New_("Estrategia");
-                generoCEN.New_("Autochess");
-                generoCEN.New_("Terror");
-                generoCEN.New_("Roguelike");
-                generoCEN.New_("Soulslike");
-                generoCEN.New_("FirstPersonShooter");
+                Console.WriteLine ("Introducimos los generos a laa bbdd...");
+                GeneroCEN generoCEN = new GeneroCEN ();
+                generoCEN.New_ ("Coches");
+                generoCEN.New_ ("Accion");
+                generoCEN.New_ ("Aventuras");
+                generoCEN.New_ ("Metroidvania");
+                generoCEN.New_ ("Estrategia");
+                generoCEN.New_ ("Autochess");
+                generoCEN.New_ ("Terror");
+                generoCEN.New_ ("Roguelike");
+                generoCEN.New_ ("Soulslike");
+                generoCEN.New_ ("FirstPersonShooter");
 
-                Console.WriteLine("Introducimos juegos a la bbdd...");
-                JuegoCEN juegoCEN = new JuegoCEN();
+                Console.WriteLine ("Introducimos juegos a la bbdd...");
+                JuegoCEN juegoCEN = new JuegoCEN ();
                 string[] aux_rocket = { "Coches", "Accion" };
                 IList<string> generos = aux_rocket;
-                juegoCEN.New_("Rocket League", "Juego de coches y futbol", "portada_rocket_league", generos);
+                juegoCEN.New_ ("Rocket League", "Juego de coches y futbol", "portada_rocket_league", generos);
                 string[] aux_silksong = { "Aventuras", "Accion", "Metroidvania" };
                 generos = aux_silksong;
-                juegoCEN.New_("Hollow Knight: Silksong", "Solo existe en esta bbdd", "portada_silksong", generos);
-                string[] aux_tft = { "Estrategia", "Autochess"};
+                juegoCEN.New_ ("Hollow Knight: Silksong", "Solo existe en esta bbdd", "portada_silksong", generos);
+                string[] aux_tft = { "Estrategia", "Autochess" };
                 generos = aux_tft;
-                juegoCEN.New_("League of Legends: TFT", "Solo apto para gente inteligente", "portada_tft", generos);
+                juegoCEN.New_ ("League of Legends: TFT", "Solo apto para gente inteligente", "portada_tft", generos);
 
-                Console.WriteLine("Introducimos comunidades a la bbdd...");
-                ComunidadCEN comunidadCEN = new ComunidadCEN();
-                
+                Console.WriteLine ("Introducimos comunidades a la bbdd...");
+                ComunidadCEN comunidadCEN = new ComunidadCEN ();
 
 
 
 
                 /*PROTECTED REGION END*/
-            }
-            catch (Exception ex)
+        }
+        catch (Exception ex)
         {
                 System.Console.WriteLine (ex.InnerException);
                 throw ex;
