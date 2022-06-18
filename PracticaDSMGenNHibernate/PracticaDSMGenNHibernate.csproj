@@ -196,7 +196,6 @@
 	<Compile Include="CAD\DSMPracticas\INotificacionCAD.cs" />
 	<Compile Include="CAD\DSMPracticas\NotificacionCAD.cs" />
 	<Compile Include="CP\DSMPracticas\NotificacionCP.cs" />
-			<Compile Include="CEN\DSMPracticas\NotificacionCEN_New_.cs" />
 			
 			
 			

@@ -94,9 +94,6 @@ public void ModifyDefault (NotificacionEN notificacion)
                 notificacionEN.Texto = notificacion.Texto;
 
 
-                notificacionEN.Visto = notificacion.Visto;
-
-
 
                 session.Update (notificacionEN);
                 SessionCommit ();
@@ -164,9 +161,6 @@ public void Modify (NotificacionEN notificacion)
                 NotificacionEN notificacionEN = (NotificacionEN)session.Load (typeof(NotificacionEN), notificacion.Id);
 
                 notificacionEN.Texto = notificacion.Texto;
-
-
-                notificacionEN.Visto = notificacion.Visto;
 
                 session.Update (notificacionEN);
                 SessionCommit ();

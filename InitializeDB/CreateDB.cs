@@ -125,23 +125,13 @@ public static void InitializeData ()
                 int post2 = postCEN.New_ ("No jugueis con el BMW-200 (octane), la hitbox dista mucho del modelo 3D", candela, com_rl, Categoria_PostEnum.opinion, "Opinion sobre el BMW-200", "", DateTime.Parse ("5/1/2022"), DateTime.Parse ("11:23:00"));
                 int post3 = postCEN.New_ ("Cuando va a salir el jueguito. Alguien lo sabe?. Se ha filtrado?", jorge, com_hks, Categoria_PostEnum.blanco, "Fecha de lanzamiento(?)", "", DateTime.Parse ("14/4/2020"), DateTime.Parse ("03:27:00"));
 
-                Console.WriteLine ("Introducimos comentarios a la bbdd...");
+                Console.WriteLine ("Introducimos un comentario a la bbdd...");
                 ComentarioCEN comentarioCEN = new ComentarioCEN ();
-                comentarioCEN.NewRaiz("Yo puedo jugar contigo",candela, post1, DateTime.Parse("3/1/2022"), DateTime.Parse("17:45:00"), 0);
-                comentarioCEN.NewRaiz("Nunca va a salir. Deja de hacerte ilusiones en cada Nintendo Direct.", carlos, post3, DateTime.Parse("17/5/2020"), DateTime.Parse("13:11:00"), 0);
 
-                Console.WriteLine("Introducimos notificaciones a la bbdd...");
-                NotificacionCEN notificacionCEN = new NotificacionCEN();
-                notificacionCEN.New_("Se ha subido un nuevo post a la comunidad de Rocket League. No te lo pierdas!", com_rl, post1);
-                notificacionCEN.New_("Se ha subido un nuevo post a la comunidad de SilkSong. No te lo pierdas!", com_hks, post3);
-
-                Console.WriteLine("Introducimos avisos a la bbdd...");
-                AvisoCEN avisoCEN = new AvisoCEN();
-                avisoCEN.New_("Insultaste y/u ofendiste a un compañero.", sara, DateTime.Parse("7/12/2021"), DateTime.Parse("02:39:00"));
 
 
                 /*PROTECTED REGION END*/
-            }
+        }
         catch (Exception ex)
         {
                 System.Console.WriteLine (ex.InnerException);
