@@ -116,19 +116,19 @@ public static void InitializeData ()
 
                 Console.WriteLine ("Introducimos comunidades a la bbdd...");
                 ComunidadCEN comunidadCEN = new ComunidadCEN ();
-                string com_rl = comunidadCEN.New_("Rocket League", "Comunidad de Rocket League. ¡Calienten motores!", new DateTime(2022, 1, 1), "Rocket League");
-                string com_hks = comunidadCEN.New_("Silksong", "Comunidad del Silksong. ¡Preparen las pelucas, SIUUUUU!", new DateTime(2019, 11, 15), "Hollow Knight: Silksong");
+                string com_rl = comunidadCEN.New_ ("Rocket League", "Comunidad de Rocket League. ï¿½Calienten motores!", new DateTime (2022, 1, 1), "Rocket League");
+                string com_hks = comunidadCEN.New_ ("Silksong", "Comunidad del Silksong. ï¿½Preparen las pelucas, SIUUUUU!", new DateTime (2019, 11, 15), "Hollow Knight: Silksong");
 
-                Console.WriteLine("Introducimos postst a la bbdd...");
-                PostCEN postCEN = new PostCEN();
-                int post1 = postCEN.New_("Busco gente para jugar", sergio, com_rl, Categoria_PostEnum.blanco);
-                int post2 = postCEN.New_("No jugueis con el BMW-200 (octane), es muy malo", candela, com_rl, Categoria_PostEnum.opinion);
+                Console.WriteLine ("Introducimos postst a la bbdd...");
+                PostCEN postCEN = new PostCEN ();
+                int post1 = postCEN.New_ ("Busco gente para jugar", sergio, com_rl, Categoria_PostEnum.blanco);
+                int post2 = postCEN.New_ ("No jugueis con el BMW-200 (octane), es muy malo", candela, com_rl, Categoria_PostEnum.opinion);
 
 
 
 
                 /*PROTECTED REGION END*/
-            }
+        }
         catch (Exception ex)
         {
                 System.Console.WriteLine (ex.InnerException);

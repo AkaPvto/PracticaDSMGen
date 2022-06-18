@@ -54,6 +54,34 @@ private PracticaDSMGenNHibernate.Enumerated.DSMPracticas.Categoria_PostEnum cate
 
 
 
+/**
+ *	Atributo titulo
+ */
+private string titulo;
+
+
+
+/**
+ *	Atributo imagen
+ */
+private string imagen;
+
+
+
+/**
+ *	Atributo fecha
+ */
+private Nullable<DateTime> fecha;
+
+
+
+/**
+ *	Atributo hora
+ */
+private Nullable<DateTime> hora;
+
+
+
 
 
 
@@ -99,6 +127,30 @@ public virtual PracticaDSMGenNHibernate.Enumerated.DSMPracticas.Categoria_PostEn
 
 
 
+public virtual string Titulo {
+        get { return titulo; } set { titulo = value;  }
+}
+
+
+
+public virtual string Imagen {
+        get { return imagen; } set { imagen = value;  }
+}
+
+
+
+public virtual Nullable<DateTime> Fecha {
+        get { return fecha; } set { fecha = value;  }
+}
+
+
+
+public virtual Nullable<DateTime> Hora {
+        get { return hora; } set { hora = value;  }
+}
+
+
+
 
 
 public PostEN()
@@ -109,20 +161,20 @@ public PostEN()
 
 
 
-public PostEN(int id, string contenido, PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN usuario, PracticaDSMGenNHibernate.EN.DSMPracticas.ComunidadEN comunidad, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN> comentario, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.NotificacionEN> notificacion, PracticaDSMGenNHibernate.Enumerated.DSMPracticas.Categoria_PostEnum categoria
+public PostEN(int id, string contenido, PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN usuario, PracticaDSMGenNHibernate.EN.DSMPracticas.ComunidadEN comunidad, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN> comentario, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.NotificacionEN> notificacion, PracticaDSMGenNHibernate.Enumerated.DSMPracticas.Categoria_PostEnum categoria, string titulo, string imagen, Nullable<DateTime> fecha, Nullable<DateTime> hora
               )
 {
-        this.init (Id, contenido, usuario, comunidad, comentario, notificacion, categoria);
+        this.init (Id, contenido, usuario, comunidad, comentario, notificacion, categoria, titulo, imagen, fecha, hora);
 }
 
 
 public PostEN(PostEN post)
 {
-        this.init (Id, post.Contenido, post.Usuario, post.Comunidad, post.Comentario, post.Notificacion, post.Categoria);
+        this.init (Id, post.Contenido, post.Usuario, post.Comunidad, post.Comentario, post.Notificacion, post.Categoria, post.Titulo, post.Imagen, post.Fecha, post.Hora);
 }
 
 private void init (int id
-                   , string contenido, PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN usuario, PracticaDSMGenNHibernate.EN.DSMPracticas.ComunidadEN comunidad, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN> comentario, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.NotificacionEN> notificacion, PracticaDSMGenNHibernate.Enumerated.DSMPracticas.Categoria_PostEnum categoria)
+                   , string contenido, PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN usuario, PracticaDSMGenNHibernate.EN.DSMPracticas.ComunidadEN comunidad, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN> comentario, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.NotificacionEN> notificacion, PracticaDSMGenNHibernate.Enumerated.DSMPracticas.Categoria_PostEnum categoria, string titulo, string imagen, Nullable<DateTime> fecha, Nullable<DateTime> hora)
 {
         this.Id = id;
 
@@ -138,6 +190,14 @@ private void init (int id
         this.Notificacion = notificacion;
 
         this.Categoria = categoria;
+
+        this.Titulo = titulo;
+
+        this.Imagen = imagen;
+
+        this.Fecha = fecha;
+
+        this.Hora = hora;
 }
 
 public override bool Equals (object obj)

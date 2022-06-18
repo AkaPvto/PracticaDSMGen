@@ -100,6 +100,18 @@ public void ModifyDefault (PostEN post)
 
                 postEN.Categoria = post.Categoria;
 
+
+                postEN.Titulo = post.Titulo;
+
+
+                postEN.Imagen = post.Imagen;
+
+
+                postEN.Fecha = post.Fecha;
+
+
+                postEN.Hora = post.Hora;
+
                 session.Update (postEN);
                 SessionCommit ();
         }
@@ -247,6 +259,18 @@ public void Modify (PostEN post)
 
 
                 postEN.Categoria = post.Categoria;
+
+
+                postEN.Titulo = post.Titulo;
+
+
+                postEN.Imagen = post.Imagen;
+
+
+                postEN.Fecha = post.Fecha;
+
+
+                postEN.Hora = post.Hora;
 
                 session.Update (postEN);
                 SessionCommit ();

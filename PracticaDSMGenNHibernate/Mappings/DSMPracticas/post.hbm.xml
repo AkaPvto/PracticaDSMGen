@@ -18,6 +18,18 @@
 					<property name="Categoria" > 
 						<column name="categoria"  not-null="true"/>
 					</property>
+					<property name="Titulo" type="string"> 
+						<column name=""  not-null="true"/>
+					</property>
+					<property name="Imagen" type="string"> 
+						<column name="imagen"  not-null="true"/>
+					</property>
+					<property name="Fecha" type="date"> 
+						<column name="fecha"  not-null="true"/>
+					</property>
+					<property name="Hora" type="timestamp"> 
+						<column name="hora"  not-null="true"/>
+					</property>
 			
 			
 			
@@ -56,6 +68,14 @@
 					    </bag>
 					
 			
+			
+			
+			
+			
+					
+					
+					
+					
 					
 					
 					

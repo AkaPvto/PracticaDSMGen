@@ -51,7 +51,7 @@ public void BorrarComentario (int p_Post_OID, System.Collections.Generic.IList<i
 
         _IPostCAD.BorrarComentario (p_Post_OID, p_comentario_OIDs);
 }
-public int New_ (string p_contenido, int p_usuario, string p_comunidad, PracticaDSMGenNHibernate.Enumerated.DSMPracticas.Categoria_PostEnum p_categoria)
+public int New_ (string p_contenido, int p_usuario, string p_comunidad, PracticaDSMGenNHibernate.Enumerated.DSMPracticas.Categoria_PostEnum p_categoria, string p_titulo, string p_imagen, Nullable<DateTime> p_fecha, Nullable<DateTime> p_hora)
 {
         PostEN postEN = null;
         int oid;
@@ -78,13 +78,21 @@ public int New_ (string p_contenido, int p_usuario, string p_comunidad, Practica
 
         postEN.Categoria = p_categoria;
 
+        postEN.Titulo = p_titulo;
+
+        postEN.Imagen = p_imagen;
+
+        postEN.Fecha = p_fecha;
+
+        postEN.Hora = p_hora;
+
         //Call to PostCAD
 
         oid = _IPostCAD.New_ (postEN);
         return oid;
 }
 
-public void Modify (int p_Post_OID, string p_contenido, PracticaDSMGenNHibernate.Enumerated.DSMPracticas.Categoria_PostEnum p_categoria)
+public void Modify (int p_Post_OID, string p_contenido, PracticaDSMGenNHibernate.Enumerated.DSMPracticas.Categoria_PostEnum p_categoria, string p_titulo, string p_imagen, Nullable<DateTime> p_fecha, Nullable<DateTime> p_hora)
 {
         PostEN postEN = null;
 
@@ -93,6 +101,10 @@ public void Modify (int p_Post_OID, string p_contenido, PracticaDSMGenNHibernate
         postEN.Id = p_Post_OID;
         postEN.Contenido = p_contenido;
         postEN.Categoria = p_categoria;
+        postEN.Titulo = p_titulo;
+        postEN.Imagen = p_imagen;
+        postEN.Fecha = p_fecha;
+        postEN.Hora = p_hora;
         //Call to PostCAD
 
         _IPostCAD.Modify (postEN);
