@@ -21,7 +21,7 @@ namespace PracticaDSMGenNHibernate.CP.DSMPracticas
 {
 public partial class ComentarioCP : BasicCP
 {
-public PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN NewHijo (string p_contenido, int p_usuario, int p_post)
+public PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN NewHijo (string p_contenido, int p_usuario, int p_post, Nullable<DateTime> p_fecha, Nullable<DateTime> p_hora, int p_likes)
 {
         /*PROTECTED REGION ID(PracticaDSMGenNHibernate.CP.DSMPracticas_Comentario_newHijo) ENABLED START*/
 

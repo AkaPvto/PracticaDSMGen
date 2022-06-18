@@ -19,7 +19,7 @@
 						<column name="categoria"  not-null="true"/>
 					</property>
 					<property name="Titulo" type="string"> 
-						<column name=""  not-null="true"/>
+						<column name="titulo"  not-null="true"/>
 					</property>
 					<property name="Imagen" type="string"> 
 						<column name="imagen"  not-null="true"/>

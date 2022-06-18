@@ -15,6 +15,15 @@
 					<property name="Contenido" type="string"> 
 						<column name="contenido"  not-null="true"/>
 					</property>
+					<property name="Fecha" type="date"> 
+						<column name="fecha"  not-null="true"/>
+					</property>
+					<property name="Hora" type="timestamp"> 
+						<column name="hora"  not-null="true"/>
+					</property>
+					<property name="Likes" type="integer"> 
+						<column name="likes"  not-null="true"/>
+					</property>
 			
 			
 			
@@ -47,6 +56,12 @@
 								<column name="FK_id_idComentario"/> 
 						</many-to-one>
 											 					
+			
+			
+			
+					
+					
+					
 					
 					
 					

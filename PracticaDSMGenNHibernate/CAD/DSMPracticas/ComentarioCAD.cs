@@ -97,6 +97,15 @@ public void ModifyDefault (ComentarioEN comentario)
 
 
 
+
+                comentarioEN.Fecha = comentario.Fecha;
+
+
+                comentarioEN.Hora = comentario.Hora;
+
+
+                comentarioEN.Likes = comentario.Likes;
+
                 session.Update (comentarioEN);
                 SessionCommit ();
         }
@@ -164,6 +173,15 @@ public void Modify (ComentarioEN comentario)
                 ComentarioEN comentarioEN = (ComentarioEN)session.Load (typeof(ComentarioEN), comentario.Id);
 
                 comentarioEN.Contenido = comentario.Contenido;
+
+
+                comentarioEN.Fecha = comentario.Fecha;
+
+
+                comentarioEN.Hora = comentario.Hora;
+
+
+                comentarioEN.Likes = comentario.Likes;
 
                 session.Update (comentarioEN);
                 SessionCommit ();

@@ -47,6 +47,27 @@ private PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN comentarioPadre;
 
 
 
+/**
+ *	Atributo fecha
+ */
+private Nullable<DateTime> fecha;
+
+
+
+/**
+ *	Atributo hora
+ */
+private Nullable<DateTime> hora;
+
+
+
+/**
+ *	Atributo likes
+ */
+private int likes;
+
+
+
 
 
 
@@ -86,6 +107,24 @@ public virtual PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN ComentarioP
 
 
 
+public virtual Nullable<DateTime> Fecha {
+        get { return fecha; } set { fecha = value;  }
+}
+
+
+
+public virtual Nullable<DateTime> Hora {
+        get { return hora; } set { hora = value;  }
+}
+
+
+
+public virtual int Likes {
+        get { return likes; } set { likes = value;  }
+}
+
+
+
 
 
 public ComentarioEN()
@@ -95,20 +134,20 @@ public ComentarioEN()
 
 
 
-public ComentarioEN(int id, string contenido, PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN usuario, PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN post, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN> comentariosHijos, PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN comentarioPadre
+public ComentarioEN(int id, string contenido, PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN usuario, PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN post, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN> comentariosHijos, PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN comentarioPadre, Nullable<DateTime> fecha, Nullable<DateTime> hora, int likes
                     )
 {
-        this.init (Id, contenido, usuario, post, comentariosHijos, comentarioPadre);
+        this.init (Id, contenido, usuario, post, comentariosHijos, comentarioPadre, fecha, hora, likes);
 }
 
 
 public ComentarioEN(ComentarioEN comentario)
 {
-        this.init (Id, comentario.Contenido, comentario.Usuario, comentario.Post, comentario.ComentariosHijos, comentario.ComentarioPadre);
+        this.init (Id, comentario.Contenido, comentario.Usuario, comentario.Post, comentario.ComentariosHijos, comentario.ComentarioPadre, comentario.Fecha, comentario.Hora, comentario.Likes);
 }
 
 private void init (int id
-                   , string contenido, PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN usuario, PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN post, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN> comentariosHijos, PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN comentarioPadre)
+                   , string contenido, PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN usuario, PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN post, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN> comentariosHijos, PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN comentarioPadre, Nullable<DateTime> fecha, Nullable<DateTime> hora, int likes)
 {
         this.Id = id;
 
@@ -122,6 +161,12 @@ private void init (int id
         this.ComentariosHijos = comentariosHijos;
 
         this.ComentarioPadre = comentarioPadre;
+
+        this.Fecha = fecha;
+
+        this.Hora = hora;
+
+        this.Likes = likes;
 }
 
 public override bool Equals (object obj)

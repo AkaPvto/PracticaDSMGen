@@ -121,18 +121,18 @@ public static void InitializeData ()
 
                 Console.WriteLine ("Introducimos postst a la bbdd...");
                 PostCEN postCEN = new PostCEN ();
-                int post1 = postCEN.New_ ("Ultimamente he estado jugando mucho, estoy en diamante 3 y mi nickname es KaeseOrigin.", sergio, com_rl, Categoria_PostEnum.blanco, "Busco gente para jugar", "", DateTime.Parse("3/1/2022"), DateTime.Parse("16:00:00"));
-                int post2 = postCEN.New_ ("No jugueis con el BMW-200 (octane), la hitbox dista mucho del modelo 3D", candela, com_rl, Categoria_PostEnum.opinion, "Opinion sobre el BMW-200", "", DateTime.Parse("5/1/2022"), DateTime.Parse("11:23:00"));
-                int post3 = postCEN.New_ ("Cuando va a salir el jueguito. Alguien lo sabe?. Se ha filtrado?", jorge, com_hks, Categoria_PostEnum.blanco, "Fecha de lanzamiento(?)", "", DateTime.Parse("14/4/2020"), DateTime.Parse("03:27:00"));
+                int post1 = postCEN.New_ ("Ultimamente he estado jugando mucho, estoy en diamante 3 y mi nickname es KaeseOrigin.", sergio, com_rl, Categoria_PostEnum.blanco, "Busco gente para jugar", "", DateTime.Parse ("3/1/2022"), DateTime.Parse ("16:00:00"));
+                int post2 = postCEN.New_ ("No jugueis con el BMW-200 (octane), la hitbox dista mucho del modelo 3D", candela, com_rl, Categoria_PostEnum.opinion, "Opinion sobre el BMW-200", "", DateTime.Parse ("5/1/2022"), DateTime.Parse ("11:23:00"));
+                int post3 = postCEN.New_ ("Cuando va a salir el jueguito. Alguien lo sabe?. Se ha filtrado?", jorge, com_hks, Categoria_PostEnum.blanco, "Fecha de lanzamiento(?)", "", DateTime.Parse ("14/4/2020"), DateTime.Parse ("03:27:00"));
 
-                Console.WriteLine("Introducimos un comentario a la bbdd...");
-                ComentarioCEN comentarioCEN = new ComentarioCEN();
+                Console.WriteLine ("Introducimos un comentario a la bbdd...");
+                ComentarioCEN comentarioCEN = new ComentarioCEN ();
 
 
 
 
                 /*PROTECTED REGION END*/
-            }
+        }
         catch (Exception ex)
         {
                 System.Console.WriteLine (ex.InnerException);
