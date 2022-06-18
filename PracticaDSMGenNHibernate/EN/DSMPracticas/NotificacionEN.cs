@@ -20,6 +20,13 @@ private string texto;
 
 
 /**
+ *	Atributo visto
+ */
+private bool visto;
+
+
+
+/**
  *	Atributo usuario
  */
 private System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> usuario;
@@ -48,6 +55,12 @@ public virtual string Texto {
 
 
 
+public virtual bool Visto {
+        get { return visto; } set { visto = value;  }
+}
+
+
+
 public virtual System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> Usuario {
         get { return usuario; } set { usuario = value;  }
 }
@@ -69,25 +82,27 @@ public NotificacionEN()
 
 
 
-public NotificacionEN(int id, string texto, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> usuario, PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN post
+public NotificacionEN(int id, string texto, bool visto, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> usuario, PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN post
                       )
 {
-        this.init (Id, texto, usuario, post);
+        this.init (Id, texto, visto, usuario, post);
 }
 
 
 public NotificacionEN(NotificacionEN notificacion)
 {
-        this.init (Id, notificacion.Texto, notificacion.Usuario, notificacion.Post);
+        this.init (Id, notificacion.Texto, notificacion.Visto, notificacion.Usuario, notificacion.Post);
 }
 
 private void init (int id
-                   , string texto, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> usuario, PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN post)
+                   , string texto, bool visto, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> usuario, PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN post)
 {
         this.Id = id;
 
 
         this.Texto = texto;
+
+        this.Visto = visto;
 
         this.Usuario = usuario;
 
