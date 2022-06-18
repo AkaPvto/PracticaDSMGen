@@ -116,19 +116,23 @@ public static void InitializeData ()
 
                 Console.WriteLine ("Introducimos comunidades a la bbdd...");
                 ComunidadCEN comunidadCEN = new ComunidadCEN ();
-                string com_rl = comunidadCEN.New_ ("Rocket League", "Comunidad de Rocket League. �Calienten motores!", new DateTime (2022, 1, 1), "Rocket League");
-                string com_hks = comunidadCEN.New_ ("Silksong", "Comunidad del Silksong. �Preparen las pelucas, SIUUUUU!", new DateTime (2019, 11, 15), "Hollow Knight: Silksong");
+                string com_rl = comunidadCEN.New_ ("Rocket League", "Comunidad de Rocket League. Calienten motores!", new DateTime (2022, 1, 1), "Rocket League");
+                string com_hks = comunidadCEN.New_ ("Silksong", "Comunidad del Silksong. Preparen las pelucas, SIUUUUU!", new DateTime (2019, 11, 15), "Hollow Knight: Silksong");
 
                 Console.WriteLine ("Introducimos postst a la bbdd...");
                 PostCEN postCEN = new PostCEN ();
-                int post1 = postCEN.New_ ("Busco gente para jugar", sergio, com_rl, Categoria_PostEnum.blanco);
-                int post2 = postCEN.New_ ("No jugueis con el BMW-200 (octane), es muy malo", candela, com_rl, Categoria_PostEnum.opinion);
+                int post1 = postCEN.New_ ("Ultimamente he estado jugando mucho, estoy en diamante 3 y mi nickname es KaeseOrigin.", sergio, com_rl, Categoria_PostEnum.blanco, "Busco gente para jugar", "", DateTime.Parse("3/1/2022"), DateTime.Parse("16:00:00"));
+                int post2 = postCEN.New_ ("No jugueis con el BMW-200 (octane), la hitbox dista mucho del modelo 3D", candela, com_rl, Categoria_PostEnum.opinion, "Opinion sobre el BMW-200", "", DateTime.Parse("5/1/2022"), DateTime.Parse("11:23:00"));
+                int post3 = postCEN.New_ ("Cuando va a salir el jueguito. Alguien lo sabe?. Se ha filtrado?", jorge, com_hks, Categoria_PostEnum.blanco, "Fecha de lanzamiento(?)", "", DateTime.Parse("14/4/2020"), DateTime.Parse("03:27:00"));
+
+                Console.WriteLine("Introducimos un comentario a la bbdd...");
+                ComentarioCEN comentarioCEN = new ComentarioCEN();
 
 
 
 
                 /*PROTECTED REGION END*/
-        }
+            }
         catch (Exception ex)
         {
                 System.Console.WriteLine (ex.InnerException);
