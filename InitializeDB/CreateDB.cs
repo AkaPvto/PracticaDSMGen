@@ -132,13 +132,29 @@ public static void InitializeData ()
 
                 Console.WriteLine("Introducimos notificaciones a la bbdd...");
                 NotificacionCEN notificacionCEN = new NotificacionCEN();
-                notificacionCEN.New_("Se ha subido un nuevo post a la comunidad de Rocket League. No te lo pierdas!", com_rl, post1);
-                notificacionCEN.New_("Se ha subido un nuevo post a la comunidad de SilkSong. No te lo pierdas!", com_hks, post3);
+                //notificacionCEN.New_("Se ha subido un nuevo post a la comunidad de Rocket League. No te lo pierdas!", com_rl, post1);
+                //notificacionCEN.New_("Se ha subido un nuevo post a la comunidad de SilkSong. No te lo pierdas!", com_hks, post3);
 
                 Console.WriteLine("Introducimos avisos a la bbdd...");
                 AvisoCEN avisoCEN = new AvisoCEN();
                 avisoCEN.New_("Insultaste y/u ofendiste a un compañero.", sara, DateTime.Parse("7/12/2021"), DateTime.Parse("02:39:00"));
 
+                Console.WriteLine("\nFiltramos los posts por categoria opinion:");
+                IList<PostEN> posts = postCEN.GetPostPorCategoria(Categoria_PostEnum.opinion);
+                foreach (PostEN post in posts){
+                    Console.WriteLine("ID-> " + post.Id + ", Categoría-> " + post.Categoria);
+                }
+                Console.WriteLine("\n");
+
+                Console.WriteLine("Intentamos banear a un usuario:");
+                usuarioCEN.BanearUsuario(candela);
+
+                Console.WriteLine("Recuperamos los comentarios ordenados por fecha:");
+                IList<ComentarioEN> comentarios = comentarioCEN.GetComentariosFecha();
+                foreach (ComentarioEN comentario in comentarios){
+                    Console.WriteLine("ID-> " + comentario.Id + ", Fecha-> " + comentario.Fecha);
+                }
+                Console.WriteLine("\n");
 
                 /*PROTECTED REGION END*/
             }

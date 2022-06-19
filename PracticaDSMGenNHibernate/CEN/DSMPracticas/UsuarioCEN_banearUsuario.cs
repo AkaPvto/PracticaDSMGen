@@ -25,7 +25,7 @@ public void BanearUsuario (int p_oid)
 
         // Write here your custom code...
 
-        throw new NotImplementedException ("Method BanearUsuario() not yet implemented.");
+        
 
         /*PROTECTED REGION END*/
 }
