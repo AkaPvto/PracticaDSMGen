@@ -21,7 +21,7 @@ namespace PracticaDSMGenNHibernate.CP.DSMPracticas
 {
 public partial class JuegoCP : BasicCP
 {
-public void RecomendarJuego (string p_oid, int p_usu)
+public void RecomendarJuego (int p_usu)
 {
         /*PROTECTED REGION ID(PracticaDSMGenNHibernate.CP.DSMPracticas_Juego_recomendarJuego) ENABLED START*/
 
