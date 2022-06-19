@@ -121,9 +121,9 @@ public static void InitializeData ()
 
                 Console.WriteLine ("Introducimos postst a la bbdd...");
                 PostCEN postCEN = new PostCEN ();
-                int post1 = postCEN.New_ ("Ultimamente he estado jugando mucho, estoy en diamante 3 y mi nickname es KaeseOrigin.", sergio, com_rl, Categoria_PostEnum.blanco, "Busco gente para jugar", "", DateTime.Parse ("3/1/2022"), DateTime.Parse ("16:00:00"));
-                int post2 = postCEN.New_ ("No jugueis con el BMW-200 (octane), la hitbox dista mucho del modelo 3D", candela, com_rl, Categoria_PostEnum.opinion, "Opinion sobre el BMW-200", "", DateTime.Parse ("5/1/2022"), DateTime.Parse ("11:23:00"));
-                int post3 = postCEN.New_ ("Cuando va a salir el jueguito. Alguien lo sabe?. Se ha filtrado?", jorge, com_hks, Categoria_PostEnum.blanco, "Fecha de lanzamiento(?)", "", DateTime.Parse ("14/4/2020"), DateTime.Parse ("03:27:00"));
+                int post1 = postCEN.New_ ("Ultimamente he estado jugando mucho, estoy en diamante 3 y mi nickname es KaeseOrigin.", sergio, com_rl, Categoria_PostEnum.blanco, "Busco gente para jugar", "", DateTime.Parse ("3/1/2022"), DateTime.Parse ("16:00:00"), 0);
+                int post2 = postCEN.New_ ("No jugueis con el BMW-200 (octane), la hitbox dista mucho del modelo 3D", candela, com_rl, Categoria_PostEnum.opinion, "Opinion sobre el BMW-200", "", DateTime.Parse ("5/1/2022"), DateTime.Parse ("11:23:00"), 0);
+                int post3 = postCEN.New_ ("Cuando va a salir el jueguito. Alguien lo sabe?. Se ha filtrado?", jorge, com_hks, Categoria_PostEnum.blanco, "Fecha de lanzamiento(?)", "", DateTime.Parse ("14/4/2020"), DateTime.Parse ("03:27:00"), 0);
 
                 Console.WriteLine ("Introducimos comentarios a la bbdd...");
                 ComentarioCEN comentarioCEN = new ComentarioCEN ();
@@ -149,12 +149,12 @@ public static void InitializeData ()
                 Console.WriteLine ("Intentamos banear a un usuario:");
                 usuarioCEN.BanearUsuario (candela);
 
-                Console.WriteLine ("\nRecuperamos los comentarios del post1 sin ordenar: ");
-                IList<ComentarioEN> coments = comentarioCEN.GetComentariosPost (post1);
-                foreach (ComentarioEN com in coments) {
-                        Console.WriteLine (com.Contenido);
-                }
-                Console.WriteLine ("");
+                //Console.WriteLine ("\nRecuperamos los comentarios del post1 odenados por likes: ");
+                //IList<ComentarioEN> coments = comentarioCEN.GetComentariosLikes (post1);
+                //foreach (ComentarioEN com in coments) {
+                //        Console.WriteLine (com.Contenido);
+                //}
+                //Console.WriteLine ("");
 
                 Console.WriteLine ("Recuperamos los comentarios del post1 ordenados por fecha:");
                 IList<ComentarioEN> comentarios = comentarioCEN.GetComentariosFecha (post1);
@@ -193,7 +193,7 @@ public static void InitializeData ()
                 Console.WriteLine ("\n");
 
                 Console.WriteLine ("\nFiltramos por los seguidos de Candela:");
-                IList<UsuarioEN> seguidos = usuarioCEN.GetSeguidos (candela);
+                IList<UsuarioEN> seguidos = usuarioCEN.GetFollowed (candela);
                 foreach (UsuarioEN seguido in seguidos) {
                         Console.WriteLine (seguido.Email);
                 }
