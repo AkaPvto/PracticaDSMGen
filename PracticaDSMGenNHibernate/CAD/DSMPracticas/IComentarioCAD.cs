@@ -31,7 +31,7 @@ ComentarioEN ReadOID (int id
 System.Collections.Generic.IList<ComentarioEN> ReadAll (int first, int size);
 
 
-System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN> GetComentariosOrdenados (bool ? tipoOrden);
+System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN> GetComentariosFecha (int p_post);
 
 
 void AddComentarioHijo (int p_Comentario_OID, System.Collections.Generic.IList<int> p_comentariosHijos_OIDs);

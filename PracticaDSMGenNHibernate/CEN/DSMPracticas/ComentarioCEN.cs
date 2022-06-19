@@ -77,6 +77,10 @@ public System.Collections.Generic.IList<ComentarioEN> ReadAll (int first, int si
         list = _IComentarioCAD.ReadAll (first, size);
         return list;
 }
+public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN> GetComentariosFecha (int p_post)
+{
+        return _IComentarioCAD.GetComentariosFecha (p_post);
+}
 public void AddComentarioHijo (int p_Comentario_OID, System.Collections.Generic.IList<int> p_comentariosHijos_OIDs)
 {
         //Call to ComentarioCAD

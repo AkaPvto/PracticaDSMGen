@@ -15,10 +15,6 @@
 					<property name="Texto" type="string"> 
 						<column name="texto"  not-null="true"/>
 					</property>
-					<property name="Visto" type="boolean"> 
-						<column name="visto"  not-null="true"/>
-					</property>
-			
 			
 			
 			
@@ -39,7 +35,6 @@
 								<column name="FK_id_idPost"/> 
 						</many-to-one>
 											 					
-					
 					
 					
 					

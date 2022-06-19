@@ -39,7 +39,7 @@ public INotificacionCAD get_INotificacionCAD ()
         return this._INotificacionCAD;
 }
 
-public int New_ (string p_texto, bool p_visto, System.Collections.Generic.IList<int> p_usuario, int p_post)
+public int New_ (string p_texto, System.Collections.Generic.IList<int> p_usuario, int p_post)
 {
         NotificacionEN notificacionEN = null;
         int oid;
@@ -47,8 +47,6 @@ public int New_ (string p_texto, bool p_visto, System.Collections.Generic.IList<
         //Initialized NotificacionEN
         notificacionEN = new NotificacionEN ();
         notificacionEN.Texto = p_texto;
-
-        notificacionEN.Visto = p_visto;
 
 
         notificacionEN.Usuario = new System.Collections.Generic.List<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN>();
@@ -78,7 +76,7 @@ public int New_ (string p_texto, bool p_visto, System.Collections.Generic.IList<
         return oid;
 }
 
-public void Modify (int p_Notificacion_OID, string p_texto, bool p_visto)
+public void Modify (int p_Notificacion_OID, string p_texto)
 {
         NotificacionEN notificacionEN = null;
 
@@ -86,7 +84,6 @@ public void Modify (int p_Notificacion_OID, string p_texto, bool p_visto)
         notificacionEN = new NotificacionEN ();
         notificacionEN.Id = p_Notificacion_OID;
         notificacionEN.Texto = p_texto;
-        notificacionEN.Visto = p_visto;
         //Call to NotificacionCAD
 
         _INotificacionCAD.Modify (notificacionEN);

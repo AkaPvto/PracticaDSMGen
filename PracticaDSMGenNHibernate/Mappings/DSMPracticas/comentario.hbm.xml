@@ -72,6 +72,6 @@
 		 </class>	
 		  
 		  <query name="ComentarioENReadAllHQL">from ComentarioEN</query>
-		  <query name="ComentarioENgetComentariosOrdenadosHQL"><![CDATA[FROM ComentarioEN]]></query>
+		  <query name="ComentarioENgetComentariosFechaHQL"><![CDATA[FROM ComentarioEN as comentario WHERE comentario.Post = :p_post AND comentario.Id != (SELECT comentariosHijos.Id FROM Comentario) order by comentario.Fecha desc]]></query>
 		</hibernate-mapping>
 	

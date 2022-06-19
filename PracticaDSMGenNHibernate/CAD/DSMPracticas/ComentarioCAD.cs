@@ -285,16 +285,16 @@ public System.Collections.Generic.IList<ComentarioEN> ReadAll (int first, int si
         return result;
 }
 
-public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN> GetComentariosOrdenados (bool ? tipoOrden)
+public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN> GetComentariosFecha (int p_post)
 {
         System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN> result;
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM ComentarioEN self where FROM ComentarioEN";
+                //String sql = @"FROM ComentarioEN self where FROM ComentarioEN as comentario WHERE comentario.Post = :p_post AND comentario.Id != (SELECT comentariosHijos.Id FROM Comentario) order by comentario.Fecha desc";
                 //IQuery query = session.CreateQuery(sql);
-                IQuery query = (IQuery)session.GetNamedQuery ("ComentarioENgetComentariosOrdenadosHQL");
-                query.SetParameter ("tipoOrden", tipoOrden);
+                IQuery query = (IQuery)session.GetNamedQuery ("ComentarioENgetComentariosFechaHQL");
+                query.SetParameter ("p_post", p_post);
 
                 result = query.List<PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN>();
                 SessionCommit ();
