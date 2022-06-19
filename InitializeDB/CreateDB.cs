@@ -149,8 +149,15 @@ public static void InitializeData ()
                 Console.WriteLine ("Intentamos banear a un usuario:");
                 usuarioCEN.BanearUsuario (candela);
 
-                Console.WriteLine ("Recuperamos los comentarios ordenados por fecha:");
-                IList<ComentarioEN> comentarios = comentarioCEN.GetComentariosFecha ();
+                Console.WriteLine("\nRecuperamos los comentarios del post1 sin ordenar: ");
+                IList<ComentarioEN> coments = comentarioCEN.GetComentariosPost(post1);
+                foreach (ComentarioEN com in coments){
+                    Console.WriteLine(com.Contenido);
+                }
+                Console.WriteLine("");
+
+                Console.WriteLine ("Recuperamos los comentarios del post1 ordenados por fecha:");
+                IList<ComentarioEN> comentarios = comentarioCEN.GetComentariosFecha(post1);
                 foreach (ComentarioEN comentario in comentarios) {
                         Console.WriteLine ("ID-> " + comentario.Id + ", Fecha-> " + comentario.Fecha);
                 }
@@ -158,11 +165,70 @@ public static void InitializeData ()
 
                 Console.WriteLine ("Usuario Candela sigue a otros usuarios (Carlos, Sergio y Sara):");
                 UsuarioCP usuarioCP = new UsuarioCP ();
-                int[] emails = { carlos, sergio, sara };
-                IList<int> oids = emails;
-                usuarioCP.AddFollowing (candela, oids);
+                usuarioCP.AddFollowing(candela, sergio);
+                usuarioCP.AddFollowing(candela, carlos);
+                usuarioCP.AddFollowing(candela, sara);
+
+                Console.WriteLine("El usuario Candela deja de seguir a otro usuario (Carlos):");
+                usuarioCP.DeleteFollowing(candela, carlos);
+
+                Console.WriteLine("\nFiltramos entre todos los juegos por el nombre League:");
+                IList<JuegoEN> juegos = juegoCEN.Busqueda("League");
+                foreach (JuegoEN juego in juegos){
+                    Console.WriteLine(juego.Nombre);
+                }
+                Console.WriteLine("\n");
+
+                Console.WriteLine("\nAgregamos juegos a el usuario Sergio...");
+                string[] juegos2 = { "Rocket League", "SilkSong" };
+                IList<string> oidsjuegos = juegos2;
+                usuarioCEN.AddJuego(sergio, oidsjuegos);
+                Console.WriteLine();
+
+                Console.WriteLine("\nFiltramos los juegos por el usuario Sergio:");
+                juegos = juegoCEN.GetJuegosPorUsuario(sergio);
+                foreach (JuegoEN juego in juegos) {
+                    Console.WriteLine(juego.Nombre);
+                }
+                Console.WriteLine("\n");
+
+                Console.WriteLine("\nFiltramos por los seguidos de Candela:");
+                IList<UsuarioEN> seguidos = usuarioCEN.GetSeguidos(candela);
+                foreach (UsuarioEN seguido in seguidos){
+                    Console.WriteLine(seguido.Email);
+                }
+
+                Console.WriteLine("\nRecomendamos juegos al usuario Candela:");
+                JuegoCP juegoCP = new JuegoCP();
+                juegoCP.RecomendarJuego(candela);
+
+                Console.WriteLine("\nAgregamos juegos a el usuario Carlos...");
+                string[] juegos3 = { "SilkSong", "League of Legends: TFT" };
+                oidsjuegos = juegos3;
+                usuarioCEN.AddJuego(carlos, oidsjuegos);
+                Console.WriteLine();
+
+                Console.WriteLine("\nEl usuario Candela sigue a Carlos:");
+                usuarioCP.AddFollowing(candela, carlos);
+
+                Console.WriteLine("\nRecomendamos juegos de nuevo al usuario Candela:");
+                juegoCP.RecomendarJuego(candela);
+
+                Console.WriteLine("\nRecuperamos los posts de la comunidad de Rocket League ordenados por likes: ");
+                IList<PostEN> posts2 = postCEN.GetPostComunidadLikes(com_rl);
+                foreach (PostEN post in posts2){
+                    Console.WriteLine(post.Contenido);
+                }
+                Console.WriteLine("");
+
+                Console.WriteLine("\nRecuperamos los posts de la comunidad de Rocket League ordenados por fecha: ");
+                IList<PostEN> posts3 = postCEN.GetPostComunidadFecha(com_rl);
+                foreach (PostEN post in posts3){
+                    Console.WriteLine(post.Contenido);
+                }
+                Console.WriteLine("");
                 /*PROTECTED REGION END*/
-        }
+            }
         catch (Exception ex)
         {
                 System.Console.WriteLine (ex.InnerException);
