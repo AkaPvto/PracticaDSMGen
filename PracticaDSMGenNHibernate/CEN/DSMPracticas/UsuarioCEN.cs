@@ -119,12 +119,6 @@ public System.Collections.Generic.IList<UsuarioEN> ReadAll (int first, int size)
         list = _IUsuarioCAD.ReadAll (first, size);
         return list;
 }
-public void AddFollowed (int p_Usuario_OID, System.Collections.Generic.IList<int> p_usuario_OIDs)
-{
-        //Call to UsuarioCAD
-
-        _IUsuarioCAD.AddFollowed (p_Usuario_OID, p_usuario_OIDs);
-}
 public void AddComunidad (int p_Usuario_OID, System.Collections.Generic.IList<string> p_comunidad_OIDs)
 {
         //Call to UsuarioCAD
@@ -136,12 +130,6 @@ public void DeleteComunidad (int p_Usuario_OID, System.Collections.Generic.IList
         //Call to UsuarioCAD
 
         _IUsuarioCAD.DeleteComunidad (p_Usuario_OID, p_comunidad_OIDs);
-}
-public void DeleteFollowed (int p_Usuario_OID, System.Collections.Generic.IList<int> p_usuario_OIDs)
-{
-        //Call to UsuarioCAD
-
-        _IUsuarioCAD.DeleteFollowed (p_Usuario_OID, p_usuario_OIDs);
 }
 public string Login (int p_Usuario_OID, string p_pass)
 {
@@ -157,6 +145,10 @@ public string Login (int p_Usuario_OID, string p_pass)
 public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> GetComunidadUsu (string p_comunidad)
 {
         return _IUsuarioCAD.GetComunidadUsu (p_comunidad);
+}
+public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> GetFollowed (int p_usuario)
+{
+        return _IUsuarioCAD.GetFollowed (p_usuario);
 }
 
 

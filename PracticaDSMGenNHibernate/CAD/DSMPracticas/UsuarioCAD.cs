@@ -343,44 +343,6 @@ public System.Collections.Generic.IList<UsuarioEN> ReadAll (int first, int size)
         return result;
 }
 
-public void AddFollowed (int p_Usuario_OID, System.Collections.Generic.IList<int> p_usuario_OIDs)
-{
-        PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN usuarioEN = null;
-        try
-        {
-                SessionInitializeTransaction ();
-                usuarioEN = (UsuarioEN)session.Load (typeof(UsuarioEN), p_Usuario_OID);
-                PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN usuarioENAux = null;
-                if (usuarioEN.Usuario == null) {
-                        usuarioEN.Usuario = new System.Collections.Generic.List<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN>();
-                }
-
-                foreach (int item in p_usuario_OIDs) {
-                        usuarioENAux = new PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN ();
-                        usuarioENAux = (PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN)session.Load (typeof(PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN), item);
-
-                        usuarioEN.Usuario.Add (usuarioENAux);
-                }
-
-
-                session.Update (usuarioEN);
-                SessionCommit ();
-        }
-
-        catch (Exception ex) {
-                SessionRollBack ();
-                if (ex is PracticaDSMGenNHibernate.Exceptions.ModelException)
-                        throw ex;
-                throw new PracticaDSMGenNHibernate.Exceptions.DataLayerException ("Error in UsuarioCAD.", ex);
-        }
-
-
-        finally
-        {
-                SessionClose ();
-        }
-}
-
 public void AddComunidad (int p_Usuario_OID, System.Collections.Generic.IList<string> p_comunidad_OIDs)
 {
         PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN usuarioEN = null;
@@ -458,43 +420,6 @@ public void DeleteComunidad (int p_Usuario_OID, System.Collections.Generic.IList
                 SessionClose ();
         }
 }
-public void DeleteFollowed (int p_Usuario_OID, System.Collections.Generic.IList<int> p_usuario_OIDs)
-{
-        try
-        {
-                SessionInitializeTransaction ();
-                PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN usuarioEN = null;
-                usuarioEN = (UsuarioEN)session.Load (typeof(UsuarioEN), p_Usuario_OID);
-
-                PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN usuarioENAux = null;
-                if (usuarioEN.Usuario != null) {
-                        foreach (int item in p_usuario_OIDs) {
-                                usuarioENAux = (PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN)session.Load (typeof(PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN), item);
-                                if (usuarioEN.Usuario.Contains (usuarioENAux) == true) {
-                                        usuarioEN.Usuario.Remove (usuarioENAux);
-                                }
-                                else
-                                        throw new ModelException ("The identifier " + item + " in p_usuario_OIDs you are trying to unrelationer, doesn't exist in UsuarioEN");
-                        }
-                }
-
-                session.Update (usuarioEN);
-                SessionCommit ();
-        }
-
-        catch (Exception ex) {
-                SessionRollBack ();
-                if (ex is PracticaDSMGenNHibernate.Exceptions.ModelException)
-                        throw ex;
-                throw new PracticaDSMGenNHibernate.Exceptions.DataLayerException ("Error in UsuarioCAD.", ex);
-        }
-
-
-        finally
-        {
-                SessionClose ();
-        }
-}
 public void AddFollowing (int p_Usuario_OID, int p_usuario_0_OID)
 {
         PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN usuarioEN = null;
@@ -524,7 +449,7 @@ public void AddFollowing (int p_Usuario_OID, int p_usuario_0_OID)
         }
 }
 
-public void BorrarFollowing (int p_Usuario_OID, int p_usuario_0_OID)
+public void DeleteFollowing (int p_Usuario_OID, int p_usuario_0_OID)
 {
         PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN usuarioEN = null;
         try
@@ -563,6 +488,36 @@ public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("UsuarioENgetComunidadUsuHQL");
                 query.SetParameter ("p_comunidad", p_comunidad);
+
+                result = query.List<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is PracticaDSMGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new PracticaDSMGenNHibernate.Exceptions.DataLayerException ("Error in UsuarioCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
+public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> GetFollowed (int p_usuario)
+{
+        System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM UsuarioEN self where SELECT usuario FROM UsuarioEN as usuario INNER JOIN usuario.Usuario as followed WHERE followed.Id = :p_usuario";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("UsuarioENgetFollowedHQL");
+                query.SetParameter ("p_usuario", p_usuario);
 
                 result = query.List<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN>();
                 SessionCommit ();

@@ -51,7 +51,7 @@ public void BorrarComentario (int p_Post_OID, System.Collections.Generic.IList<i
 
         _IPostCAD.BorrarComentario (p_Post_OID, p_comentario_OIDs);
 }
-public int New_ (string p_contenido, int p_usuario, string p_comunidad, PracticaDSMGenNHibernate.Enumerated.DSMPracticas.Categoria_PostEnum p_categoria, string p_titulo, string p_imagen, Nullable<DateTime> p_fecha, Nullable<DateTime> p_hora)
+public int New_ (string p_contenido, int p_usuario, string p_comunidad, PracticaDSMGenNHibernate.Enumerated.DSMPracticas.Categoria_PostEnum p_categoria, string p_titulo, string p_imagen, Nullable<DateTime> p_fecha, Nullable<DateTime> p_hora, int p_likes)
 {
         PostEN postEN = null;
         int oid;
@@ -86,13 +86,15 @@ public int New_ (string p_contenido, int p_usuario, string p_comunidad, Practica
 
         postEN.Hora = p_hora;
 
+        postEN.Likes = p_likes;
+
         //Call to PostCAD
 
         oid = _IPostCAD.New_ (postEN);
         return oid;
 }
 
-public void Modify (int p_Post_OID, string p_contenido, PracticaDSMGenNHibernate.Enumerated.DSMPracticas.Categoria_PostEnum p_categoria, string p_titulo, string p_imagen, Nullable<DateTime> p_fecha, Nullable<DateTime> p_hora)
+public void Modify (int p_Post_OID, string p_contenido, PracticaDSMGenNHibernate.Enumerated.DSMPracticas.Categoria_PostEnum p_categoria, string p_titulo, string p_imagen, Nullable<DateTime> p_fecha, Nullable<DateTime> p_hora, int p_likes)
 {
         PostEN postEN = null;
 
@@ -105,6 +107,7 @@ public void Modify (int p_Post_OID, string p_contenido, PracticaDSMGenNHibernate
         postEN.Imagen = p_imagen;
         postEN.Fecha = p_fecha;
         postEN.Hora = p_hora;
+        postEN.Likes = p_likes;
         //Call to PostCAD
 
         _IPostCAD.Modify (postEN);
@@ -139,6 +142,14 @@ public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas
 public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN> GetPostPorCategoria (PracticaDSMGenNHibernate.Enumerated.DSMPracticas.Categoria_PostEnum ? p_categoria)
 {
         return _IPostCAD.GetPostPorCategoria (p_categoria);
+}
+public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN> GetPostComunidadLikes (string p_comunidad)
+{
+        return _IPostCAD.GetPostComunidadLikes (p_comunidad);
+}
+public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN> GetPostComunidadFecha (string p_comunidad)
+{
+        return _IPostCAD.GetPostComunidadFecha (p_comunidad);
 }
 }
 }

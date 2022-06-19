@@ -150,5 +150,6 @@
 		  
 		  <query name="UsuarioENReadAllHQL">from UsuarioEN</query>
 		  <query name="UsuarioENgetComunidadUsuHQL"><![CDATA[FROM UsuarioEN as usuario WHERE usuario.Comunidad.Nombre = :comunidad]]></query>
+		  <query name="UsuarioENgetFollowedHQL"><![CDATA[SELECT usuario FROM UsuarioEN as usuario INNER JOIN usuario.Usuario as followed WHERE followed.Id = :p_usuario]]></query>
 		</hibernate-mapping>
 	

@@ -140,6 +140,8 @@
 			
 			
 			
+			
+			
 	<Compile Include="EN\DSMPracticas\UsuarioEN.cs" />
 	<Compile Include="CEN\DSMPracticas\UsuarioCEN.cs" />
 	<Compile Include="CAD\DSMPracticas\IUsuarioCAD.cs" />
@@ -153,14 +155,13 @@
 			
 			
 			
-			
-			
 			<Compile Include="CEN\DSMPracticas\UsuarioCEN_BanearUsuario.cs" />
 			
 			
 			<Compile Include="CP\DSMPracticas\UsuarioCP_AddFollowing.cs" />
 			
-			<Compile Include="CP\DSMPracticas\UsuarioCP_BorrarFollowing.cs" />
+			<Compile Include="CP\DSMPracticas\UsuarioCP_DeleteFollowing.cs" />
+			
 			
 			
 	<Compile Include="EN\DSMPracticas\JuegoEN.cs" />
@@ -174,7 +175,8 @@
 			
 			
 			
-			<Compile Include="CEN\DSMPracticas\JuegoCEN_RecomendarJuego.cs" />
+			<Compile Include="CP\DSMPracticas\JuegoCP_RecomendarJuego.cs" />
+			
 			
 	<Compile Include="EN\DSMPracticas\ComunidadEN.cs" />
 	<Compile Include="CEN\DSMPracticas\ComunidadCEN.cs" />

@@ -112,6 +112,9 @@ public void ModifyDefault (PostEN post)
 
                 postEN.Hora = post.Hora;
 
+
+                postEN.Likes = post.Likes;
+
                 session.Update (postEN);
                 SessionCommit ();
         }
@@ -272,6 +275,9 @@ public void Modify (PostEN post)
 
                 postEN.Hora = post.Hora;
 
+
+                postEN.Likes = post.Likes;
+
                 session.Update (postEN);
                 SessionCommit ();
         }
@@ -414,6 +420,66 @@ public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("PostENgetPostPorCategoriaHQL");
                 query.SetParameter ("p_categoria", p_categoria);
+
+                result = query.List<PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is PracticaDSMGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new PracticaDSMGenNHibernate.Exceptions.DataLayerException ("Error in PostCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
+public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN> GetPostComunidadLikes (string p_comunidad)
+{
+        System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN> result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM PostEN self where FROM PostEN as post WHERE post.Comunidad.Id = :p_comunidad ORDER BY post.Likes desc";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("PostENgetPostComunidadLikesHQL");
+                query.SetParameter ("p_comunidad", p_comunidad);
+
+                result = query.List<PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is PracticaDSMGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new PracticaDSMGenNHibernate.Exceptions.DataLayerException ("Error in PostCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
+public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN> GetPostComunidadFecha (string p_comunidad)
+{
+        System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN> result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM PostEN self where FROM PostEN as post WHERE post.Comunidad.Id = :p_comunidad ORDER BY post.Fecha desc";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("PostENgetPostComunidadFechaHQL");
+                query.SetParameter ("p_comunidad", p_comunidad);
 
                 result = query.List<PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN>();
                 SessionCommit ();

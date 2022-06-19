@@ -291,7 +291,7 @@ public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM ComentarioEN self where FROM ComentarioEN as comentario WHERE comentario.Post = :p_post AND comentario.Id != (SELECT comentariosHijos.Id FROM Comentario) order by comentario.Fecha desc";
+                //String sql = @"FROM ComentarioEN self where FROM ComentarioEN as coment WHERE coment.Post = :p_post AND coment.Id != (SELECT comentario.ComentariosHijos.Id FROM ComentarioEN as comentario INNER JOIN comentario.ComentariosHijos as comHijo) ORDER BY coment.Fecha desc";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("ComentarioENgetComentariosFechaHQL");
                 query.SetParameter ("p_post", p_post);

@@ -82,6 +82,13 @@ private Nullable<DateTime> hora;
 
 
 
+/**
+ *	Atributo likes
+ */
+private int likes;
+
+
+
 
 
 
@@ -151,6 +158,12 @@ public virtual Nullable<DateTime> Hora {
 
 
 
+public virtual int Likes {
+        get { return likes; } set { likes = value;  }
+}
+
+
+
 
 
 public PostEN()
@@ -161,20 +174,20 @@ public PostEN()
 
 
 
-public PostEN(int id, string contenido, PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN usuario, PracticaDSMGenNHibernate.EN.DSMPracticas.ComunidadEN comunidad, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN> comentario, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.NotificacionEN> notificacion, PracticaDSMGenNHibernate.Enumerated.DSMPracticas.Categoria_PostEnum categoria, string titulo, string imagen, Nullable<DateTime> fecha, Nullable<DateTime> hora
+public PostEN(int id, string contenido, PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN usuario, PracticaDSMGenNHibernate.EN.DSMPracticas.ComunidadEN comunidad, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN> comentario, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.NotificacionEN> notificacion, PracticaDSMGenNHibernate.Enumerated.DSMPracticas.Categoria_PostEnum categoria, string titulo, string imagen, Nullable<DateTime> fecha, Nullable<DateTime> hora, int likes
               )
 {
-        this.init (Id, contenido, usuario, comunidad, comentario, notificacion, categoria, titulo, imagen, fecha, hora);
+        this.init (Id, contenido, usuario, comunidad, comentario, notificacion, categoria, titulo, imagen, fecha, hora, likes);
 }
 
 
 public PostEN(PostEN post)
 {
-        this.init (Id, post.Contenido, post.Usuario, post.Comunidad, post.Comentario, post.Notificacion, post.Categoria, post.Titulo, post.Imagen, post.Fecha, post.Hora);
+        this.init (Id, post.Contenido, post.Usuario, post.Comunidad, post.Comentario, post.Notificacion, post.Categoria, post.Titulo, post.Imagen, post.Fecha, post.Hora, post.Likes);
 }
 
 private void init (int id
-                   , string contenido, PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN usuario, PracticaDSMGenNHibernate.EN.DSMPracticas.ComunidadEN comunidad, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN> comentario, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.NotificacionEN> notificacion, PracticaDSMGenNHibernate.Enumerated.DSMPracticas.Categoria_PostEnum categoria, string titulo, string imagen, Nullable<DateTime> fecha, Nullable<DateTime> hora)
+                   , string contenido, PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN usuario, PracticaDSMGenNHibernate.EN.DSMPracticas.ComunidadEN comunidad, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN> comentario, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.NotificacionEN> notificacion, PracticaDSMGenNHibernate.Enumerated.DSMPracticas.Categoria_PostEnum categoria, string titulo, string imagen, Nullable<DateTime> fecha, Nullable<DateTime> hora, int likes)
 {
         this.Id = id;
 
@@ -198,6 +211,8 @@ private void init (int id
         this.Fecha = fecha;
 
         this.Hora = hora;
+
+        this.Likes = likes;
 }
 
 public override bool Equals (object obj)

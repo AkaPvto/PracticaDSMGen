@@ -270,10 +270,40 @@ public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM JuegoEN self where FROM JuegoEN";
+                //String sql = @"FROM JuegoEN self where FROM JuegoEN as juego WHERE juego.Nombre like CONCAT('%', :p_nombre, '%')";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("JuegoENbusquedaHQL");
                 query.SetParameter ("nombre", nombre);
+
+                result = query.List<PracticaDSMGenNHibernate.EN.DSMPracticas.JuegoEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is PracticaDSMGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new PracticaDSMGenNHibernate.Exceptions.DataLayerException ("Error in JuegoCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
+public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.JuegoEN> GetJuegosPorUsuario (int p_usuario)
+{
+        System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.JuegoEN> result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM JuegoEN self where SELECT juego FROM JuegoEN as juego INNER JOIN juego.Usuario as usu WHERE usu.Id = :p_usuario";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("JuegoENgetJuegosPorUsuarioHQL");
+                query.SetParameter ("p_usuario", p_usuario);
 
                 result = query.List<PracticaDSMGenNHibernate.EN.DSMPracticas.JuegoEN>();
                 SessionCommit ();

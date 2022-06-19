@@ -112,5 +112,9 @@ public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas
 {
         return _IJuegoCAD.Busqueda (nombre);
 }
+public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.JuegoEN> GetJuegosPorUsuario (int p_usuario)
+{
+        return _IJuegoCAD.GetJuegosPorUsuario (p_usuario);
+}
 }
 }

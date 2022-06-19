@@ -59,6 +59,7 @@
 		 </class>	
 		  
 		  <query name="JuegoENReadAllHQL">from JuegoEN</query>
-		  <query name="JuegoENbusquedaHQL"><![CDATA[FROM JuegoEN]]></query>
+		  <query name="JuegoENbusquedaHQL"><![CDATA[FROM JuegoEN as juego WHERE juego.Nombre like CONCAT('%', :p_nombre, '%')]]></query>
+		  <query name="JuegoENgetJuegosPorUsuarioHQL"><![CDATA[SELECT juego FROM JuegoEN as juego INNER JOIN juego.Usuario as usu WHERE usu.Id = :p_usuario]]></query>
 		</hibernate-mapping>
 	
