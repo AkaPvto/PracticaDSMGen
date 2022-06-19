@@ -156,6 +156,11 @@ public static void InitializeData ()
                 }
                 Console.WriteLine("\n");
 
+                Console.WriteLine("Usuario Candela sigue a otros usuarios (Carlos, Sergio y Sara):");
+                UsuarioCP usuarioCP = new UsuarioCP();
+                int[] emails = { carlos, sergio, sara };
+                IList<int> oids = emails;
+                usuarioCP.AddFollowing(candela, oids);
                 /*PROTECTED REGION END*/
             }
         catch (Exception ex)
