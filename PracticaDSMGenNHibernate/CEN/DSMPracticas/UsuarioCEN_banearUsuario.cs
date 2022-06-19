@@ -21,11 +21,28 @@ public partial class UsuarioCEN
 {
 public void BanearUsuario (int p_oid)
 {
-        /*PROTECTED REGION ID(PracticaDSMGenNHibernate.CEN.DSMPracticas_Usuario_banearUsuario) ENABLED START*/
+            /*PROTECTED REGION ID(PracticaDSMGenNHibernate.CEN.DSMPracticas_Usuario_banearUsuario) ENABLED START*/
 
-        // Write here your custom code...
+            // Write here your custom code...
+            UsuarioEN usuario = _IUsuarioCAD.ReadOIDDefault(p_oid);
 
-        
+            AvisoCEN aviso = new AvisoCEN();
+            IList<AvisoEN> avisos = aviso.GetAvisosUsu(p_oid);
+
+            Console.WriteLine("El usuario " + usuario.User + " tiene " + avisos.Count + " avisos\n");
+
+            if (avisos.Count >= 3)
+            {
+                if (usuario.Baneado)
+                {
+                    Console.WriteLine("El usuario ya esta baneado");
+                }
+                else
+                {
+                    usuario.Baneado = true;
+                    Console.WriteLine("El usuario " + usuario.User + " ha sido baneado.\n");
+                }
+            }
 
         /*PROTECTED REGION END*/
 }
