@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using PracticaDSMGenNHibernate.EN.DSMPracticas;
 using PracticaDSMGenNHibernate.CAD.DSMPracticas;
 using PracticaDSMGenNHibernate.CEN.DSMPracticas;
+using System.Linq;
 
 
 
@@ -23,41 +24,69 @@ public partial class JuegoCP : BasicCP
 {
 public void RecomendarJuego (int p_usu)
 {
-        /*PROTECTED REGION ID(PracticaDSMGenNHibernate.CP.DSMPracticas_Juego_recomendarJuego) ENABLED START*/
+            /*PROTECTED REGION ID(PracticaDSMGenNHibernate.CP.DSMPracticas_Juego_recomendarJuego) ENABLED START*/
 
-        IJuegoCAD juegoCAD = null;
-        JuegoCEN juegoCEN = null;
-
-
-
-        try
-        {
-                SessionInitializeTransaction ();
-                juegoCAD = new JuegoCAD (session);
-                juegoCEN = new  JuegoCEN (juegoCAD);
+            IJuegoCAD juegoCAD = null;
+            JuegoCEN juegoCEN = null;
+            UsuarioCEN usuarioCEN = null;
 
 
 
-                // Write here your custom transaction ...
+            try
+            {
+                SessionInitializeTransaction();
+                juegoCAD = new JuegoCAD(session);
+                juegoCEN = new JuegoCEN(juegoCAD);
+                usuarioCEN = new UsuarioCEN();
 
-                throw new NotImplementedException ("Method RecomendarJuego() not yet implemented.");
+                IList<UsuarioEN> seguidos = usuarioCEN.GetFollowed(p_usu);
+
+                List<string> juegos = new List<string>();
+                foreach (UsuarioEN seguido in seguidos)
+                { //recuperamos todos los juegos de los seguidos del usuario
+                    IList<JuegoEN> juegosSeguido = juegoCEN.GetJuegosPorUsuario(seguido.Id);
+                    foreach (JuegoEN juego in juegosSeguido)
+                    {
+                        juegos.Add(juego.Nombre);
+                    }
+                }
 
 
+                var dict = new Dictionary<string, int>(); //estas lineas cuentan cuantas veces se repiten los juegos
+                foreach (string juego in juegos)
+                {
+                    if (dict.ContainsKey(juego))
+                        dict[juego]++;
+                    else
+                        dict[juego] = 1;
+                }
 
-                SessionCommit ();
-        }
-        catch (Exception ex)
-        {
-                SessionRollBack ();
+                var lista = dict.ToList();
+                lista.Sort((pair1, pair2) => pair2.Value.CompareTo(pair1.Value)); //volcamos el diccionario en una lista para ordenarlo de mas a menos veces repetido
+                int salir = 0;
+                int maxJuegosRecomendados = 5;
+                foreach (var value in lista)
+                {
+                    Console.WriteLine(value.Key);
+                    if (salir >= maxJuegosRecomendados)
+                        break;
+                    salir++;
+                }
+
+                SessionCommit();
+            }
+            catch (Exception ex)
+            {
+                SessionRollBack();
                 throw ex;
-        }
-        finally
-        {
-                SessionClose ();
-        }
+            }
+            finally
+            {
+                SessionClose();
+            }
 
 
-        /*PROTECTED REGION END*/
-}
+            /*PROTECTED REGION END*/
+        }
 }
 }
