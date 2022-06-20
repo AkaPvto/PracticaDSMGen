@@ -27,7 +27,7 @@
 									<column name="FK_attribute_idComunidad"/> 
 							</key>
       						<many-to-many class="PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN">
-									<column name="FK_attribute_idUsuario"/> 
+									<column name="FK_id_idUsuario"/> 
       						</many-to-many>
     					</bag>
 			

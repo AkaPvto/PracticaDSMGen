@@ -39,7 +39,7 @@ public IComentarioCAD get_IComentarioCAD ()
         return this._IComentarioCAD;
 }
 
-public void Modify (int p_Comentario_OID, string p_contenido, Nullable<DateTime> p_fecha, Nullable<DateTime> p_hora, int p_likes)
+public void Modify (int p_Comentario_OID, string p_contenido, Nullable<DateTime> p_hora, int p_likes)
 {
         ComentarioEN comentarioEN = null;
 
@@ -47,7 +47,6 @@ public void Modify (int p_Comentario_OID, string p_contenido, Nullable<DateTime>
         comentarioEN = new ComentarioEN ();
         comentarioEN.Id = p_Comentario_OID;
         comentarioEN.Contenido = p_contenido;
-        comentarioEN.Fecha = p_fecha;
         comentarioEN.Hora = p_hora;
         comentarioEN.Likes = p_likes;
         //Call to ComentarioCAD
@@ -86,42 +85,6 @@ public void AddComentarioHijo (int p_Comentario_OID, System.Collections.Generic.
         //Call to ComentarioCAD
 
         _IComentarioCAD.AddComentarioHijo (p_Comentario_OID, p_comentariosHijos_OIDs);
-}
-public int NewRaiz (string p_contenido, int p_usuario, int p_post, Nullable<DateTime> p_fecha, Nullable<DateTime> p_hora, int p_likes)
-{
-        ComentarioEN comentarioEN = null;
-        int oid;
-
-        //Initialized ComentarioEN
-        comentarioEN = new ComentarioEN ();
-        comentarioEN.Contenido = p_contenido;
-
-
-        if (p_usuario != -1) {
-                // El argumento p_usuario -> Property usuario es oid = false
-                // Lista de oids id
-                comentarioEN.Usuario = new PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN ();
-                comentarioEN.Usuario.Id = p_usuario;
-        }
-
-
-        if (p_post != -1) {
-                // El argumento p_post -> Property post es oid = false
-                // Lista de oids id
-                comentarioEN.Post = new PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN ();
-                comentarioEN.Post.Id = p_post;
-        }
-
-        comentarioEN.Fecha = p_fecha;
-
-        comentarioEN.Hora = p_hora;
-
-        comentarioEN.Likes = p_likes;
-
-        //Call to ComentarioCAD
-
-        oid = _IComentarioCAD.NewRaiz (comentarioEN);
-        return oid;
 }
 }
 }

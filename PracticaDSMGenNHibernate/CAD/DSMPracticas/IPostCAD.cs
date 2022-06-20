@@ -45,5 +45,12 @@ System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN
 
 
 System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN> GetPostComunidadFecha (string p_comunidad);
+
+
+void PostLikedByUsuario (int p_Post_OID, System.Collections.Generic.IList<int> p_usuarioLiker_OIDs);
+
+void PostUnlikedByUsuario (int p_Post_OID, System.Collections.Generic.IList<int> p_usuarioLiker_OIDs);
+
+System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN> GetPostLiked (int p_usuario);
 }
 }

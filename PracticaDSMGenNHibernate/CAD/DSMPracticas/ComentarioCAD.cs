@@ -98,9 +98,6 @@ public void ModifyDefault (ComentarioEN comentario)
 
 
 
-                comentarioEN.Fecha = comentario.Fecha;
-
-
                 comentarioEN.Hora = comentario.Hora;
 
 
@@ -173,9 +170,6 @@ public void Modify (ComentarioEN comentario)
                 ComentarioEN comentarioEN = (ComentarioEN)session.Load (typeof(ComentarioEN), comentario.Id);
 
                 comentarioEN.Contenido = comentario.Contenido;
-
-
-                comentarioEN.Fecha = comentario.Fecha;
 
 
                 comentarioEN.Hora = comentario.Hora;
@@ -291,7 +285,7 @@ public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM ComentarioEN self where FROM ComentarioEN as coment WHERE coment.Post = :p_post AND coment.Id != (SELECT comentario.ComentariosHijos.Id FROM ComentarioEN as comentario INNER JOIN comentario.ComentariosHijos as comHijo) ORDER BY coment.Fecha desc";
+                //String sql = @"FROM ComentarioEN self where FROM ComentarioEN as coment WHERE coment.Post.Id = :p_post AND coment.ComentarioPadre IS EMPTY  ORDER BY coment.Hora desc";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("ComentarioENgetComentariosFechaHQL");
                 query.SetParameter ("p_post", p_post);

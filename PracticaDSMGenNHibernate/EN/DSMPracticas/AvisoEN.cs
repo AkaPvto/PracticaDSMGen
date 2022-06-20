@@ -27,13 +27,6 @@ private PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN usuario;
 
 
 /**
- *	Atributo fecha
- */
-private Nullable<DateTime> fecha;
-
-
-
-/**
  *	Atributo hora
  */
 private Nullable<DateTime> hora;
@@ -61,12 +54,6 @@ public virtual PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN Usuario {
 
 
 
-public virtual Nullable<DateTime> Fecha {
-        get { return fecha; } set { fecha = value;  }
-}
-
-
-
 public virtual Nullable<DateTime> Hora {
         get { return hora; } set { hora = value;  }
 }
@@ -81,20 +68,20 @@ public AvisoEN()
 
 
 
-public AvisoEN(int id, string texto, PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN usuario, Nullable<DateTime> fecha, Nullable<DateTime> hora
+public AvisoEN(int id, string texto, PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN usuario, Nullable<DateTime> hora
                )
 {
-        this.init (Id, texto, usuario, fecha, hora);
+        this.init (Id, texto, usuario, hora);
 }
 
 
 public AvisoEN(AvisoEN aviso)
 {
-        this.init (Id, aviso.Texto, aviso.Usuario, aviso.Fecha, aviso.Hora);
+        this.init (Id, aviso.Texto, aviso.Usuario, aviso.Hora);
 }
 
 private void init (int id
-                   , string texto, PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN usuario, Nullable<DateTime> fecha, Nullable<DateTime> hora)
+                   , string texto, PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN usuario, Nullable<DateTime> hora)
 {
         this.Id = id;
 
@@ -102,8 +89,6 @@ private void init (int id
         this.Texto = texto;
 
         this.Usuario = usuario;
-
-        this.Fecha = fecha;
 
         this.Hora = hora;
 }

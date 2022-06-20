@@ -15,9 +15,6 @@
 					<property name="Texto" type="string"> 
 						<column name="texto"  not-null="true"/>
 					</property>
-					<property name="Fecha" type="date"> 
-						<column name="fecha"  not-null="true"/>
-					</property>
 					<property name="Hora" type="timestamp"> 
 						<column name="hora"  not-null="true"/>
 					</property>
@@ -27,12 +24,10 @@
 			
 		  			
 						<many-to-one name="Usuario" class="PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN" >	
-								<column name="FK_attribute_idUsuario"/> 
+								<column name="FK_id_idUsuario"/> 
 						</many-to-one>
 											 					
 			
-			
-					
 					
 					
 					
@@ -41,6 +36,6 @@
 		 </class>	
 		  
 		  <query name="AvisoENReadAllHQL">from AvisoEN</query>
-		  <query name="AvisoENgetAvisosUsuHQL"><![CDATA[FROM AvisoEN as aviso WHERE aviso.Usuario.Id = :usu]]></query>
+		  <query name="AvisoENgetAvisosUsuHQL"><![CDATA[FROM AvisoEN as aviso WHERE aviso.Usuario.Id = :p_usu]]></query>
 		</hibernate-mapping>
 	

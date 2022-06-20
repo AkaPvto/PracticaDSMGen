@@ -108,9 +108,9 @@ public System.Collections.Generic.IList<JuegoEN> ReadAll (int first, int size)
         list = _IJuegoCAD.ReadAll (first, size);
         return list;
 }
-public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.JuegoEN> Busqueda (string nombre)
+public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.JuegoEN> Busqueda (string p_nombre)
 {
-        return _IJuegoCAD.Busqueda (nombre);
+        return _IJuegoCAD.Busqueda (p_nombre);
 }
 public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.JuegoEN> GetJuegosPorUsuario (int p_usuario)
 {

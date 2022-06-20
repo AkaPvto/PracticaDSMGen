@@ -7,13 +7,13 @@
 			
 				<class name="UsuarioEN" table="Usuario"> 
 				  	
-						<id name="Id" column="attribute" type="integer"> 
+						<id name="Id" column="id" type="integer"> 
 							<generator class="hilo"/>
 						</id>
 			
 					
-					<property name="User" type="string"> 
-						<column name="user"  not-null="true"/>
+					<property name="Nickname" type="string"> 
+						<column name="nickname"  not-null="true"/>
 					</property>
 					<property name="Nombre" type="string"> 
 						<column name="nombre"  not-null="true"/>
@@ -52,7 +52,7 @@
 						<bag name="Juego" table="[juego_usuario]" inverse="true" >
 							<key>
 								
-									<column name="FK_attribute_idUsuario"/> 
+									<column name="FK_id_idUsuario"/> 
 							</key>
       						<many-to-many class="PracticaDSMGenNHibernate.EN.DSMPracticas.JuegoEN">
 									<column name="FK_attribute_idJuego"/> 
@@ -63,7 +63,7 @@
 						<bag name="Comunidad" table="[comunidad_usuario]" inverse="true" >
 							<key>
 								
-									<column name="FK_attribute_idUsuario"/> 
+									<column name="FK_id_idUsuario"/> 
 							</key>
       						<many-to-many class="PracticaDSMGenNHibernate.EN.DSMPracticas.ComunidadEN">
 									<column name="FK_attribute_idComunidad"/> 
@@ -75,7 +75,7 @@
 							<key>
 							
 								
-								<column name="FK_attribute_idUsuario"/>
+								<column name="FK_id_idUsuario"/>
 					      	</key>
 							<one-to-many class="PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN"/>
 					    </bag>
@@ -86,7 +86,7 @@
 							<key>
 							
 								
-								<column name="FK_attribute_idUsuario"/>
+								<column name="FK_id_idUsuario"/>
 					      	</key>
 							<one-to-many class="PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN"/>
 					    </bag>
@@ -96,20 +96,41 @@
 						<bag name="Notificacion" table="[notificacion_usuario]" inverse="true" >
 							<key>
 								
-									<column name="FK_attribute_idUsuario"/> 
+									<column name="FK_id_idUsuario"/> 
 							</key>
       						<many-to-many class="PracticaDSMGenNHibernate.EN.DSMPracticas.NotificacionEN">
 									<column name="FK_idNotificacion_idNotificacion"/> 
       						</many-to-many>
     					</bag>
 			
+		  			
+						<bag name="Usuario" table="[usuario_usuario_0]" inverse="true" >
+							<key>
+								
+									<column name="FK_id_idUsuario"/> 
+							</key>
+      						<many-to-many class="PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN">
+									<column name="FK_id_idUsuario_0"/> 
+      						</many-to-many>
+    					</bag>
+			
+		  			
+						<bag name="Usuario_0" table="[usuario_usuario_0]"  >
+							<key>
+								
+									<column name="FK_id_idUsuario_0"/> 
+							</key>
+      						<many-to-many class="PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN">
+									<column name="FK_id_idUsuario"/> 
+      						</many-to-many>
+    					</bag>
 			
 		  			
 						<bag name="Aviso" >
 							<key>
 							
 								
-								<column name="FK_attribute_idUsuario"/>
+								<column name="FK_id_idUsuario"/>
 					      	</key>
 							<one-to-many class="PracticaDSMGenNHibernate.EN.DSMPracticas.AvisoEN"/>
 					    </bag>
@@ -117,30 +138,32 @@
 			
 			
 			
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-						<bag name="Usuario" table="usuario_usuario_0" > 
+			
+		  			
+						<bag name="PostLiked" table="[post_0_usuario]" inverse="true" >
 							<key>
 								
-									<column name="FK_attribute_idUsuario"/> 
+									<column name="FK_id_idUsuarioLiker"/> 
 							</key>
-      						<many-to-many class="PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN">
-									<column name="FK_attribute_idUsuario_0" unique="true"/> 
+      						<many-to-many class="PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN">
+									<column name="FK_id_idPostLiked"/> 
       						</many-to-many>
     					</bag>
-    				
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
 					
 					
 					
@@ -149,7 +172,7 @@
 		 </class>	
 		  
 		  <query name="UsuarioENReadAllHQL">from UsuarioEN</query>
-		  <query name="UsuarioENgetComunidadUsuHQL"><![CDATA[FROM UsuarioEN as usuario WHERE usuario.Comunidad.Nombre = :comunidad]]></query>
-		  <query name="UsuarioENgetFollowedHQL"><![CDATA[SELECT usuario FROM UsuarioEN as usuario INNER JOIN usuario.Usuario as followed WHERE followed.Id = :p_usuario]]></query>
+		  <query name="UsuarioENgetComunidadUsuHQL"><![CDATA[SELECT usuario FROM UsuarioEN as usuario INNER JOIN usuario.Comunidad as comunidad WHERE comunidad.Nombre = :p_comunidad]]></query>
+		  <query name="UsuarioENgetFollowedHQL"><![CDATA[SELECT usuario FROM UsuarioEN as usuario INNER JOIN usuario.Usuario_0 as followed WHERE followed.Id = :p_usuario]]></query>
 		</hibernate-mapping>
 	

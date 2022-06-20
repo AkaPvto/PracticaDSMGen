@@ -45,45 +45,14 @@ public void AddJuego (int p_Usuario_OID, System.Collections.Generic.IList<string
 
         _IUsuarioCAD.AddJuego (p_Usuario_OID, p_juego_OIDs);
 }
-public int New_ (string p_user, string p_nombre, string p_apellidos, string p_email, int p_telefono, string p_direccion, string p_foto, String p_pass, bool p_baneado)
-{
-        UsuarioEN usuarioEN = null;
-        int oid;
-
-        //Initialized UsuarioEN
-        usuarioEN = new UsuarioEN ();
-        usuarioEN.User = p_user;
-
-        usuarioEN.Nombre = p_nombre;
-
-        usuarioEN.Apellidos = p_apellidos;
-
-        usuarioEN.Email = p_email;
-
-        usuarioEN.Telefono = p_telefono;
-
-        usuarioEN.Direccion = p_direccion;
-
-        usuarioEN.Foto = p_foto;
-
-        usuarioEN.Pass = Utils.Util.GetEncondeMD5 (p_pass);
-
-        usuarioEN.Baneado = p_baneado;
-
-        //Call to UsuarioCAD
-
-        oid = _IUsuarioCAD.New_ (usuarioEN);
-        return oid;
-}
-
-public void Modify (int p_Usuario_OID, string p_user, string p_nombre, string p_apellidos, string p_email, int p_telefono, string p_direccion, string p_foto, String p_pass, bool p_baneado)
+public void Modify (int p_Usuario_OID, string p_nickname, string p_nombre, string p_apellidos, string p_email, int p_telefono, string p_direccion, string p_foto, String p_pass, bool p_baneado)
 {
         UsuarioEN usuarioEN = null;
 
         //Initialized UsuarioEN
         usuarioEN = new UsuarioEN ();
         usuarioEN.Id = p_Usuario_OID;
-        usuarioEN.User = p_user;
+        usuarioEN.Nickname = p_nickname;
         usuarioEN.Nombre = p_nombre;
         usuarioEN.Apellidos = p_apellidos;
         usuarioEN.Email = p_email;
@@ -142,6 +111,18 @@ public string Login (int p_Usuario_OID, string p_pass)
         return result;
 }
 
+public void AddFollowing (int p_Usuario_OID, System.Collections.Generic.IList<int> p_usuario_OIDs)
+{
+        //Call to UsuarioCAD
+
+        _IUsuarioCAD.AddFollowing (p_Usuario_OID, p_usuario_OIDs);
+}
+public void DeleteFollowing (int p_Usuario_OID, System.Collections.Generic.IList<int> p_usuario_OIDs)
+{
+        //Call to UsuarioCAD
+
+        _IUsuarioCAD.DeleteFollowing (p_Usuario_OID, p_usuario_OIDs);
+}
 public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> GetComunidadUsu (string p_comunidad)
 {
         return _IUsuarioCAD.GetComunidadUsu (p_comunidad);
@@ -149,6 +130,18 @@ public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas
 public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> GetFollowed (int p_usuario)
 {
         return _IUsuarioCAD.GetFollowed (p_usuario);
+}
+public void UsuarioLikePost (int p_Usuario_OID, System.Collections.Generic.IList<int> p_postLiked_OIDs)
+{
+        //Call to UsuarioCAD
+
+        _IUsuarioCAD.UsuarioLikePost (p_Usuario_OID, p_postLiked_OIDs);
+}
+public void UsuarioUnlikePost (int p_Usuario_OID, System.Collections.Generic.IList<int> p_postLiked_OIDs)
+{
+        //Call to UsuarioCAD
+
+        _IUsuarioCAD.UsuarioUnlikePost (p_Usuario_OID, p_postLiked_OIDs);
 }
 
 

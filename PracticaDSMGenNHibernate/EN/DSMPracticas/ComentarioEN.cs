@@ -48,13 +48,6 @@ private PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN comentarioPadre;
 
 
 /**
- *	Atributo fecha
- */
-private Nullable<DateTime> fecha;
-
-
-
-/**
  *	Atributo hora
  */
 private Nullable<DateTime> hora;
@@ -107,12 +100,6 @@ public virtual PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN ComentarioP
 
 
 
-public virtual Nullable<DateTime> Fecha {
-        get { return fecha; } set { fecha = value;  }
-}
-
-
-
 public virtual Nullable<DateTime> Hora {
         get { return hora; } set { hora = value;  }
 }
@@ -134,20 +121,20 @@ public ComentarioEN()
 
 
 
-public ComentarioEN(int id, string contenido, PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN usuario, PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN post, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN> comentariosHijos, PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN comentarioPadre, Nullable<DateTime> fecha, Nullable<DateTime> hora, int likes
+public ComentarioEN(int id, string contenido, PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN usuario, PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN post, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN> comentariosHijos, PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN comentarioPadre, Nullable<DateTime> hora, int likes
                     )
 {
-        this.init (Id, contenido, usuario, post, comentariosHijos, comentarioPadre, fecha, hora, likes);
+        this.init (Id, contenido, usuario, post, comentariosHijos, comentarioPadre, hora, likes);
 }
 
 
 public ComentarioEN(ComentarioEN comentario)
 {
-        this.init (Id, comentario.Contenido, comentario.Usuario, comentario.Post, comentario.ComentariosHijos, comentario.ComentarioPadre, comentario.Fecha, comentario.Hora, comentario.Likes);
+        this.init (Id, comentario.Contenido, comentario.Usuario, comentario.Post, comentario.ComentariosHijos, comentario.ComentarioPadre, comentario.Hora, comentario.Likes);
 }
 
 private void init (int id
-                   , string contenido, PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN usuario, PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN post, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN> comentariosHijos, PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN comentarioPadre, Nullable<DateTime> fecha, Nullable<DateTime> hora, int likes)
+                   , string contenido, PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN usuario, PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN post, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN> comentariosHijos, PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN comentarioPadre, Nullable<DateTime> hora, int likes)
 {
         this.Id = id;
 
@@ -161,8 +148,6 @@ private void init (int id
         this.ComentariosHijos = comentariosHijos;
 
         this.ComentarioPadre = comentarioPadre;
-
-        this.Fecha = fecha;
 
         this.Hora = hora;
 

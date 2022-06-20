@@ -83,11 +83,11 @@ public static void InitializeData ()
 
                 Console.WriteLine ("Introducimos usuarios a la bbdd...");
                 UsuarioCEN usuarioCEN = new UsuarioCEN ();
-                int sergio = usuarioCEN.New_ ("Kaese", "Sergio", "Miedes", "kaeseks@gmail.com", 666666666, "C/carton", "fotoejemplo", "1234", false);
-                int candela = usuarioCEN.New_ ("FroggyChair", "Candela", "Urh", "princesita23@gmail.com", 666999666, "C/cartulina", "fotoejemplo2", "1234", false);
-                int carlos = usuarioCEN.New_ ("Jaxtified", "Carlos", "Izquierdo", "carlosesetio@gmail.com", 666999888, "C/carta", "fotoejemplo3", "1234", false);
-                int jorge = usuarioCEN.New_ ("Akapvto", "Jorge", "Reig", "akayamiakuma@gmail.com", 666222888, "C/cartones", "fotoejemplo4", "1234", false);
-                int sara = usuarioCEN.New_ ("Sariwii", "Sara", "Morote", "sariwicondosies@gmail.com", 666999222, "C/cartulinas", "fotoejemplo5", "1234", false);
+                int sergio = usuarioCEN.New_ ("Kaese", "Sergio", "Miedes", "kaeseks@gmail.com", 666666666, "C/carton", "fotoejemplo", "1234");
+                int candela = usuarioCEN.New_ ("FroggyChair", "Candela", "Urh", "princesita23@gmail.com", 666999666, "C/cartulina", "fotoejemplo2", "1234");
+                int carlos = usuarioCEN.New_ ("Jaxtified", "Carlos", "Izquierdo", "carlosesetio@gmail.com", 666999888, "C/carta", "fotoejemplo3", "1234");
+                int jorge = usuarioCEN.New_ ("Akapvto", "Jorge", "Reig", "akayamiakuma@gmail.com", 666222888, "C/cartones", "fotoejemplo4", "1234");
+                int sara = usuarioCEN.New_ ("Sariwii", "Sara", "Morote", "sariwicondosies@gmail.com", 666999222, "C/cartulinas", "fotoejemplo5", "1234");
 
                 Console.WriteLine ("Introducimos los generos a laa bbdd...");
                 GeneroCEN generoCEN = new GeneroCEN ();
@@ -121,14 +121,16 @@ public static void InitializeData ()
 
                 Console.WriteLine ("Introducimos postst a la bbdd...");
                 PostCEN postCEN = new PostCEN ();
-                int post1 = postCEN.New_ ("Ultimamente he estado jugando mucho, estoy en diamante 3 y mi nickname es KaeseOrigin.", sergio, com_rl, Categoria_PostEnum.blanco, "Busco gente para jugar", "", DateTime.Parse ("3/1/2022"), DateTime.Parse ("16:00:00"), 0);
-                int post2 = postCEN.New_ ("No jugueis con el BMW-200 (octane), la hitbox dista mucho del modelo 3D", candela, com_rl, Categoria_PostEnum.opinion, "Opinion sobre el BMW-200", "", DateTime.Parse ("5/1/2022"), DateTime.Parse ("11:23:00"), 0);
-                int post3 = postCEN.New_ ("Cuando va a salir el jueguito. Alguien lo sabe?. Se ha filtrado?", jorge, com_hks, Categoria_PostEnum.blanco, "Fecha de lanzamiento(?)", "", DateTime.Parse ("14/4/2020"), DateTime.Parse ("03:27:00"), 0);
+                int post1 = postCEN.New_ ("Ultimamente he estado jugando mucho, estoy en diamante 3 y mi nickname es KaeseOrigin.", sergio, com_rl, Categoria_PostEnum.blanco, "Busco gente para jugar", "", new DateTime (2022, 01, 27, 15, 59, 00));
+                int post2 = postCEN.New_ ("No jugueis con el BMW-200 (octane), la hitbox dista mucho del modelo 3D", candela, com_rl, Categoria_PostEnum.opinion, "Opinion sobre el BMW-200", "", new DateTime (2021, 02, 28, 17, 36, 00));
+                int post3 = postCEN.New_ ("Cuando va a salir el jueguito. Alguien lo sabe?. Se ha filtrado?", jorge, com_hks, Categoria_PostEnum.blanco, "Fecha de lanzamiento(?)", "", new DateTime (2021, 11, 10, 23, 06, 00));
 
                 Console.WriteLine ("Introducimos comentarios a la bbdd...");
                 ComentarioCEN comentarioCEN = new ComentarioCEN ();
-                comentarioCEN.NewRaiz ("Yo puedo jugar contigo", candela, post1, DateTime.Parse ("3/1/2022"), DateTime.Parse ("17:45:00"), 0);
-                comentarioCEN.NewRaiz ("Nunca va a salir. Deja de hacerte ilusiones en cada Nintendo Direct.", carlos, post3, DateTime.Parse ("17/5/2020"), DateTime.Parse ("13:11:00"), 0);
+                int comentario1 = comentarioCEN.NewRaiz ("Yo puedo jugar contigo", candela, post1, DateTime.Now);
+                comentarioCEN.NewRaiz ("No va a salir. Deja de hacerte ilusiones en cada Nintendo Direct.", carlos, post1, DateTime.Now);
+                ComentarioCP comentarioCP = new ComentarioCP ();
+                comentarioCP.NewHijo ("Nunca va a salir. ", jorge, post1, DateTime.Now, comentario1);
 
                 Console.WriteLine ("Introducimos notificaciones a la bbdd...");
                 NotificacionCEN notificacionCEN = new NotificacionCEN ();
@@ -137,12 +139,33 @@ public static void InitializeData ()
 
                 Console.WriteLine ("Introducimos avisos a la bbdd...");
                 AvisoCEN avisoCEN = new AvisoCEN ();
-                avisoCEN.New_ ("Insultaste y/u ofendiste a un compa�ero.", sara, DateTime.Parse ("7/12/2021"), DateTime.Parse ("02:39:00"));
+                avisoCEN.New_ ("Insultaste y/u ofendiste a un companiero.", sara, new DateTime (2020, 12, 31, 23, 06, 00));
+
+                Console.WriteLine ("Metemos a un usuario en una comunidad:\n");
+                comunidadCEN.AddUsuarios (com_hks, new List<int>(){
+                                jorge, carlos
+                        });
+                Console.WriteLine ("Jorge y Carlos han entrado en la comunidad de Silksong");
+                usuarioCEN.AddComunidad (sergio, new List<string>(){
+                                com_rl
+                        });
+                Console.WriteLine ("Sergio ha entrado en la comunidad de Rocket League");
+
+                Console.WriteLine ("\nSe va a probar los likes de un post: ");
+                UsuarioCP usuarioCP = new UsuarioCP ();
+                Console.WriteLine ("Jorge le da like a un post de la comunidad Silksong... ");
+                usuarioCP.InteractPost (jorge, post3);
+                Console.WriteLine ("Jorge le da like a un post de la comunidad de Rocket League... ");
+                usuarioCP.InteractPost (jorge, post2);
+                Console.WriteLine ("Jorge le da like a un post al que ya le habia dado like de la comunidad de Silksong");
+                usuarioCP.InteractPost (jorge, post3);
+                Console.WriteLine ("Sergio le da like a un post de la comunidad de Rocket League");
+                usuarioCP.InteractPost (sergio, post2);
 
                 Console.WriteLine ("\nFiltramos los posts por categoria opinion:");
                 IList<PostEN> posts = postCEN.GetPostPorCategoria (Categoria_PostEnum.opinion);
                 foreach (PostEN post in posts) {
-                        Console.WriteLine ("ID-> " + post.Id + ", Categor�a-> " + post.Categoria);
+                        Console.WriteLine ("ID-> " + post.Id + ", Categoria-> " + post.Categoria + ", Fecha/Hora-> " + post.Hora);
                 }
                 Console.WriteLine ("\n");
 
@@ -159,18 +182,22 @@ public static void InitializeData ()
                 Console.WriteLine ("Recuperamos los comentarios del post1 ordenados por fecha:");
                 IList<ComentarioEN> comentarios = comentarioCEN.GetComentariosFecha (post1);
                 foreach (ComentarioEN comentario in comentarios) {
-                        Console.WriteLine ("ID-> " + comentario.Id + ", Fecha-> " + comentario.Fecha);
+                        Console.WriteLine ("ID-> " + comentario.Id + ", Fecha-> " + comentario.Hora);
                 }
                 Console.WriteLine ("\n");
 
                 Console.WriteLine ("Usuario Candela sigue a otros usuarios (Carlos, Sergio y Sara):");
-                UsuarioCP usuarioCP = new UsuarioCP ();
-                usuarioCP.AddFollowing (candela, sergio);
-                usuarioCP.AddFollowing (candela, carlos);
-                usuarioCP.AddFollowing (candela, sara);
+                int[] followers = { sergio, carlos, sara };
+                IList<int> followersList = followers;
+                usuarioCEN.AddFollowing (candela, followersList);
+                usuarioCEN.AddFollowing (carlos, new List<int>() {
+                                sergio, jorge
+                        });
 
                 Console.WriteLine ("El usuario Candela deja de seguir a otro usuario (Carlos):");
-                usuarioCP.DeleteFollowing (candela, carlos);
+                int[] unFollower = { carlos };
+                IList<int> unFollowerList = unFollower;
+                usuarioCEN.DeleteFollowing (candela, unFollowerList);
 
                 Console.WriteLine ("\nFiltramos entre todos los juegos por el nombre League:");
                 IList<JuegoEN> juegos = juegoCEN.Busqueda ("League");
@@ -179,8 +206,8 @@ public static void InitializeData ()
                 }
                 Console.WriteLine ("\n");
 
-                Console.WriteLine ("\nAgregamos juegos a el usuario Sergio...");
-                string[] juegos2 = { "Rocket League", "SilkSong" };
+                Console.WriteLine ("\nAgregamos juegos al usuario Sergio...");
+                string[] juegos2 = { "Rocket League", "Hollow Knight: Silksong" };
                 IList<string> oidsjuegos = juegos2;
                 usuarioCEN.AddJuego (sergio, oidsjuegos);
                 Console.WriteLine ();
@@ -198,18 +225,24 @@ public static void InitializeData ()
                         Console.WriteLine (seguido.Email);
                 }
 
+                Console.WriteLine ("\nFiltramos por los seguidos de Carlos:");
+                IList<UsuarioEN> seguidosCarlos = usuarioCEN.GetFollowed (carlos);
+                foreach (UsuarioEN seguido in seguidosCarlos) {
+                        Console.WriteLine (seguido.Email);
+                }
+
                 Console.WriteLine ("\nRecomendamos juegos al usuario Candela:");
                 JuegoCP juegoCP = new JuegoCP ();
                 juegoCP.RecomendarJuego (candela);
 
-                Console.WriteLine ("\nAgregamos juegos a el usuario Carlos...");
-                string[] juegos3 = { "SilkSong", "League of Legends: TFT" };
+                Console.WriteLine ("\nAgregamos juegos al usuario Carlos...");
+                string[] juegos3 = { "Hollow Knight: Silksong", "League of Legends: TFT" };
                 oidsjuegos = juegos3;
                 usuarioCEN.AddJuego (carlos, oidsjuegos);
                 Console.WriteLine ();
 
                 Console.WriteLine ("\nEl usuario Candela sigue a Carlos:");
-                usuarioCP.AddFollowing (candela, carlos);
+                usuarioCEN.AddFollowing (candela, unFollowerList);
 
                 Console.WriteLine ("\nRecomendamos juegos de nuevo al usuario Candela:");
                 juegoCP.RecomendarJuego (candela);
@@ -227,8 +260,11 @@ public static void InitializeData ()
                         Console.WriteLine (post.Contenido);
                 }
                 Console.WriteLine ("");
+
+                Console.WriteLine("Mandamos una notificacion...");
+                notificacionCEN.EnviarNotificacion(carlos);
                 /*PROTECTED REGION END*/
-        }
+            }
         catch (Exception ex)
         {
                 System.Console.WriteLine (ex.InnerException);

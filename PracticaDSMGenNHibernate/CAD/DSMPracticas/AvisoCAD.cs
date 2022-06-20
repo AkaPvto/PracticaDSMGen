@@ -95,9 +95,6 @@ public void ModifyDefault (AvisoEN aviso)
 
 
 
-                avisoEN.Fecha = aviso.Fecha;
-
-
                 avisoEN.Hora = aviso.Hora;
 
                 session.Update (avisoEN);
@@ -160,9 +157,6 @@ public void Modify (AvisoEN aviso)
                 AvisoEN avisoEN = (AvisoEN)session.Load (typeof(AvisoEN), aviso.Id);
 
                 avisoEN.Texto = aviso.Texto;
-
-
-                avisoEN.Fecha = aviso.Fecha;
 
 
                 avisoEN.Hora = aviso.Hora;
@@ -275,7 +269,7 @@ public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM AvisoEN self where FROM AvisoEN as aviso WHERE aviso.Usuario.Id = :usu";
+                //String sql = @"FROM AvisoEN self where FROM AvisoEN as aviso WHERE aviso.Usuario.Id = :p_usu";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("AvisoENgetAvisosUsuHQL");
                 query.SetParameter ("p_usu", p_usu);

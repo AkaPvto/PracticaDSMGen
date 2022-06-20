@@ -125,12 +125,17 @@
 			
 			
 			
+			<Compile Include="CEN\DSMPracticas\ComentarioCEN_NewRaiz.cs" />
 			
 	<Compile Include="EN\DSMPracticas\PostEN.cs" />
 	<Compile Include="CEN\DSMPracticas\PostCEN.cs" />
 	<Compile Include="CAD\DSMPracticas\IPostCAD.cs" />
 	<Compile Include="CAD\DSMPracticas\PostCAD.cs" />
 	<Compile Include="CP\DSMPracticas\PostCP.cs" />
+			
+			
+			<Compile Include="CEN\DSMPracticas\PostCEN_New_.cs" />
+			
 			
 			
 			
@@ -148,6 +153,7 @@
 	<Compile Include="CAD\DSMPracticas\UsuarioCAD.cs" />
 	<Compile Include="CP\DSMPracticas\UsuarioCP.cs" />
 			
+			<Compile Include="CEN\DSMPracticas\UsuarioCEN_New_.cs" />
 			
 			
 			
@@ -158,11 +164,13 @@
 			<Compile Include="CEN\DSMPracticas\UsuarioCEN_BanearUsuario.cs" />
 			
 			
-			<Compile Include="CP\DSMPracticas\UsuarioCP_AddFollowing.cs" />
-			
-			<Compile Include="CP\DSMPracticas\UsuarioCP_DeleteFollowing.cs" />
 			
 			
+			
+			
+			
+			
+			<Compile Include="CP\DSMPracticas\UsuarioCP_InteractPost.cs" />
 			
 	<Compile Include="EN\DSMPracticas\JuegoEN.cs" />
 	<Compile Include="CEN\DSMPracticas\JuegoCEN.cs" />
