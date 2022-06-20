@@ -28,7 +28,7 @@ public bool InteractPost (int p_usuario, int p_post)
         IUsuarioCAD usuarioCAD = null;
         UsuarioCEN usuarioCEN = null;
         IPostCAD postCAD = null;
-        Boolean alreadyLiked = false;
+        Boolean interaction = false;
 
         try
         {
@@ -43,29 +43,31 @@ public bool InteractPost (int p_usuario, int p_post)
                 // Write here your custom transaction ...
 
                 if (userOfComunidad.Contains (usuarioEN)) {
-                        if (postLikedByUsuario.Contains (postEN)) alreadyLiked = true;
-                        if (alreadyLiked) {
-                                usuarioCEN.UsuarioUnlikePost (p_usuario, new List<int>(){
+                    interaction = true;
+                    if (postLikedByUsuario.Contains(postEN)) {
+                        usuarioCEN.UsuarioUnlikePost(p_usuario, new List<int>(){
                                                 p_post
                                         });
-                                Console.WriteLine ("Se ha quitado el like del post " + p_post + "\n");
-                                return true;
-                        }
-                        else{
-                                usuarioCEN.UsuarioLikePost (p_usuario, new List<int>() {
+                        postEN.Likes = -1;
+                        postCAD.Modify(postEN);
+                        Console.WriteLine("Se ha quitado el like del post " + p_post);
+                    }
+                    else {
+                        usuarioCEN.UsuarioLikePost(p_usuario, new List<int>() {
                                                 p_post
                                         });
-                                Console.WriteLine ("Se le ha dado like al post: " + p_post + "\n");
-                                return true;
+                        postEN.Likes = -1;
+                        postCAD.Modify(postEN);
+                        Console.WriteLine ("Se le ha dado like al post: " + p_post);
                         }
                 }
-                Console.WriteLine ("Tienes que pertenecer a una comunidad para darle like a un post\n");
-                return false;
+                else Console.WriteLine ("Tienes que pertenecer a una comunidad para darle like a un post");
 
 
 
 
                 SessionCommit ();
+                return interaction;
         }
         catch (Exception ex)
         {

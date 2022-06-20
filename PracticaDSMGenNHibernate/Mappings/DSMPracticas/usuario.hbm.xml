@@ -143,7 +143,7 @@
 						<bag name="PostLiked" table="[post_0_usuario]" inverse="true" >
 							<key>
 								
-									<column name="FK_id_idUsuario"/> 
+									<column name="FK_id_idUsuarioLiker"/> 
 							</key>
       						<many-to-many class="PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN">
 									<column name="FK_id_idPostLiked"/> 

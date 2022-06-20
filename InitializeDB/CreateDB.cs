@@ -157,8 +157,10 @@ public static void InitializeData ()
                 usuarioCP.InteractPost (jorge, post3);
                 Console.WriteLine ("Jorge le da like a un post de la comunidad de Rocket League... ");
                 usuarioCP.InteractPost (jorge, post2);
-                Console.WriteLine ("Jorge le da like a un post al que ya le hab�a dado like de la comunidad de Silksong");
+                Console.WriteLine ("Jorge le da like a un post al que ya le habia dado like de la comunidad de Silksong");
                 usuarioCP.InteractPost (jorge, post3);
+                Console.WriteLine ("Sergio le da like a un post de la comunidad de Rocket League");
+                usuarioCP.InteractPost (sergio, post2);
 
                 Console.WriteLine ("\nFiltramos los posts por categoria opinion:");
                 IList<PostEN> posts = postCEN.GetPostPorCategoria (Categoria_PostEnum.opinion);
@@ -188,7 +190,9 @@ public static void InitializeData ()
                 int[] followers = { sergio, carlos, sara };
                 IList<int> followersList = followers;
                 usuarioCEN.AddFollowing (candela, followersList);
-                usuarioCEN.AddFollowing(carlos, new List<int>() { sergio , jorge});
+                usuarioCEN.AddFollowing (carlos, new List<int>() {
+                                sergio, jorge
+                        });
 
                 Console.WriteLine ("El usuario Candela deja de seguir a otro usuario (Carlos):");
                 int[] unFollower = { carlos };
@@ -221,11 +225,10 @@ public static void InitializeData ()
                         Console.WriteLine (seguido.Email);
                 }
 
-                Console.WriteLine("\nFiltramos por los seguidos de Carlos:");
-                IList<UsuarioEN> seguidosCarlos = usuarioCEN.GetFollowed(carlos);
-                foreach (UsuarioEN seguido in seguidosCarlos)
-                {
-                    Console.WriteLine(seguido.Email);
+                Console.WriteLine ("\nFiltramos por los seguidos de Carlos:");
+                IList<UsuarioEN> seguidosCarlos = usuarioCEN.GetFollowed (carlos);
+                foreach (UsuarioEN seguido in seguidosCarlos) {
+                        Console.WriteLine (seguido.Email);
                 }
 
                 Console.WriteLine ("\nRecomendamos juegos al usuario Candela:");
