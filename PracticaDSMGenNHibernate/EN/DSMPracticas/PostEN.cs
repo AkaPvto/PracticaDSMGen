@@ -20,9 +20,9 @@ private string contenido;
 
 
 /**
- *	Atributo usuario
+ *	Atributo usuarioCreador
  */
-private PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN usuario;
+private PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN usuarioCreador;
 
 
 
@@ -69,13 +69,6 @@ private string imagen;
 
 
 /**
- *	Atributo fecha
- */
-private Nullable<DateTime> fecha;
-
-
-
-/**
  *	Atributo hora
  */
 private Nullable<DateTime> hora;
@@ -104,8 +97,8 @@ public virtual string Contenido {
 
 
 
-public virtual PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN Usuario {
-        get { return usuario; } set { usuario = value;  }
+public virtual PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN UsuarioCreador {
+        get { return usuarioCreador; } set { usuarioCreador = value;  }
 }
 
 
@@ -146,12 +139,6 @@ public virtual string Imagen {
 
 
 
-public virtual Nullable<DateTime> Fecha {
-        get { return fecha; } set { fecha = value;  }
-}
-
-
-
 public virtual Nullable<DateTime> Hora {
         get { return hora; } set { hora = value;  }
 }
@@ -174,27 +161,27 @@ public PostEN()
 
 
 
-public PostEN(int id, string contenido, PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN usuario, PracticaDSMGenNHibernate.EN.DSMPracticas.ComunidadEN comunidad, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN> comentario, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.NotificacionEN> notificacion, PracticaDSMGenNHibernate.Enumerated.DSMPracticas.Categoria_PostEnum categoria, string titulo, string imagen, Nullable<DateTime> fecha, Nullable<DateTime> hora, int likes
+public PostEN(int id, string contenido, PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN usuarioCreador, PracticaDSMGenNHibernate.EN.DSMPracticas.ComunidadEN comunidad, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN> comentario, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.NotificacionEN> notificacion, PracticaDSMGenNHibernate.Enumerated.DSMPracticas.Categoria_PostEnum categoria, string titulo, string imagen, Nullable<DateTime> hora, int likes
               )
 {
-        this.init (Id, contenido, usuario, comunidad, comentario, notificacion, categoria, titulo, imagen, fecha, hora, likes);
+        this.init (Id, contenido, usuarioCreador, comunidad, comentario, notificacion, categoria, titulo, imagen, hora, likes);
 }
 
 
 public PostEN(PostEN post)
 {
-        this.init (Id, post.Contenido, post.Usuario, post.Comunidad, post.Comentario, post.Notificacion, post.Categoria, post.Titulo, post.Imagen, post.Fecha, post.Hora, post.Likes);
+        this.init (Id, post.Contenido, post.UsuarioCreador, post.Comunidad, post.Comentario, post.Notificacion, post.Categoria, post.Titulo, post.Imagen, post.Hora, post.Likes);
 }
 
 private void init (int id
-                   , string contenido, PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN usuario, PracticaDSMGenNHibernate.EN.DSMPracticas.ComunidadEN comunidad, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN> comentario, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.NotificacionEN> notificacion, PracticaDSMGenNHibernate.Enumerated.DSMPracticas.Categoria_PostEnum categoria, string titulo, string imagen, Nullable<DateTime> fecha, Nullable<DateTime> hora, int likes)
+                   , string contenido, PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN usuarioCreador, PracticaDSMGenNHibernate.EN.DSMPracticas.ComunidadEN comunidad, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN> comentario, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.NotificacionEN> notificacion, PracticaDSMGenNHibernate.Enumerated.DSMPracticas.Categoria_PostEnum categoria, string titulo, string imagen, Nullable<DateTime> hora, int likes)
 {
         this.Id = id;
 
 
         this.Contenido = contenido;
 
-        this.Usuario = usuario;
+        this.UsuarioCreador = usuarioCreador;
 
         this.Comunidad = comunidad;
 
@@ -207,8 +194,6 @@ private void init (int id
         this.Titulo = titulo;
 
         this.Imagen = imagen;
-
-        this.Fecha = fecha;
 
         this.Hora = hora;
 

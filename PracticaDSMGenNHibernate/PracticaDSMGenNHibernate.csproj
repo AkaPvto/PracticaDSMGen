@@ -125,6 +125,7 @@
 			
 			
 			
+			<Compile Include="CEN\DSMPracticas\ComentarioCEN_NewRaiz.cs" />
 			
 	<Compile Include="EN\DSMPracticas\PostEN.cs" />
 	<Compile Include="CEN\DSMPracticas\PostCEN.cs" />
@@ -133,6 +134,7 @@
 	<Compile Include="CP\DSMPracticas\PostCP.cs" />
 			
 			
+			<Compile Include="CEN\DSMPracticas\PostCEN_New_.cs" />
 			
 			
 			

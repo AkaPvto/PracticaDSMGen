@@ -107,9 +107,6 @@ public void ModifyDefault (PostEN post)
                 postEN.Imagen = post.Imagen;
 
 
-                postEN.Fecha = post.Fecha;
-
-
                 postEN.Hora = post.Hora;
 
 
@@ -216,11 +213,11 @@ public int New_ (PostEN post)
         try
         {
                 SessionInitializeTransaction ();
-                if (post.Usuario != null) {
+                if (post.UsuarioCreador != null) {
                         // Argumento OID y no colección.
-                        post.Usuario = (PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN)session.Load (typeof(PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN), post.Usuario.Id);
+                        post.UsuarioCreador = (PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN)session.Load (typeof(PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN), post.UsuarioCreador.Id);
 
-                        post.Usuario.Post
+                        post.UsuarioCreador.Post
                         .Add (post);
                 }
                 if (post.Comunidad != null) {
@@ -268,9 +265,6 @@ public void Modify (PostEN post)
 
 
                 postEN.Imagen = post.Imagen;
-
-
-                postEN.Fecha = post.Fecha;
 
 
                 postEN.Hora = post.Hora;
@@ -386,7 +380,7 @@ public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM PostEN self where FROM PostEN as post WHERE post.Usuario.Id = :usu";
+                //String sql = @"FROM PostEN self where FROM PostEN as post WHERE post.UsuarioCreador.Id = :usu";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("PostENgetPostsUsuHQL");
                 query.SetParameter ("p_usu", p_usu);
@@ -476,7 +470,7 @@ public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM PostEN self where FROM PostEN as post WHERE post.Comunidad.Nombre = :p_comunidad ORDER BY post.Fecha desc";
+                //String sql = @"FROM PostEN self where FROM PostEN as post WHERE post.Comunidad.Nombre = :p_comunidad ORDER BY post.Hora desc";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("PostENgetPostComunidadFechaHQL");
                 query.SetParameter ("p_comunidad", p_comunidad);

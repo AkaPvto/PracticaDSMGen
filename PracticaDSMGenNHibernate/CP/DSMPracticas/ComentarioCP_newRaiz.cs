@@ -13,7 +13,7 @@ using PracticaDSMGenNHibernate.CEN.DSMPracticas;
 
 
 
-/*PROTECTED REGION ID(usingPracticaDSMGenNHibernate.CP.DSMPracticas_Comentario_newHijo) ENABLED START*/
+/*PROTECTED REGION ID(usingPracticaDSMGenNHibernate.CP.DSMPracticas_Comentario_newRaiz) ENABLED START*/
 //  references to other libraries
 /*PROTECTED REGION END*/
 
@@ -21,9 +21,9 @@ namespace PracticaDSMGenNHibernate.CP.DSMPracticas
 {
 public partial class ComentarioCP : BasicCP
 {
-public PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN NewHijo (string p_contenido, int p_usuario, int p_post, Nullable<DateTime> p_hora, int p_padre)
+public PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN NewRaiz (string p_contenido, int p_usuario, int p_post, Nullable<DateTime> p_hora)
 {
-        /*PROTECTED REGION ID(PracticaDSMGenNHibernate.CP.DSMPracticas_Comentario_newHijo) ENABLED START*/
+        /*PROTECTED REGION ID(PracticaDSMGenNHibernate.CP.DSMPracticas_Comentario_newRaiz) ENABLED START*/
 
         IComentarioCAD comentarioCAD = null;
         ComentarioCEN comentarioCEN = null;
@@ -59,18 +59,14 @@ public PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN NewHijo (string p_c
                         comentarioEN.Post.Id = p_post;
                 }
 
-                if (p_hora != null) {
-                        comentarioEN.Hora = p_hora;
-                }
+                comentarioEN.Hora = p_hora;
 
                 //Call to ComentarioCAD
 
-                oid = comentarioCAD.NewHijo (comentarioEN);
+                oid = comentarioCAD.NewRaiz (comentarioEN);
                 result = comentarioCAD.ReadOIDDefault (oid);
 
-                comentarioCEN.AddComentarioHijo (p_padre, new List<int>(){
-                                oid
-                        });
+
 
                 SessionCommit ();
         }
