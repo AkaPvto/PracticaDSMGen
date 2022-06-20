@@ -31,7 +31,7 @@ JuegoEN ReadOID (string nombre
 System.Collections.Generic.IList<JuegoEN> ReadAll (int first, int size);
 
 
-System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.JuegoEN> Busqueda (string nombre);
+System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.JuegoEN> Busqueda (string p_nombre);
 
 
 

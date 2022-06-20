@@ -264,7 +264,7 @@ public System.Collections.Generic.IList<JuegoEN> ReadAll (int first, int size)
         return result;
 }
 
-public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.JuegoEN> Busqueda (string nombre)
+public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.JuegoEN> Busqueda (string p_nombre)
 {
         System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.JuegoEN> result;
         try
@@ -273,7 +273,7 @@ public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas
                 //String sql = @"FROM JuegoEN self where FROM JuegoEN as juego WHERE juego.Nombre like CONCAT('%', :p_nombre, '%')";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("JuegoENbusquedaHQL");
-                query.SetParameter ("nombre", nombre);
+                query.SetParameter ("p_nombre", p_nombre);
 
                 result = query.List<PracticaDSMGenNHibernate.EN.DSMPracticas.JuegoEN>();
                 SessionCommit ();

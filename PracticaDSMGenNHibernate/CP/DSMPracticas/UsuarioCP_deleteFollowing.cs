@@ -21,7 +21,7 @@ namespace PracticaDSMGenNHibernate.CP.DSMPracticas
 {
 public partial class UsuarioCP : BasicCP
 {
-public void DeleteFollowing (int p_Usuario_OID, int p_usuario_0_OID)
+public void DeleteFollowing (int p_Usuario_OID, System.Collections.Generic.IList<int> p_usuario_OIDs)
 {
         /*PROTECTED REGION ID(PracticaDSMGenNHibernate.CP.DSMPracticas_Usuario_deleteFollowing) ENABLED START*/
 
@@ -43,7 +43,7 @@ public void DeleteFollowing (int p_Usuario_OID, int p_usuario_0_OID)
 
                 //Call to UsuarioCAD
 
-                usuarioCAD.DeleteFollowing (p_Usuario_OID, p_usuario_0_OID);
+                usuarioCAD.DeleteFollowing (p_Usuario_OID, p_usuario_OIDs);
 
 
 

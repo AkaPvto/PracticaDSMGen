@@ -21,7 +21,7 @@ namespace PracticaDSMGenNHibernate.CP.DSMPracticas
 {
 public partial class ComentarioCP : BasicCP
 {
-public PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN NewHijo (string p_contenido, int p_usuario, int p_post, Nullable<DateTime> p_fecha, Nullable<DateTime> p_hora, int p_likes)
+public PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN NewHijo (string p_contenido, int p_usuario, int p_post, Nullable<DateTime> p_hora, int p_likes, int p_padre)
 {
         /*PROTECTED REGION ID(PracticaDSMGenNHibernate.CP.DSMPracticas_Comentario_newHijo) ENABLED START*/
 
@@ -58,12 +58,16 @@ public PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN NewHijo (string p_c
                         comentarioEN.Post.Id = p_post;
                 }
 
+                if (p_hora != null) {
+                        comentarioEN.Hora = p_hora;
+                }
+
                 //Call to ComentarioCAD
 
                 oid = comentarioCAD.NewHijo (comentarioEN);
                 result = comentarioCAD.ReadOIDDefault (oid);
 
-
+                comentarioCEN.AddComentarioHijo (p_padre, new List<int>(){oid});
 
                 SessionCommit ();
         }

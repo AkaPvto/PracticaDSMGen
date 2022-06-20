@@ -39,9 +39,9 @@ void DeleteComunidad (int p_Usuario_OID, System.Collections.Generic.IList<string
 
 
 
-void AddFollowing (int p_Usuario_OID, int p_usuario_0_OID);
+void AddFollowing (int p_Usuario_OID, System.Collections.Generic.IList<int> p_usuario_OIDs);
 
-void DeleteFollowing (int p_Usuario_OID, int p_usuario_0_OID);
+void DeleteFollowing (int p_Usuario_OID, System.Collections.Generic.IList<int> p_usuario_OIDs);
 
 System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> GetComunidadUsu (string p_comunidad);
 

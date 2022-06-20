@@ -416,7 +416,7 @@ public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM PostEN self where FROM PostEN as post WHERE post.Categoria = :categoria";
+                //String sql = @"FROM PostEN self where FROM PostEN as post WHERE post.Categoria = :p_categoria";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("PostENgetPostPorCategoriaHQL");
                 query.SetParameter ("p_categoria", p_categoria);
@@ -446,7 +446,7 @@ public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM PostEN self where FROM PostEN as post WHERE post.Comunidad.Id = :p_comunidad ORDER BY post.Likes desc";
+                //String sql = @"FROM PostEN self where FROM PostEN as post WHERE post.Comunidad.Nombre = :p_comunidad ORDER BY post.Likes desc";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("PostENgetPostComunidadLikesHQL");
                 query.SetParameter ("p_comunidad", p_comunidad);
@@ -476,7 +476,7 @@ public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM PostEN self where FROM PostEN as post WHERE post.Comunidad.Id = :p_comunidad ORDER BY post.Fecha desc";
+                //String sql = @"FROM PostEN self where FROM PostEN as post WHERE post.Comunidad.Nombre = :p_comunidad ORDER BY post.Fecha desc";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("PostENgetPostComunidadFechaHQL");
                 query.SetParameter ("p_comunidad", p_comunidad);

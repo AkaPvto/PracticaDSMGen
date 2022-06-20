@@ -39,7 +39,7 @@
 			
 		  			
 						<many-to-one name="Usuario" class="PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN" >	
-								<column name="FK_attribute_idUsuario"/> 
+								<column name="FK_id_idUsuario"/> 
 						</many-to-one>
 											 					
 			
@@ -93,8 +93,8 @@
 		  
 		  <query name="PostENReadAllHQL">from PostEN</query>
 		  <query name="PostENgetPostsUsuHQL"><![CDATA[FROM PostEN as post WHERE post.Usuario.Id = :usu]]></query>
-		  <query name="PostENgetPostPorCategoriaHQL"><![CDATA[FROM PostEN as post WHERE post.Categoria = :categoria]]></query>
-		  <query name="PostENgetPostComunidadLikesHQL"><![CDATA[FROM PostEN as post WHERE post.Comunidad.Id = :p_comunidad ORDER BY post.Likes desc]]></query>
-		  <query name="PostENgetPostComunidadFechaHQL"><![CDATA[FROM PostEN as post WHERE post.Comunidad.Id = :p_comunidad ORDER BY post.Fecha desc]]></query>
+		  <query name="PostENgetPostPorCategoriaHQL"><![CDATA[FROM PostEN as post WHERE post.Categoria = :p_categoria]]></query>
+		  <query name="PostENgetPostComunidadLikesHQL"><![CDATA[FROM PostEN as post WHERE post.Comunidad.Nombre = :p_comunidad ORDER BY post.Likes desc]]></query>
+		  <query name="PostENgetPostComunidadFechaHQL"><![CDATA[FROM PostEN as post WHERE post.Comunidad.Nombre = :p_comunidad ORDER BY post.Fecha desc]]></query>
 		</hibernate-mapping>
 	

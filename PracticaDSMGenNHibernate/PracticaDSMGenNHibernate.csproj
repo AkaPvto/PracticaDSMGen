@@ -148,6 +148,7 @@
 	<Compile Include="CAD\DSMPracticas\UsuarioCAD.cs" />
 	<Compile Include="CP\DSMPracticas\UsuarioCP.cs" />
 			
+			<Compile Include="CEN\DSMPracticas\UsuarioCEN_New_.cs" />
 			
 			
 			

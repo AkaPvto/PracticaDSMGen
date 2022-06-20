@@ -275,7 +275,7 @@ public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM AvisoEN self where FROM AvisoEN as aviso WHERE aviso.Usuario.Id = :usu";
+                //String sql = @"FROM AvisoEN self where FROM AvisoEN as aviso WHERE aviso.Usuario.Id = :p_usu";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("AvisoENgetAvisosUsuHQL");
                 query.SetParameter ("p_usu", p_usu);

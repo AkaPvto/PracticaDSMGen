@@ -30,7 +30,7 @@ public void BanearUsuario (int p_oid)
 
         IList<AvisoEN> avisos = aviso.GetAvisosUsu (p_oid);
 
-        Console.WriteLine ("El usuario " + usuario.User + " tiene " + avisos.Count + " avisos\n");
+        Console.WriteLine ("El usuario " + usuario.Nickname + " tiene " + avisos.Count + " avisos\n");
 
         if (avisos.Count >= 3) {
                 if (usuario.Baneado) {
@@ -38,9 +38,11 @@ public void BanearUsuario (int p_oid)
                 }
                 else{
                         usuario.Baneado = true;
-                        Console.WriteLine ("El usuario " + usuario.User + " ha sido baneado.\n");
+                        Console.WriteLine ("El usuario " + usuario.Nickname + " ha sido baneado.\n");
                 }
         }
+
+        _IUsuarioCAD.Modify (usuario);
 
         /*PROTECTED REGION END*/
 }

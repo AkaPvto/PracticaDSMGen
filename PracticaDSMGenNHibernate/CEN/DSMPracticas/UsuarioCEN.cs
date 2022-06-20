@@ -45,45 +45,14 @@ public void AddJuego (int p_Usuario_OID, System.Collections.Generic.IList<string
 
         _IUsuarioCAD.AddJuego (p_Usuario_OID, p_juego_OIDs);
 }
-public int New_ (string p_user, string p_nombre, string p_apellidos, string p_email, int p_telefono, string p_direccion, string p_foto, String p_pass, bool p_baneado)
-{
-        UsuarioEN usuarioEN = null;
-        int oid;
-
-        //Initialized UsuarioEN
-        usuarioEN = new UsuarioEN ();
-        usuarioEN.User = p_user;
-
-        usuarioEN.Nombre = p_nombre;
-
-        usuarioEN.Apellidos = p_apellidos;
-
-        usuarioEN.Email = p_email;
-
-        usuarioEN.Telefono = p_telefono;
-
-        usuarioEN.Direccion = p_direccion;
-
-        usuarioEN.Foto = p_foto;
-
-        usuarioEN.Pass = Utils.Util.GetEncondeMD5 (p_pass);
-
-        usuarioEN.Baneado = p_baneado;
-
-        //Call to UsuarioCAD
-
-        oid = _IUsuarioCAD.New_ (usuarioEN);
-        return oid;
-}
-
-public void Modify (int p_Usuario_OID, string p_user, string p_nombre, string p_apellidos, string p_email, int p_telefono, string p_direccion, string p_foto, String p_pass, bool p_baneado)
+public void Modify (int p_Usuario_OID, string p_nickname, string p_nombre, string p_apellidos, string p_email, int p_telefono, string p_direccion, string p_foto, String p_pass, bool p_baneado)
 {
         UsuarioEN usuarioEN = null;
 
         //Initialized UsuarioEN
         usuarioEN = new UsuarioEN ();
         usuarioEN.Id = p_Usuario_OID;
-        usuarioEN.User = p_user;
+        usuarioEN.Nickname = p_nickname;
         usuarioEN.Nombre = p_nombre;
         usuarioEN.Apellidos = p_apellidos;
         usuarioEN.Email = p_email;
