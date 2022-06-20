@@ -35,6 +35,7 @@ public bool InteractPost (int p_usuario, int p_post)
                 SessionInitializeTransaction ();
                 usuarioCAD = new UsuarioCAD (session);
                 usuarioCEN = new  UsuarioCEN (usuarioCAD);
+                postCAD = new PostCAD (session);
                 IList<PostEN> postLikedByUsuario = postCAD.GetPostLiked (p_usuario);
                 PostEN postEN = postCAD.ReadOID (p_post);
                 IList<UsuarioEN> userOfComunidad = usuarioCAD.GetComunidadUsu (postEN.Comunidad.Nombre);

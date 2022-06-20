@@ -103,6 +103,27 @@
       						</many-to-many>
     					</bag>
 			
+		  			
+						<bag name="Usuario" table="[usuario_usuario_0]" inverse="true" >
+							<key>
+								
+									<column name="FK_id_idUsuario"/> 
+							</key>
+      						<many-to-many class="PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN">
+									<column name="FK_id_idUsuario_0"/> 
+      						</many-to-many>
+    					</bag>
+			
+		  			
+						<bag name="Usuario_0" table="[usuario_usuario_0]"  >
+							<key>
+								
+									<column name="FK_id_idUsuario_0"/> 
+							</key>
+      						<many-to-many class="PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN">
+									<column name="FK_id_idUsuario"/> 
+      						</many-to-many>
+    					</bag>
 			
 		  			
 						<bag name="Aviso" >
@@ -142,16 +163,6 @@
 					
 					
 					
-						<bag name="Usuario" table="usuario_usuario_0" > 
-							<key>
-								
-									<column name="FK_id_idUsuario"/> 
-							</key>
-      						<many-to-many class="PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN">
-									<column name="FK_id_idUsuario_0" unique="true"/> 
-      						</many-to-many>
-    					</bag>
-    				
 					
 					
 					
