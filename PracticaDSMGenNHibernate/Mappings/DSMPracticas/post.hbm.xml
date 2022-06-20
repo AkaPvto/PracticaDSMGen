@@ -80,7 +80,7 @@
 									<column name="FK_id_idPostLiked"/> 
 							</key>
       						<many-to-many class="PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN">
-									<column name="FK_id_idUsuario"/> 
+									<column name="FK_id_idUsuarioLiker"/> 
       						</many-to-many>
     					</bag>
 					

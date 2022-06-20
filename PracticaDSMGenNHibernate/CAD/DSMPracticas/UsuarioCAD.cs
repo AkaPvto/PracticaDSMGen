@@ -119,6 +119,7 @@ public void ModifyDefault (UsuarioEN usuario)
 
 
 
+
                 usuarioEN.Pass = usuario.Pass;
 
 
@@ -436,6 +437,7 @@ public void AddFollowing (int p_Usuario_OID, System.Collections.Generic.IList<in
                 foreach (int item in p_usuario_OIDs) {
                         usuarioENAux = new PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN ();
                         usuarioENAux = (PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN)session.Load (typeof(PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN), item);
+                        usuarioENAux.Usuario_0.Add (usuarioEN);
 
                         usuarioEN.Usuario.Add (usuarioENAux);
                 }
@@ -473,6 +475,7 @@ public void DeleteFollowing (int p_Usuario_OID, System.Collections.Generic.IList
                                 usuarioENAux = (PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN)session.Load (typeof(PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN), item);
                                 if (usuarioEN.Usuario.Contains (usuarioENAux) == true) {
                                         usuarioEN.Usuario.Remove (usuarioENAux);
+                                        usuarioENAux.Usuario_0.Remove (usuarioEN);
                                 }
                                 else
                                         throw new ModelException ("The identifier " + item + " in p_usuario_OIDs you are trying to unrelationer, doesn't exist in UsuarioEN");
