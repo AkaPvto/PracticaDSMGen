@@ -82,6 +82,13 @@ private int likes;
 
 
 
+/**
+ *	Atributo usuarioLiker
+ */
+private System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> usuarioLiker;
+
+
+
 
 
 
@@ -151,30 +158,37 @@ public virtual int Likes {
 
 
 
+public virtual System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> UsuarioLiker {
+        get { return usuarioLiker; } set { usuarioLiker = value;  }
+}
+
+
+
 
 
 public PostEN()
 {
         comentario = new System.Collections.Generic.List<PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN>();
         notificacion = new System.Collections.Generic.List<PracticaDSMGenNHibernate.EN.DSMPracticas.NotificacionEN>();
+        usuarioLiker = new System.Collections.Generic.List<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN>();
 }
 
 
 
-public PostEN(int id, string contenido, PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN usuarioCreador, PracticaDSMGenNHibernate.EN.DSMPracticas.ComunidadEN comunidad, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN> comentario, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.NotificacionEN> notificacion, PracticaDSMGenNHibernate.Enumerated.DSMPracticas.Categoria_PostEnum categoria, string titulo, string imagen, Nullable<DateTime> hora, int likes
+public PostEN(int id, string contenido, PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN usuarioCreador, PracticaDSMGenNHibernate.EN.DSMPracticas.ComunidadEN comunidad, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN> comentario, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.NotificacionEN> notificacion, PracticaDSMGenNHibernate.Enumerated.DSMPracticas.Categoria_PostEnum categoria, string titulo, string imagen, Nullable<DateTime> hora, int likes, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> usuarioLiker
               )
 {
-        this.init (Id, contenido, usuarioCreador, comunidad, comentario, notificacion, categoria, titulo, imagen, hora, likes);
+        this.init (Id, contenido, usuarioCreador, comunidad, comentario, notificacion, categoria, titulo, imagen, hora, likes, usuarioLiker);
 }
 
 
 public PostEN(PostEN post)
 {
-        this.init (Id, post.Contenido, post.UsuarioCreador, post.Comunidad, post.Comentario, post.Notificacion, post.Categoria, post.Titulo, post.Imagen, post.Hora, post.Likes);
+        this.init (Id, post.Contenido, post.UsuarioCreador, post.Comunidad, post.Comentario, post.Notificacion, post.Categoria, post.Titulo, post.Imagen, post.Hora, post.Likes, post.UsuarioLiker);
 }
 
 private void init (int id
-                   , string contenido, PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN usuarioCreador, PracticaDSMGenNHibernate.EN.DSMPracticas.ComunidadEN comunidad, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN> comentario, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.NotificacionEN> notificacion, PracticaDSMGenNHibernate.Enumerated.DSMPracticas.Categoria_PostEnum categoria, string titulo, string imagen, Nullable<DateTime> hora, int likes)
+                   , string contenido, PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN usuarioCreador, PracticaDSMGenNHibernate.EN.DSMPracticas.ComunidadEN comunidad, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN> comentario, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.NotificacionEN> notificacion, PracticaDSMGenNHibernate.Enumerated.DSMPracticas.Categoria_PostEnum categoria, string titulo, string imagen, Nullable<DateTime> hora, int likes, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> usuarioLiker)
 {
         this.Id = id;
 
@@ -198,6 +212,8 @@ private void init (int id
         this.Hora = hora;
 
         this.Likes = likes;
+
+        this.UsuarioLiker = usuarioLiker;
 }
 
 public override bool Equals (object obj)

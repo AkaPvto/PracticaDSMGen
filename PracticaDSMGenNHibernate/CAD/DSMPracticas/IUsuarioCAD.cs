@@ -47,5 +47,10 @@ System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.Usuari
 
 
 System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> GetFollowed (int p_usuario);
+
+
+void UsuarioLikePost (int p_Usuario_OID, System.Collections.Generic.IList<int> p_postLiked_OIDs);
+
+void UsuarioUnlikePost (int p_Usuario_OID, System.Collections.Generic.IList<int> p_postLiked_OIDs);
 }
 }

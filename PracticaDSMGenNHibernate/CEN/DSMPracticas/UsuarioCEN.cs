@@ -111,6 +111,18 @@ public string Login (int p_Usuario_OID, string p_pass)
         return result;
 }
 
+public void AddFollowing (int p_Usuario_OID, System.Collections.Generic.IList<int> p_usuario_OIDs)
+{
+        //Call to UsuarioCAD
+
+        _IUsuarioCAD.AddFollowing (p_Usuario_OID, p_usuario_OIDs);
+}
+public void DeleteFollowing (int p_Usuario_OID, System.Collections.Generic.IList<int> p_usuario_OIDs)
+{
+        //Call to UsuarioCAD
+
+        _IUsuarioCAD.DeleteFollowing (p_Usuario_OID, p_usuario_OIDs);
+}
 public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> GetComunidadUsu (string p_comunidad)
 {
         return _IUsuarioCAD.GetComunidadUsu (p_comunidad);
@@ -118,6 +130,18 @@ public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas
 public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> GetFollowed (int p_usuario)
 {
         return _IUsuarioCAD.GetFollowed (p_usuario);
+}
+public void UsuarioLikePost (int p_Usuario_OID, System.Collections.Generic.IList<int> p_postLiked_OIDs)
+{
+        //Call to UsuarioCAD
+
+        _IUsuarioCAD.UsuarioLikePost (p_Usuario_OID, p_postLiked_OIDs);
+}
+public void UsuarioUnlikePost (int p_Usuario_OID, System.Collections.Generic.IList<int> p_postLiked_OIDs)
+{
+        //Call to UsuarioCAD
+
+        _IUsuarioCAD.UsuarioUnlikePost (p_Usuario_OID, p_postLiked_OIDs);
 }
 
 

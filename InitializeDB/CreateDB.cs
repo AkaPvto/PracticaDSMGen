@@ -141,6 +141,25 @@ public static void InitializeData ()
                 AvisoCEN avisoCEN = new AvisoCEN ();
                 avisoCEN.New_ ("Insultaste y/u ofendiste a un companiero.", sara, new DateTime (2020, 12, 31, 23, 06, 00));
 
+                Console.WriteLine ("Metemos a un usuario en una comunidad:\n");
+                comunidadCEN.AddUsuarios (com_hks, new List<int>(){
+                                jorge, carlos
+                        });
+                Console.WriteLine ("Jorge y Carlos han entrado en la comunidad de Silksong\n");
+                usuarioCEN.AddComunidad (sergio, new List<string>(){
+                                com_rl
+                        });
+                Console.WriteLine ("Sergio ha entrado en la comunidad de Rocket League\n");
+
+                Console.WriteLine("Se va a probar los likes de un post: \n");
+                UsuarioCP usuarioCP = new UsuarioCP();
+                Console.WriteLine ("Jorge le da like a un post de la comunidad Silksong... \n");
+                usuarioCP.InteractPost (jorge, post3);
+                Console.WriteLine ("Jorge le da like a un post de la comunidad de Rocket League... \n");
+                usuarioCP.InteractPost (jorge, post2);
+                Console.WriteLine ("Jorge le da like a un post al que ya le hab�a dado like de la comunidad de Silksong");
+                usuarioCP.InteractPost (jorge, post3);
+
                 Console.WriteLine ("\nFiltramos los posts por categoria opinion:");
                 IList<PostEN> posts = postCEN.GetPostPorCategoria (Categoria_PostEnum.opinion);
                 foreach (PostEN post in posts) {
@@ -166,15 +185,14 @@ public static void InitializeData ()
                 Console.WriteLine ("\n");
 
                 Console.WriteLine ("Usuario Candela sigue a otros usuarios (Carlos, Sergio y Sara):");
-                UsuarioCP usuarioCP = new UsuarioCP ();
                 int[] followers = { sergio, carlos, sara };
                 IList<int> followersList = followers;
-                usuarioCP.AddFollowing (candela, followersList);
+                usuarioCEN.AddFollowing (candela, followersList);
 
                 Console.WriteLine ("El usuario Candela deja de seguir a otro usuario (Carlos):");
                 int[] unFollower = { carlos };
                 IList<int> unFollowerList = unFollower;
-                usuarioCP.DeleteFollowing (candela, unFollowerList);
+                usuarioCEN.DeleteFollowing (candela, unFollowerList);
 
                 Console.WriteLine ("\nFiltramos entre todos los juegos por el nombre League:");
                 IList<JuegoEN> juegos = juegoCEN.Busqueda ("League");
@@ -213,7 +231,7 @@ public static void InitializeData ()
                 Console.WriteLine ();
 
                 Console.WriteLine ("\nEl usuario Candela sigue a Carlos:");
-                usuarioCP.AddFollowing (candela, unFollowerList);
+                usuarioCEN.AddFollowing (candela, unFollowerList);
 
                 Console.WriteLine ("\nRecomendamos juegos de nuevo al usuario Candela:");
                 juegoCP.RecomendarJuego (candela);

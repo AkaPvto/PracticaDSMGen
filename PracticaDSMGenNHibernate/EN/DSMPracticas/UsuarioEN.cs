@@ -124,6 +124,13 @@ private int id;
 
 
 
+/**
+ *	Atributo postLiked
+ */
+private System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN> postLiked;
+
+
+
 
 
 
@@ -229,6 +236,12 @@ public virtual int Id {
 
 
 
+public virtual System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN> PostLiked {
+        get { return postLiked; } set { postLiked = value;  }
+}
+
+
+
 
 
 public UsuarioEN()
@@ -240,24 +253,25 @@ public UsuarioEN()
         notificacion = new System.Collections.Generic.List<PracticaDSMGenNHibernate.EN.DSMPracticas.NotificacionEN>();
         usuario = new System.Collections.Generic.List<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN>();
         aviso = new System.Collections.Generic.List<PracticaDSMGenNHibernate.EN.DSMPracticas.AvisoEN>();
+        postLiked = new System.Collections.Generic.List<PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN>();
 }
 
 
 
-public UsuarioEN(int id, string nickname, string nombre, string apellidos, string email, int telefono, string direccion, string foto, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.JuegoEN> juego, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.ComunidadEN> comunidad, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN> post, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN> comentario, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.NotificacionEN> notificacion, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> usuario, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.AvisoEN> aviso, String pass, bool baneado
+public UsuarioEN(int id, string nickname, string nombre, string apellidos, string email, int telefono, string direccion, string foto, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.JuegoEN> juego, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.ComunidadEN> comunidad, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN> post, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN> comentario, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.NotificacionEN> notificacion, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> usuario, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.AvisoEN> aviso, String pass, bool baneado, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN> postLiked
                  )
 {
-        this.init (Id, nickname, nombre, apellidos, email, telefono, direccion, foto, juego, comunidad, post, comentario, notificacion, usuario, aviso, pass, baneado);
+        this.init (Id, nickname, nombre, apellidos, email, telefono, direccion, foto, juego, comunidad, post, comentario, notificacion, usuario, aviso, pass, baneado, postLiked);
 }
 
 
 public UsuarioEN(UsuarioEN usuario)
 {
-        this.init (Id, usuario.Nickname, usuario.Nombre, usuario.Apellidos, usuario.Email, usuario.Telefono, usuario.Direccion, usuario.Foto, usuario.Juego, usuario.Comunidad, usuario.Post, usuario.Comentario, usuario.Notificacion, usuario.Usuario, usuario.Aviso, usuario.Pass, usuario.Baneado);
+        this.init (Id, usuario.Nickname, usuario.Nombre, usuario.Apellidos, usuario.Email, usuario.Telefono, usuario.Direccion, usuario.Foto, usuario.Juego, usuario.Comunidad, usuario.Post, usuario.Comentario, usuario.Notificacion, usuario.Usuario, usuario.Aviso, usuario.Pass, usuario.Baneado, usuario.PostLiked);
 }
 
 private void init (int id
-                   , string nickname, string nombre, string apellidos, string email, int telefono, string direccion, string foto, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.JuegoEN> juego, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.ComunidadEN> comunidad, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN> post, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN> comentario, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.NotificacionEN> notificacion, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> usuario, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.AvisoEN> aviso, String pass, bool baneado)
+                   , string nickname, string nombre, string apellidos, string email, int telefono, string direccion, string foto, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.JuegoEN> juego, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.ComunidadEN> comunidad, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN> post, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN> comentario, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.NotificacionEN> notificacion, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> usuario, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.AvisoEN> aviso, String pass, bool baneado, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN> postLiked)
 {
         this.Id = id;
 
@@ -293,6 +307,8 @@ private void init (int id
         this.Pass = pass;
 
         this.Baneado = baneado;
+
+        this.PostLiked = postLiked;
 }
 
 public override bool Equals (object obj)

@@ -107,5 +107,21 @@ public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas
 {
         return _IPostCAD.GetPostComunidadFecha (p_comunidad);
 }
+public void PostLikedByUsuario (int p_Post_OID, System.Collections.Generic.IList<int> p_usuarioLiker_OIDs)
+{
+        //Call to PostCAD
+
+        _IPostCAD.PostLikedByUsuario (p_Post_OID, p_usuarioLiker_OIDs);
+}
+public void PostUnlikedByUsuario (int p_Post_OID, System.Collections.Generic.IList<int> p_usuarioLiker_OIDs)
+{
+        //Call to PostCAD
+
+        _IPostCAD.PostUnlikedByUsuario (p_Post_OID, p_usuarioLiker_OIDs);
+}
+public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN> GetPostLiked (int p_usuario)
+{
+        return _IPostCAD.GetPostLiked (p_usuario);
+}
 }
 }

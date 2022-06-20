@@ -117,6 +117,17 @@
 			
 			
 			
+			
+		  			
+						<bag name="PostLiked" table="[post_0_usuario]" inverse="true" >
+							<key>
+								
+									<column name="FK_id_idUsuario"/> 
+							</key>
+      						<many-to-many class="PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN">
+									<column name="FK_id_idPostLiked"/> 
+      						</many-to-many>
+    					</bag>
 					
 					
 					
@@ -145,11 +156,12 @@
 					
 					
 					
+					
 		
 		 </class>	
 		  
 		  <query name="UsuarioENReadAllHQL">from UsuarioEN</query>
 		  <query name="UsuarioENgetComunidadUsuHQL"><![CDATA[SELECT usuario FROM UsuarioEN as usuario INNER JOIN usuario.Comunidad as comunidad WHERE comunidad.Nombre = :p_comunidad]]></query>
-		  <query name="UsuarioENgetFollowedHQL"><![CDATA[SELECT usuario FROM UsuarioEN as usuario INNER JOIN usuario.Usuario as followed WHERE followed.Id = :p_usuario]]></query>
+		  <query name="UsuarioENgetFollowedHQL"><![CDATA[SELECT usuario FROM UsuarioEN as usuario INNER JOIN usuario.Usuario_0 as followed WHERE followed.Id = :p_usuario]]></query>
 		</hibernate-mapping>
 	
