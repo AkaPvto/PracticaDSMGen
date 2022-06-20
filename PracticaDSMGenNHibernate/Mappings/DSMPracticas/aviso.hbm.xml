@@ -15,9 +15,6 @@
 					<property name="Texto" type="string"> 
 						<column name="texto"  not-null="true"/>
 					</property>
-					<property name="Fecha" type="date"> 
-						<column name="fecha"  not-null="true"/>
-					</property>
 					<property name="Hora" type="timestamp"> 
 						<column name="hora"  not-null="true"/>
 					</property>
@@ -31,8 +28,6 @@
 						</many-to-one>
 											 					
 			
-			
-					
 					
 					
 					

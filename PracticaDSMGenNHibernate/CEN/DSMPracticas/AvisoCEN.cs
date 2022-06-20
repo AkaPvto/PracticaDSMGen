@@ -39,7 +39,7 @@ public IAvisoCAD get_IAvisoCAD ()
         return this._IAvisoCAD;
 }
 
-public int New_ (string p_texto, int p_usuario, Nullable<DateTime> p_fecha, Nullable<DateTime> p_hora)
+public int New_ (string p_texto, int p_usuario, Nullable<DateTime> p_hora)
 {
         AvisoEN avisoEN = null;
         int oid;
@@ -56,8 +56,6 @@ public int New_ (string p_texto, int p_usuario, Nullable<DateTime> p_fecha, Null
                 avisoEN.Usuario.Id = p_usuario;
         }
 
-        avisoEN.Fecha = p_fecha;
-
         avisoEN.Hora = p_hora;
 
         //Call to AvisoCAD
@@ -66,7 +64,7 @@ public int New_ (string p_texto, int p_usuario, Nullable<DateTime> p_fecha, Null
         return oid;
 }
 
-public void Modify (int p_Aviso_OID, string p_texto, Nullable<DateTime> p_fecha, Nullable<DateTime> p_hora)
+public void Modify (int p_Aviso_OID, string p_texto, Nullable<DateTime> p_hora)
 {
         AvisoEN avisoEN = null;
 
@@ -74,7 +72,6 @@ public void Modify (int p_Aviso_OID, string p_texto, Nullable<DateTime> p_fecha,
         avisoEN = new AvisoEN ();
         avisoEN.Id = p_Aviso_OID;
         avisoEN.Texto = p_texto;
-        avisoEN.Fecha = p_fecha;
         avisoEN.Hora = p_hora;
         //Call to AvisoCAD
 

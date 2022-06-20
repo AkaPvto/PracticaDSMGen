@@ -95,9 +95,6 @@ public void ModifyDefault (AvisoEN aviso)
 
 
 
-                avisoEN.Fecha = aviso.Fecha;
-
-
                 avisoEN.Hora = aviso.Hora;
 
                 session.Update (avisoEN);
@@ -160,9 +157,6 @@ public void Modify (AvisoEN aviso)
                 AvisoEN avisoEN = (AvisoEN)session.Load (typeof(AvisoEN), aviso.Id);
 
                 avisoEN.Texto = aviso.Texto;
-
-
-                avisoEN.Fecha = aviso.Fecha;
 
 
                 avisoEN.Hora = aviso.Hora;

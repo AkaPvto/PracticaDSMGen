@@ -86,39 +86,5 @@ public void AddComentarioHijo (int p_Comentario_OID, System.Collections.Generic.
 
         _IComentarioCAD.AddComentarioHijo (p_Comentario_OID, p_comentariosHijos_OIDs);
 }
-public int NewRaiz (string p_contenido, int p_usuario, int p_post, Nullable<DateTime> p_hora, int p_likes)
-{
-        ComentarioEN comentarioEN = null;
-        int oid;
-
-        //Initialized ComentarioEN
-        comentarioEN = new ComentarioEN ();
-        comentarioEN.Contenido = p_contenido;
-
-
-        if (p_usuario != -1) {
-                // El argumento p_usuario -> Property usuario es oid = false
-                // Lista de oids id
-                comentarioEN.Usuario = new PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN ();
-                comentarioEN.Usuario.Id = p_usuario;
-        }
-
-
-        if (p_post != -1) {
-                // El argumento p_post -> Property post es oid = false
-                // Lista de oids id
-                comentarioEN.Post = new PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN ();
-                comentarioEN.Post.Id = p_post;
-        }
-
-        comentarioEN.Hora = p_hora;
-
-        comentarioEN.Likes = p_likes;
-
-        //Call to ComentarioCAD
-
-        oid = _IComentarioCAD.NewRaiz (comentarioEN);
-        return oid;
-}
 }
 }

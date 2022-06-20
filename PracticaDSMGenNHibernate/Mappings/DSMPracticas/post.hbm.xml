@@ -24,9 +24,6 @@
 					<property name="Imagen" type="string"> 
 						<column name="imagen"  not-null="true"/>
 					</property>
-					<property name="Fecha" type="date"> 
-						<column name="fecha"  not-null="true"/>
-					</property>
 					<property name="Hora" type="timestamp"> 
 						<column name="hora"  not-null="true"/>
 					</property>
@@ -38,7 +35,7 @@
 			
 			
 		  			
-						<many-to-one name="Usuario" class="PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN" >	
+						<many-to-one name="UsuarioCreador" class="PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN" >	
 								<column name="FK_id_idUsuario"/> 
 						</many-to-one>
 											 					
@@ -75,8 +72,6 @@
 			
 			
 			
-			
-					
 					
 					
 					
@@ -92,9 +87,9 @@
 		 </class>	
 		  
 		  <query name="PostENReadAllHQL">from PostEN</query>
-		  <query name="PostENgetPostsUsuHQL"><![CDATA[FROM PostEN as post WHERE post.Usuario.Id = :usu]]></query>
+		  <query name="PostENgetPostsUsuHQL"><![CDATA[FROM PostEN as post WHERE post.UsuarioCreador.Id = :usu]]></query>
 		  <query name="PostENgetPostPorCategoriaHQL"><![CDATA[FROM PostEN as post WHERE post.Categoria = :p_categoria]]></query>
 		  <query name="PostENgetPostComunidadLikesHQL"><![CDATA[FROM PostEN as post WHERE post.Comunidad.Nombre = :p_comunidad ORDER BY post.Likes desc]]></query>
-		  <query name="PostENgetPostComunidadFechaHQL"><![CDATA[FROM PostEN as post WHERE post.Comunidad.Nombre = :p_comunidad ORDER BY post.Fecha desc]]></query>
+		  <query name="PostENgetPostComunidadFechaHQL"><![CDATA[FROM PostEN as post WHERE post.Comunidad.Nombre = :p_comunidad ORDER BY post.Hora desc]]></query>
 		</hibernate-mapping>
 	
