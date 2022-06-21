@@ -36,7 +36,7 @@ public void EnviarNotificacion (int p_oid)
             var toAddress = new MailAddress(usuario.Email, "To Name");
             const string fromPassword = "qamecfuphnkrpmxr";
             const string subject = "Novedades en la comunidad de *Insertar Comunidad*";
-            const string body = "¡Hola, *Insertar nombre*! El usuario *Insertar nombre* ha subido un nuevo post a la comunidad de *Insertar Comunidad*. ¡No te lo pierdas!";
+            string body = "¡Hola, "+usuario.Nickname+"! El usuario *Insertar nombre* ha subido un nuevo post a la comunidad de *Insertar Comunidad*. ¡No te lo pierdas!";
 
             var smtp = new SmtpClient
             {
