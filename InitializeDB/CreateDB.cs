@@ -262,8 +262,9 @@ public static void InitializeData ()
                 Console.WriteLine ("");
 
                 Console.WriteLine ("Mandamos ambas notificaciones creadas...");
-                notificacionCEN.EnviarNotificacion(not1);
-                notificacionCEN.EnviarNotificacion(not2);
+                NotificacionCP notificacionCP = new NotificacionCP();
+                notificacionCP.EnviarNotificacion(not1);
+                notificacionCP.EnviarNotificacion(not2);
                 /*PROTECTED REGION END*/
             }
         catch (Exception ex)
