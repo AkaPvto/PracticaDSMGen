@@ -21,21 +21,25 @@ namespace PracticaDSMGenNHibernate.CEN.DSMPracticas
 {
 public partial class NotificacionCEN
 {
-public void EnviarNotificacion (int p_oid)
-{
-        /*PROTECTED REGION ID(PracticaDSMGenNHibernate.CEN.DSMPracticas_Notificacion_enviarNotificacion) ENABLED START*/
+        public void EnviarNotificacion(int p_oid)
+        {
+            /*PROTECTED REGION ID(PracticaDSMGenNHibernate.CEN.DSMPracticas_Notificacion_enviarNotificacion) ENABLED START*/
 
-        // Write here your custom code...
-        //Recuperamos los datos que vamos que necesitar del usuario
-        UsuarioCAD usuarioCAD = new UsuarioCAD ();
-        UsuarioEN usuario = usuarioCAD.ReadOIDDefault (p_oid);
+            // Write here your custom code...
+            //Recuperamos los datos que vamos a necesitar
+            NotificacionCAD notificacionCAD = new NotificacionCAD();
+            NotificacionEN notificacion = notificacionCAD.ReadOIDDefault(p_oid);
 
-        //Preparamos y mandamos el correo
-        var fromAddress = new MailAddress ("gogaminggroupsl@gmail.com", "Go Gaming");
-        var toAddress = new MailAddress (usuario.Email, "To Name");
-        const string fromPassword = "qamecfuphnkrpmxr";
-        const string subject = "Novedades en la comunidad de *Insertar Comunidad*";
-        string body = "�Hola, " + usuario.Nickname + "! El usuario *Insertar nombre* ha subido un nuevo post a la comunidad de *Insertar Comunidad*. �No te lo pierdas!";
+            UsuarioCAD usuarioCAD = new UsuarioCAD();
+            IList<UsuarioEN> usuarios = usuarioCAD.GetComunidadUsu(notificacion.Post.Comunidad.Nombre);
+
+
+            //Preparamos el correo   
+            var fromAddress = new MailAddress("gogaminggroupsl@gmail.com", "Go Gaming");
+
+            const string fromPassword = "qamecfuphnkrpmxr";
+            string subject = "Novedades en la comunidad de" + notificacion.Post.Comunidad.Nombre;
+            string body = "El usuario "+ notificacion.Post.UsuarioCreador.Nickname + " ha subido un nuevo post a la comunidad de " + notificacion.Post.Comunidad.Nombre + ". ¡No te lo pierdas!";
 
         var smtp = new SmtpClient
         {
@@ -44,17 +48,25 @@ public void EnviarNotificacion (int p_oid)
                 EnableSsl = true,
                 DeliveryMethod = SmtpDeliveryMethod.Network,
                 UseDefaultCredentials = false,
-                Credentials = new NetworkCredential (fromAddress.Address, fromPassword)
-        };
+                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+            };
 
-        using (var message = new MailMessage (fromAddress, toAddress){
-                       Subject = subject,
-                       Body = body
-               })
-        {
-                smtp.Send (message);
+            for (int i = 0; i < usuarios.Count; i++)
+            {
+                UsuarioEN usuario = usuarios[i];
+                var toAddress = new MailAddress(usuario.Email, "To Name");
+                var msg = "¡Hola, " + usuario.Nickname + "!" + body;
+            
+                using (var message = new MailMessage(fromAddress, toAddress)
+                {
+                    Subject = subject,
+                    Body = msg
+                })
+                {
+                    smtp.Send(message);
+                }
+            }
+            /*PROTECTED REGION END*/
         }
-        /*PROTECTED REGION END*/
-}
 }
 }

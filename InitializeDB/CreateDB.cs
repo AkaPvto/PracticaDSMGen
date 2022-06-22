@@ -83,11 +83,11 @@ public static void InitializeData ()
 
                 Console.WriteLine ("Introducimos usuarios a la bbdd...");
                 UsuarioCEN usuarioCEN = new UsuarioCEN ();
-                int sergio = usuarioCEN.New_ ("Kaese", "Sergio", "Miedes", "kaeseks@gmail.com", 666666666, "C/carton", "fotoejemplo", "1234");
-                int candela = usuarioCEN.New_ ("FroggyChair", "Candela", "Urh", "princesita23@gmail.com", 666999666, "C/cartulina", "fotoejemplo2", "1234");
-                int carlos = usuarioCEN.New_ ("Jaxtified", "Carlos", "Izquierdo", "carlosesetio@gmail.com", 666999888, "C/carta", "fotoejemplo3", "1234");
-                int jorge = usuarioCEN.New_ ("Akapvto", "Jorge", "Reig", "akayamiakuma@gmail.com", 666222888, "C/cartones", "fotoejemplo4", "1234");
-                int sara = usuarioCEN.New_ ("Sariwii", "Sara", "Morote", "sariwicondosies@gmail.com", 666999222, "C/cartulinas", "fotoejemplo5", "1234");
+                int sergio = usuarioCEN.New_ ("Kaese", "Sergio", "Miedes", "smg163@alu.ua.es", 666666666, "C/carton", "fotoejemplo", "1234");
+                int candela = usuarioCEN.New_ ("FroggyChair", "Candela", "Urh", "curh1@alu.ua.es", 666999666, "C/cartulina", "fotoejemplo2", "1234");
+                int carlos = usuarioCEN.New_ ("Jaxtified", "Carlos", "Izquierdo", "cil4@alu.ua.es", 666999888, "C/carta", "fotoejemplo3", "1234");
+                int jorge = usuarioCEN.New_ ("Akapvto", "Jorge", "Reig", "jrv37@alu.ua.es", 666222888, "C/cartones", "fotoejemplo4", "1234");
+                int sara = usuarioCEN.New_ ("Sariwii", "Sara", "Morote", "smb86@alu.ua.es", 666999222, "C/cartulinas", "fotoejemplo5", "1234");
 
                 Console.WriteLine ("Introducimos los generos a laa bbdd...");
                 GeneroCEN generoCEN = new GeneroCEN ();
