@@ -41,8 +41,8 @@ public partial class NotificacionCEN
             string subject = "Novedades en la comunidad de" + notificacion.Post.Comunidad.Nombre;
             string body = "El usuario "+ notificacion.Post.UsuarioCreador.Nickname + " ha subido un nuevo post a la comunidad de " + notificacion.Post.Comunidad.Nombre + ". ¡No te lo pierdas!";
 
-        var smtp = new SmtpClient
-        {
+            var smtp = new SmtpClient
+            {
                 Host = "smtp.gmail.com",
                 Port = 587,
                 EnableSsl = true,
