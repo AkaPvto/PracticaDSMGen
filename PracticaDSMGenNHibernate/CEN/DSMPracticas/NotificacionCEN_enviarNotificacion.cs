@@ -11,7 +11,6 @@ using PracticaDSMGenNHibernate.EN.DSMPracticas;
 using PracticaDSMGenNHibernate.CAD.DSMPracticas;
 
 
-
 /*PROTECTED REGION ID(usingPracticaDSMGenNHibernate.CEN.DSMPracticas_Notificacion_enviarNotificacion) ENABLED START*/
 using System.Net.Mail;
 using System.Net;
@@ -40,10 +39,10 @@ public partial class NotificacionCEN
 
             const string fromPassword = "qamecfuphnkrpmxr";
             string subject = "Novedades en la comunidad de" + notificacion.Post.Comunidad.Nombre;
-            string body = "El usuario "+ notificacion.Post.UsuarioCreador.Nickname + " ha subido un nuevo post a la comunidad de " + notificacion.Post.Comunidad.Nombre + ". ¡No te lo pierdas!";
+            string body = "El usuario "+ notificacion.Post.UsuarioCreador.Nickname + " ha subido un nuevo post a la comunidad de " + notificacion.Post.Comunidad.Nombre + ". Â¡No te lo pierdas!";
 
-            var smtp = new SmtpClient
-            {
+        var smtp = new SmtpClient
+        {
                 Host = "smtp.gmail.com",
                 Port = 587,
                 EnableSsl = true,
@@ -56,7 +55,7 @@ public partial class NotificacionCEN
             {
                 UsuarioEN usuario = usuarios[i];
                 var toAddress = new MailAddress(usuario.Email, "To Name");
-                var msg = "¡Hola, " + usuario.Nickname + "!" + body;
+                var msg = "Â¡Hola, " + usuario.Nickname + "!" + body;
             
                 using (var message = new MailMessage(fromAddress, toAddress)
                 {

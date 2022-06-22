@@ -13,20 +13,6 @@ private int id;
 
 
 /**
- *	Atributo texto
- */
-private string texto;
-
-
-
-/**
- *	Atributo usuario
- */
-private System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> usuario;
-
-
-
-/**
  *	Atributo post
  */
 private PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN post;
@@ -42,18 +28,6 @@ public virtual int Id {
 
 
 
-public virtual string Texto {
-        get { return texto; } set { texto = value;  }
-}
-
-
-
-public virtual System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> Usuario {
-        get { return usuario; } set { usuario = value;  }
-}
-
-
-
 public virtual PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN Post {
         get { return post; } set { post = value;  }
 }
@@ -64,32 +38,27 @@ public virtual PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN Post {
 
 public NotificacionEN()
 {
-        usuario = new System.Collections.Generic.List<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN>();
 }
 
 
 
-public NotificacionEN(int id, string texto, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> usuario, PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN post
+public NotificacionEN(int id, PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN post
                       )
 {
-        this.init (Id, texto, usuario, post);
+        this.init (Id, post);
 }
 
 
 public NotificacionEN(NotificacionEN notificacion)
 {
-        this.init (Id, notificacion.Texto, notificacion.Usuario, notificacion.Post);
+        this.init (Id, notificacion.Post);
 }
 
 private void init (int id
-                   , string texto, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> usuario, PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN post)
+                   , PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN post)
 {
         this.Id = id;
 
-
-        this.Texto = texto;
-
-        this.Usuario = usuario;
 
         this.Post = post;
 }

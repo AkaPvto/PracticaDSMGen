@@ -261,10 +261,10 @@ public static void InitializeData ()
                 }
                 Console.WriteLine ("");
 
-                Console.WriteLine("Mandamos una notificacion...");
-                notificacionCEN.EnviarNotificacion(carlos);
+                Console.WriteLine ("Mandamos una notificacion...");
+                notificacionCEN.EnviarNotificacion (carlos);
                 /*PROTECTED REGION END*/
-            }
+        }
         catch (Exception ex)
         {
                 System.Console.WriteLine (ex.InnerException);
