@@ -13,13 +13,6 @@ private int id;
 
 
 /**
- *	Atributo texto
- */
-private string texto;
-
-
-
-/**
  *	Atributo post
  */
 private PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN post;
@@ -31,12 +24,6 @@ private PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN post;
 
 public virtual int Id {
         get { return id; } set { id = value;  }
-}
-
-
-
-public virtual string Texto {
-        get { return texto; } set { texto = value;  }
 }
 
 
@@ -55,25 +42,23 @@ public NotificacionEN()
 
 
 
-public NotificacionEN(int id, string texto, PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN post
+public NotificacionEN(int id, PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN post
                       )
 {
-        this.init (Id, texto, post);
+        this.init (Id, post);
 }
 
 
 public NotificacionEN(NotificacionEN notificacion)
 {
-        this.init (Id, notificacion.Texto, notificacion.Post);
+        this.init (Id, notificacion.Post);
 }
 
 private void init (int id
-                   , string texto, PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN post)
+                   , PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN post)
 {
         this.Id = id;
 
-
-        this.Texto = texto;
 
         this.Post = post;
 }

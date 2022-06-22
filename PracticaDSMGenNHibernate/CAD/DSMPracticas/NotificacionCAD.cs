@@ -91,9 +91,6 @@ public void ModifyDefault (NotificacionEN notificacion)
                 SessionInitializeTransaction ();
                 NotificacionEN notificacionEN = (NotificacionEN)session.Load (typeof(NotificacionEN), notificacion.Id);
 
-                notificacionEN.Texto = notificacion.Texto;
-
-
                 session.Update (notificacionEN);
                 SessionCommit ();
         }
@@ -152,9 +149,6 @@ public void Modify (NotificacionEN notificacion)
         {
                 SessionInitializeTransaction ();
                 NotificacionEN notificacionEN = (NotificacionEN)session.Load (typeof(NotificacionEN), notificacion.Id);
-
-                notificacionEN.Texto = notificacion.Texto;
-
                 session.Update (notificacionEN);
                 SessionCommit ();
         }
