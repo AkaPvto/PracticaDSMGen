@@ -210,7 +210,7 @@
 			
 			
 			
-			<Compile Include="CEN\DSMPracticas\NotificacionCEN_EnviarNotificacion.cs" />
+			<Compile Include="CP\DSMPracticas\NotificacionCP_EnviarNotificacion.cs" />
 			
 	<Compile Include="EN\DSMPracticas\AvisoEN.cs" />
 	<Compile Include="CEN\DSMPracticas\AvisoCEN.cs" />
