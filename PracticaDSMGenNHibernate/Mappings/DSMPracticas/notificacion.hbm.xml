@@ -20,22 +20,10 @@
 			
 			
 		  			
-						<bag name="Usuario" table="[notificacion_usuario]"  >
-							<key>
-								
-									<column name="FK_idNotificacion_idNotificacion"/> 
-							</key>
-      						<many-to-many class="PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN">
-									<column name="FK_id_idUsuario"/> 
-      						</many-to-many>
-    					</bag>
-			
-		  			
 						<many-to-one name="Post" class="PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN" >	
 								<column name="FK_id_idPost"/> 
 						</many-to-one>
 											 					
-					
 					
 					
 					

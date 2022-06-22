@@ -39,7 +39,7 @@ public INotificacionCAD get_INotificacionCAD ()
         return this._INotificacionCAD;
 }
 
-public int New_ (string p_texto, System.Collections.Generic.IList<int> p_usuario, int p_post)
+public int New_ (string p_texto, int p_post)
 {
         NotificacionEN notificacionEN = null;
         int oid;
@@ -47,20 +47,6 @@ public int New_ (string p_texto, System.Collections.Generic.IList<int> p_usuario
         //Initialized NotificacionEN
         notificacionEN = new NotificacionEN ();
         notificacionEN.Texto = p_texto;
-
-
-        notificacionEN.Usuario = new System.Collections.Generic.List<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN>();
-        if (p_usuario != null) {
-                foreach (int item in p_usuario) {
-                        PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN en = new PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN ();
-                        en.Id = item;
-                        notificacionEN.Usuario.Add (en);
-                }
-        }
-
-        else{
-                notificacionEN.Usuario = new System.Collections.Generic.List<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN>();
-        }
 
 
         if (p_post != -1) {

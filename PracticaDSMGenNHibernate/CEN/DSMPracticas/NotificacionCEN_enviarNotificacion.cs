@@ -11,7 +11,6 @@ using PracticaDSMGenNHibernate.EN.DSMPracticas;
 using PracticaDSMGenNHibernate.CAD.DSMPracticas;
 
 
-
 /*PROTECTED REGION ID(usingPracticaDSMGenNHibernate.CEN.DSMPracticas_Notificacion_enviarNotificacion) ENABLED START*/
 using System.Net.Mail;
 using System.Net;
@@ -24,39 +23,38 @@ public partial class NotificacionCEN
 {
 public void EnviarNotificacion (int p_oid)
 {
-            /*PROTECTED REGION ID(PracticaDSMGenNHibernate.CEN.DSMPracticas_Notificacion_enviarNotificacion) ENABLED START*/
+        /*PROTECTED REGION ID(PracticaDSMGenNHibernate.CEN.DSMPracticas_Notificacion_enviarNotificacion) ENABLED START*/
 
-            // Write here your custom code...
-            //Recuperamos los datos que vamos que necesitar del usuario
-            UsuarioCAD usuarioCAD = new UsuarioCAD();
-            UsuarioEN usuario = usuarioCAD.ReadOIDDefault(p_oid);
-                          
-            //Preparamos y mandamos el correo    
-            var fromAddress = new MailAddress("gogaminggroupsl@gmail.com", "Go Gaming");
-            var toAddress = new MailAddress(usuario.Email, "To Name");
-            const string fromPassword = "qamecfuphnkrpmxr";
-            const string subject = "Novedades en la comunidad de *Insertar Comunidad*";
-            string body = "¡Hola, "+usuario.Nickname+"! El usuario *Insertar nombre* ha subido un nuevo post a la comunidad de *Insertar Comunidad*. ¡No te lo pierdas!";
+        // Write here your custom code...
+        //Recuperamos los datos que vamos que necesitar del usuario
+        UsuarioCAD usuarioCAD = new UsuarioCAD ();
+        UsuarioEN usuario = usuarioCAD.ReadOIDDefault (p_oid);
 
-            var smtp = new SmtpClient
-            {
+        //Preparamos y mandamos el correo
+        var fromAddress = new MailAddress ("gogaminggroupsl@gmail.com", "Go Gaming");
+        var toAddress = new MailAddress (usuario.Email, "To Name");
+        const string fromPassword = "qamecfuphnkrpmxr";
+        const string subject = "Novedades en la comunidad de *Insertar Comunidad*";
+        string body = "ï¿½Hola, " + usuario.Nickname + "! El usuario *Insertar nombre* ha subido un nuevo post a la comunidad de *Insertar Comunidad*. ï¿½No te lo pierdas!";
+
+        var smtp = new SmtpClient
+        {
                 Host = "smtp.gmail.com",
                 Port = 587,
                 EnableSsl = true,
                 DeliveryMethod = SmtpDeliveryMethod.Network,
                 UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
-            };
-            
-            using (var message = new MailMessage(fromAddress, toAddress)
-            {
-                Subject = subject,
-                Body = body
-            })
-            {
-                smtp.Send(message);
-            }
-            /*PROTECTED REGION END*/
+                Credentials = new NetworkCredential (fromAddress.Address, fromPassword)
+        };
+
+        using (var message = new MailMessage (fromAddress, toAddress){
+                       Subject = subject,
+                       Body = body
+               })
+        {
+                smtp.Send (message);
         }
+        /*PROTECTED REGION END*/
+}
 }
 }

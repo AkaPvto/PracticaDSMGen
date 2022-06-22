@@ -43,22 +43,22 @@ public bool InteractPost (int p_usuario, int p_post)
                 // Write here your custom transaction ...
 
                 if (userOfComunidad.Contains (usuarioEN)) {
-                    interaction = true;
-                    if (postLikedByUsuario.Contains(postEN)) {
-                        usuarioCEN.UsuarioUnlikePost(p_usuario, new List<int>(){
+                        interaction = true;
+                        if (postLikedByUsuario.Contains (postEN)) {
+                                usuarioCEN.UsuarioUnlikePost (p_usuario, new List<int>(){
                                                 p_post
                                         });
-                        postEN.Likes = -1;
-                        postCAD.Modify(postEN);
-                        Console.WriteLine("Se ha quitado el like del post " + p_post);
-                    }
-                    else {
-                        usuarioCEN.UsuarioLikePost(p_usuario, new List<int>() {
+                                postEN.Likes = -1;
+                                postCAD.Modify (postEN);
+                                Console.WriteLine ("Se ha quitado el like del post " + p_post);
+                        }
+                        else {
+                                usuarioCEN.UsuarioLikePost (p_usuario, new List<int>() {
                                                 p_post
                                         });
-                        postEN.Likes = -1;
-                        postCAD.Modify(postEN);
-                        Console.WriteLine ("Se le ha dado like al post: " + p_post);
+                                postEN.Likes = -1;
+                                postCAD.Modify (postEN);
+                                Console.WriteLine ("Se le ha dado like al post: " + p_post);
                         }
                 }
                 else Console.WriteLine ("Tienes que pertenecer a una comunidad para darle like a un post");
