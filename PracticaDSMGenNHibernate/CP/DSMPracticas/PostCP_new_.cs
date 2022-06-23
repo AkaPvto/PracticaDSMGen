@@ -41,6 +41,10 @@ public PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN New_ (string p_contenido,
 
 
                 int oid;
+
+                //Initialized NotificacionCP
+                NotificacionCP notificacionCP = new NotificacionCP ();
+
                 //Initialized PostEN
                 PostEN postEN;
                 postEN = new PostEN ();
@@ -66,12 +70,14 @@ public PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN New_ (string p_contenido,
 
                 postEN.Hora = p_hora;
 
+                postEN.Likes = 0;
+
                 //Call to PostCAD
 
                 oid = postCAD.New_ (postEN);
                 result = postCAD.ReadOIDDefault (oid);
 
-
+                //notificacionCP.New_ (oid);
 
                 SessionCommit ();
         }

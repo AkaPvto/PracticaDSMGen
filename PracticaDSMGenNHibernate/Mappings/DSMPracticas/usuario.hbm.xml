@@ -173,6 +173,7 @@
 		  
 		  <query name="UsuarioENReadAllHQL">from UsuarioEN</query>
 		  <query name="UsuarioENgetUsuariosComunidadHQL"><![CDATA[SELECT usuario FROM UsuarioEN as usuario INNER JOIN usuario.Comunidad as comunidad WHERE comunidad.Nombre = :p_comunidad]]></query>
-		  <query name="UsuarioENgetFollowedHQL"><![CDATA[SELECT usuario FROM UsuarioEN as usuario INNER JOIN usuario.Usuario_0 as followed WHERE followed.Id = :p_usuario]]></query>
+		  <query name="UsuarioENgetFollowingHQL"><![CDATA[SELECT usuario FROM UsuarioEN as usuario INNER JOIN usuario.Usuario_0 as followed WHERE followed.Id = :p_usuario]]></query>
+		  <query name="UsuarioENgetFollowedHQL"><![CDATA[SELECT usuario FROM UsuarioEN as usuario INNER JOIN usuario.Usuario as followed WHERE followed.Id = :p_usuario]]></query>
 		</hibernate-mapping>
 	

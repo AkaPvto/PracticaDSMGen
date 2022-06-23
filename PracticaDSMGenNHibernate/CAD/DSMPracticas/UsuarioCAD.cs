@@ -529,7 +529,7 @@ public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas
 
         return result;
 }
-public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> GetFollowed (int p_usuario)
+public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> GetFollowing (int p_usuario)
 {
         System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> result;
         try
@@ -537,7 +537,7 @@ public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas
                 SessionInitializeTransaction ();
                 //String sql = @"FROM UsuarioEN self where SELECT usuario FROM UsuarioEN as usuario INNER JOIN usuario.Usuario_0 as followed WHERE followed.Id = :p_usuario";
                 //IQuery query = session.CreateQuery(sql);
-                IQuery query = (IQuery)session.GetNamedQuery ("UsuarioENgetFollowedHQL");
+                IQuery query = (IQuery)session.GetNamedQuery ("UsuarioENgetFollowingHQL");
                 query.SetParameter ("p_usuario", p_usuario);
 
                 result = query.List<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN>();
@@ -635,6 +635,36 @@ public void UsuarioUnlikePost (int p_Usuario_OID, System.Collections.Generic.ILi
         {
                 SessionClose ();
         }
+}
+public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> GetFollowed (int p_usuario)
+{
+        System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM UsuarioEN self where SELECT usuario FROM UsuarioEN as usuario INNER JOIN usuario.Usuario as followed WHERE followed.Id = :p_usuario";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("UsuarioENgetFollowedHQL");
+                query.SetParameter ("p_usuario", p_usuario);
+
+                result = query.List<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is PracticaDSMGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new PracticaDSMGenNHibernate.Exceptions.DataLayerException ("Error in UsuarioCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
 }
 }
 }

@@ -37,32 +37,47 @@ public PracticaDSMGenNHibernate.EN.DSMPracticas.NotificacionEN New_ (int p_post)
                 notificacionCAD = new NotificacionCAD (session);
                 notificacionCEN = new  NotificacionCEN (notificacionCAD);
 
+                PostCAD postCAD = new PostCAD();
+                PostEN postEN = postCAD.ReadOID(p_post);
+                UsuarioCAD usuarioCAD = new UsuarioCAD();
+                UsuarioEN usuarioEN = usuarioCAD.ReadOID(postEN.UsuarioCreador.Id);
+                ComunidadCAD comunidadCAD = new ComunidadCAD();
+
+                String autor = usuarioEN.Nickname;
+                String comunidad = postEN.Comunidad.Nombre;
                 int oid;
                 //Initialized NotificacionEN
                 NotificacionEN notificacionEN;
                 notificacionEN = new NotificacionEN ();
 
                 if (p_post != -1) {
-                    notificacionEN.Post = new PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN ();
-                    notificacionEN.Post.Id = p_post;
-                    notificacionEN.Texto = "El usuario " + notificacionEN.Post.UsuarioCreador.Nickname + " ha subido un nuevo post a la comunidad de " + notificacionEN.Post.Comunidad.Nombre + ". ¡No te lo pierdas!";
+                        notificacionEN.Post = new PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN ();
+                        notificacionEN.Post.Id = p_post;
                 }
 
-                
+                notificacionEN.Hora = DateTime.Now;
+                notificacionEN.Texto = "El usuario " + autor + " ha subido un nuevo post a la comunidad de "  + comunidad + ". No te lo pierdas!";
+
 
                 //Call to NotificacionCAD
 
                 oid = notificacionCAD.New_ (notificacionEN);
                 result = notificacionCAD.ReadOIDDefault (oid);
 
+                
+
+                // Obtenemos una lista con las OIDs de los usuarios y las volcamos en el relationer
                 IList<int> usuariosOID = new List<int>();
-                for(int i = 0; i< notificacionEN.Post.Comunidad.Usuario.Count; i++)
-                {
-                    usuariosOID.Add(notificacionEN.Post.Comunidad.Usuario[i].Id);
+                IList<UsuarioEN> usuariosEN = usuarioCAD.GetUsuariosComunidad(postEN.Comunidad.Nombre);
+                for (int i = 0; i < usuariosEN.Count; i++) {
+                        usuariosOID.Add (usuariosEN[i].Id);
                 }
-                notificacionCAD.AddUsuarios(oid, usuariosOID);
-                Console.WriteLine("Mandamos ambas notificaciones creadas...");
-                EnviarNotificacion(oid);
+                notificacionCAD.AddUsuarios (oid, usuariosOID);
+                Console.WriteLine ("Mandamos la notificacion creada...");
+
+
+
+                // EnviarNotificacion (oid);
 
 
 

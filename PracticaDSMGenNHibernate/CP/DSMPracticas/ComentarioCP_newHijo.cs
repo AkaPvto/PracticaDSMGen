@@ -45,7 +45,6 @@ public PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN NewHijo (string p_c
                 ComentarioEN comentarioEN;
                 comentarioEN = new ComentarioEN ();
                 comentarioEN.Contenido = p_contenido;
-                comentarioEN.Likes = 0;
 
 
                 if (p_usuario != -1) {

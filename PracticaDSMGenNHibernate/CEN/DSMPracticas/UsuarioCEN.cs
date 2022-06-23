@@ -127,9 +127,9 @@ public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas
 {
         return _IUsuarioCAD.GetUsuariosComunidad (p_comunidad);
 }
-public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> GetFollowed (int p_usuario)
+public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> GetFollowing (int p_usuario)
 {
-        return _IUsuarioCAD.GetFollowed (p_usuario);
+        return _IUsuarioCAD.GetFollowing (p_usuario);
 }
 public void UsuarioLikePost (int p_Usuario_OID, System.Collections.Generic.IList<int> p_postLiked_OIDs)
 {
@@ -142,6 +142,10 @@ public void UsuarioUnlikePost (int p_Usuario_OID, System.Collections.Generic.ILi
         //Call to UsuarioCAD
 
         _IUsuarioCAD.UsuarioUnlikePost (p_Usuario_OID, p_postLiked_OIDs);
+}
+public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> GetFollowed (int p_usuario)
+{
+        return _IUsuarioCAD.GetFollowed (p_usuario);
 }
 
 

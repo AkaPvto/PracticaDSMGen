@@ -59,19 +59,25 @@ public void EnviarNotificacion (int p_oid)
                         Credentials = new NetworkCredential (fromAddress.Address, fromPassword)
                 };
 
-                for (int i = 0; i < usuarios.Count; i++)
-                {
-                    UsuarioEN usuario = usuarios[i];
-                    var toAddress = new MailAddress(usuario.Email, usuario.Nombre);
-                    var msg = "¡Hola, " + usuario.Nickname + "! " + notificacion.Texto;
-
-                        using (var message = new MailMessage (fromAddress, toAddress){
-                                       Subject = subject,
-                                       Body = msg
-                               })
+                for (int i = 0; i < usuarios.Count; i++) {
+                    // Le manda a todos los usuarios que forman parte de la comunidad a la que han subido un post y que ademas siguen al autor del post que se ha subido
+                    IList<UsuarioEN> usuariosSiguenAlAutor = usuarioCAD.GetFollowed(notificacion.Post.UsuarioCreador.Id);
+                    if (usuariosSiguenAlAutor.Contains(usuarios[i]))
+                    {
+                        UsuarioEN usuario = usuarios[i];
+                        var toAddress = new MailAddress(usuario.Email, usuario.Nombre);
+                        var msg = "¡Hola, " + usuario.Nickname + "! " + notificacion.Texto;
+                        Console.WriteLine("El usuario: " + usuario.Nickname + " recibe una notificacion\n");
+                        using (var message = new MailMessage(fromAddress, toAddress)
                         {
-                                smtp.Send (message);
+                            Subject = subject,
+                            Body = msg
+                        })
+                        {
+                            smtp.Send(message);
                         }
+                    }
+                        
                 }
 
 

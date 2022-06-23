@@ -18,9 +18,6 @@
 					<property name="Hora" type="timestamp"> 
 						<column name="hora"  not-null="true"/>
 					</property>
-					<property name="Likes" type="integer"> 
-						<column name="likes"  not-null="true"/>
-					</property>
 			
 			
 			
@@ -54,8 +51,6 @@
 						</many-to-one>
 											 					
 			
-			
-					
 					
 					
 					

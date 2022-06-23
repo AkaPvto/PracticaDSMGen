@@ -46,11 +46,14 @@ void DeleteFollowing (int p_Usuario_OID, System.Collections.Generic.IList<int> p
 System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> GetUsuariosComunidad (string p_comunidad);
 
 
-System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> GetFollowed (int p_usuario);
+System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> GetFollowing (int p_usuario);
 
 
 void UsuarioLikePost (int p_Usuario_OID, System.Collections.Generic.IList<int> p_postLiked_OIDs);
 
 void UsuarioUnlikePost (int p_Usuario_OID, System.Collections.Generic.IList<int> p_postLiked_OIDs);
+
+
+System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> GetFollowed (int p_usuario);
 }
 }
