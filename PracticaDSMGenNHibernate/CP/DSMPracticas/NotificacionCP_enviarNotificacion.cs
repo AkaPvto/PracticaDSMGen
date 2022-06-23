@@ -15,6 +15,8 @@ using PracticaDSMGenNHibernate.CEN.DSMPracticas;
 
 /*PROTECTED REGION ID(usingPracticaDSMGenNHibernate.CP.DSMPracticas_Notificacion_enviarNotificacion) ENABLED START*/
 //  references to other libraries
+using System.Net.Mail;
+using System.Net;
 /*PROTECTED REGION END*/
 
 namespace PracticaDSMGenNHibernate.CP.DSMPracticas
@@ -36,11 +38,45 @@ public void EnviarNotificacion (int p_oid)
                 notificacionCAD = new NotificacionCAD (session);
                 notificacionCEN = new  NotificacionCEN (notificacionCAD);
 
-
-
                 // Write here your custom transaction ...
+                NotificacionEN notificacion = notificacionCAD.ReadOIDDefault(p_oid);
 
-                throw new NotImplementedException ("Method EnviarNotificacion() not yet implemented.");
+                UsuarioCAD usuarioCAD = new UsuarioCAD();
+                IList<UsuarioEN> usuarios = usuarioCAD.GetComunidadUsu(notificacion.Post.Comunidad.Nombre);
+
+
+                //Preparamos el correo   
+                var fromAddress = new MailAddress("gogaminggroupsl@gmail.com", "Go Gaming");
+
+                const string fromPassword = "qamecfuphnkrpmxr";
+                string subject = "Novedades en la comunidad de " + notificacion.Post.Comunidad.Nombre;
+                string body = "El usuario " + notificacion.Post.UsuarioCreador.Nickname + " ha subido un nuevo post a la comunidad de " + notificacion.Post.Comunidad.Nombre + ". ¡No te lo pierdas!";
+
+                var smtp = new SmtpClient
+                {
+                    Host = "smtp.gmail.com",
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+                };
+
+                for (int i = 0; i < usuarios.Count; i++)
+                {
+                    UsuarioEN usuario = usuarios[i];
+                    var toAddress = new MailAddress(usuario.Email, usuario.Nombre);
+                    var msg = "¡Hola, " + usuario.Nickname + "! " + body;
+
+                    using (var message = new MailMessage(fromAddress, toAddress)
+                    {
+                        Subject = subject,
+                        Body = msg
+                    })
+                    {
+                        smtp.Send(message);
+                    }
+                }
 
 
 
