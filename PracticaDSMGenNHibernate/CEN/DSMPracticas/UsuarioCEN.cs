@@ -123,9 +123,9 @@ public void DeleteFollowing (int p_Usuario_OID, System.Collections.Generic.IList
 
         _IUsuarioCAD.DeleteFollowing (p_Usuario_OID, p_usuario_OIDs);
 }
-public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> GetComunidadUsu (string p_comunidad)
+public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> GetUsuariosComunidad (string p_comunidad)
 {
-        return _IUsuarioCAD.GetComunidadUsu (p_comunidad);
+        return _IUsuarioCAD.GetUsuariosComunidad (p_comunidad);
 }
 public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> GetFollowed (int p_usuario)
 {

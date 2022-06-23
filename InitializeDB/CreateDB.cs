@@ -134,8 +134,8 @@ public static void InitializeData ()
 
                 Console.WriteLine ("Introducimos notificaciones a la bbdd...");
                 NotificacionCEN notificacionCEN = new NotificacionCEN ();
-                int not1 = notificacionCEN.New_(post1);
-                int not2 = notificacionCEN.New_(post3);
+                int not1 = notificacionCEN.New_ (post1);
+                int not2 = notificacionCEN.New_ (post3);
 
                 Console.WriteLine ("Introducimos avisos a la bbdd...");
                 AvisoCEN avisoCEN = new AvisoCEN ();
@@ -262,11 +262,11 @@ public static void InitializeData ()
                 Console.WriteLine ("");
 
                 Console.WriteLine ("Mandamos ambas notificaciones creadas...");
-                NotificacionCP notificacionCP = new NotificacionCP();
-                notificacionCP.EnviarNotificacion(not1);
-                notificacionCP.EnviarNotificacion(not2);
+                NotificacionCP notificacionCP = new NotificacionCP ();
+                notificacionCP.EnviarNotificacion (not1);
+                notificacionCP.EnviarNotificacion (not2);
                 /*PROTECTED REGION END*/
-            }
+        }
         catch (Exception ex)
         {
                 System.Console.WriteLine (ex.InnerException);

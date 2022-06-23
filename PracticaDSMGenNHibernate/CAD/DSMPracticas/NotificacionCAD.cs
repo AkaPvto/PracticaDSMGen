@@ -95,6 +95,9 @@ public void ModifyDefault (NotificacionEN notificacion)
 
                 notificacionEN.Texto = notificacion.Texto;
 
+
+                notificacionEN.Hora = notificacion.Hora;
+
                 session.Update (notificacionEN);
                 SessionCommit ();
         }
@@ -155,6 +158,9 @@ public void Modify (NotificacionEN notificacion)
                 NotificacionEN notificacionEN = (NotificacionEN)session.Load (typeof(NotificacionEN), notificacion.Id);
 
                 notificacionEN.Texto = notificacion.Texto;
+
+
+                notificacionEN.Hora = notificacion.Hora;
 
                 session.Update (notificacionEN);
                 SessionCommit ();
@@ -287,6 +293,83 @@ public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas
         }
 
         return result;
+}
+public void AddUsuarios (int p_Notificacion_OID, System.Collections.Generic.IList<int> p_usuario_OIDs)
+{
+        PracticaDSMGenNHibernate.EN.DSMPracticas.NotificacionEN notificacionEN = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                notificacionEN = (NotificacionEN)session.Load (typeof(NotificacionEN), p_Notificacion_OID);
+                PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN usuarioENAux = null;
+                if (notificacionEN.Usuario == null) {
+                        notificacionEN.Usuario = new System.Collections.Generic.List<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN>();
+                }
+
+                foreach (int item in p_usuario_OIDs) {
+                        usuarioENAux = new PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN ();
+                        usuarioENAux = (PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN)session.Load (typeof(PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN), item);
+                        usuarioENAux.Notificacion.Add (notificacionEN);
+
+                        notificacionEN.Usuario.Add (usuarioENAux);
+                }
+
+
+                session.Update (notificacionEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is PracticaDSMGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new PracticaDSMGenNHibernate.Exceptions.DataLayerException ("Error in NotificacionCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+}
+
+public void DeleteUsuarios (int p_Notificacion_OID, System.Collections.Generic.IList<int> p_usuario_OIDs)
+{
+        try
+        {
+                SessionInitializeTransaction ();
+                PracticaDSMGenNHibernate.EN.DSMPracticas.NotificacionEN notificacionEN = null;
+                notificacionEN = (NotificacionEN)session.Load (typeof(NotificacionEN), p_Notificacion_OID);
+
+                PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN usuarioENAux = null;
+                if (notificacionEN.Usuario != null) {
+                        foreach (int item in p_usuario_OIDs) {
+                                usuarioENAux = (PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN)session.Load (typeof(PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN), item);
+                                if (notificacionEN.Usuario.Contains (usuarioENAux) == true) {
+                                        notificacionEN.Usuario.Remove (usuarioENAux);
+                                        usuarioENAux.Notificacion.Remove (notificacionEN);
+                                }
+                                else
+                                        throw new ModelException ("The identifier " + item + " in p_usuario_OIDs you are trying to unrelationer, doesn't exist in NotificacionEN");
+                        }
+                }
+
+                session.Update (notificacionEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is PracticaDSMGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new PracticaDSMGenNHibernate.Exceptions.DataLayerException ("Error in NotificacionCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
 }
 }
 }

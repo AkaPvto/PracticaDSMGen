@@ -33,6 +33,13 @@ private string texto;
 
 
 
+/**
+ *	Atributo hora
+ */
+private Nullable<DateTime> hora;
+
+
+
 
 
 
@@ -60,6 +67,12 @@ public virtual string Texto {
 
 
 
+public virtual Nullable<DateTime> Hora {
+        get { return hora; } set { hora = value;  }
+}
+
+
+
 
 
 public NotificacionEN()
@@ -69,20 +82,20 @@ public NotificacionEN()
 
 
 
-public NotificacionEN(int id, PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN post, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> usuario, string texto
+public NotificacionEN(int id, PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN post, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> usuario, string texto, Nullable<DateTime> hora
                       )
 {
-        this.init (Id, post, usuario, texto);
+        this.init (Id, post, usuario, texto, hora);
 }
 
 
 public NotificacionEN(NotificacionEN notificacion)
 {
-        this.init (Id, notificacion.Post, notificacion.Usuario, notificacion.Texto);
+        this.init (Id, notificacion.Post, notificacion.Usuario, notificacion.Texto, notificacion.Hora);
 }
 
 private void init (int id
-                   , PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN post, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> usuario, string texto)
+                   , PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN post, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> usuario, string texto, Nullable<DateTime> hora)
 {
         this.Id = id;
 
@@ -92,6 +105,8 @@ private void init (int id
         this.Usuario = usuario;
 
         this.Texto = texto;
+
+        this.Hora = hora;
 }
 
 public override bool Equals (object obj)

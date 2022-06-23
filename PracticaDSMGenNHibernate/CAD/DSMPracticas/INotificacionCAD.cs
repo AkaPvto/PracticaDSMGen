@@ -33,5 +33,10 @@ System.Collections.Generic.IList<NotificacionEN> ReadAll (int first, int size);
 
 
 System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.NotificacionEN> GetNotificacionesUsuario (int p_usuario);
+
+
+void AddUsuarios (int p_Notificacion_OID, System.Collections.Generic.IList<int> p_usuario_OIDs);
+
+void DeleteUsuarios (int p_Notificacion_OID, System.Collections.Generic.IList<int> p_usuario_OIDs);
 }
 }

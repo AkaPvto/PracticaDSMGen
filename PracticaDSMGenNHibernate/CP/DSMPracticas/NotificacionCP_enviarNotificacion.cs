@@ -39,43 +39,41 @@ public void EnviarNotificacion (int p_oid)
                 notificacionCEN = new  NotificacionCEN (notificacionCAD);
 
                 // Write here your custom transaction ...
-                NotificacionEN notificacion = notificacionCAD.ReadOIDDefault(p_oid);
+                NotificacionEN notificacion = notificacionCAD.ReadOIDDefault (p_oid);
 
-                UsuarioCAD usuarioCAD = new UsuarioCAD();
-                IList<UsuarioEN> usuarios = usuarioCAD.GetComunidadUsu(notificacion.Post.Comunidad.Nombre);
+                UsuarioCAD usuarioCAD = new UsuarioCAD ();
+                IList<UsuarioEN> usuarios = usuarioCAD.GetComunidadUsu (notificacion.Post.Comunidad.Nombre);
 
 
-                //Preparamos el correo   
-                var fromAddress = new MailAddress("gogaminggroupsl@gmail.com", "Go Gaming");
+                //Preparamos el correo
+                var fromAddress = new MailAddress ("gogaminggroupsl@gmail.com", "Go Gaming");
 
                 const string fromPassword = "qamecfuphnkrpmxr";
                 string subject = "Novedades en la comunidad de " + notificacion.Post.Comunidad.Nombre;
-                string body = "El usuario " + notificacion.Post.UsuarioCreador.Nickname + " ha subido un nuevo post a la comunidad de " + notificacion.Post.Comunidad.Nombre + ". ¡No te lo pierdas!";
+                string body = "El usuario " + notificacion.Post.UsuarioCreador.Nickname + " ha subido un nuevo post a la comunidad de " + notificacion.Post.Comunidad.Nombre + ". ï¿½No te lo pierdas!";
 
                 var smtp = new SmtpClient
                 {
-                    Host = "smtp.gmail.com",
-                    Port = 587,
-                    EnableSsl = true,
-                    DeliveryMethod = SmtpDeliveryMethod.Network,
-                    UseDefaultCredentials = false,
-                    Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+                        Host = "smtp.gmail.com",
+                        Port = 587,
+                        EnableSsl = true,
+                        DeliveryMethod = SmtpDeliveryMethod.Network,
+                        UseDefaultCredentials = false,
+                        Credentials = new NetworkCredential (fromAddress.Address, fromPassword)
                 };
 
-                for (int i = 0; i < usuarios.Count; i++)
-                {
-                    UsuarioEN usuario = usuarios[i];
-                    var toAddress = new MailAddress(usuario.Email, usuario.Nombre);
-                    var msg = "¡Hola, " + usuario.Nickname + "! " + body;
+                for (int i = 0; i < usuarios.Count; i++) {
+                        UsuarioEN usuario = usuarios [i];
+                        var toAddress = new MailAddress (usuario.Email, usuario.Nombre);
+                        var msg = "ï¿½Hola, " + usuario.Nickname + "! " + body;
 
-                    using (var message = new MailMessage(fromAddress, toAddress)
-                    {
-                        Subject = subject,
-                        Body = msg
-                    })
-                    {
-                        smtp.Send(message);
-                    }
+                        using (var message = new MailMessage (fromAddress, toAddress){
+                                       Subject = subject,
+                                       Body = msg
+                               })
+                        {
+                                smtp.Send (message);
+                        }
                 }
 
 
