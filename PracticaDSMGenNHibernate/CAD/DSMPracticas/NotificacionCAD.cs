@@ -91,6 +91,10 @@ public void ModifyDefault (NotificacionEN notificacion)
                 SessionInitializeTransaction ();
                 NotificacionEN notificacionEN = (NotificacionEN)session.Load (typeof(NotificacionEN), notificacion.Id);
 
+
+
+                notificacionEN.Texto = notificacion.Texto;
+
                 session.Update (notificacionEN);
                 SessionCommit ();
         }
@@ -149,6 +153,9 @@ public void Modify (NotificacionEN notificacion)
         {
                 SessionInitializeTransaction ();
                 NotificacionEN notificacionEN = (NotificacionEN)session.Load (typeof(NotificacionEN), notificacion.Id);
+
+                notificacionEN.Texto = notificacion.Texto;
+
                 session.Update (notificacionEN);
                 SessionCommit ();
         }
@@ -232,6 +239,37 @@ public System.Collections.Generic.IList<NotificacionEN> ReadAll (int first, int 
                                  SetFirstResult (first).SetMaxResults (size).List<NotificacionEN>();
                 else
                         result = session.CreateCriteria (typeof(NotificacionEN)).List<NotificacionEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is PracticaDSMGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new PracticaDSMGenNHibernate.Exceptions.DataLayerException ("Error in NotificacionCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
+
+public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.NotificacionEN> GetNotificacionesUsuario (int p_usuario)
+{
+        System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.NotificacionEN> result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM NotificacionEN self where SELECT notificacion FROM NotificacionEN as notificacion INNER JOIN notificacion.Usuario as usuario WHERE usuario.Id = :p_usuario";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("NotificacionENgetNotificacionesUsuarioHQL");
+                query.SetParameter ("p_usuario", p_usuario);
+
+                result = query.List<PracticaDSMGenNHibernate.EN.DSMPracticas.NotificacionEN>();
                 SessionCommit ();
         }
 

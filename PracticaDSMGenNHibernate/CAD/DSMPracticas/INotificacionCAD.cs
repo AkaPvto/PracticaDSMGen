@@ -29,5 +29,9 @@ NotificacionEN ReadOID (int id
 
 
 System.Collections.Generic.IList<NotificacionEN> ReadAll (int first, int size);
+
+
+
+System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.NotificacionEN> GetNotificacionesUsuario (int p_usuario);
 }
 }

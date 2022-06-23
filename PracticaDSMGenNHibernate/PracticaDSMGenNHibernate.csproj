@@ -205,12 +205,14 @@
 	<Compile Include="CAD\DSMPracticas\INotificacionCAD.cs" />
 	<Compile Include="CAD\DSMPracticas\NotificacionCAD.cs" />
 	<Compile Include="CP\DSMPracticas\NotificacionCP.cs" />
+			<Compile Include="CP\DSMPracticas\NotificacionCP_New_.cs" />
 			
 			
 			
 			
 			
 			<Compile Include="CP\DSMPracticas\NotificacionCP_EnviarNotificacion.cs" />
+			
 			
 	<Compile Include="EN\DSMPracticas\AvisoEN.cs" />
 	<Compile Include="CEN\DSMPracticas\AvisoCEN.cs" />

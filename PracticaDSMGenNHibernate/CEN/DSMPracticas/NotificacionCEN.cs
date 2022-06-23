@@ -39,34 +39,14 @@ public INotificacionCAD get_INotificacionCAD ()
         return this._INotificacionCAD;
 }
 
-public int New_ (int p_post)
-{
-        NotificacionEN notificacionEN = null;
-        int oid;
-
-        //Initialized NotificacionEN
-        notificacionEN = new NotificacionEN ();
-
-        if (p_post != -1) {
-                // El argumento p_post -> Property post es oid = false
-                // Lista de oids id
-                notificacionEN.Post = new PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN ();
-                notificacionEN.Post.Id = p_post;
-        }
-
-        //Call to NotificacionCAD
-
-        oid = _INotificacionCAD.New_ (notificacionEN);
-        return oid;
-}
-
-public void Modify (int p_Notificacion_OID)
+public void Modify (int p_Notificacion_OID, string p_texto)
 {
         NotificacionEN notificacionEN = null;
 
         //Initialized NotificacionEN
         notificacionEN = new NotificacionEN ();
         notificacionEN.Id = p_Notificacion_OID;
+        notificacionEN.Texto = p_texto;
         //Call to NotificacionCAD
 
         _INotificacionCAD.Modify (notificacionEN);
@@ -93,6 +73,10 @@ public System.Collections.Generic.IList<NotificacionEN> ReadAll (int first, int 
 
         list = _INotificacionCAD.ReadAll (first, size);
         return list;
+}
+public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.NotificacionEN> GetNotificacionesUsuario (int p_usuario)
+{
+        return _INotificacionCAD.GetNotificacionesUsuario (p_usuario);
 }
 }
 }
