@@ -133,9 +133,9 @@ public static void InitializeData ()
                 comentarioCP.NewHijo ("Nunca va a salir. ", jorge, post1, DateTime.Now, comentario1);
 
                 Console.WriteLine ("Introducimos notificaciones a la bbdd...");
-                NotificacionCEN notificacionCEN = new NotificacionCEN ();
-                int not1 = notificacionCEN.New_(post1);
-                int not2 = notificacionCEN.New_(post3);
+                NotificacionCP notificacionCP = new NotificacionCP ();
+                int not1 = notificacionCP.New_(post1).Id;
+                int not2 = notificacionCP.New_(post3).Id;
 
                 Console.WriteLine ("Introducimos avisos a la bbdd...");
                 AvisoCEN avisoCEN = new AvisoCEN ();

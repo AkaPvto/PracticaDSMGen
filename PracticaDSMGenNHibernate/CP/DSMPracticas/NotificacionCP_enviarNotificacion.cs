@@ -30,8 +30,6 @@ public void EnviarNotificacion (int p_oid)
         INotificacionCAD notificacionCAD = null;
         NotificacionCEN notificacionCEN = null;
 
-
-
         try
         {
                 SessionInitializeTransaction ();
@@ -50,7 +48,6 @@ public void EnviarNotificacion (int p_oid)
 
                 const string fromPassword = "qamecfuphnkrpmxr";
                 string subject = "Novedades en la comunidad de " + notificacion.Post.Comunidad.Nombre;
-                string body = "El usuario " + notificacion.Post.UsuarioCreador.Nickname + " ha subido un nuevo post a la comunidad de " + notificacion.Post.Comunidad.Nombre + ". ¡No te lo pierdas!";
 
                 var smtp = new SmtpClient
                 {
@@ -66,7 +63,7 @@ public void EnviarNotificacion (int p_oid)
                 {
                     UsuarioEN usuario = usuarios[i];
                     var toAddress = new MailAddress(usuario.Email, usuario.Nombre);
-                    var msg = "¡Hola, " + usuario.Nickname + "! " + body;
+                    var msg = "¡Hola, " + usuario.Nickname + "! " + notificacion.Texto;
 
                     using (var message = new MailMessage(fromAddress, toAddress)
                     {

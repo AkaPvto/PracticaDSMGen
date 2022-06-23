@@ -37,22 +37,23 @@ public PracticaDSMGenNHibernate.EN.DSMPracticas.NotificacionEN New_ (int p_post)
                 notificacionCAD = new NotificacionCAD (session);
                 notificacionCEN = new  NotificacionCEN (notificacionCAD);
 
-
-
-
                 int oid;
                 //Initialized NotificacionEN
                 NotificacionEN notificacionEN;
                 notificacionEN = new NotificacionEN ();
 
                 if (p_post != -1) {
-                        notificacionEN.Post = new PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN ();
-                        notificacionEN.Post.Id = p_post;
+                    notificacionEN.Post = new PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN ();
+                    notificacionEN.Post.Id = p_post;
+                    notificacionEN.Texto = "El usuario " + notificacionEN.Post.UsuarioCreador.Nickname + " ha subido un nuevo post a la comunidad de " + notificacionEN.Post.Comunidad.Nombre + ". ¡No te lo pierdas!";
                 }
+
+                
 
                 //Call to NotificacionCAD
 
                 oid = notificacionCAD.New_ (notificacionEN);
+                EnviarNotificacion(oid);
                 result = notificacionCAD.ReadOIDDefault (oid);
 
 
