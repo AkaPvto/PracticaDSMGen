@@ -120,10 +120,10 @@ public static void InitializeData ()
                 string com_hks = comunidadCEN.New_ ("Silksong", "Comunidad del Silksong. Preparen las pelucas, SIUUUUU!", new DateTime (2019, 11, 15), "Hollow Knight: Silksong");
 
                 Console.WriteLine ("Introducimos postst a la bbdd...");
-                PostCEN postCEN = new PostCEN ();
-                int post1 = postCEN.New_ ("Ultimamente he estado jugando mucho, estoy en diamante 3 y mi nickname es KaeseOrigin.", sergio, com_rl, Categoria_PostEnum.blanco, "Busco gente para jugar", "", new DateTime (2022, 01, 27, 15, 59, 00));
-                int post2 = postCEN.New_ ("No jugueis con el BMW-200 (octane), la hitbox dista mucho del modelo 3D", candela, com_rl, Categoria_PostEnum.opinion, "Opinion sobre el BMW-200", "", new DateTime (2021, 02, 28, 17, 36, 00));
-                int post3 = postCEN.New_ ("Cuando va a salir el jueguito. Alguien lo sabe?. Se ha filtrado?", jorge, com_hks, Categoria_PostEnum.blanco, "Fecha de lanzamiento(?)", "", new DateTime (2021, 11, 10, 23, 06, 00));
+                PostCP postCP = new PostCP ();
+                int post1 = postCP.New_ ("Ultimamente he estado jugando mucho, estoy en diamante 3 y mi nickname es KaeseOrigin.", sergio, com_rl, Categoria_PostEnum.blanco, "Busco gente para jugar", "", new DateTime (2022, 01, 27, 15, 59, 00)).Id;
+                int post2 = postCP.New_ ("No jugueis con el BMW-200 (octane), la hitbox dista mucho del modelo 3D", candela, com_rl, Categoria_PostEnum.opinion, "Opinion sobre el BMW-200", "", new DateTime (2021, 02, 28, 17, 36, 00)).Id;
+                int post3 = postCP.New_ ("Cuando va a salir el jueguito. Alguien lo sabe?. Se ha filtrado?", jorge, com_hks, Categoria_PostEnum.blanco, "Fecha de lanzamiento(?)", "", new DateTime (2021, 11, 10, 23, 06, 00)).Id;
 
                 Console.WriteLine ("Introducimos comentarios a la bbdd...");
                 ComentarioCEN comentarioCEN = new ComentarioCEN ();
@@ -163,6 +163,7 @@ public static void InitializeData ()
                 usuarioCP.InteractPost (sergio, post2);
 
                 Console.WriteLine ("\nFiltramos los posts por categoria opinion:");
+                PostCEN postCEN = new PostCEN();
                 IList<PostEN> posts = postCEN.GetPostPorCategoria (Categoria_PostEnum.opinion);
                 foreach (PostEN post in posts) {
                         Console.WriteLine ("ID-> " + post.Id + ", Categoria-> " + post.Categoria + ", Fecha/Hora-> " + post.Hora);
@@ -260,11 +261,6 @@ public static void InitializeData ()
                         Console.WriteLine (post.Contenido);
                 }
                 Console.WriteLine ("");
-
-                Console.WriteLine ("Mandamos ambas notificaciones creadas...");
-                NotificacionCP notificacionCP = new NotificacionCP ();
-                notificacionCP.EnviarNotificacion (not1);
-                notificacionCP.EnviarNotificacion (not2);
                 /*PROTECTED REGION END*/
         }
         catch (Exception ex)

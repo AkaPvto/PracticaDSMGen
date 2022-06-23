@@ -53,8 +53,16 @@ public PracticaDSMGenNHibernate.EN.DSMPracticas.NotificacionEN New_ (int p_post)
                 //Call to NotificacionCAD
 
                 oid = notificacionCAD.New_ (notificacionEN);
-                EnviarNotificacion(oid);
                 result = notificacionCAD.ReadOIDDefault (oid);
+
+                IList<int> usuariosOID = new List<int>();
+                for(int i = 0; i< notificacionEN.Post.Comunidad.Usuario.Count; i++)
+                {
+                    usuariosOID.Add(notificacionEN.Post.Comunidad.Usuario[i].Id);
+                }
+                notificacionCAD.AddUsuarios(oid, usuariosOID);
+                Console.WriteLine("Mandamos ambas notificaciones creadas...");
+                EnviarNotificacion(oid);
 
 
 
