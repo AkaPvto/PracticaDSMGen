@@ -499,7 +499,7 @@ public void DeleteFollowing (int p_Usuario_OID, System.Collections.Generic.IList
                 SessionClose ();
         }
 }
-public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> GetComunidadUsu (string p_comunidad)
+public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> GetUsuariosComunidad (string p_comunidad)
 {
         System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> result;
         try
@@ -507,7 +507,7 @@ public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas
                 SessionInitializeTransaction ();
                 //String sql = @"FROM UsuarioEN self where SELECT usuario FROM UsuarioEN as usuario INNER JOIN usuario.Comunidad as comunidad WHERE comunidad.Nombre = :p_comunidad";
                 //IQuery query = session.CreateQuery(sql);
-                IQuery query = (IQuery)session.GetNamedQuery ("UsuarioENgetComunidadUsuHQL");
+                IQuery query = (IQuery)session.GetNamedQuery ("UsuarioENgetUsuariosComunidadHQL");
                 query.SetParameter ("p_comunidad", p_comunidad);
 
                 result = query.List<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN>();

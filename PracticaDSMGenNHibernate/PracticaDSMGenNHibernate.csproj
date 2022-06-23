@@ -134,7 +134,7 @@
 	<Compile Include="CP\DSMPracticas\PostCP.cs" />
 			
 			
-			<Compile Include="CEN\DSMPracticas\PostCEN_New_.cs" />
+			<Compile Include="CP\DSMPracticas\PostCP_New_.cs" />
 			
 			
 			
@@ -212,6 +212,8 @@
 			
 			
 			<Compile Include="CP\DSMPracticas\NotificacionCP_EnviarNotificacion.cs" />
+			
+			
 			
 			
 	<Compile Include="EN\DSMPracticas\AvisoEN.cs" />
