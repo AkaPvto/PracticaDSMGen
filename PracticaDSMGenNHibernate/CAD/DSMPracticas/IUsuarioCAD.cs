@@ -55,5 +55,8 @@ void UsuarioUnlikePost (int p_Usuario_OID, System.Collections.Generic.IList<int>
 
 
 System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> GetFollowed (int p_usuario);
+
+
+System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> GetUsuariosNotificacion (int p_notificacion);
 }
 }

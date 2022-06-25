@@ -40,7 +40,7 @@ public void EnviarNotificacion (int p_oid)
                 NotificacionEN notificacion = notificacionCAD.ReadOIDDefault (p_oid);
 
                 UsuarioCAD usuarioCAD = new UsuarioCAD ();
-                IList<UsuarioEN> usuarios = usuarioCAD.GetUsuariosComunidad (notificacion.Post.Comunidad.Nombre);
+                IList<UsuarioEN> usuarios = usuarioCAD.GetUsuariosNotificacion(p_oid);
 
 
                 //Preparamos el correo
@@ -60,24 +60,17 @@ public void EnviarNotificacion (int p_oid)
                 };
 
                 for (int i = 0; i < usuarios.Count; i++) {
-                    // Le manda a todos los usuarios que forman parte de la comunidad a la que han subido un post y que ademas siguen al autor del post que se ha subido
-                    IList<UsuarioEN> usuariosSiguenAlAutor = usuarioCAD.GetFollowed(notificacion.Post.UsuarioCreador.Id);
-                    if (usuariosSiguenAlAutor.Contains(usuarios[i]))
-                    {
-                        UsuarioEN usuario = usuarios[i];
-                        var toAddress = new MailAddress(usuario.Email, usuario.Nombre);
+                        UsuarioEN usuario = usuarios [i];
+                        var toAddress = new MailAddress (usuario.Email, usuario.Nombre);
                         var msg = "¡Hola, " + usuario.Nickname + "! " + notificacion.Texto;
-                        Console.WriteLine("El usuario: " + usuario.Nickname + " recibe una notificacion\n");
-                        using (var message = new MailMessage(fromAddress, toAddress)
+                        Console.WriteLine ("El usuario: " + usuario.Nickname + " recibe una notificacion\n");
+                        using (var message = new MailMessage (fromAddress, toAddress){
+                                       Subject = subject,
+                                       Body = msg
+                               })
                         {
-                            Subject = subject,
-                            Body = msg
-                        })
-                        {
-                            smtp.Send(message);
+                                smtp.Send (message);
                         }
-                    }
-                        
                 }
 
 

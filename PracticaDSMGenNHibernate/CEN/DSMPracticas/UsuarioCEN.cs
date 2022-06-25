@@ -147,6 +147,10 @@ public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas
 {
         return _IUsuarioCAD.GetFollowed (p_usuario);
 }
+public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> GetUsuariosNotificacion (int p_notificacion)
+{
+        return _IUsuarioCAD.GetUsuariosNotificacion (p_notificacion);
+}
 
 
 
