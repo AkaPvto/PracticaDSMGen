@@ -9,7 +9,7 @@ namespace GoGaming.Models
     public class AvisoViewModel
     {
         [ScaffoldColumn(false)]
-        public int id { get; set; }
+        public int Id { get; set; }
 
         [Display(Prompt = "Texto del aviso", Description = "Texto del aviso indicando el motivo", Name = "Texto ")]
         [Required(ErrorMessage = "El aviso debe tener un texto explicando su motivo")]
@@ -25,8 +25,7 @@ namespace GoGaming.Models
         [DataType(DataType.Time, ErrorMessage = "La hora debe ser en formato HH:mm:ss")]
         [DisplayFormat(DataFormatString = "{0:HH:mm}", ApplyFormatInEditMode = true)]
         [Display(Prompt = "Hora del aviso", Description = "Hora en la que se manda el aviso", Name = "Hora ")]
-
-        public DateTime hora { get; set; }
+        public DateTime Hora { get; set; }
 
     }
 }
