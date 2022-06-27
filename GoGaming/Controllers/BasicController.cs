@@ -7,7 +7,7 @@ using System.Web.Mvc;
 using NHibernate;
 using PracticaDSMGenNHibernate.CAD.DSMPracticas;
 
-namespace PetstoreMVC.Controllers
+namespace GoGaming.Controllers
 {
     public class BasicController: Controller
     {
