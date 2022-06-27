@@ -198,10 +198,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Assemblers\ComentarioAssembler.cs" />
+    <Compile Include="Assemblers\JuegoAssembler.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BasicController.cs" />
     <Compile Include="Controllers\ComentarioController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JuegoController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -210,6 +212,7 @@
     <Compile Include="Models\AvisoViewModel.cs" />
     <Compile Include="Models\ComentarioViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\JuegoViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -275,6 +278,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Basic\" />
+    <Folder Include="Views\Juego\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
