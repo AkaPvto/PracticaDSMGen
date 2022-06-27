@@ -10,6 +10,8 @@ namespace GoGaming.Models
     {
         [ScaffoldColumn(false)]
 
+        public int Id { get; set; }
+
         [Display(Prompt = "Comentario", Description = "Comentario", Name = "Contenido")]
         [Required(ErrorMessage = "Debe escribir un comentario")]
         [StringLength(maximumLength: 400, ErrorMessage = "El comentario no puede tener más de 400 caracteres")]
