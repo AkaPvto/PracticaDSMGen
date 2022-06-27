@@ -4,7 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PracticaDSMGenNHibernate.CAD.DSMPracticas;
+using PracticaDSMGenNHibernate.CEN.DSMPracticas;
+using PracticaDSMGenNHibernate.EN.DSMPracticas;
 using NHibernate;
+using GoGaming.Models;
+using GoGaming.Assemblers;
 
 namespace GoGaming.Controllers
 {
@@ -13,13 +17,31 @@ namespace GoGaming.Controllers
         // GET: Juego
         public ActionResult Index()
         {
-            return View();
+            SessionInitialize();
+            JuegoCAD juegoCAD = new JuegoCAD(session);
+            JuegoCEN juegoCEN = new JuegoCEN(juegoCAD);
+
+            IList<JuegoEN> listEN = juegoCEN.ReadAll(0, -1);
+            IEnumerable<JuegoViewModel> listVM = new JuegoAssembler().ConvertListENToModel(listEN).ToList();
+
+            SessionClose();
+
+            return View(listVM);
         }
 
         // GET: Juego/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(string nombre)
         {
-            return View();
+            SessionInitialize();
+            JuegoCAD juegoCAD = new JuegoCAD(session);
+            JuegoCEN juegoCEN = new JuegoCEN(juegoCAD);
+
+            JuegoEN juegoEN = juegoCEN.ReadOID(nombre);
+            JuegoViewModel juegoVM = new JuegoAssembler().ConvertENToModelUI(juegoEN);
+
+            SessionClose();
+
+            return View(juegoVM);
         }
 
         // GET: Juego/Create

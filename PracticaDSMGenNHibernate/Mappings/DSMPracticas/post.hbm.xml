@@ -42,7 +42,7 @@
 			
 		  			
 						<many-to-one name="Comunidad" class="PracticaDSMGenNHibernate.EN.DSMPracticas.ComunidadEN" >	
-								<column name="FK_attribute_idComunidad"/> 
+								<column name="FK_id_idComunidad"/> 
 						</many-to-one>
 											 					
 			
@@ -101,8 +101,8 @@
 		  <query name="PostENReadAllHQL">from PostEN</query>
 		  <query name="PostENgetPostsUsuHQL"><![CDATA[FROM PostEN as post WHERE post.UsuarioCreador.Id = :usu]]></query>
 		  <query name="PostENgetPostPorCategoriaHQL"><![CDATA[FROM PostEN as post WHERE post.Categoria = :p_categoria]]></query>
-		  <query name="PostENgetPostComunidadLikesHQL"><![CDATA[FROM PostEN as post WHERE post.Comunidad.Nombre = :p_comunidad ORDER BY post.Likes desc]]></query>
-		  <query name="PostENgetPostComunidadFechaHQL"><![CDATA[FROM PostEN as post WHERE post.Comunidad.Nombre = :p_comunidad ORDER BY post.Hora desc]]></query>
+		  <query name="PostENgetPostComunidadLikesHQL"><![CDATA[FROM PostEN as post WHERE post.Comunidad.Id = :p_comunidad ORDER BY post.Likes desc]]></query>
+		  <query name="PostENgetPostComunidadFechaHQL"><![CDATA[FROM PostEN as post WHERE post.Comunidad.Id = :p_comunidad ORDER BY post.Hora desc]]></query>
 		  <query name="PostENgetPostLikedHQL"><![CDATA[SELECT post FROM PostEN as post INNER JOIN post.UsuarioLiker as usuarioLiker WHERE usuarioLiker.Id = :p_usuario]]></query>
 		</hibernate-mapping>
 	

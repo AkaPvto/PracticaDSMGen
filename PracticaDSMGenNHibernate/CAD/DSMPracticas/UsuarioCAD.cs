@@ -145,7 +145,7 @@ public void ModifyDefault (UsuarioEN usuario)
 }
 
 
-public void AddJuego (int p_Usuario_OID, System.Collections.Generic.IList<string> p_juego_OIDs)
+public void AddJuego (int p_Usuario_OID, System.Collections.Generic.IList<int> p_juego_OIDs)
 {
         PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN usuarioEN = null;
         try
@@ -157,7 +157,7 @@ public void AddJuego (int p_Usuario_OID, System.Collections.Generic.IList<string
                         usuarioEN.Juego = new System.Collections.Generic.List<PracticaDSMGenNHibernate.EN.DSMPracticas.JuegoEN>();
                 }
 
-                foreach (string item in p_juego_OIDs) {
+                foreach (int item in p_juego_OIDs) {
                         juegoENAux = new PracticaDSMGenNHibernate.EN.DSMPracticas.JuegoEN ();
                         juegoENAux = (PracticaDSMGenNHibernate.EN.DSMPracticas.JuegoEN)session.Load (typeof(PracticaDSMGenNHibernate.EN.DSMPracticas.JuegoEN), item);
                         juegoENAux.Usuario.Add (usuarioEN);
@@ -345,7 +345,7 @@ public System.Collections.Generic.IList<UsuarioEN> ReadAll (int first, int size)
         return result;
 }
 
-public void AddComunidad (int p_Usuario_OID, System.Collections.Generic.IList<string> p_comunidad_OIDs)
+public void AddComunidad (int p_Usuario_OID, System.Collections.Generic.IList<int> p_comunidad_OIDs)
 {
         PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN usuarioEN = null;
         try
@@ -357,7 +357,7 @@ public void AddComunidad (int p_Usuario_OID, System.Collections.Generic.IList<st
                         usuarioEN.Comunidad = new System.Collections.Generic.List<PracticaDSMGenNHibernate.EN.DSMPracticas.ComunidadEN>();
                 }
 
-                foreach (string item in p_comunidad_OIDs) {
+                foreach (int item in p_comunidad_OIDs) {
                         comunidadENAux = new PracticaDSMGenNHibernate.EN.DSMPracticas.ComunidadEN ();
                         comunidadENAux = (PracticaDSMGenNHibernate.EN.DSMPracticas.ComunidadEN)session.Load (typeof(PracticaDSMGenNHibernate.EN.DSMPracticas.ComunidadEN), item);
                         comunidadENAux.Usuario.Add (usuarioEN);
@@ -384,7 +384,7 @@ public void AddComunidad (int p_Usuario_OID, System.Collections.Generic.IList<st
         }
 }
 
-public void DeleteComunidad (int p_Usuario_OID, System.Collections.Generic.IList<string> p_comunidad_OIDs)
+public void DeleteComunidad (int p_Usuario_OID, System.Collections.Generic.IList<int> p_comunidad_OIDs)
 {
         try
         {
@@ -394,7 +394,7 @@ public void DeleteComunidad (int p_Usuario_OID, System.Collections.Generic.IList
 
                 PracticaDSMGenNHibernate.EN.DSMPracticas.ComunidadEN comunidadENAux = null;
                 if (usuarioEN.Comunidad != null) {
-                        foreach (string item in p_comunidad_OIDs) {
+                        foreach (int item in p_comunidad_OIDs) {
                                 comunidadENAux = (PracticaDSMGenNHibernate.EN.DSMPracticas.ComunidadEN)session.Load (typeof(PracticaDSMGenNHibernate.EN.DSMPracticas.ComunidadEN), item);
                                 if (usuarioEN.Comunidad.Contains (comunidadENAux) == true) {
                                         usuarioEN.Comunidad.Remove (comunidadENAux);
@@ -499,13 +499,13 @@ public void DeleteFollowing (int p_Usuario_OID, System.Collections.Generic.IList
                 SessionClose ();
         }
 }
-public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> GetUsuariosComunidad (string p_comunidad)
+public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> GetUsuariosComunidad (int p_comunidad)
 {
         System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> result;
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM UsuarioEN self where SELECT usuario FROM UsuarioEN as usuario INNER JOIN usuario.Comunidad as comunidad WHERE comunidad.Nombre = :p_comunidad";
+                //String sql = @"FROM UsuarioEN self where SELECT usuario FROM UsuarioEN as usuario INNER JOIN usuario.Comunidad as comunidad WHERE comunidad.Id = :p_comunidad";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("UsuarioENgetUsuariosComunidadHQL");
                 query.SetParameter ("p_comunidad", p_comunidad);

@@ -21,7 +21,7 @@ namespace PracticaDSMGenNHibernate.CP.DSMPracticas
 {
 public partial class PostCP : BasicCP
 {
-public PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN New_ (string p_contenido, int p_usuarioCreador, string p_comunidad, PracticaDSMGenNHibernate.Enumerated.DSMPracticas.Categoria_PostEnum p_categoria, string p_titulo, string p_imagen, Nullable<DateTime> p_hora)
+public PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN New_ (string p_contenido, int p_usuarioCreador, int p_comunidad, PracticaDSMGenNHibernate.Enumerated.DSMPracticas.Categoria_PostEnum p_categoria, string p_titulo, string p_imagen, Nullable<DateTime> p_hora)
 {
         /*PROTECTED REGION ID(PracticaDSMGenNHibernate.CP.DSMPracticas_Post_new_) ENABLED START*/
 
@@ -57,9 +57,9 @@ public PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN New_ (string p_contenido,
                 }
 
 
-                if (p_comunidad != null) {
+                if (p_comunidad != -1) {
                         postEN.Comunidad = new PracticaDSMGenNHibernate.EN.DSMPracticas.ComunidadEN ();
-                        postEN.Comunidad.Nombre = p_comunidad;
+                        postEN.Comunidad.Id = p_comunidad;
                 }
 
                 postEN.Categoria = p_categoria;

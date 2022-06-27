@@ -91,33 +91,33 @@ public static void InitializeData ()
 
                 Console.WriteLine ("Introducimos los generos a laa bbdd...");
                 GeneroCEN generoCEN = new GeneroCEN ();
-                generoCEN.New_ ("Coches");
-                generoCEN.New_ ("Accion");
-                generoCEN.New_ ("Aventuras");
-                generoCEN.New_ ("Metroidvania");
-                generoCEN.New_ ("Estrategia");
-                generoCEN.New_ ("Autochess");
-                generoCEN.New_ ("Terror");
-                generoCEN.New_ ("Roguelike");
-                generoCEN.New_ ("Soulslike");
-                generoCEN.New_ ("FirstPersonShooter");
+                int gen1 = generoCEN.New_ ("Coches");
+                int gen2 = generoCEN.New_ ("Accion");
+                int gen3 = generoCEN.New_ ("Aventuras");
+                int gen4 = generoCEN.New_ ("Metroidvania");
+                int gen5 = generoCEN.New_ ("Estrategia");
+                int gen6 = generoCEN.New_ ("Autochess");
+                int gen7 = generoCEN.New_ ("Terror");
+                int gen8 = generoCEN.New_ ("Roguelike");
+                int gen9 = generoCEN.New_ ("Soulslike");
+                int genA = generoCEN.New_ ("FirstPersonShooter");
 
                 Console.WriteLine ("Introducimos juegos a la bbdd...");
                 JuegoCEN juegoCEN = new JuegoCEN ();
-                string[] aux_rocket = { "Coches", "Accion" };
-                IList<string> generos = aux_rocket;
-                juegoCEN.New_ ("Rocket League", "Juego de coches y futbol", "portada_rocket_league", generos);
-                string[] aux_silksong = { "Aventuras", "Accion", "Metroidvania" };
+                int[] aux_rocket = { gen1, gen2 };
+                IList<int> generos = aux_rocket;
+                int juego1 = juegoCEN.New_ ("Rocket League", "Juego de coches y futbol", "portada_rocket_league", generos);
+                int[] aux_silksong = { gen3, gen2, gen4 };
                 generos = aux_silksong;
-                juegoCEN.New_ ("Hollow Knight: Silksong", "Solo existe en esta bbdd", "portada_silksong", generos);
-                string[] aux_tft = { "Estrategia", "Autochess" };
+                int juego2 = juegoCEN.New_ ("Hollow Knight: Silksong", "Solo existe en esta bbdd", "portada_silksong", generos);
+                int[] aux_tft = { gen5, gen6 };
                 generos = aux_tft;
-                juegoCEN.New_ ("League of Legends: TFT", "Solo apto para gente inteligente", "portada_tft", generos);
+                int juego3 = juegoCEN.New_ ("League of Legends: TFT", "Solo apto para gente inteligente", "portada_tft", generos);
 
                 Console.WriteLine ("Introducimos comunidades a la bbdd...");
                 ComunidadCEN comunidadCEN = new ComunidadCEN ();
-                string com_rl = comunidadCEN.New_ ("Rocket League", "Comunidad de Rocket League. Calienten motores!", new DateTime (2022, 1, 1), "Rocket League");
-                string com_hks = comunidadCEN.New_ ("Silksong", "Comunidad del Silksong. Preparen las pelucas, SIUUUUU!", new DateTime (2019, 11, 15), "Hollow Knight: Silksong");
+                int com_rl = comunidadCEN.New_ ("Rocket League", "Comunidad de Rocket League. Calienten motores!", new DateTime (2022, 1, 1), juego1);
+                int com_hks = comunidadCEN.New_ ("Silksong", "Comunidad del Silksong. Preparen las pelucas, SIUUUUU!", new DateTime (2019, 11, 15), juego2);
 
                 Console.WriteLine ("Introducimos postst a la bbdd...");
                 PostCP postCP = new PostCP ();
@@ -220,8 +220,8 @@ public static void InitializeData ()
                 Console.WriteLine ("\n");
 
                 Console.WriteLine ("\nAgregamos juegos al usuario Sergio...");
-                string[] juegos2 = { "Rocket League", "Hollow Knight: Silksong" };
-                IList<string> oidsjuegos = juegos2;
+                int[] juegos2 = { juego1, juego2 };
+                IList<int> oidsjuegos = juegos2;
                 usuarioCEN.AddJuego (sergio, oidsjuegos);
                 Console.WriteLine ();
 
@@ -255,7 +255,7 @@ public static void InitializeData ()
                 juegoCP.RecomendarJuego (candela);
 
                 Console.WriteLine ("\nAgregamos juegos al usuario Carlos...");
-                string[] juegos3 = { "Hollow Knight: Silksong", "League of Legends: TFT" };
+                int[] juegos3 = { juego1, juego3 };
                 oidsjuegos = juegos3;
                 usuarioCEN.AddJuego (carlos, oidsjuegos);
                 Console.WriteLine ();

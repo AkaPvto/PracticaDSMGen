@@ -39,10 +39,10 @@ public IJuegoCAD get_IJuegoCAD ()
         return this._IJuegoCAD;
 }
 
-public string New_ (string p_nombre, string p_descripcion, string p_portada, System.Collections.Generic.IList<string> p_genero)
+public int New_ (string p_nombre, string p_descripcion, string p_portada, System.Collections.Generic.IList<int> p_genero)
 {
         JuegoEN juegoEN = null;
-        string oid;
+        int oid;
 
         //Initialized JuegoEN
         juegoEN = new JuegoEN ();
@@ -55,9 +55,9 @@ public string New_ (string p_nombre, string p_descripcion, string p_portada, Sys
 
         juegoEN.Genero = new System.Collections.Generic.List<PracticaDSMGenNHibernate.EN.DSMPracticas.GeneroEN>();
         if (p_genero != null) {
-                foreach (string item in p_genero) {
+                foreach (int item in p_genero) {
                         PracticaDSMGenNHibernate.EN.DSMPracticas.GeneroEN en = new PracticaDSMGenNHibernate.EN.DSMPracticas.GeneroEN ();
-                        en.Nombre = item;
+                        en.Id = item;
                         juegoEN.Genero.Add (en);
                 }
         }
@@ -72,13 +72,14 @@ public string New_ (string p_nombre, string p_descripcion, string p_portada, Sys
         return oid;
 }
 
-public void Modify (string p_Juego_OID, string p_descripcion, string p_portada)
+public void Modify (int p_Juego_OID, string p_nombre, string p_descripcion, string p_portada)
 {
         JuegoEN juegoEN = null;
 
         //Initialized JuegoEN
         juegoEN = new JuegoEN ();
-        juegoEN.Nombre = p_Juego_OID;
+        juegoEN.Id = p_Juego_OID;
+        juegoEN.Nombre = p_nombre;
         juegoEN.Descripcion = p_descripcion;
         juegoEN.Portada = p_portada;
         //Call to JuegoCAD
@@ -86,18 +87,18 @@ public void Modify (string p_Juego_OID, string p_descripcion, string p_portada)
         _IJuegoCAD.Modify (juegoEN);
 }
 
-public void Destroy (string nombre
+public void Destroy (int id
                      )
 {
-        _IJuegoCAD.Destroy (nombre);
+        _IJuegoCAD.Destroy (id);
 }
 
-public JuegoEN ReadOID (string nombre
+public JuegoEN ReadOID (int id
                         )
 {
         JuegoEN juegoEN = null;
 
-        juegoEN = _IJuegoCAD.ReadOID (nombre);
+        juegoEN = _IJuegoCAD.ReadOID (id);
         return juegoEN;
 }
 
