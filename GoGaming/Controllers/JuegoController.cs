@@ -30,13 +30,13 @@ namespace GoGaming.Controllers
         }
 
         // GET: Juego/Details/5
-        public ActionResult Details(string nombre)
+        public ActionResult Details(int id)
         {
             SessionInitialize();
             JuegoCAD juegoCAD = new JuegoCAD(session);
             JuegoCEN juegoCEN = new JuegoCEN(juegoCAD);
 
-            JuegoEN juegoEN = juegoCEN.ReadOID(nombre);
+            JuegoEN juegoEN = juegoCEN.ReadOID(id);
             JuegoViewModel juegoVM = new JuegoAssembler().ConvertENToModelUI(juegoEN);
 
             SessionClose();
@@ -47,16 +47,34 @@ namespace GoGaming.Controllers
         // GET: Juego/Create
         public ActionResult Create()
         {
-            return View();
+            SessionInitialize();
+            GeneroCAD generoCAD = new GeneroCAD(session);
+            GeneroCEN generoCEN = new GeneroCEN(generoCAD);
+
+
+            IList<GeneroEN> listaGeneros = generoCEN.ReadAll(0, -1);
+            List<string[]> listaCheck = new List<string[]>();
+            foreach(GeneroEN genero in listaGeneros)
+            {
+                string[] aux = { genero.Id.ToString() , genero.Nombre, "true" };
+                listaCheck.Add(aux);
+            }
+            ViewData["numGeneros"] = listaGeneros.Count();
+            JuegoViewModel juegoVM = new JuegoViewModel();
+            juegoVM.Generos = listaCheck;
+
+            SessionClose();
+            return View(juegoVM);
         }
 
         // POST: Juego/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(JuegoViewModel juegoVM)
         {
             try
             {
-                // TODO: Add insert logic here
+                JuegoCEN juegoCEN = new JuegoCEN();
+                //juegoCEN.New_(juegoVM.Nombre, juegoVM.Descripcion, juegoVM.Portada);
 
                 return RedirectToAction("Index");
             }

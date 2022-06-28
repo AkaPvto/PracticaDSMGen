@@ -12,6 +12,7 @@ namespace GoGaming.Assemblers
         public JuegoViewModel ConvertENToModelUI(JuegoEN juegoEN)
         {
             JuegoViewModel juegoVM = new JuegoViewModel();
+            juegoVM.Id = juegoEN.Id;
             juegoVM.Nombre = juegoEN.Nombre;
             juegoVM.Descripcion = juegoEN.Descripcion;
             juegoVM.Portada = juegoEN.Portada;

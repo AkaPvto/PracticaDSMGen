@@ -280,7 +280,7 @@
     <Content Include="Views\Comentario\Edit.cshtml" />
     <Content Include="Views\Comentario\Delete.cshtml" />
     <Content Include="Views\Juego\Index.cshtml" />
-    <Content Include="Views\Juego\Details.cshtml" />
+    <Content Include="Views\Juego\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
