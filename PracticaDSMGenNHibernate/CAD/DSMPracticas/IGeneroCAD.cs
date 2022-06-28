@@ -22,5 +22,18 @@ void Modify (GeneroEN genero);
 
 void Destroy (int id
               );
+
+
+System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.GeneroEN> GetGenerosJuego (int p_juego);
+
+
+PracticaDSMGenNHibernate.EN.DSMPracticas.GeneroEN GetIdPorNombre (string arg0);
+
+
+GeneroEN ReadOID (int id
+                  );
+
+
+System.Collections.Generic.IList<GeneroEN> ReadAll (int first, int size);
 }
 }

@@ -8,6 +8,14 @@ namespace GoGaming.Models
 {
     public class JuegoViewModel
     {
+
+        [ScaffoldColumn(false)]
+        public int Id { get; set; }
+
+        [ScaffoldColumn(false)]
+        [Display(Prompt = "Generos", Description = "Generos del juego", Name = "Generos")]
+        public List<string[]> Generos { get; set; }
+
         [Display(Prompt = "Nombre", Description = "Nombre del juego", Name = "Nombre")]
         [Required(ErrorMessage = "Debe escribir el nombre del juego")]
         [StringLength(maximumLength: 200, ErrorMessage = "El nombre del juego no puede tener mas de 200 caracteres")]
@@ -22,5 +30,6 @@ namespace GoGaming.Models
         [Required(ErrorMessage = "Debes indicar una imagen para el juego")]
         [StringLength(maximumLength: 100, ErrorMessage = "El nombre de la imagen no puede tener mas de 100 caracteres")]
         public string Portada { get; set; }
+
     }
 }

@@ -72,5 +72,30 @@ public void Destroy (int id
 {
         _IGeneroCAD.Destroy (id);
 }
+
+public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.GeneroEN> GetGenerosJuego (int p_juego)
+{
+        return _IGeneroCAD.GetGenerosJuego (p_juego);
+}
+public PracticaDSMGenNHibernate.EN.DSMPracticas.GeneroEN GetIdPorNombre (string arg0)
+{
+        return _IGeneroCAD.GetIdPorNombre (arg0);
+}
+public GeneroEN ReadOID (int id
+                         )
+{
+        GeneroEN generoEN = null;
+
+        generoEN = _IGeneroCAD.ReadOID (id);
+        return generoEN;
+}
+
+public System.Collections.Generic.IList<GeneroEN> ReadAll (int first, int size)
+{
+        System.Collections.Generic.IList<GeneroEN> list = null;
+
+        list = _IGeneroCAD.ReadAll (first, size);
+        return list;
+}
 }
 }
