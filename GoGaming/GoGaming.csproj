@@ -197,6 +197,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Assemblers\PostAssembler.cs" />
     <Compile Include="Assemblers\ComentarioAssembler.cs" />
     <Compile Include="Assemblers\JuegoAssembler.cs" />
     <Compile Include="Controllers\AccountController.cs" />
