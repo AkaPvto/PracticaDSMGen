@@ -38,7 +38,7 @@ public bool InteractPost (int p_usuario, int p_post)
                 postCAD = new PostCAD (session);
                 IList<PostEN> postLikedByUsuario = postCAD.GetPostLiked (p_usuario);
                 PostEN postEN = postCAD.ReadOID (p_post);
-                IList<UsuarioEN> userOfComunidad = usuarioCAD.GetUsuariosComunidad (postEN.Comunidad.Nombre);
+                IList<UsuarioEN> userOfComunidad = usuarioCAD.GetUsuariosComunidad (postEN.Comunidad.Id);
                 UsuarioEN usuarioEN = usuarioCAD.ReadOID (p_usuario);
                 // Write here your custom transaction ...
 
@@ -48,7 +48,7 @@ public bool InteractPost (int p_usuario, int p_post)
                                 usuarioCEN.UsuarioUnlikePost (p_usuario, new List<int>(){
                                                 p_post
                                         });
-                                postEN.Likes = -1;
+                                postEN.Likes -= 1;
                                 postCAD.Modify (postEN);
                                 Console.WriteLine ("Se ha quitado el like del post " + p_post);
                         }
@@ -56,7 +56,7 @@ public bool InteractPost (int p_usuario, int p_post)
                                 usuarioCEN.UsuarioLikePost (p_usuario, new List<int>() {
                                                 p_post
                                         });
-                                postEN.Likes = -1;
+                                postEN.Likes += 1;
                                 postCAD.Modify (postEN);
                                 Console.WriteLine ("Se le ha dado like al post: " + p_post);
                         }

@@ -39,10 +39,10 @@ public IGeneroCAD get_IGeneroCAD ()
         return this._IGeneroCAD;
 }
 
-public string New_ (string p_nombre)
+public int New_ (string p_nombre)
 {
         GeneroEN generoEN = null;
-        string oid;
+        int oid;
 
         //Initialized GeneroEN
         generoEN = new GeneroEN ();
@@ -54,22 +54,23 @@ public string New_ (string p_nombre)
         return oid;
 }
 
-public void Modify (string p_Genero_OID)
+public void Modify (int p_Genero_OID, string p_nombre)
 {
         GeneroEN generoEN = null;
 
         //Initialized GeneroEN
         generoEN = new GeneroEN ();
-        generoEN.Nombre = p_Genero_OID;
+        generoEN.Id = p_Genero_OID;
+        generoEN.Nombre = p_nombre;
         //Call to GeneroCAD
 
         _IGeneroCAD.Modify (generoEN);
 }
 
-public void Destroy (string nombre
+public void Destroy (int id
                      )
 {
-        _IGeneroCAD.Destroy (nombre);
+        _IGeneroCAD.Destroy (id);
 }
 }
 }

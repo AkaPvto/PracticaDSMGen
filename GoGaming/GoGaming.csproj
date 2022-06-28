@@ -278,11 +278,12 @@
     <Content Include="Views\Comentario\Create.cshtml" />
     <Content Include="Views\Comentario\Edit.cshtml" />
     <Content Include="Views\Comentario\Delete.cshtml" />
+    <Content Include="Views\Juego\Index.cshtml" />
+    <Content Include="Views\Juego\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Basic\" />
-    <Folder Include="Views\Juego\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -19,6 +19,13 @@ private System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPractica
 
 
 
+/**
+ *	Atributo id
+ */
+private int id;
+
+
+
 
 
 
@@ -34,6 +41,12 @@ public virtual System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMP
 
 
 
+public virtual int Id {
+        get { return id; } set { id = value;  }
+}
+
+
+
 
 
 public GeneroEN()
@@ -43,23 +56,25 @@ public GeneroEN()
 
 
 
-public GeneroEN(string nombre, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.JuegoEN> juego
+public GeneroEN(int id, string nombre, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.JuegoEN> juego
                 )
 {
-        this.init (Nombre, juego);
+        this.init (Id, nombre, juego);
 }
 
 
 public GeneroEN(GeneroEN genero)
 {
-        this.init (Nombre, genero.Juego);
+        this.init (Id, genero.Nombre, genero.Juego);
 }
 
-private void init (string nombre
-                   , System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.JuegoEN> juego)
+private void init (int id
+                   , string nombre, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.JuegoEN> juego)
 {
-        this.Nombre = nombre;
+        this.Id = id;
 
+
+        this.Nombre = nombre;
 
         this.Juego = juego;
 }
@@ -71,7 +86,7 @@ public override bool Equals (object obj)
         GeneroEN t = obj as GeneroEN;
         if (t == null)
                 return false;
-        if (Nombre.Equals (t.Nombre))
+        if (Id.Equals (t.Id))
                 return true;
         else
                 return false;
@@ -81,7 +96,7 @@ public override int GetHashCode ()
 {
         int hash = 13;
 
-        hash += this.Nombre.GetHashCode ();
+        hash += this.Id.GetHashCode ();
         return hash;
 }
 }

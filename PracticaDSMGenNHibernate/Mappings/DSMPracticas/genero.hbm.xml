@@ -6,9 +6,15 @@
 		    
 			
 				<class name="GeneroEN" table="Genero"> 
-						<id name="Nombre" column="nombreGenero"/> 
+				  	
+						<id name="Id" column="id" type="integer"> 
+							<generator class="hilo"/>
+						</id>
 			
 					
+					<property name="Nombre" type="string"> 
+						<column name="nombreGenero"  unique="true" not-null="true"/>
+					</property>
 			
 			
 			
@@ -16,12 +22,14 @@
 						<bag name="Juego" table="[juego_genero]" inverse="true" >
 							<key>
 								
-									<column name="FK_nombreGenero_idGenero"/> 
+									<column name="FK_id_idGenero"/> 
 							</key>
       						<many-to-many class="PracticaDSMGenNHibernate.EN.DSMPracticas.JuegoEN">
-									<column name="FK_attribute_idJuego"/> 
+									<column name="FK_id_idJuego"/> 
       						</many-to-many>
     					</bag>
+			
+					
 					
 					
 		

@@ -29,7 +29,7 @@ public JuegoCAD(ISession sessionAux) : base (sessionAux)
 
 
 
-public JuegoEN ReadOIDDefault (string nombre
+public JuegoEN ReadOIDDefault (int id
                                )
 {
         JuegoEN juegoEN = null;
@@ -37,7 +37,7 @@ public JuegoEN ReadOIDDefault (string nombre
         try
         {
                 SessionInitializeTransaction ();
-                juegoEN = (JuegoEN)session.Get (typeof(JuegoEN), nombre);
+                juegoEN = (JuegoEN)session.Get (typeof(JuegoEN), id);
                 SessionCommit ();
         }
 
@@ -89,7 +89,10 @@ public void ModifyDefault (JuegoEN juego)
         try
         {
                 SessionInitializeTransaction ();
-                JuegoEN juegoEN = (JuegoEN)session.Load (typeof(JuegoEN), juego.Nombre);
+                JuegoEN juegoEN = (JuegoEN)session.Load (typeof(JuegoEN), juego.Id);
+
+                juegoEN.Nombre = juego.Nombre;
+
 
                 juegoEN.Descripcion = juego.Descripcion;
 
@@ -118,14 +121,14 @@ public void ModifyDefault (JuegoEN juego)
 }
 
 
-public string New_ (JuegoEN juego)
+public int New_ (JuegoEN juego)
 {
         try
         {
                 SessionInitializeTransaction ();
                 if (juego.Genero != null) {
                         for (int i = 0; i < juego.Genero.Count; i++) {
-                                juego.Genero [i] = (PracticaDSMGenNHibernate.EN.DSMPracticas.GeneroEN)session.Load (typeof(PracticaDSMGenNHibernate.EN.DSMPracticas.GeneroEN), juego.Genero [i].Nombre);
+                                juego.Genero [i] = (PracticaDSMGenNHibernate.EN.DSMPracticas.GeneroEN)session.Load (typeof(PracticaDSMGenNHibernate.EN.DSMPracticas.GeneroEN), juego.Genero [i].Id);
                                 juego.Genero [i].Juego.Add (juego);
                         }
                 }
@@ -147,7 +150,7 @@ public string New_ (JuegoEN juego)
                 SessionClose ();
         }
 
-        return juego.Nombre;
+        return juego.Id;
 }
 
 public void Modify (JuegoEN juego)
@@ -155,7 +158,10 @@ public void Modify (JuegoEN juego)
         try
         {
                 SessionInitializeTransaction ();
-                JuegoEN juegoEN = (JuegoEN)session.Load (typeof(JuegoEN), juego.Nombre);
+                JuegoEN juegoEN = (JuegoEN)session.Load (typeof(JuegoEN), juego.Id);
+
+                juegoEN.Nombre = juego.Nombre;
+
 
                 juegoEN.Descripcion = juego.Descripcion;
 
@@ -179,13 +185,13 @@ public void Modify (JuegoEN juego)
                 SessionClose ();
         }
 }
-public void Destroy (string nombre
+public void Destroy (int id
                      )
 {
         try
         {
                 SessionInitializeTransaction ();
-                JuegoEN juegoEN = (JuegoEN)session.Load (typeof(JuegoEN), nombre);
+                JuegoEN juegoEN = (JuegoEN)session.Load (typeof(JuegoEN), id);
                 session.Delete (juegoEN);
                 SessionCommit ();
         }
@@ -206,7 +212,7 @@ public void Destroy (string nombre
 
 //Sin e: ReadOID
 //Con e: JuegoEN
-public JuegoEN ReadOID (string nombre
+public JuegoEN ReadOID (int id
                         )
 {
         JuegoEN juegoEN = null;
@@ -214,7 +220,7 @@ public JuegoEN ReadOID (string nombre
         try
         {
                 SessionInitializeTransaction ();
-                juegoEN = (JuegoEN)session.Get (typeof(JuegoEN), nombre);
+                juegoEN = (JuegoEN)session.Get (typeof(JuegoEN), id);
                 SessionCommit ();
         }
 
