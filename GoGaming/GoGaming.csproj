@@ -274,7 +274,10 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Comentario\Index.cshtml" />
-    <Content Include="Views\Juego\Details.cshtml" />
+    <Content Include="Views\Comentario\Details.cshtml" />
+    <Content Include="Views\Comentario\Create.cshtml" />
+    <Content Include="Views\Comentario\Edit.cshtml" />
+    <Content Include="Views\Comentario\Delete.cshtml" />
     <Content Include="Views\Juego\Index.cshtml" />
     <Content Include="Views\Juego\Create.cshtml" />
   </ItemGroup>
