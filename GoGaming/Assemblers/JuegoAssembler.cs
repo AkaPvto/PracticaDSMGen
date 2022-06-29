@@ -18,17 +18,17 @@ namespace GoGaming.Assemblers
             GeneroCAD generoCAD = new GeneroCAD(session);
             GeneroCEN generoCEN = new GeneroCEN(generoCAD);
             IList<GeneroEN> listaGens = generoCEN.ReadAll(0, -1);
-            List<Boolean> listaGensVM = new List<Boolean>();
+            List<bool> listaGensVM = new List<bool>();
 
             for (int i = 0; i < listaGens.Count(); i++)
             {
                 if (generoCEN.GetGenerosJuego(juegoEN.Id).Contains(listaGens[i]))
                 {
-                    listaGensVM[i] = true;
+                    listaGensVM.Add(true);
                 }
                 else
                 {
-                    listaGensVM[i] = false;
+                    listaGensVM.Add(false);
                 }
                 
             }

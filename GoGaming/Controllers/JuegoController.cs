@@ -35,9 +35,23 @@ namespace GoGaming.Controllers
             SessionInitialize();
             JuegoCAD juegoCAD = new JuegoCAD(session);
             JuegoCEN juegoCEN = new JuegoCEN(juegoCAD);
+            GeneroCAD generoCAD = new GeneroCAD(session);
+            GeneroCEN generoCEN = new GeneroCEN(generoCAD);
+
+
+            IList<GeneroEN> listaGeneros = generoCEN.ReadAll(0, -1);
+            List<string> listaNombres = new List<string>();
+            foreach (GeneroEN genero in listaGeneros)
+            {
+                listaNombres.Add(genero.Nombre);
+            }
+            ViewData["numGeneros"] = listaGeneros.Count();
+            ViewData["nombresGenero"] = listaNombres.ToArray();
 
             JuegoEN juegoEN = juegoCEN.ReadOID(id);
             JuegoViewModel juegoVM = new JuegoAssembler().ConvertENToModelUI(juegoEN);
+
+            
 
             SessionClose();
 
@@ -102,16 +116,20 @@ namespace GoGaming.Controllers
         // GET: Juego/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            JuegoEN juegoEN = new JuegoCEN().ReadOID(id);
+            JuegoViewModel juegoVM = new JuegoAssembler().ConvertENToModelUI(juegoEN);
+
+            return View(juegoVM);
         }
 
         // POST: Juego/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, JuegoViewModel juegoVM)
         {
             try
             {
-                // TODO: Add update logic here
+                JuegoCEN juegoCEN = new JuegoCEN();
+                juegoCEN.Modify(id, juegoVM.Nombre, juegoVM.Descripcion, juegoVM.Portada);
 
                 return RedirectToAction("Index");
             }
@@ -124,7 +142,30 @@ namespace GoGaming.Controllers
         // GET: Juego/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            SessionInitialize();
+            JuegoCAD juegoCAD = new JuegoCAD(session);
+            JuegoCEN juegoCEN = new JuegoCEN(juegoCAD);
+            GeneroCAD generoCAD = new GeneroCAD(session);
+            GeneroCEN generoCEN = new GeneroCEN(generoCAD);
+
+
+            IList<GeneroEN> listaGeneros = generoCEN.ReadAll(0, -1);
+            List<string> listaNombres = new List<string>();
+            foreach (GeneroEN genero in listaGeneros)
+            {
+                listaNombres.Add(genero.Nombre);
+            }
+            ViewData["numGeneros"] = listaGeneros.Count();
+            ViewData["nombresGenero"] = listaNombres.ToArray();
+
+            JuegoEN juegoEN = juegoCEN.ReadOID(id);
+            JuegoViewModel juegoVM = new JuegoAssembler().ConvertENToModelUI(juegoEN);
+
+
+
+            SessionClose();
+
+            return View(juegoVM);
         }
 
         // POST: Juego/Delete/5
@@ -134,7 +175,7 @@ namespace GoGaming.Controllers
             try
             {
                 // TODO: Add delete logic here
-
+                new JuegoCEN().Destroy(id);
                 return RedirectToAction("Index");
             }
             catch

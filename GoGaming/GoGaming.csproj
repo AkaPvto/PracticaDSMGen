@@ -297,6 +297,8 @@
     <Content Include="Views\Juego\Buscar.cshtml" />
     <Content Include="Views\Juego\SinResultados.cshtml" />
     <Content Include="Views\Juego\Details.cshtml" />
+    <Content Include="Views\Juego\Delete.cshtml" />
+    <Content Include="Views\Juego\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
