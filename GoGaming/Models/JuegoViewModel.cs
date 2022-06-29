@@ -31,6 +31,8 @@ namespace GoGaming.Models
         [StringLength(maximumLength: 100, ErrorMessage = "El nombre de la imagen no puede tener mas de 100 caracteres")]
         public string Portada { get; set; }
 
+
+
         
     }
 }
