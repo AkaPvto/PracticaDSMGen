@@ -27,7 +27,7 @@ void Destroy (int id
 System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.GeneroEN> GetGenerosJuego (int p_juego);
 
 
-PracticaDSMGenNHibernate.EN.DSMPracticas.GeneroEN GetIdPorNombre (string arg0);
+PracticaDSMGenNHibernate.EN.DSMPracticas.GeneroEN GetIdPorNombre (string p_nombre);
 
 
 GeneroEN ReadOID (int id
