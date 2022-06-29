@@ -55,7 +55,7 @@
 									<column name="FK_id_idUsuario"/> 
 							</key>
       						<many-to-many class="PracticaDSMGenNHibernate.EN.DSMPracticas.JuegoEN">
-									<column name="FK_attribute_idJuego"/> 
+									<column name="FK_id_idJuego"/> 
       						</many-to-many>
     					</bag>
 			
@@ -66,7 +66,7 @@
 									<column name="FK_id_idUsuario"/> 
 							</key>
       						<many-to-many class="PracticaDSMGenNHibernate.EN.DSMPracticas.ComunidadEN">
-									<column name="FK_attribute_idComunidad"/> 
+									<column name="FK_id_idComunidad"/> 
       						</many-to-many>
     					</bag>
 			
@@ -172,7 +172,7 @@
 		 </class>	
 		  
 		  <query name="UsuarioENReadAllHQL">from UsuarioEN</query>
-		  <query name="UsuarioENgetUsuariosComunidadHQL"><![CDATA[SELECT usuario FROM UsuarioEN as usuario INNER JOIN usuario.Comunidad as comunidad WHERE comunidad.Nombre = :p_comunidad]]></query>
+		  <query name="UsuarioENgetUsuariosComunidadHQL"><![CDATA[SELECT usuario FROM UsuarioEN as usuario INNER JOIN usuario.Comunidad as comunidad WHERE comunidad.Id = :p_comunidad]]></query>
 		  <query name="UsuarioENgetFollowingHQL"><![CDATA[SELECT usuario FROM UsuarioEN as usuario INNER JOIN usuario.Usuario_0 as followed WHERE followed.Id = :p_usuario]]></query>
 		  <query name="UsuarioENgetFollowedHQL"><![CDATA[SELECT usuario FROM UsuarioEN as usuario INNER JOIN usuario.Usuario as followed WHERE followed.Id = :p_usuario]]></query>
 		  <query name="UsuarioENgetUsuariosNotificacionHQL"><![CDATA[SELECT usuarios FROM UsuarioEN as usuarios INNER JOIN usuarios.Notificacion as notificacion WHERE notificacion = :p_notificacion]]></query>

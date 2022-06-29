@@ -223,7 +223,7 @@ public int New_ (PostEN post)
                 }
                 if (post.Comunidad != null) {
                         // Argumento OID y no colección.
-                        post.Comunidad = (PracticaDSMGenNHibernate.EN.DSMPracticas.ComunidadEN)session.Load (typeof(PracticaDSMGenNHibernate.EN.DSMPracticas.ComunidadEN), post.Comunidad.Nombre);
+                        post.Comunidad = (PracticaDSMGenNHibernate.EN.DSMPracticas.ComunidadEN)session.Load (typeof(PracticaDSMGenNHibernate.EN.DSMPracticas.ComunidadEN), post.Comunidad.Id);
 
                         post.Comunidad.Post
                         .Add (post);
@@ -435,13 +435,13 @@ public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas
 
         return result;
 }
-public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN> GetPostComunidadLikes (string p_comunidad)
+public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN> GetPostComunidadLikes (int p_comunidad)
 {
         System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN> result;
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM PostEN self where FROM PostEN as post WHERE post.Comunidad.Nombre = :p_comunidad ORDER BY post.Likes desc";
+                //String sql = @"FROM PostEN self where FROM PostEN as post WHERE post.Comunidad.Id = :p_comunidad ORDER BY post.Likes desc";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("PostENgetPostComunidadLikesHQL");
                 query.SetParameter ("p_comunidad", p_comunidad);
@@ -465,13 +465,13 @@ public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas
 
         return result;
 }
-public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN> GetPostComunidadFecha (string p_comunidad)
+public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN> GetPostComunidadFecha (int p_comunidad)
 {
         System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.PostEN> result;
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM PostEN self where FROM PostEN as post WHERE post.Comunidad.Nombre = :p_comunidad ORDER BY post.Hora desc";
+                //String sql = @"FROM PostEN self where FROM PostEN as post WHERE post.Comunidad.Id = :p_comunidad ORDER BY post.Hora desc";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("PostENgetPostComunidadFechaHQL");
                 query.SetParameter ("p_comunidad", p_comunidad);

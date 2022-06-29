@@ -6,7 +6,7 @@ namespace PracticaDSMGenNHibernate.CAD.DSMPracticas
 {
 public partial interface IComunidadCAD
 {
-ComunidadEN ReadOIDDefault (string nombre
+ComunidadEN ReadOIDDefault (int id
                             );
 
 void ModifyDefault (ComunidadEN comunidad);
@@ -15,28 +15,28 @@ System.Collections.Generic.IList<ComunidadEN> ReadAllDefault (int first, int siz
 
 
 
-void DeletePost (string p_Comunidad_OID, System.Collections.Generic.IList<int> p_post_OIDs);
+void DeletePost (int p_Comunidad_OID, System.Collections.Generic.IList<int> p_post_OIDs);
 
-string New_ (ComunidadEN comunidad);
+int New_ (ComunidadEN comunidad);
 
 void Modify (ComunidadEN comunidad);
 
 
-void Destroy (string nombre
+void Destroy (int id
               );
 
 
-ComunidadEN ReadOID (string nombre
+ComunidadEN ReadOID (int id
                      );
 
 
 System.Collections.Generic.IList<ComunidadEN> ReadAll (int first, int size);
 
 
-void AddUsuarios (string p_Comunidad_OID, System.Collections.Generic.IList<int> p_usuario_OIDs);
+void AddUsuarios (int p_Comunidad_OID, System.Collections.Generic.IList<int> p_usuario_OIDs);
 
-void DeleteUsuarios (string p_Comunidad_OID, System.Collections.Generic.IList<int> p_usuario_OIDs);
+void DeleteUsuarios (int p_Comunidad_OID, System.Collections.Generic.IList<int> p_usuario_OIDs);
 
-void AddPost (string p_Comunidad_OID, System.Collections.Generic.IList<int> p_post_OIDs);
+void AddPost (int p_Comunidad_OID, System.Collections.Generic.IList<int> p_post_OIDs);
 }
 }

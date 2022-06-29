@@ -47,6 +47,13 @@ private System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPractica
 
 
 
+/**
+ *	Atributo id
+ */
+private int id;
+
+
+
 
 
 
@@ -86,6 +93,12 @@ public virtual System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMP
 
 
 
+public virtual int Id {
+        get { return id; } set { id = value;  }
+}
+
+
+
 
 
 public JuegoEN()
@@ -96,23 +109,25 @@ public JuegoEN()
 
 
 
-public JuegoEN(string nombre, string descripcion, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> usuario, PracticaDSMGenNHibernate.EN.DSMPracticas.ComunidadEN comunidad, string portada, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.GeneroEN> genero
+public JuegoEN(int id, string nombre, string descripcion, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> usuario, PracticaDSMGenNHibernate.EN.DSMPracticas.ComunidadEN comunidad, string portada, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.GeneroEN> genero
                )
 {
-        this.init (Nombre, descripcion, usuario, comunidad, portada, genero);
+        this.init (Id, nombre, descripcion, usuario, comunidad, portada, genero);
 }
 
 
 public JuegoEN(JuegoEN juego)
 {
-        this.init (Nombre, juego.Descripcion, juego.Usuario, juego.Comunidad, juego.Portada, juego.Genero);
+        this.init (Id, juego.Nombre, juego.Descripcion, juego.Usuario, juego.Comunidad, juego.Portada, juego.Genero);
 }
 
-private void init (string nombre
-                   , string descripcion, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> usuario, PracticaDSMGenNHibernate.EN.DSMPracticas.ComunidadEN comunidad, string portada, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.GeneroEN> genero)
+private void init (int id
+                   , string nombre, string descripcion, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> usuario, PracticaDSMGenNHibernate.EN.DSMPracticas.ComunidadEN comunidad, string portada, System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.GeneroEN> genero)
 {
-        this.Nombre = nombre;
+        this.Id = id;
 
+
+        this.Nombre = nombre;
 
         this.Descripcion = descripcion;
 
@@ -132,7 +147,7 @@ public override bool Equals (object obj)
         JuegoEN t = obj as JuegoEN;
         if (t == null)
                 return false;
-        if (Nombre.Equals (t.Nombre))
+        if (Id.Equals (t.Id))
                 return true;
         else
                 return false;
@@ -142,7 +157,7 @@ public override int GetHashCode ()
 {
         int hash = 13;
 
-        hash += this.Nombre.GetHashCode ();
+        hash += this.Id.GetHashCode ();
         return hash;
 }
 }

@@ -40,7 +40,7 @@ public void EnviarNotificacion (int p_oid)
                 NotificacionEN notificacion = notificacionCAD.ReadOIDDefault (p_oid);
 
                 UsuarioCAD usuarioCAD = new UsuarioCAD ();
-                IList<UsuarioEN> usuarios = usuarioCAD.GetUsuariosNotificacion(p_oid);
+                IList<UsuarioEN> usuarios = usuarioCAD.GetUsuariosNotificacion (p_oid);
 
 
                 //Preparamos el correo

@@ -15,7 +15,7 @@ System.Collections.Generic.IList<UsuarioEN> ReadAllDefault (int first, int size)
 
 
 
-void AddJuego (int p_Usuario_OID, System.Collections.Generic.IList<string> p_juego_OIDs);
+void AddJuego (int p_Usuario_OID, System.Collections.Generic.IList<int> p_juego_OIDs);
 
 int New_ (UsuarioEN usuario);
 
@@ -33,9 +33,9 @@ UsuarioEN ReadOID (int id
 System.Collections.Generic.IList<UsuarioEN> ReadAll (int first, int size);
 
 
-void AddComunidad (int p_Usuario_OID, System.Collections.Generic.IList<string> p_comunidad_OIDs);
+void AddComunidad (int p_Usuario_OID, System.Collections.Generic.IList<int> p_comunidad_OIDs);
 
-void DeleteComunidad (int p_Usuario_OID, System.Collections.Generic.IList<string> p_comunidad_OIDs);
+void DeleteComunidad (int p_Usuario_OID, System.Collections.Generic.IList<int> p_comunidad_OIDs);
 
 
 
@@ -43,7 +43,7 @@ void AddFollowing (int p_Usuario_OID, System.Collections.Generic.IList<int> p_us
 
 void DeleteFollowing (int p_Usuario_OID, System.Collections.Generic.IList<int> p_usuario_OIDs);
 
-System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> GetUsuariosComunidad (string p_comunidad);
+System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> GetUsuariosComunidad (int p_comunidad);
 
 
 System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> GetFollowing (int p_usuario);

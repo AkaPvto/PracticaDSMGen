@@ -39,7 +39,7 @@ public IUsuarioCAD get_IUsuarioCAD ()
         return this._IUsuarioCAD;
 }
 
-public void AddJuego (int p_Usuario_OID, System.Collections.Generic.IList<string> p_juego_OIDs)
+public void AddJuego (int p_Usuario_OID, System.Collections.Generic.IList<int> p_juego_OIDs)
 {
         //Call to UsuarioCAD
 
@@ -88,13 +88,13 @@ public System.Collections.Generic.IList<UsuarioEN> ReadAll (int first, int size)
         list = _IUsuarioCAD.ReadAll (first, size);
         return list;
 }
-public void AddComunidad (int p_Usuario_OID, System.Collections.Generic.IList<string> p_comunidad_OIDs)
+public void AddComunidad (int p_Usuario_OID, System.Collections.Generic.IList<int> p_comunidad_OIDs)
 {
         //Call to UsuarioCAD
 
         _IUsuarioCAD.AddComunidad (p_Usuario_OID, p_comunidad_OIDs);
 }
-public void DeleteComunidad (int p_Usuario_OID, System.Collections.Generic.IList<string> p_comunidad_OIDs)
+public void DeleteComunidad (int p_Usuario_OID, System.Collections.Generic.IList<int> p_comunidad_OIDs)
 {
         //Call to UsuarioCAD
 
@@ -123,7 +123,7 @@ public void DeleteFollowing (int p_Usuario_OID, System.Collections.Generic.IList
 
         _IUsuarioCAD.DeleteFollowing (p_Usuario_OID, p_usuario_OIDs);
 }
-public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> GetUsuariosComunidad (string p_comunidad)
+public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> GetUsuariosComunidad (int p_comunidad)
 {
         return _IUsuarioCAD.GetUsuariosComunidad (p_comunidad);
 }

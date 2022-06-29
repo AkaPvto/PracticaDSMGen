@@ -6,9 +6,15 @@
 		    
 			
 				<class name="JuegoEN" table="Juego"> 
-						<id name="Nombre" column="attribute"/> 
+				  	
+						<id name="Id" column="id" type="integer"> 
+							<generator class="hilo"/>
+						</id>
 			
 					
+					<property name="Nombre" type="string"> 
+						<column name="attribute"  unique="true" not-null="true"/>
+					</property>
 					<property name="Descripcion" type="string"> 
 						<column name="descripcion"  not-null="true"/>
 					</property>
@@ -23,7 +29,7 @@
 						<bag name="Usuario" table="[juego_usuario]"  >
 							<key>
 								
-									<column name="FK_attribute_idJuego"/> 
+									<column name="FK_id_idJuego"/> 
 							</key>
       						<many-to-many class="PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN">
 									<column name="FK_id_idUsuario"/> 
@@ -33,7 +39,7 @@
 		  			
 					
 							<many-to-one name="Comunidad" class="PracticaDSMGenNHibernate.EN.DSMPracticas.ComunidadEN" cascade="delete">
-								<column name="FK_attribute_idComunidad"/> 
+								<column name="FK_id_idComunidad"/> 
         					</many-to-one>
 					 
 						
@@ -43,12 +49,14 @@
 						<bag name="Genero" table="[juego_genero]"  >
 							<key>
 								
-									<column name="FK_attribute_idJuego"/> 
+									<column name="FK_id_idJuego"/> 
 							</key>
       						<many-to-many class="PracticaDSMGenNHibernate.EN.DSMPracticas.GeneroEN">
-									<column name="FK_nombreGenero_idGenero"/> 
+									<column name="FK_id_idGenero"/> 
       						</many-to-many>
     					</bag>
+			
+					
 					
 					
 					

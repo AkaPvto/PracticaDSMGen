@@ -42,9 +42,10 @@ public PracticaDSMGenNHibernate.EN.DSMPracticas.NotificacionEN New_ (int p_post)
                 UsuarioCAD usuarioCAD = new UsuarioCAD ();
                 UsuarioEN usuarioEN = usuarioCAD.ReadOID (postEN.UsuarioCreador.Id);
                 ComunidadCAD comunidadCAD = new ComunidadCAD ();
+                ComunidadEN comunidadEN = comunidadCAD.ReadOID (postEN.Comunidad.Id);
 
                 String autor = usuarioEN.Nickname;
-                String comunidad = postEN.Comunidad.Nombre;
+                String comunidad = comunidadEN.Nombre;
                 int oid;
                 //Initialized NotificacionEN
                 NotificacionEN notificacionEN;
@@ -68,7 +69,7 @@ public PracticaDSMGenNHibernate.EN.DSMPracticas.NotificacionEN New_ (int p_post)
 
                 // Obtenemos una lista con las OIDs de los usuarios y las volcamos en el relationer
                 IList<int> usuariosOID = new List<int>();
-                IList<UsuarioEN> usuariosEN = usuarioCAD.GetUsuariosComunidad (postEN.Comunidad.Nombre);
+                IList<UsuarioEN> usuariosEN = usuarioCAD.GetUsuariosComunidad (postEN.Comunidad.Id);
                 for (int i = 0; i < usuariosEN.Count; i++) {
                         // Guarda en un array las OIDs los usuarios que forman parte de la comunidad a la que han subido un post y que ademas siguen al autor del post que se ha subido
                         IList<UsuarioEN> usuariosSiguenAlAutor = usuarioCAD.GetFollowed (postEN.UsuarioCreador.Id);

@@ -6,7 +6,7 @@ namespace PracticaDSMGenNHibernate.CAD.DSMPracticas
 {
 public partial interface IJuegoCAD
 {
-JuegoEN ReadOIDDefault (string nombre
+JuegoEN ReadOIDDefault (int id
                         );
 
 void ModifyDefault (JuegoEN juego);
@@ -15,16 +15,16 @@ System.Collections.Generic.IList<JuegoEN> ReadAllDefault (int first, int size);
 
 
 
-string New_ (JuegoEN juego);
+int New_ (JuegoEN juego);
 
 void Modify (JuegoEN juego);
 
 
-void Destroy (string nombre
+void Destroy (int id
               );
 
 
-JuegoEN ReadOID (string nombre
+JuegoEN ReadOID (int id
                  );
 
 

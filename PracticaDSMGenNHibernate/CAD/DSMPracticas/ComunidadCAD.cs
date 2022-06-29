@@ -29,7 +29,7 @@ public ComunidadCAD(ISession sessionAux) : base (sessionAux)
 
 
 
-public ComunidadEN ReadOIDDefault (string nombre
+public ComunidadEN ReadOIDDefault (int id
                                    )
 {
         ComunidadEN comunidadEN = null;
@@ -37,7 +37,7 @@ public ComunidadEN ReadOIDDefault (string nombre
         try
         {
                 SessionInitializeTransaction ();
-                comunidadEN = (ComunidadEN)session.Get (typeof(ComunidadEN), nombre);
+                comunidadEN = (ComunidadEN)session.Get (typeof(ComunidadEN), id);
                 SessionCommit ();
         }
 
@@ -89,7 +89,10 @@ public void ModifyDefault (ComunidadEN comunidad)
         try
         {
                 SessionInitializeTransaction ();
-                ComunidadEN comunidadEN = (ComunidadEN)session.Load (typeof(ComunidadEN), comunidad.Nombre);
+                ComunidadEN comunidadEN = (ComunidadEN)session.Load (typeof(ComunidadEN), comunidad.Id);
+
+                comunidadEN.Nombre = comunidad.Nombre;
+
 
                 comunidadEN.Descripcion = comunidad.Descripcion;
 
@@ -118,7 +121,7 @@ public void ModifyDefault (ComunidadEN comunidad)
 }
 
 
-public void DeletePost (string p_Comunidad_OID, System.Collections.Generic.IList<int> p_post_OIDs)
+public void DeletePost (int p_Comunidad_OID, System.Collections.Generic.IList<int> p_post_OIDs)
 {
         try
         {
@@ -156,14 +159,14 @@ public void DeletePost (string p_Comunidad_OID, System.Collections.Generic.IList
                 SessionClose ();
         }
 }
-public string New_ (ComunidadEN comunidad)
+public int New_ (ComunidadEN comunidad)
 {
         try
         {
                 SessionInitializeTransaction ();
                 if (comunidad.Juego != null) {
                         // Argumento OID y no colección.
-                        comunidad.Juego = (PracticaDSMGenNHibernate.EN.DSMPracticas.JuegoEN)session.Load (typeof(PracticaDSMGenNHibernate.EN.DSMPracticas.JuegoEN), comunidad.Juego.Nombre);
+                        comunidad.Juego = (PracticaDSMGenNHibernate.EN.DSMPracticas.JuegoEN)session.Load (typeof(PracticaDSMGenNHibernate.EN.DSMPracticas.JuegoEN), comunidad.Juego.Id);
 
                         comunidad.Juego.Comunidad
                                 = comunidad;
@@ -186,7 +189,7 @@ public string New_ (ComunidadEN comunidad)
                 SessionClose ();
         }
 
-        return comunidad.Nombre;
+        return comunidad.Id;
 }
 
 public void Modify (ComunidadEN comunidad)
@@ -194,7 +197,10 @@ public void Modify (ComunidadEN comunidad)
         try
         {
                 SessionInitializeTransaction ();
-                ComunidadEN comunidadEN = (ComunidadEN)session.Load (typeof(ComunidadEN), comunidad.Nombre);
+                ComunidadEN comunidadEN = (ComunidadEN)session.Load (typeof(ComunidadEN), comunidad.Id);
+
+                comunidadEN.Nombre = comunidad.Nombre;
+
 
                 comunidadEN.Descripcion = comunidad.Descripcion;
 
@@ -218,13 +224,13 @@ public void Modify (ComunidadEN comunidad)
                 SessionClose ();
         }
 }
-public void Destroy (string nombre
+public void Destroy (int id
                      )
 {
         try
         {
                 SessionInitializeTransaction ();
-                ComunidadEN comunidadEN = (ComunidadEN)session.Load (typeof(ComunidadEN), nombre);
+                ComunidadEN comunidadEN = (ComunidadEN)session.Load (typeof(ComunidadEN), id);
                 session.Delete (comunidadEN);
                 SessionCommit ();
         }
@@ -245,7 +251,7 @@ public void Destroy (string nombre
 
 //Sin e: ReadOID
 //Con e: ComunidadEN
-public ComunidadEN ReadOID (string nombre
+public ComunidadEN ReadOID (int id
                             )
 {
         ComunidadEN comunidadEN = null;
@@ -253,7 +259,7 @@ public ComunidadEN ReadOID (string nombre
         try
         {
                 SessionInitializeTransaction ();
-                comunidadEN = (ComunidadEN)session.Get (typeof(ComunidadEN), nombre);
+                comunidadEN = (ComunidadEN)session.Get (typeof(ComunidadEN), id);
                 SessionCommit ();
         }
 
@@ -303,7 +309,7 @@ public System.Collections.Generic.IList<ComunidadEN> ReadAll (int first, int siz
         return result;
 }
 
-public void AddUsuarios (string p_Comunidad_OID, System.Collections.Generic.IList<int> p_usuario_OIDs)
+public void AddUsuarios (int p_Comunidad_OID, System.Collections.Generic.IList<int> p_usuario_OIDs)
 {
         PracticaDSMGenNHibernate.EN.DSMPracticas.ComunidadEN comunidadEN = null;
         try
@@ -342,7 +348,7 @@ public void AddUsuarios (string p_Comunidad_OID, System.Collections.Generic.ILis
         }
 }
 
-public void DeleteUsuarios (string p_Comunidad_OID, System.Collections.Generic.IList<int> p_usuario_OIDs)
+public void DeleteUsuarios (int p_Comunidad_OID, System.Collections.Generic.IList<int> p_usuario_OIDs)
 {
         try
         {
@@ -380,7 +386,7 @@ public void DeleteUsuarios (string p_Comunidad_OID, System.Collections.Generic.I
                 SessionClose ();
         }
 }
-public void AddPost (string p_Comunidad_OID, System.Collections.Generic.IList<int> p_post_OIDs)
+public void AddPost (int p_Comunidad_OID, System.Collections.Generic.IList<int> p_post_OIDs)
 {
         try
         {
