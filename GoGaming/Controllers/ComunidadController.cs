@@ -1,0 +1,191 @@
+﻿using GoGaming.Assemblers;
+using GoGaming.Models;
+using PracticaDSMGenNHibernate.CAD.DSMPracticas;
+using PracticaDSMGenNHibernate.CEN.DSMPracticas;
+using PracticaDSMGenNHibernate.EN.DSMPracticas;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace GoGaming.Controllers
+{
+    public class ComunidadController : BasicController
+    {
+        // GET: Comunidad
+        public ActionResult Index()
+        {
+            SessionInitialize();
+            ComunidadCAD comCad = new ComunidadCAD(session);
+            ComunidadCEN comCEN = new ComunidadCEN(comCad);
+            IList<ComunidadEN> lista = comCEN.ReadAll(0, 5);
+
+            IEnumerable<ComunidadViewModel> listViewModel = (IEnumerable<ComunidadViewModel>)new ComunidadAssembler().ConvertListENTModel(lista).ToList();
+            SessionClose();
+
+            return View(listViewModel);
+        }
+
+        // GET: Comunidad/Details/5
+        public ActionResult Details(int id)
+        {
+            SessionInitialize();
+            ComunidadCAD comCad = new ComunidadCAD(session);
+            ComunidadCEN comCEN = new ComunidadCEN(comCad);
+            ComunidadEN lista = comCEN.ReadOID(id);
+            //ComunidadViewModel listViewModel = new ComunidadAssembler().ConvertENToModelUI(lista);
+
+            SessionClose();
+            if (lista != null)
+            {
+                ComunidadViewModel listViewModel = new ComunidadAssembler().ConvertENToModelUI(lista);
+                return View(listViewModel);
+            }
+            else
+            {
+                return RedirectToAction("SinResultados");
+            }
+        }
+
+        public ActionResult SinResultados()
+        {
+            return View();
+        }
+
+        [Authorize]
+        // GET: Comunidad/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: Comunidad/Create
+        [HttpPost]
+        public ActionResult Create(ComunidadViewModel com)
+        {
+            try
+            {
+                // TODO: Add insert logic here
+
+                ComunidadCEN comunidadCEN = new ComunidadCEN();
+                comunidadCEN.New_(com.Nombre, com.Descripcion, DateTime.Now, com.Juego);
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        [Authorize]
+        // GET: Comunidad/Edit/5
+        public ActionResult Edit(int id)
+        {
+            SessionInitialize();
+            ComunidadCAD comCad = new ComunidadCAD(session);
+            ComunidadCEN comCEN = new ComunidadCEN(comCad);
+            ComunidadEN lista = comCEN.ReadOID(id);
+            ComunidadViewModel listViewModel = new ComunidadAssembler().ConvertENToModelUI(lista);
+
+            SessionClose();
+            return View(listViewModel);
+        }
+
+        // POST: Comunidad/Edit/5
+        [HttpPost]
+        public ActionResult Edit(string nom, ComunidadViewModel com)
+        {
+            try
+            {
+                // TODO: Add insert logic here
+
+                ComunidadCEN comunidadCEN = new ComunidadCEN();
+                comunidadCEN.Modify(com.CodigoComunidad, com.Nombre, com.Descripcion, DateTime.Now);
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        // GET: Comunidad/Delete/5
+        public ActionResult Delete(int id)
+        {
+            SessionInitialize();
+            ComunidadCAD comCad = new ComunidadCAD(session);
+            ComunidadCEN comCEN = new ComunidadCEN(comCad);
+            ComunidadEN lista = comCEN.ReadOID(id);
+            ComunidadViewModel listViewModel = new ComunidadAssembler().ConvertENToModelUI(lista);
+
+            SessionClose();
+            return View(listViewModel);
+        }
+
+        // POST: Comunidad/Delete/5
+        [HttpPost]
+        public ActionResult Delete(ComunidadViewModel com)
+        {
+            try
+            {
+                ComunidadCEN comCEN = new ComunidadCEN();
+
+                comCEN.Destroy(com.CodigoComunidad);
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        /*public ActionResult Resultado(FormCollection collection)
+        {
+            SessionInitialize();
+            ComunidadCAD anuCAD = new ComunidadCAD(session);
+            ComunidadCEN anuncioCEN = new ComunidadCEN(anuCAD);
+
+            ComunidadAssembler comunidadAssembler = new ComunidadAssembler();
+
+            IList<ComunidadViewModel> comunidadDevolver;
+
+            string datos = collection.Get("Datos");
+
+            IList<ComunidadEN> resultadosFinales = new List<ComunidadEN>();
+
+
+            IList<ComunidadEN> resultadosFinales2 = new List<ComunidadEN>();
+
+            foreach (var anuncio in resultadosFinales)
+            {
+                    resultadosFinales2.Add(anuncio);
+              
+            }
+
+            //Comprobamos que al menos haya un dato
+            if (!resultadosFinales2.Any())
+            {
+                SessionClose();
+                return RedirectToAction("SinResultados");
+            }
+            else
+
+            //Pasamos la lista de AnuncioEN a AnuncioViewModel
+            comunidadDevolver = comunidadAssembler.ConvertListENTModel(resultadosFinales2);
+
+            SessionClose();
+
+            return View(comunidadDevolver);
+    }
+
+        public ActionResult SinResultados()
+        {
+            return View();
+        }*/
+    
+    }
+}

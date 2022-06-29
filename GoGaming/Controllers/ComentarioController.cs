@@ -84,8 +84,8 @@ namespace GoGaming.Controllers
             {
                 // TODO: Add update logic here
                 ComentarioCEN comentarioCEN = new ComentarioCEN();
-                comentarioCEN.Modify(coment.Id, coment.Contenido, DateTime.Now);
-                //comentarioCEN.Modify(coment.Id, coment.Contenido, coment.Hora);
+                //comentarioCEN.Modify(coment.Id, coment.Contenido, DateTime.Now);
+                comentarioCEN.Modify(coment.Id, coment.Contenido, coment.Hora);
                 return RedirectToAction("Index");
             }
             catch
