@@ -286,6 +286,10 @@
     <Content Include="Views\Juego\Index.cshtml" />
     <Content Include="Views\Juego\Create.cshtml" />
     <Content Include="Views\Comunidad\Index.cshtml" />
+    <Content Include="Views\Comunidad\Edit.cshtml" />
+    <Content Include="Views\Comunidad\Create.cshtml" />
+    <Content Include="Views\Comunidad\Details.cshtml" />
+    <Content Include="Views\Comunidad\SinResultados.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
