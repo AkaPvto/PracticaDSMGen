@@ -14,7 +14,7 @@ namespace GoGaming.Models
 
         [ScaffoldColumn(false)]
         [Display(Prompt = "Generos", Description = "Generos del juego", Name = "Generos")]
-        public List<string[]> Generos { get; set; }
+        public List<Boolean> Generos { get; set; }
 
         [Display(Prompt = "Nombre", Description = "Nombre del juego", Name = "Nombre")]
         [Required(ErrorMessage = "Debe escribir el nombre del juego")]
@@ -31,5 +31,6 @@ namespace GoGaming.Models
         [StringLength(maximumLength: 100, ErrorMessage = "El nombre de la imagen no puede tener mas de 100 caracteres")]
         public string Portada { get; set; }
 
+        
     }
 }

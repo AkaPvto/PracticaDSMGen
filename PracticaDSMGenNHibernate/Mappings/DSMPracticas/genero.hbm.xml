@@ -37,6 +37,6 @@
 		  
 		  <query name="GeneroENReadAllHQL">from GeneroEN</query>
 		  <query name="GeneroENgetGenerosJuegoHQL"><![CDATA[SELECT generos FROM GeneroEN as generos INNER JOIN generos.Juego as juegos WHERE juegos.Id = :p_juego]]></query>
-		  <query name="GeneroENgetIdPorNombreHQL"><![CDATA[FROM GeneroEN WHERE GeneroEn.Nombre = :p_nombre]]></query>
+		  <query name="GeneroENgetIdPorNombreHQL"><![CDATA[FROM GeneroEN as genero WHERE genero.Nombre = :p_nombre]]></query>
 		</hibernate-mapping>
 	

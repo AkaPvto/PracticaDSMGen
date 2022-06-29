@@ -53,18 +53,18 @@ namespace GoGaming.Controllers
 
 
             IList<GeneroEN> listaGeneros = generoCEN.ReadAll(0, -1);
-            List<string[]> listaCheck = new List<string[]>();
-            foreach(GeneroEN genero in listaGeneros)
+            List<string> listaNombres = new List<string>();
+            foreach (GeneroEN genero in listaGeneros)
             {
-                string[] aux = { genero.Id.ToString() , genero.Nombre, "true" };
-                listaCheck.Add(aux);
+                listaNombres.Add(genero.Nombre);
             }
             ViewData["numGeneros"] = listaGeneros.Count();
-            JuegoViewModel juegoVM = new JuegoViewModel();
-            juegoVM.Generos = listaCheck;
+            ViewData["nombresGenero"] = listaNombres.ToArray();
+            //JuegoViewModel juegoVM = new JuegoViewModel();
+            //juegoVM.Generos = listaCheck;
 
             SessionClose();
-            return View(juegoVM);
+            return View();
         }
 
         // POST: Juego/Create
@@ -73,9 +73,24 @@ namespace GoGaming.Controllers
         {
             try
             {
-                JuegoCEN juegoCEN = new JuegoCEN();
-                //juegoCEN.New_(juegoVM.Nombre, juegoVM.Descripcion, juegoVM.Portada);
+                SessionInitialize();
+                GeneroCAD generoCAD = new GeneroCAD(session);
+                GeneroCEN generoCEN = new GeneroCEN(generoCAD);
+                IList<GeneroEN> listaGeneros = generoCEN.ReadAll(0, -1);
+                IList<int> generos = new List<int>();
+                for(int i = 0; i<listaGeneros.Count(); i++)
+                {
+                    if (juegoVM.Generos[i])
+                    {
+                        generos.Add(listaGeneros[i].Id);
+                    }
+                }
 
+                JuegoCEN juegoCEN = new JuegoCEN();
+                juegoCEN.New_(juegoVM.Nombre, juegoVM.Descripcion, juegoVM.Portada, generos);
+
+
+                SessionClose();
                 return RedirectToAction("Index");
             }
             catch
