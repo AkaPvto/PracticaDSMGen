@@ -142,50 +142,6 @@ namespace GoGaming.Controllers
                 return View();
             }
         }
-
-        /*public ActionResult Resultado(FormCollection collection)
-        {
-            SessionInitialize();
-            ComunidadCAD anuCAD = new ComunidadCAD(session);
-            ComunidadCEN anuncioCEN = new ComunidadCEN(anuCAD);
-
-            ComunidadAssembler comunidadAssembler = new ComunidadAssembler();
-
-            IList<ComunidadViewModel> comunidadDevolver;
-
-            string datos = collection.Get("Datos");
-
-            IList<ComunidadEN> resultadosFinales = new List<ComunidadEN>();
-
-
-            IList<ComunidadEN> resultadosFinales2 = new List<ComunidadEN>();
-
-            foreach (var anuncio in resultadosFinales)
-            {
-                    resultadosFinales2.Add(anuncio);
-              
-            }
-
-            //Comprobamos que al menos haya un dato
-            if (!resultadosFinales2.Any())
-            {
-                SessionClose();
-                return RedirectToAction("SinResultados");
-            }
-            else
-
-            //Pasamos la lista de AnuncioEN a AnuncioViewModel
-            comunidadDevolver = comunidadAssembler.ConvertListENTModel(resultadosFinales2);
-
-            SessionClose();
-
-            return View(comunidadDevolver);
-    }
-
-        public ActionResult SinResultados()
-        {
-            return View();
-        }*/
     
     }
 }

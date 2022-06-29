@@ -2,6 +2,7 @@
 using GoGaming.Models;
 using PracticaDSMGenNHibernate.CAD.DSMPracticas;
 using PracticaDSMGenNHibernate.CEN.DSMPracticas;
+using PracticaDSMGenNHibernate.CP.DSMPracticas;
 using PracticaDSMGenNHibernate.EN.DSMPracticas;
 using System;
 using System.Collections.Generic;
@@ -39,6 +40,13 @@ namespace GoGaming.Controllers
 
             IEnumerable<ComunidadViewModel> listViewModel = (IEnumerable<ComunidadViewModel>)new ComunidadAssembler().ConvertListENTModel(lista).ToList();
 
+            JuegoCP juCP = new JuegoCP(session);
+
+            String usuario_OID = "princesita23@gmail.com"; //Tiene que obtener el usuario que este loggeado
+            IList<JuegoEN> listEN2 = juCP.RecomendarJuego(usuario_OID);
+            //IEnumerable<JuegoViewModel> listViewModel2 = new JuegoAssembler().ConvertListENToModel(listEN).ToList();
+            ViewData["JuegoRec"] = listEN2;
+            ViewData["iteraciones"] = 0;
             SessionClose();
 
             return View(listViewModel);*/
