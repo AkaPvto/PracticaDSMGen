@@ -33,7 +33,7 @@
             @Html.DisplayFor(modelItem => item.Descripcion)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Portada)
+            <img height="60" width="100 " src="@Html.DisplayFor(modelItem => item.Portada)" />
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

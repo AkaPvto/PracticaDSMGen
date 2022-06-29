@@ -1,4 +1,10 @@
-﻿using System;
+﻿using GoGaming.Assemblers;
+using GoGaming.Models;
+using PracticaDSMGenNHibernate.CAD.DSMPracticas;
+using PracticaDSMGenNHibernate.CEN.DSMPracticas;
+using PracticaDSMGenNHibernate.CP.DSMPracticas;
+using PracticaDSMGenNHibernate.EN.DSMPracticas;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -6,23 +12,55 @@ using System.Web.Mvc;
 
 namespace GoGaming.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BasicController
     {
         public ActionResult Index()
         {
-            return View();
+            SessionInitialize();
+
+            JuegoCAD juCAD = new JuegoCAD(session);
+            JuegoCEN juCEN = new JuegoCEN(juCAD);
+
+            IList<JuegoEN> listEN = juCEN.ReadAll(0, -1);
+            IList<JuegoEN> revList = new List<JuegoEN>();
+            for (int i = listEN.Count() - 1; i >= 0; i--)
+            {
+                revList.Add(listEN.ElementAt(i));
+                if (i < listEN.Count() - 9)
+                {
+                    break;
+                }
+            }
+            ViewData["JuegoReci"] = listEN;
+            ViewData["iter"] = 0;
+
+            ComunidadCAD comCad = new ComunidadCAD(session);
+            ComunidadCEN comCEN = new ComunidadCEN(comCad);
+            IList<ComunidadEN> lista = comCEN.ReadAll(0, 5);
+
+            IEnumerable<ComunidadViewModel> listViewModel = (IEnumerable<ComunidadViewModel>)new ComunidadAssembler().ConvertListENTModel(lista).ToList();
+
+            /*JuegoCP juCP = new JuegoCP(session);
+
+            String usuario_OID = "princesita23@gmail.com"; //Tiene que obtener el usuario que este loggeado
+            IList<JuegoEN> listEN2 = juCP.RecomendarJuego();
+            ViewData["JuegoRec"] = listEN2;
+            ViewData["iteraciones"] = 0;*/
+            SessionClose();
+
+            return View(listViewModel);
         }
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Sobre Go-Gaming";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Nuestra página de contacto";
 
             return View();
         }

@@ -1,0 +1,49 @@
+﻿@model IEnumerable<GoGaming.Models.JuegoViewModel>
+
+@{
+    ViewBag.Title = "Juegos Buscados";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Juegos Buscados</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Generos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Portada)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Generos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                <img height="60" width="100 " src="@Html.DisplayFor(modelItem => item.Portada)" />
+            </td>
+            <td>
+                @Html.ActionLink("Detalle", "Details", new { nombre = item.Nombre })
+            </td>
+        </tr>
+    }
+
+</table>
+

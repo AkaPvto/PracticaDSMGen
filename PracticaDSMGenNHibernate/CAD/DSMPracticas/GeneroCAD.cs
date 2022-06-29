@@ -220,16 +220,16 @@ public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas
 
         return result;
 }
-public PracticaDSMGenNHibernate.EN.DSMPracticas.GeneroEN GetIdPorNombre (string arg0)
+public PracticaDSMGenNHibernate.EN.DSMPracticas.GeneroEN GetIdPorNombre (string p_nombre)
 {
         PracticaDSMGenNHibernate.EN.DSMPracticas.GeneroEN result;
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM GeneroEN self where FROM GeneroEN WHERE GeneroEn.Nombre = :p_nombre";
+                //String sql = @"FROM GeneroEN self where FROM GeneroEN as genero WHERE genero.Nombre = :p_nombre";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("GeneroENgetIdPorNombreHQL");
-                query.SetParameter ("arg0", arg0);
+                query.SetParameter ("p_nombre", p_nombre);
 
 
                 result = query.UniqueResult<PracticaDSMGenNHibernate.EN.DSMPracticas.GeneroEN>();

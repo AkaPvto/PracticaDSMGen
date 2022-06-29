@@ -77,9 +77,9 @@ public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas
 {
         return _IGeneroCAD.GetGenerosJuego (p_juego);
 }
-public PracticaDSMGenNHibernate.EN.DSMPracticas.GeneroEN GetIdPorNombre (string arg0)
+public PracticaDSMGenNHibernate.EN.DSMPracticas.GeneroEN GetIdPorNombre (string p_nombre)
 {
-        return _IGeneroCAD.GetIdPorNombre (arg0);
+        return _IGeneroCAD.GetIdPorNombre (p_nombre);
 }
 public GeneroEN ReadOID (int id
                          )

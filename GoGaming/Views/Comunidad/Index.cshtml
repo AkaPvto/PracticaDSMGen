@@ -1,0 +1,55 @@
+﻿@model IEnumerable<GoGaming.Models.ComunidadViewModel>
+
+@{
+    ViewBag.Title = "Comunidades";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Comunidades más recientes</h2>
+
+<p>
+    @Html.ActionLink("Crear Nueva Comunidad", "Create")
+</p>
+
+<br />
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NomJuego)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaCreacion)
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomJuego)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaCreacion)
+            </td>
+            <td>
+                @Html.ActionLink("Detalle", "Details", new { nom = item.Nombre }) |
+                @Html.ActionLink("Editar", "Edit", new { nom = item.Nombre })
+            </td>
+        </tr>
+    }
+
+</table>
