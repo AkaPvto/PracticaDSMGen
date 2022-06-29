@@ -230,6 +230,10 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Images\lol.jpg" />
+    <Content Include="Images\portada_tft.jpeg" />
+    <Content Include="Images\rocket.jpg" />
+    <Content Include="Images\hollow.jpg" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -290,6 +294,8 @@
     <Content Include="Views\Comunidad\Create.cshtml" />
     <Content Include="Views\Comunidad\Details.cshtml" />
     <Content Include="Views\Comunidad\SinResultados.cshtml" />
+    <Content Include="Views\Juego\Buscar.cshtml" />
+    <Content Include="Views\Juego\SinResultados.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

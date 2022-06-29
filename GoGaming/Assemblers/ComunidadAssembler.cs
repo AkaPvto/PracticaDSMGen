@@ -17,6 +17,7 @@ namespace GoGaming.Assemblers
             com.Nombre = en.Nombre;
 
             com.Juego = en.Juego.Id;
+            com.NomJuego = en.Juego.Nombre;
 
             com.Descripcion = en.Descripcion;
             com.FechaCreacion = (DateTime)en.FechaCreacion;

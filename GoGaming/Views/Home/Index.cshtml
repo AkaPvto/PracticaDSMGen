@@ -34,7 +34,6 @@
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>
         <li data-target="#myCarousel" data-slide-to="2"></li>
-        <li data-target="#myCarousel" data-slide-to="3"></li>
     </ol>
 
     <!-- Wrapper for slides -->
@@ -59,18 +58,6 @@
             ViewData["iter"] = 1;
 
         }
-        @*<div class="item active" align="center">
-                <img src="~/Images/portada_tft.jpg" width="400" height="400" alt="">
-            </div>
-            <div class="item" align="center">
-                <img src="~/Images/portada_lol.jpg" width="400" height="400" alt="">
-            </div>
-            <div class="item" align="center">
-                <img src="~/Images/portada_rocket_league.jpg" width="400" height="400" alt="">
-            </div>
-            <div class="item" align="center">
-                <img src="~/Images/portada_silksong.jpg" width="450" height="400" alt="">
-            </div>*@
     </div>
 
     <!-- Controls -->
@@ -91,7 +78,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Juego)
+            @Html.DisplayNameFor(model => model.NomJuego)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Nombre)
@@ -109,7 +96,7 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Juego)
+                @Html.DisplayFor(modelItem => item.NomJuego)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Nombre)

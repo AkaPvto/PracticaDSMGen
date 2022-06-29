@@ -106,13 +106,13 @@ public static void InitializeData ()
                 JuegoCEN juegoCEN = new JuegoCEN ();
                 int[] aux_rocket = { gen1, gen2 };
                 IList<int> generos = aux_rocket;
-                int juego1 = juegoCEN.New_ ("Rocket League", "Juego de coches y futbol", "portada_rocket_league", generos);
+                int juego1 = juegoCEN.New_ ("Rocket League", "Juego de coches y futbol", "/Images/rocket.jpg", generos);
                 int[] aux_silksong = { gen3, gen2, gen4 };
                 generos = aux_silksong;
-                int juego2 = juegoCEN.New_ ("Hollow Knight: Silksong", "Solo existe en esta bbdd", "portada_silksong", generos);
+                int juego2 = juegoCEN.New_ ("Hollow Knight: Silksong", "Solo existe en esta bbdd", "/Images/hollow.jpg", generos);
                 int[] aux_tft = { gen5, gen6 };
                 generos = aux_tft;
-                int juego3 = juegoCEN.New_ ("League of Legends: TFT", "Solo apto para gente inteligente", "portada_tft", generos);
+                int juego3 = juegoCEN.New_ ("League of Legends: TFT", "Solo apto para gente inteligente", "/Images/portada_tft.jpeg", generos);
 
                 Console.WriteLine ("Introducimos comunidades a la bbdd...");
                 ComunidadCEN comunidadCEN = new ComunidadCEN ();
