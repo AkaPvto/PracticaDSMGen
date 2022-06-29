@@ -290,6 +290,7 @@
     <Content Include="Views\Comunidad\Create.cshtml" />
     <Content Include="Views\Comunidad\Details.cshtml" />
     <Content Include="Views\Comunidad\SinResultados.cshtml" />
+    <Content Include="Views\Juego\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
