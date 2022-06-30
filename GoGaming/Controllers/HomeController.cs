@@ -16,7 +16,7 @@ namespace GoGaming.Controllers
     {
         public ActionResult Index()
         {
-            /*SessionInitialize();
+            SessionInitialize();
 
             JuegoCAD juCAD = new JuegoCAD(session);
             JuegoCEN juCEN = new JuegoCEN(juCAD);
@@ -40,18 +40,15 @@ namespace GoGaming.Controllers
 
             IEnumerable<ComunidadViewModel> listViewModel = (IEnumerable<ComunidadViewModel>)new ComunidadAssembler().ConvertListENTModel(lista).ToList();
 
-            JuegoCP juCP = new JuegoCP(session);
+            /*JuegoCP juCP = new JuegoCP(session);
 
             String usuario_OID = "princesita23@gmail.com"; //Tiene que obtener el usuario que este loggeado
-            IList<JuegoEN> listEN2 = juCP.RecomendarJuego(usuario_OID);
-            //IEnumerable<JuegoViewModel> listViewModel2 = new JuegoAssembler().ConvertListENToModel(listEN).ToList();
+            IList<JuegoEN> listEN2 = juCP.RecomendarJuego();
             ViewData["JuegoRec"] = listEN2;
-            ViewData["iteraciones"] = 0;
+            ViewData["iteraciones"] = 0;*/
             SessionClose();
 
-            return View(listViewModel);*/
-
-            return View();
+            return View(listViewModel);
         }
 
         public ActionResult About()

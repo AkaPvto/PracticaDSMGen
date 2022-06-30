@@ -1,4 +1,4 @@
-﻿@model IEnumerable<GoGaming.Models.JuegoViewModel>
+﻿@model IEnumerable<GoGaming.Models.PostViewModel>
 
 @{
     ViewBag.Title = "Index";
@@ -13,13 +13,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Nombre)
+            @Html.DisplayNameFor(model => model.Contenido)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Descripcion)
+            @Html.DisplayNameFor(model => model.Titulo)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Portada)
+            @Html.DisplayNameFor(model => model.Imagen)
         </th>
         <th></th>
     </tr>
@@ -27,13 +27,13 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Nombre)
+            @Html.DisplayFor(modelItem => item.Contenido)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Descripcion)
+            @Html.DisplayFor(modelItem => item.Titulo)
         </td>
         <td>
-            <img height="60" width="100 " src="@Html.DisplayFor(modelItem => item.Portada)" />
+            @Html.DisplayFor(modelItem => item.Imagen)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
