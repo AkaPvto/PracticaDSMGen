@@ -14,7 +14,7 @@ namespace GoGaming.Models
 
         [ScaffoldColumn(false)]
         [Display(Prompt = "Generos", Description = "Generos del juego", Name = "Generos")]
-        public List<Boolean> Generos { get; set; }
+        public List<bool> Generos { get; set; }
 
         [Display(Prompt = "Nombre", Description = "Nombre del juego", Name = "Nombre")]
         [Required(ErrorMessage = "Debe escribir el nombre del juego")]

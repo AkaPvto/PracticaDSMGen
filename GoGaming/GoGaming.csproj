@@ -222,6 +222,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\JuegoViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\UsuarioViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -305,6 +306,8 @@
     <Content Include="Views\Juego\Buscar.cshtml" />
     <Content Include="Views\Juego\SinResultados.cshtml" />
     <Content Include="Views\Juego\Details.cshtml" />
+    <Content Include="Views\Juego\Delete.cshtml" />
+    <Content Include="Views\Juego\Edit.cshtml" />
     <Content Include="Views\Aviso\Index.cshtml" />
     <Content Include="Views\Aviso\Details.cshtml" />
     <Content Include="Views\Aviso\Create.cshtml" />

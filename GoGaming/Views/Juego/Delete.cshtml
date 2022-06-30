@@ -1,12 +1,13 @@
 ﻿@model GoGaming.Models.JuegoViewModel
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Delete";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Delete</h2>
 
+<h3>Are you sure you want to delete this?</h3>
 <div>
     <h4>JuegoViewModel</h4>
     <hr />
@@ -41,10 +42,10 @@
 
         <dd>
             @{
-                var generos = Model.Generos; 
+                var generos = Model.Generos;
                 var genNombres = (string[])ViewData["nombresGenero"];
                 var first = false;
-             }
+            }
             <div>
                 @for (var i = 0; i < (int)ViewData["numGeneros"]; i++)
                 {
@@ -65,12 +66,17 @@
 
                 }
             </div>
-            
+
         </dd>
 
     </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
