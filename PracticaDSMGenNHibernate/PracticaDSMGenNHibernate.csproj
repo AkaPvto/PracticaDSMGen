@@ -179,12 +179,15 @@
 	<Compile Include="CAD\DSMPracticas\JuegoCAD.cs" />
 	<Compile Include="CP\DSMPracticas\JuegoCP.cs" />
 			
+			<Compile Include="CP\DSMPracticas\JuegoCP_Modify.cs" />
 			
 			
 			
 			
 			
 			<Compile Include="CP\DSMPracticas\JuegoCP_RecomendarJuego.cs" />
+			
+			
 			
 			
 	<Compile Include="EN\DSMPracticas\ComunidadEN.cs" />

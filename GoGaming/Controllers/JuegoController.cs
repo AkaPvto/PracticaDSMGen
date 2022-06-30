@@ -9,6 +9,7 @@ using PracticaDSMGenNHibernate.EN.DSMPracticas;
 using NHibernate;
 using GoGaming.Models;
 using GoGaming.Assemblers;
+using PracticaDSMGenNHibernate.CP.DSMPracticas;
 
 namespace GoGaming.Controllers
 {
@@ -20,10 +21,21 @@ namespace GoGaming.Controllers
             SessionInitialize();
             JuegoCAD juegoCAD = new JuegoCAD(session);
             JuegoCEN juegoCEN = new JuegoCEN(juegoCAD);
+            GeneroCAD generoCAD = new GeneroCAD(session);
+            GeneroCEN generoCEN = new GeneroCEN(generoCAD);
 
             IList<JuegoEN> listEN = juegoCEN.ReadAll(0, -1);
             IEnumerable<JuegoViewModel> listVM = new JuegoAssembler().ConvertListENToModel(listEN).ToList();
 
+
+            IList<GeneroEN> listaGeneros = generoCEN.ReadAll(0, -1);
+            List<string> listaNombres = new List<string>();
+            foreach (GeneroEN genero in listaGeneros)
+            {
+                listaNombres.Add(genero.Nombre);
+            }
+            ViewData["numGeneros"] = listaGeneros.Count();
+            ViewData["nombresGenero"] = listaNombres.ToArray();
             SessionClose();
 
             return View(listVM);
@@ -116,8 +128,26 @@ namespace GoGaming.Controllers
         // GET: Juego/Edit/5
         public ActionResult Edit(int id)
         {
+            SessionInitialize();
+            GeneroCAD generoCAD = new GeneroCAD(session);
+            GeneroCEN generoCEN = new GeneroCEN(generoCAD);
+
+
+            IList<GeneroEN> listaGeneros = generoCEN.ReadAll(0, -1);
+            List<string> listaNombres = new List<string>();
+            foreach (GeneroEN genero in listaGeneros)
+            {
+                listaNombres.Add(genero.Nombre);
+            }
+            ViewData["numGeneros"] = listaGeneros.Count();
+            ViewData["nombresGenero"] = listaNombres.ToArray();
+            //JuegoViewModel juegoVM = new JuegoViewModel();
+            //juegoVM.Generos = listaCheck;
             JuegoEN juegoEN = new JuegoCEN().ReadOID(id);
             JuegoViewModel juegoVM = new JuegoAssembler().ConvertENToModelUI(juegoEN);
+
+            SessionClose();
+            
 
             return View(juegoVM);
         }
@@ -128,9 +158,23 @@ namespace GoGaming.Controllers
         {
             try
             {
-                JuegoCEN juegoCEN = new JuegoCEN();
-                juegoCEN.Modify(id, juegoVM.Nombre, juegoVM.Descripcion, juegoVM.Portada);
+                SessionInitialize();
+                GeneroCAD generoCAD = new GeneroCAD(session);
+                GeneroCEN generoCEN = new GeneroCEN(generoCAD);
+                IList<GeneroEN> listaGeneros = generoCEN.ReadAll(0, -1);
+                IList<int> generos = new List<int>();
+                for (int i = 0; i < listaGeneros.Count(); i++)
+                {
+                    if (juegoVM.Generos[i])
+                    {
+                        generos.Add(listaGeneros[i].Id);
+                    }
+                }
 
+                JuegoCP juegoCP = new JuegoCP();
+                juegoCP.Modify(id, juegoVM.Nombre, juegoVM.Descripcion, juegoVM.Portada, generos);
+
+                SessionClose();
                 return RedirectToAction("Index");
             }
             catch

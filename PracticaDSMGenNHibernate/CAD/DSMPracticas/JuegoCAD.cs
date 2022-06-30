@@ -330,5 +330,82 @@ public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas
 
         return result;
 }
+public void AddGenero (int p_Juego_OID, System.Collections.Generic.IList<int> p_genero_OIDs)
+{
+        PracticaDSMGenNHibernate.EN.DSMPracticas.JuegoEN juegoEN = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                juegoEN = (JuegoEN)session.Load (typeof(JuegoEN), p_Juego_OID);
+                PracticaDSMGenNHibernate.EN.DSMPracticas.GeneroEN generoENAux = null;
+                if (juegoEN.Genero == null) {
+                        juegoEN.Genero = new System.Collections.Generic.List<PracticaDSMGenNHibernate.EN.DSMPracticas.GeneroEN>();
+                }
+
+                foreach (int item in p_genero_OIDs) {
+                        generoENAux = new PracticaDSMGenNHibernate.EN.DSMPracticas.GeneroEN ();
+                        generoENAux = (PracticaDSMGenNHibernate.EN.DSMPracticas.GeneroEN)session.Load (typeof(PracticaDSMGenNHibernate.EN.DSMPracticas.GeneroEN), item);
+                        generoENAux.Juego.Add (juegoEN);
+
+                        juegoEN.Genero.Add (generoENAux);
+                }
+
+
+                session.Update (juegoEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is PracticaDSMGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new PracticaDSMGenNHibernate.Exceptions.DataLayerException ("Error in JuegoCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+}
+
+public void DeleteGenero (int p_Juego_OID, System.Collections.Generic.IList<int> p_genero_OIDs)
+{
+        try
+        {
+                SessionInitializeTransaction ();
+                PracticaDSMGenNHibernate.EN.DSMPracticas.JuegoEN juegoEN = null;
+                juegoEN = (JuegoEN)session.Load (typeof(JuegoEN), p_Juego_OID);
+
+                PracticaDSMGenNHibernate.EN.DSMPracticas.GeneroEN generoENAux = null;
+                if (juegoEN.Genero != null) {
+                        foreach (int item in p_genero_OIDs) {
+                                generoENAux = (PracticaDSMGenNHibernate.EN.DSMPracticas.GeneroEN)session.Load (typeof(PracticaDSMGenNHibernate.EN.DSMPracticas.GeneroEN), item);
+                                if (juegoEN.Genero.Contains (generoENAux) == true) {
+                                        juegoEN.Genero.Remove (generoENAux);
+                                        generoENAux.Juego.Remove (juegoEN);
+                                }
+                                else
+                                        throw new ModelException ("The identifier " + item + " in p_genero_OIDs you are trying to unrelationer, doesn't exist in JuegoEN");
+                        }
+                }
+
+                session.Update (juegoEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is PracticaDSMGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new PracticaDSMGenNHibernate.Exceptions.DataLayerException ("Error in JuegoCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+}
 }
 }

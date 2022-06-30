@@ -19,6 +19,9 @@
             @Html.DisplayNameFor(model => model.Descripcion)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Generos)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Portada)
         </th>
         <th></th>
@@ -31,6 +34,32 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Descripcion)
+        </td>
+        <td>
+            @{
+                var generos = item.Generos;
+                var genNombres = (string[])ViewData["nombresGenero"];
+                var first = false;
+            }
+            <div>
+                @for (var i = 0; i < (int)ViewData["numGeneros"]; i++)
+                {
+                    if (generos[i])
+                    {
+                        if (!first)
+                        {
+                            @genNombres[i];
+                            first = true;
+                        }
+                        else
+                        {
+                            var aux = ", ";
+                            @aux;
+                            @genNombres[i];
+                        }
+                    }
+
+                }
         </td>
         <td>
             <img height="60" width="100 " src="@Html.DisplayFor(modelItem => item.Portada)" />
