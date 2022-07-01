@@ -46,6 +46,7 @@
 
     </dl>
 </div>
+@{Html.RenderAction("IndexPartial", "Post", new { id = Model.CodigoComunidad });}
 <p>
     @Html.ActionLink("Editar", "Edit", new { nom = Model.Nombre }) |
     @Html.ActionLink("Atrás", "Index")
