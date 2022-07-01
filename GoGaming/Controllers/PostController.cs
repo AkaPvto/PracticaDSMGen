@@ -84,7 +84,8 @@ namespace GoGaming.Controllers
             {
                 // TODO: Add update logic here
                 PostCEN postCEN = new PostCEN();
-                postCEN.Modify(post.Id, post.Contenido, post.Categoria, post.Titulo, post.Imagen, DateTime.Now, post.Likes);
+                PostEN postEN = postCEN.ReadOID(post.Id);
+                postCEN.Modify(post.Id, post.Contenido, postEN.Categoria, post.Titulo, post.Imagen, postEN.Hora, post.Likes);
                 //postCEN.Modify(post.Id, post.Contenido, post.Categoria, post.Titulo, post.Imagen, post.Hora, post.Likes);
                 return RedirectToAction("Index");
             }
