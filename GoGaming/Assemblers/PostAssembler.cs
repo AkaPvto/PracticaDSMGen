@@ -14,7 +14,7 @@ namespace GoGaming.Assemblers
             PostViewModel post = new PostViewModel();
             post.Id = en.Id;
             post.Contenido = en.Contenido;
-            post.Categoria = en.Categoria;
+            post.Categoria = (int)en.Categoria;
             post.Imagen = en.Imagen;
             post.Titulo = en.Titulo;
             post.Likes = en.Likes;

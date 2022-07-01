@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PracticaDSMGenNHibernate.Enumerated.DSMPracticas;
 
 namespace GoGaming.Controllers
 {
@@ -20,7 +21,6 @@ namespace GoGaming.Controllers
             SessionInitialize();
             PostCAD postCAD = new PostCAD(session);
             PostCEN postCEN = new PostCEN(postCAD);
-
             IList<PostEN> listEN = postCEN.ReadAll(0, -1);
             IEnumerable<PostViewModel> listViewModel = new PostAssembler().ConvertListENToModel(listEN).ToList();
             SessionClose();
@@ -43,8 +43,15 @@ namespace GoGaming.Controllers
         // GET: Post/Create
         public ActionResult Create()
         {
-            PostViewModel post = new PostViewModel();
-            return View(post);
+            Array values = Enum.GetValues(new Categoria_PostEnum().GetType());
+            IList<SelectListItem> enumLista = new List<SelectListItem>();
+            for(int i=0; i < values.Length; i++)
+            {
+                enumLista.Add(new SelectListItem { Text = values.GetValue(i).ToString(), Value = i.ToString() });
+            }
+
+            ViewData["Categoria"] = enumLista;
+            return View();
         }
 
         // POST: Post/Create
@@ -55,7 +62,10 @@ namespace GoGaming.Controllers
             {
                 // TODO: Add insert logic here
                 PostCP postCP = new PostCP();
-                postCP.New_(post.Contenido, 32770, 0000, post.Categoria, post.Titulo, post.Imagen, DateTime.Now);
+                Array values = Enum.GetValues(new Categoria_PostEnum().GetType());
+                Categoria_PostEnum prueba1 = (Categoria_PostEnum)post.Categoria;
+                Categoria_PostEnum prueba2 = (Categoria_PostEnum)values.GetValue(post.Categoria);
+                postCP.New_(post.Contenido, 32770, 0000, prueba1, post.Titulo, post.Imagen, DateTime.Now);
                 //postCP.New_(post.Contenido, ((UsuarioEN)Session["Usuario"]).Id, idComunidad, post.Categoria, post.Titulo, post.Imagen, DateTime.Now);
                 return RedirectToAction("Index");
             }
@@ -84,7 +94,7 @@ namespace GoGaming.Controllers
             {
                 // TODO: Add update logic here
                 PostCEN postCEN = new PostCEN();
-                postCEN.Modify(post.Id, post.Contenido, post.Categoria, post.Titulo, post.Imagen, DateTime.Now, post.Likes);
+                postCEN.Modify(post.Id, post.Contenido, (Categoria_PostEnum)post.Categoria, post.Titulo, post.Imagen, DateTime.Now, post.Likes);
                 //postCEN.Modify(post.Id, post.Contenido, post.Categoria, post.Titulo, post.Imagen, post.Hora, post.Likes);
                 return RedirectToAction("Index");
             }

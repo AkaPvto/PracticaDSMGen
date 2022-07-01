@@ -18,9 +18,9 @@ namespace GoGaming.Models
         [StringLength(maximumLength: 800, ErrorMessage = "El post no puede tener más de 800 caracteres")]
         public string Contenido { get; set; }
 
+        [ScaffoldColumn(false)]
         [Display(Prompt = "Categoría del Post", Description = "Categoría del Post", Name = "Categoria")]
-        [Required(ErrorMessage = "El post debe tener una categoría")]
-        public Categoria_PostEnum Categoria { get; set; }
+        public int Categoria { get; set; }
 
         [Display(Prompt = "Título del post", Description = "Título del post", Name = "Titulo")]
         [Required(ErrorMessage = "El post debe tener un título")]
