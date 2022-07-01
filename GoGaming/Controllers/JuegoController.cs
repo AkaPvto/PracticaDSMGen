@@ -246,10 +246,24 @@ namespace GoGaming.Controllers
             SessionInitialize();
             JuegoCAD juCAD = new JuegoCAD(session);
             JuegoCEN juCEN = new JuegoCEN(juCAD);
+            GeneroCAD generoCAD = new GeneroCAD(session);
+            GeneroCEN generoCEN = new GeneroCEN(generoCAD);
 
             IList<JuegoEN> listEN = juCEN.Busqueda(nom);
             IEnumerable<JuegoViewModel> listViewModel = new JuegoAssembler().ConvertListENToModel(listEN).ToList();
+
+            IList<GeneroEN> listaGeneros = generoCEN.ReadAll(0, -1);
+            List<string> listaNombres = new List<string>();
+            foreach (GeneroEN genero in listaGeneros)
+            {
+                listaNombres.Add(genero.Nombre);
+            }
+            ViewData["numGeneros"] = listaGeneros.Count();
+            ViewData["nombresGenero"] = listaNombres.ToArray();
             SessionClose();
+
+
+
 
             if (listEN.Count == 0)
             {
