@@ -27,6 +27,16 @@ namespace GoGaming.Controllers
             return View(listViewModel);
         }
 
+        public ActionResult IndexPartial(int id)
+        {
+            SessionInitialize();
+            PostCAD postCAD = new PostCAD(session);
+            PostCEN postCEN = new PostCEN(postCAD);
+            IList<PostEN> listEN = postCEN.GetPostComunidadFecha(id);
+            IEnumerable<PostViewModel> listViewModel = new PostAssembler().ConvertListENToModel(listEN).ToList();
+            SessionClose();
+            return View(listViewModel);
+        }
         // GET: Post/Details/5
         public ActionResult Details(int id)
         {
@@ -94,7 +104,8 @@ namespace GoGaming.Controllers
             {
                 // TODO: Add update logic here
                 PostCEN postCEN = new PostCEN();
-                postCEN.Modify(post.Id, post.Contenido, (Categoria_PostEnum)post.Categoria, post.Titulo, post.Imagen, DateTime.Now, post.Likes);
+                PostEN postEN = postCEN.ReadOID(post.Id);
+                postCEN.Modify(post.Id, post.Contenido, (Categoria_PostEnum)post.Categoria, post.Titulo, post.Imagen, postEN.Hora, post.Likes);
                 //postCEN.Modify(post.Id, post.Contenido, post.Categoria, post.Titulo, post.Imagen, post.Hora, post.Likes);
                 return RedirectToAction("Index");
             }

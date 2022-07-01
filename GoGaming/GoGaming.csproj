@@ -203,6 +203,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Assemblers\NotificacionAssembler.cs" />
     <Compile Include="Assemblers\ComunidadAssembler.cs" />
     <Compile Include="Assemblers\AvisoAssembler.cs" />
     <Compile Include="Assemblers\PostAssembler.cs" />
@@ -211,6 +212,7 @@
     <Compile Include="Assemblers\UsuarioAssembler.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BasicController.cs" />
+    <Compile Include="Controllers\NotificacionControler.cs" />
     <Compile Include="Controllers\ComentarioController.cs" />
     <Compile Include="Controllers\ComunidadController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -225,6 +227,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AvisoViewModel.cs" />
     <Compile Include="Models\ComunidadViewModel.cs" />
+    <Compile Include="Models\NotificacionViewModel.cs" />
     <Compile Include="Models\PostViewModel.cs" />
     <Compile Include="Models\ComentarioViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -321,6 +324,11 @@
     <Content Include="Views\Aviso\Create.cshtml" />
     <Content Include="Views\Aviso\Delete.cshtml" />
     <Content Include="Views\Aviso\Edit.cshtml" />
+    <Content Include="Views\Notificacion\Index.cshtml" />
+    <Content Include="Views\Notificacion\Details.cshtml" />
+    <Content Include="Views\Notificacion\Delete.cshtml" />
+    <Content Include="Views\Notificacion\Edit.cshtml" />
+    <Content Include="Views\Notificacion\Create.cshtml" />
     <Content Include="Views\Juego\DetallesDesdeHome.cshtml" />
     <Content Include="Views\Juego\DetallesDesdeBuscador.cshtml" />
     <Content Include="Views\Usuario\Index.cshtml" />
