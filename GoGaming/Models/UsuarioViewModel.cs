@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace GoGaming.Models
 {
-    public class UsuarioViewModel
+    public class UsuarioViewModel 
     {
         [ScaffoldColumn(false)]
         public int Id { get; set; }
@@ -14,7 +14,7 @@ namespace GoGaming.Models
         [Display(Prompt = "Nombre de usuario", Description = "Nombre de usuario", Name = "Nickname ")]
         [Required(ErrorMessage = "El nombre de usuario es obligatorio")]
         [StringLength(25, MinimumLength= 4, ErrorMessage = "El nombre de usuario debe tener entre 4 y 25 caracteres. ")]
-        //se estaba sobrecargando
+
         public string Nickname { get; set; }
 
         [Display(Prompt = "Nombre", Description = "Nombre real del usuario", Name = "Nombre ")]
