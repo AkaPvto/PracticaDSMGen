@@ -314,6 +314,7 @@
     <Content Include="Views\Aviso\Delete.cshtml" />
     <Content Include="Views\Aviso\Edit.cshtml" />
     <Content Include="Views\Juego\DetallesDesdeHome.cshtml" />
+    <Content Include="Views\Juego\DetallesDesdeBuscador.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

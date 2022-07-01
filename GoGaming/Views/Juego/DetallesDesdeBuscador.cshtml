@@ -1,0 +1,75 @@
+﻿@model GoGaming.Models.JuegoViewModel
+
+@{
+    ViewBag.Title = "Detalles Juego";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalle</h2>
+
+<div>
+    <h4>Juego</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Portada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Portada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Generos)
+        </dt>
+
+        <dd>
+            @{
+                var generos = Model.Generos;
+                var genNombres = (string[])ViewData["nombresGenero"];
+                var first = false;
+            }
+            <div>
+                @for (var i = 0; i < (int)ViewData["numGeneros"]; i++)
+                {
+                    if (generos[i])
+                    {
+                        if (!first)
+                        {
+                            @genNombres[i];
+                            first = true;
+                        }
+                        else
+                        {
+                            var aux = ", ";
+                            @aux;
+                            @genNombres[i];
+                        }
+                    }
+
+                }
+            </div>
+
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Atrás", "../Home/Index")
+</p>
