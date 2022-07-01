@@ -70,6 +70,36 @@ namespace GoGaming.Controllers
             return View(juegoVM);
         }
 
+        public ActionResult DetallesDesdeHome(int id)
+        {
+            SessionInitialize();
+            JuegoCAD juegoCAD = new JuegoCAD(session);
+            JuegoCEN juegoCEN = new JuegoCEN(juegoCAD);
+            GeneroCAD generoCAD = new GeneroCAD(session);
+            GeneroCEN generoCEN = new GeneroCEN(generoCAD);
+
+
+            IList<GeneroEN> listaGeneros = generoCEN.ReadAll(0, -1);
+            List<string> listaNombres = new List<string>();
+            foreach (GeneroEN genero in listaGeneros)
+            {
+                listaNombres.Add(genero.Nombre);
+            }
+            ViewData["numGeneros"] = listaGeneros.Count();
+            ViewData["nombresGenero"] = listaNombres.ToArray();
+
+            JuegoEN juegoEN = juegoCEN.ReadOID(id);
+            JuegoViewModel juegoVM = new JuegoAssembler().ConvertENToModelUI(juegoEN);
+
+
+
+            SessionClose();
+
+            return View(juegoVM);
+        }
+
+        
+
         // GET: Juego/Create
         public ActionResult Create()
         {
