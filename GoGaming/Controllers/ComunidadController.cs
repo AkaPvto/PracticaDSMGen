@@ -53,7 +53,7 @@ namespace GoGaming.Controllers
             return View();
         }
 
-        [Authorize]
+        //[Authorize]
         // GET: Comunidad/Create
         public ActionResult Create()
         {
@@ -79,7 +79,7 @@ namespace GoGaming.Controllers
             }
         }
 
-        [Authorize]
+        //[Authorize]
         // GET: Comunidad/Edit/5
         public ActionResult Edit(int id)
         {

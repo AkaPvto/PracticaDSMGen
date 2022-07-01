@@ -41,10 +41,10 @@
 
         <dd>
             @{
-                var generos = Model.Generos; 
+                var generos = Model.Generos;
                 var genNombres = (string[])ViewData["nombresGenero"];
                 var first = false;
-             }
+            }
             <div>
                 @for (var i = 0; i < (int)ViewData["numGeneros"]; i++)
                 {
@@ -65,12 +65,11 @@
 
                 }
             </div>
-            
+
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Atrás", "Index")
+    @Html.ActionLink("Atrás", "../Home/Index")
 </p>
