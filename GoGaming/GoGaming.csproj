@@ -332,6 +332,8 @@
     <Content Include="Views\Juego\DetallesDesdeHome.cshtml" />
     <Content Include="Views\Juego\DetallesDesdeBuscador.cshtml" />
     <Content Include="Views\Usuario\Index.cshtml" />
+    <Content Include="Views\Post\IndexPartialFecha.cshtml" />
+    <Content Include="Views\Post\IndexPartialLikes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

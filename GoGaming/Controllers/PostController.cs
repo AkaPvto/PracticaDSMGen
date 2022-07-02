@@ -27,12 +27,23 @@ namespace GoGaming.Controllers
             return View(listViewModel);
         }
 
-        public ActionResult IndexPartial(int id)
+        public ActionResult IndexPartialFecha(int id)
         {
             SessionInitialize();
             PostCAD postCAD = new PostCAD(session);
             PostCEN postCEN = new PostCEN(postCAD);
             IList<PostEN> listEN = postCEN.GetPostComunidadFecha(id);
+            IEnumerable<PostViewModel> listViewModel = new PostAssembler().ConvertListENToModel(listEN).ToList();
+            SessionClose();
+            return View(listViewModel);
+        }
+
+        public ActionResult IndexPartialLikes(int id)
+        {
+            SessionInitialize();
+            PostCAD postCAD = new PostCAD(session);
+            PostCEN postCEN = new PostCEN(postCAD);
+            IList<PostEN> listEN = postCEN.GetPostComunidadLikes(id);
             IEnumerable<PostViewModel> listViewModel = new PostAssembler().ConvertListENToModel(listEN).ToList();
             SessionClose();
             return View(listViewModel);

@@ -5,49 +5,67 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Detalle</h2>
+<h2>Comunidad de @Model.Nombre</h2>
 
-<div>
-    <h4>Comunidad</h4>
+<div class="contenedor">
     <hr />
-    <dl class="dl-horizontal">
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NomJuego)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NomJuego)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Descripcion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Descripcion)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FechaCreacion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FechaCreacion)
-        </dd>
-
-    </dl>
+    <p>Ordenar por:</p>
+    <select class="form-control" id="select">
+        <option value="Fecha">Fecha</option>
+        <option value="Likes">Likes</option>
+    </select>
 </div>
-@{Html.RenderAction("IndexPartial", "Post", new { id = Model.CodigoComunidad });}
-<p>
-    @Html.ActionLink("Editar", "Edit", new { nom = Model.Nombre }) |
-    @Html.ActionLink("Atrás", "Index")
-</p>
+<div id="partialView">
+    <div id="fecha">
+        @{Html.RenderAction("IndexPartialFecha", "Post", new { id = Model.CodigoComunidad });}
+    </div>
+    <div id="likes">
+        @{Html.RenderAction("IndexPartialLikes", "Post", new { id = Model.CodigoComunidad });}
+    </div>
+</div>
+<button class="form-control" onclick="window.location = '/Post/Create/'+ @Model.CodigoComunidad;">Crear un Post</button>
+
+@section Scripts
+{
+    <script>
+        var fecha = "";
+        var likes = "";
+        window.onload = function () {
+            fecha =  document.querySelector("#fecha").innerHTML;
+            likes =  document.querySelector("#likes").innerHTML;
+            var toRemove = document.querySelector("#likes");
+            toRemove.parentNode.removeChild(toRemove);
+        }
+
+       
+
+        document.querySelector("#select").onchange = function () {
+            select = document.querySelector("#select");
+            switch (select.value) {
+                case "Fecha":
+
+                    var toRemove = document.querySelector("#likes");
+                    var parent = toRemove.parentNode;
+                    parent.removeChild(toRemove);
+                    var div = document.createElement('div');
+                    div.id = 'fecha';
+                    div.innerHTML = fecha;
+                    parent.appendChild(div);
+                    
+                    break;
+
+                case "Likes":
+
+                    var toRemove = document.querySelector("#fecha");
+                    var parent = toRemove.parentNode;
+                    parent.removeChild(toRemove);
+                    var div = document.createElement('div');
+                    div.id = 'likes';
+                    div.innerHTML = likes;
+                    parent.appendChild(div);
+
+                    break;
+            }
+        }
+    </script>
+}
