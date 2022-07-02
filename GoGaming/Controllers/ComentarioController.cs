@@ -74,6 +74,7 @@ namespace GoGaming.Controllers
             return View(listViewModel);
         }
 
+
         // GET: Comentario/Details/5
         public ActionResult Details(int id)
         {
@@ -174,8 +175,9 @@ namespace GoGaming.Controllers
             {
                 // TODO: Add update logic here
                 ComentarioCEN comentarioCEN = new ComentarioCEN();
+                ComentarioEN comentarioEN = comentarioCEN.ReadOID(coment.Id);
                 //comentarioCEN.Modify(coment.Id, coment.Contenido, DateTime.Now);
-                comentarioCEN.Modify(coment.Id, coment.Contenido, coment.Hora);
+                comentarioCEN.Modify(coment.Id, coment.Contenido, comentarioEN.Hora);
                 return RedirectToAction("Index");
             }
             catch
