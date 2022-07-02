@@ -35,10 +35,10 @@ public void Modify (int p_Juego_OID, string p_nombre, string p_descripcion, stri
                 SessionInitializeTransaction ();
                 juegoCAD = new JuegoCAD (session);
                 juegoCEN = new  JuegoCEN (juegoCAD);
-                GeneroCAD generoCAD = new GeneroCAD(session);
-                GeneroCEN generoCEN = new GeneroCEN(generoCAD);
+                GeneroCAD generoCAD = new GeneroCAD (session);
+                GeneroCEN generoCEN = new GeneroCEN (generoCAD);
 
-               
+
 
                 JuegoEN juegoEN = null;
                 //Initialized JuegoEN
@@ -48,17 +48,16 @@ public void Modify (int p_Juego_OID, string p_nombre, string p_descripcion, stri
                 juegoEN.Descripcion = p_descripcion;
                 juegoEN.Portada = p_portada;
 
-                if(p_generos.Count > 0) {
-                    IList<GeneroEN> generosJuego = generoCEN.GetGenerosJuego(p_Juego_OID);
-                    IList<int> generosOID = new List<int>();
-                    foreach (GeneroEN genero in generosJuego)
-                    {
-                        generosOID.Add(genero.Id);
-                    }
-                    juegoCEN.DeleteGenero(p_Juego_OID, generosOID);
-                    juegoCEN.AddGenero(p_Juego_OID, p_generos);
+                if (p_generos.Count > 0) {
+                        IList<GeneroEN> generosJuego = generoCEN.GetGenerosJuego (p_Juego_OID);
+                        IList<int> generosOID = new List<int>();
+                        foreach (GeneroEN genero in generosJuego) {
+                                generosOID.Add (genero.Id);
+                        }
+                        juegoCEN.DeleteGenero (p_Juego_OID, generosOID);
+                        juegoCEN.AddGenero (p_Juego_OID, p_generos);
                 }
-                
+
                 //Call to JuegoCAD
 
                 juegoCAD.Modify (juegoEN);

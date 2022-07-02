@@ -15,6 +15,18 @@ namespace GoGaming.Controllers
 {
     public class PostController : BasicController
     {
+
+        public ActionResult DetailsPartial(int id)
+        {
+            SessionInitialize();
+            PostCAD postCAD = new PostCAD(session);
+            PostCEN postCEN = new PostCEN(postCAD);
+
+            PostEN postEN = postCEN.ReadOID(id);
+            PostViewModel postViewModel = new PostAssembler().ConvertENToModelUI(postEN);
+            SessionClose();
+            return View(postViewModel);
+        }
         // GET: Post
         public ActionResult Index()
         {
@@ -34,8 +46,8 @@ namespace GoGaming.Controllers
             PostCAD postCAD = new PostCAD(session);
             PostCEN postCEN = new PostCEN(postCAD);
 
-            PostEN listEN = postCEN.ReadOID(id);
-            PostViewModel postViewModel = new PostAssembler().ConvertENToModelUI(listEN);
+            PostEN postEN = postCEN.ReadOID(id);
+            PostViewModel postViewModel = new PostAssembler().ConvertENToModelUI(postEN);
             SessionClose();
             return View(postViewModel);
         }

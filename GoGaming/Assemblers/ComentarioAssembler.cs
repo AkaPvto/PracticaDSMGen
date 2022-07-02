@@ -1,4 +1,7 @@
-﻿using GoGaming.Models;
+﻿using GoGaming.Controllers;
+using GoGaming.Models;
+using PracticaDSMGenNHibernate.CAD.DSMPracticas;
+using PracticaDSMGenNHibernate.CEN.DSMPracticas;
 using PracticaDSMGenNHibernate.EN.DSMPracticas;
 using System;
 using System.Collections.Generic;
@@ -7,14 +10,22 @@ using System.Web;
 
 namespace GoGaming.Assemblers
 {
-    public class ComentarioAssembler
+    public class ComentarioAssembler : BasicController
     {
         public ComentarioViewModel ConvertENToModelUI(ComentarioEN en)
         {
+            SessionInitialize();
+            ComentarioCAD comentarioCAD = new ComentarioCAD(session);
+            ComentarioCEN comentarioCEN = new ComentarioCEN(comentarioCAD);
             ComentarioViewModel coment = new ComentarioViewModel();
+
             coment.Id = en.Id;
             coment.Contenido = en.Contenido;
             coment.Hora = (DateTime)en.Hora;
+            coment.Autor = en.Usuario.Id;
+            coment.Post = en.Post.Id;
+            coment.Hijos = comentarioCEN.GetHijosFromComentario(en.Id).Count;
+
             return coment;
         }
 

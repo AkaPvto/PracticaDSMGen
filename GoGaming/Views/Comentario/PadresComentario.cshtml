@@ -1,0 +1,18 @@
+﻿@model IEnumerable<GoGaming.Models.ComentarioViewModel>
+
+<table class="table">
+@foreach (var item in Model) {
+    <tr style="cursor: pointer;" onclick="window.location = '/Comentario/Details/'+@item.Id;">
+        <td>
+            @Html.DisplayFor(modelItem => item.Contenido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Hora)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Hijos)
+        </td>
+    </tr>
+}
+
+</table>

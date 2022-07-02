@@ -2,6 +2,7 @@
 using GoGaming.Models;
 using PracticaDSMGenNHibernate.CAD.DSMPracticas;
 using PracticaDSMGenNHibernate.CEN.DSMPracticas;
+using PracticaDSMGenNHibernate.CP.DSMPracticas;
 using PracticaDSMGenNHibernate.EN.DSMPracticas;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,53 @@ namespace GoGaming.Controllers
 {
     public class ComentarioController : BasicController
     {
+        public ActionResult PadresComentario(int id)
+        {
+            SessionInitialize();
+            ComentarioCAD comentCAD = new ComentarioCAD(session);
+            ComentarioCEN comentCEN = new ComentarioCEN(comentCAD);
+            ComentarioEN comentEN = comentCEN.ReadOID(id);
+            IList<ComentarioEN> listaAcendentes = new List<ComentarioEN>();
+            ComentarioEN comentPadre = comentEN.ComentarioPadre;
+            while(comentPadre != null)
+            {
+                listaAcendentes.Add(comentPadre);
+                comentPadre = comentPadre.ComentarioPadre;
+            }
+            IList<ComentarioEN> listaAscInvertida = new List<ComentarioEN>();
+            for(int i = 0; i < listaAcendentes.Count; i++)
+            {
+                listaAscInvertida.Add(listaAcendentes[listaAcendentes.Count - 1 - i]);
+            }
+            IList<ComentarioViewModel> listaComents = new ComentarioAssembler().ConvertListENToModel(listaAscInvertida);
+            SessionClose();
+            return View(listaComents);
+        }
+
+        public ActionResult IndexPartial(int id)
+        {
+            SessionInitialize();
+            ComentarioCAD comentCAD = new ComentarioCAD(session);
+            ComentarioCEN comentCEN = new ComentarioCEN(comentCAD);
+
+            IList<ComentarioEN> listEN = comentCEN.GetComentariosFecha(id);
+            IEnumerable<ComentarioViewModel> listViewModel = new ComentarioAssembler().ConvertListENToModel(listEN).ToList();
+            SessionClose();
+            return View(listViewModel);
+        }
+        
+        public ActionResult HijosComentario(int id)
+        {
+            SessionInitialize();
+            ComentarioCAD comentCAD = new ComentarioCAD(session);
+            ComentarioCEN comentCEN = new ComentarioCEN(comentCAD);
+
+            IList<ComentarioEN> listEN = comentCEN.GetHijosFromComentario(id);
+            IEnumerable<ComentarioViewModel> listViewModel = new ComentarioAssembler().ConvertListENToModel(listEN).ToList();
+            SessionClose();
+            return View(listViewModel);
+        }
+
         // GET: Comentario
         public ActionResult Index()
         {
@@ -58,6 +106,48 @@ namespace GoGaming.Controllers
                 comentarioCEN.NewRaiz(coment.Contenido, 32770, 65537, DateTime.Now);
                 //comentarioCEN.NewRaiz(coment.Contenido, ((UsuarioEN)Session["Usuario"]).Id, idPost, DateTime.Now);
                 return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        // GET: Comentario/CreatePartial
+        public ActionResult CreatePartial(int p_usuario, int p_post)
+        {
+            ComentarioViewModel comentVM = new ComentarioViewModel();
+            comentVM.Post = p_post;
+            comentVM.Autor = p_usuario;
+            return View(comentVM);
+        }
+
+        // POST: Comentario/CreatePartial
+        [HttpPost]
+        public ActionResult CreatePartial(ComentarioViewModel coment)
+        {
+            try
+            {
+                // TODO: Add insert logic here
+                SessionInitialize();
+                ComentarioCAD comentarioCAD = new ComentarioCAD(session);
+
+                if (ViewData.ContainsKey("comentarioPrincipal"))
+                {
+                    ComentarioCP comentarioCP = new ComentarioCP(session);
+                    //Hay que ver como recuperar la id del usuario (se que se puede acceder a los datos del usuario que tiene la sesion iniciada) y la id del post
+                    comentarioCP.NewHijo(coment.Contenido, coment.Autor, coment.Post, DateTime.Now, (int)ViewData["comentarioPrincipal"]);
+                }
+                else
+                {
+                    ComentarioCEN comentarioCEN = new ComentarioCEN(comentarioCAD);
+                    comentarioCEN.NewRaiz(coment.Contenido, coment.Autor, coment.Post, DateTime.Now);
+                }
+
+
+                //comentarioCEN.NewRaiz(coment.Contenido, ((UsuarioEN)Session["Usuario"]).Id, idPost, DateTime.Now);
+                SessionClose();
+                return View();
             }
             catch
             {

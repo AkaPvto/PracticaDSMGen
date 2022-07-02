@@ -381,5 +381,36 @@ public int NewRaiz (ComentarioEN comentario)
 
         return comentario.Id;
 }
+
+public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN> GetHijosFromComentario (int p_comentario)
+{
+        System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN> result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM ComentarioEN self where FROM ComentarioEN as coment WHERE coment.ComentarioPadre.Id = :p_comentario  ORDER BY coment.Hora desc";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("ComentarioENgetHijosFromComentarioHQL");
+                query.SetParameter ("p_comentario", p_comentario);
+
+                result = query.List<PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is PracticaDSMGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new PracticaDSMGenNHibernate.Exceptions.DataLayerException ("Error in ComentarioCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

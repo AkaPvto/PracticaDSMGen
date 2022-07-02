@@ -315,6 +315,11 @@
     <Content Include="Views\Aviso\Edit.cshtml" />
     <Content Include="Views\Juego\DetallesDesdeHome.cshtml" />
     <Content Include="Views\Juego\DetallesDesdeBuscador.cshtml" />
+    <Content Include="Views\Comentario\IndexPartial.cshtml" />
+    <Content Include="Views\Comentario\HijosComentario.cshtml" />
+    <Content Include="Views\Post\DetailsPartial.cshtml" />
+    <Content Include="Views\Comentario\PadresComentario.cshtml" />
+    <Content Include="Views\Comentario\CreatePartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

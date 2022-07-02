@@ -117,5 +117,10 @@ public int NewRaiz (string p_contenido, int p_usuario, int p_post, Nullable<Date
         oid = _IComentarioCAD.NewRaiz (comentarioEN);
         return oid;
 }
+
+public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN> GetHijosFromComentario (int p_comentario)
+{
+        return _IComentarioCAD.GetHijosFromComentario (p_comentario);
+}
 }
 }

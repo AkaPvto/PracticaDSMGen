@@ -63,5 +63,6 @@
 		  
 		  <query name="ComentarioENReadAllHQL">from ComentarioEN</query>
 		  <query name="ComentarioENgetComentariosFechaHQL"><![CDATA[FROM ComentarioEN as coment WHERE coment.Post.Id = :p_post AND coment.ComentarioPadre IS EMPTY  ORDER BY coment.Hora desc]]></query>
+		  <query name="ComentarioENgetHijosFromComentarioHQL"><![CDATA[FROM ComentarioEN as coment WHERE coment.ComentarioPadre.Id = :p_comentario  ORDER BY coment.Hora desc]]></query>
 		</hibernate-mapping>
 	

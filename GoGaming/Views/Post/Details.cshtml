@@ -36,7 +36,23 @@
         </dd>
 
     </dl>
+    @{Html.RenderAction("IndexPartial", "Comentario", new { id = Model.Id });}
 </div>
+@section Scripts{
+    <script>
+        window.onload = function () {
+            aux = document.getElementsByTagName('footer');
+            aux2 = document.getElementsByClassName('navbar');
+            cont = aux.length - 1;
+            for (var i = 0; i < cont; i++) {
+                aux[0].parentNode.removeChild(aux[0]);
+                aux2[cont - i].parentNode.removeChild(aux2[cont - i]);
+            }
+        };
+    </script>
+    
+    }
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
