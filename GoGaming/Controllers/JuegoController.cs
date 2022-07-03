@@ -44,6 +44,32 @@ namespace GoGaming.Controllers
             return View(listVM);
         }
 
+        public ActionResult IndexPartial(int usuario)
+        {
+            SessionInitialize();
+            JuegoCAD juegoCAD = new JuegoCAD(session);
+            JuegoCEN juegoCEN = new JuegoCEN(juegoCAD);
+            GeneroCAD generoCAD = new GeneroCAD(session);
+            GeneroCEN generoCEN = new GeneroCEN(generoCAD);
+
+            IList<GeneroEN> listaGeneros = generoCEN.ReadAll(0, -1);
+            List<string> listaNombres = new List<string>();
+            foreach (GeneroEN genero in listaGeneros)
+            {
+                listaNombres.Add(genero.Nombre);
+            }
+
+            IList<JuegoEN> listEN = juegoCEN.GetJuegosPorUsuario(usuario);
+            IEnumerable<JuegoViewModel> listVM = new JuegoAssembler().ConvertListENToModel(listEN).ToList();
+
+
+            ViewData["numGeneros"] = listaGeneros.Count();
+            ViewData["nombresGenero"] = listaNombres.ToArray();
+            SessionClose();
+
+            return View(listVM);
+        }
+
         // GET: Juego/Details/5
         public ActionResult Details(int id)
         {
