@@ -5,8 +5,6 @@
 </p>
 @{ 
     IList<string> enums = (IList<string>)ViewData["enum"];
-    IList<int> numComentarios = (IList<int>)ViewData["enum"];
-    int i = 0;
 }
 
 @foreach (var item in Model)
@@ -17,9 +15,8 @@
     <p>@Html.DisplayFor(modelItem => item.Contenido)</p>
     <img src="@Html.DisplayFor(modelItem => item.Imagen)" />
     <p>❤ @Html.DisplayFor(modelItem => item.Likes)</p>
-    <a>💬 @numComentarios[i]</a>
+    <a href="/Post/Details/@item.Id">💬 @Html.DisplayFor(modelItem => item.Comentarios)</a>
 </div>
-    @{i++}
 }
 
    
