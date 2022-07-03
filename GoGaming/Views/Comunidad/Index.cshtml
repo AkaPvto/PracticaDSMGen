@@ -7,10 +7,6 @@
 
 <h2>Comunidades más recientes</h2>
 
-<p>
-    @Html.ActionLink("Crear Nueva Comunidad", "Create")
-</p>
-
 <br />
 
 <table class="table">
@@ -47,7 +43,8 @@
             </td>
             <td>
                 @Html.ActionLink("Detalle", "Details", new { id = item.CodigoComunidad }) |
-                @Html.ActionLink("Editar", "Edit", new { id = item.CodigoComunidad })
+                @Html.ActionLink("Editar", "Edit", new { id = item.CodigoComunidad }) |
+                @Html.ActionLink("Borrar", "Delete", new { id = item.CodigoComunidad })
             </td>
         </tr>
     }

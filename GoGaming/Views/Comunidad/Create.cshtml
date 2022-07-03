@@ -25,14 +25,6 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.NomJuego, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.NomJuego, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.NomJuego, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
         @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control" } })
@@ -57,7 +49,7 @@
 }
 
 <div>
-    @Html.ActionLink("Atrás", "Index")
+    @Html.ActionLink("Atrás", "../Juego/Index")
 </div>
 
 @section Scripts {

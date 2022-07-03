@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<GoGaming.Models.NotificacionViewModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Notificaciones";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -24,9 +24,9 @@
             @Html.DisplayFor(modelItem => item.Texto)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Detalle", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Borrar", "Delete", new { id=item.Id })
         </td>
     </tr>
 }
