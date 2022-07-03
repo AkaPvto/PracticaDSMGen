@@ -34,6 +34,9 @@ namespace GoGaming.Controllers
             {
                 listaNombres.Add(genero.Nombre);
             }
+
+
+
             ViewData["numGeneros"] = listaGeneros.Count();
             ViewData["nombresGenero"] = listaNombres.ToArray();
             SessionClose();

@@ -62,14 +62,14 @@ namespace GoGaming.Controllers
 
         // POST: Comunidad/Create
         [HttpPost]
-        public ActionResult Create(ComunidadViewModel com)
+        public ActionResult Create(int id, ComunidadViewModel com)
         {
             try
             {
                 // TODO: Add insert logic here
 
                 ComunidadCEN comunidadCEN = new ComunidadCEN();
-                comunidadCEN.New_(com.Nombre, com.Descripcion, DateTime.Now, com.Juego);
+                comunidadCEN.New_(com.Nombre, com.Descripcion, DateTime.Now, id);
 
                 return RedirectToAction("Index");
             }
@@ -95,14 +95,16 @@ namespace GoGaming.Controllers
 
         // POST: Comunidad/Edit/5
         [HttpPost]
-        public ActionResult Edit(string nom, ComunidadViewModel com)
+        public ActionResult Edit(int id, ComunidadViewModel com)
         {
             try
             {
                 // TODO: Add insert logic here
 
                 ComunidadCEN comunidadCEN = new ComunidadCEN();
-                comunidadCEN.Modify(com.CodigoComunidad, com.Nombre, com.Descripcion, DateTime.Now);
+                ComunidadEN comunidadEN = comunidadCEN.ReadOID(id);
+
+                comunidadCEN.Modify(id, com.Nombre, com.Descripcion, comunidadEN.FechaCreacion);
 
                 return RedirectToAction("Index");
             }
@@ -118,22 +120,23 @@ namespace GoGaming.Controllers
             SessionInitialize();
             ComunidadCAD comCad = new ComunidadCAD(session);
             ComunidadCEN comCEN = new ComunidadCEN(comCad);
+
             ComunidadEN lista = comCEN.ReadOID(id);
             ComunidadViewModel listViewModel = new ComunidadAssembler().ConvertENToModelUI(lista);
-
             SessionClose();
+
             return View(listViewModel);
         }
 
         // POST: Comunidad/Delete/5
         [HttpPost]
-        public ActionResult Delete(ComunidadViewModel com)
+        public ActionResult Delete(int id, FormCollection collection)
         {
             try
             {
                 ComunidadCEN comCEN = new ComunidadCEN();
 
-                comCEN.Destroy(com.CodigoComunidad);
+                comCEN.Destroy(id);
 
                 return RedirectToAction("Index");
             }
@@ -142,6 +145,6 @@ namespace GoGaming.Controllers
                 return View();
             }
         }
-    
+
     }
 }
