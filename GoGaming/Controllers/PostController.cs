@@ -54,6 +54,13 @@ namespace GoGaming.Controllers
                 lista.Add(value.ToString());
             }
             ViewData["enum"] = lista;
+            IList<int> numComentarioslist = new List<int>();
+            ComentarioCEN comentario = new ComentarioCEN();
+            for (int i=0;  i<listEN.Count(); i++)
+            {
+                numComentarioslist.Add(comentario.GetComentariosFecha(listEN[i].Id).Count());
+            }
+            ViewData["numComentarios"] = numComentarioslist;
             return View(listViewModel);
         }
 
