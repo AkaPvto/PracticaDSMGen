@@ -102,8 +102,9 @@ namespace GoGaming.Controllers
                 // TODO: Add insert logic here
 
                 ComunidadCEN comunidadCEN = new ComunidadCEN();
+                ComunidadEN comunidadEN = comunidadCEN.ReadOID(id);
 
-                comunidadCEN.Modify(id, com.Nombre, com.Descripcion, com.FechaCreacion);
+                comunidadCEN.Modify(id, com.Nombre, com.Descripcion, comunidadEN.FechaCreacion);
 
                 return RedirectToAction("Index");
             }
