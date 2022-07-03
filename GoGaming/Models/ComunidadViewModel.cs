@@ -36,6 +36,7 @@ namespace GoGaming.Models
         [ScaffoldColumn(false)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [Display(Prompt = "Fecha de creación de la comunidad", Description = "Fecha de creación de la comunidad", Name = "Fecha creación")]
+        [DataType(DataType.Date, ErrorMessage = "La fecha debe ser en formato dd/MM/yyyy")]
         public DateTime FechaCreacion { get; set; }
     }
 }

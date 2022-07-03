@@ -62,14 +62,14 @@ namespace GoGaming.Controllers
 
         // POST: Comunidad/Create
         [HttpPost]
-        public ActionResult Create(ComunidadViewModel com)
+        public ActionResult Create(int id, ComunidadViewModel com)
         {
             try
             {
                 // TODO: Add insert logic here
 
                 ComunidadCEN comunidadCEN = new ComunidadCEN();
-                comunidadCEN.New_(com.Nombre, com.Descripcion, DateTime.Now, com.Juego);
+                comunidadCEN.New_(com.Nombre, com.Descripcion, DateTime.Now, id);
 
                 return RedirectToAction("Index");
             }
