@@ -33,7 +33,7 @@ namespace GoGaming.Models
         [StringLength(maximumLength: 200, ErrorMessage = "La descripción no puede tener más de 200 caracteres")]
         public string Descripcion { get; set; }
 
-        //[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [Display(Prompt = "Fecha de creación de la comunidad", Description = "Fecha de creación de la comunidad", Name = "Fecha creación")]
         [Required(ErrorMessage = "La comunidad debe tener una fecha")]
         [DataType(DataType.Date, ErrorMessage = "La fecha debe ser en formato dd/MM/yyyy")]
