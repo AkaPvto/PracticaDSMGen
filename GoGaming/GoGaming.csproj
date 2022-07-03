@@ -245,6 +245,7 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Images\bmw.jpg" />
     <Content Include="Images\lol.jpg" />
     <Content Include="Images\portada_tft.jpeg" />
     <Content Include="Images\rocket.jpg" />

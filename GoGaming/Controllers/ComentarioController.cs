@@ -104,7 +104,7 @@ namespace GoGaming.Controllers
                 // TODO: Add insert logic here
                 ComentarioCEN comentarioCEN = new ComentarioCEN();
                 //Hay que ver como recuperar la id del usuario (se que se puede acceder a los datos del usuario que tiene la sesion iniciada) y la id del post
-                comentarioCEN.NewRaiz(coment.Contenido, 32770, 65537, DateTime.Now);
+                comentarioCEN.NewRaiz(coment.Contenido, 32770, 163842, DateTime.Now);
                 //comentarioCEN.NewRaiz(coment.Contenido, ((UsuarioEN)Session["Usuario"]).Id, idPost, DateTime.Now);
                 return RedirectToAction("Index");
             }
