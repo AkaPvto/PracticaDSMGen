@@ -74,6 +74,17 @@ namespace GoGaming.Controllers
             return View(listViewModel);
         }
 
+        public ActionResult DetailsPartial(int id)
+        {
+            SessionInitialize();
+            ComentarioCAD comentCAD = new ComentarioCAD(session);
+            ComentarioCEN comentCEN = new ComentarioCEN(comentCAD);
+
+            ComentarioEN listEN = comentCEN.ReadOID(id);
+            ComentarioViewModel comentViewModel = new ComentarioAssembler().ConvertENToModelUI(listEN);
+            SessionClose();
+            return View(comentViewModel);
+        }
 
         // GET: Comentario/Details/5
         public ActionResult Details(int id)
@@ -89,9 +100,24 @@ namespace GoGaming.Controllers
         }
 
         // GET: Comentario/Create
-        public ActionResult Create()
+        public ActionResult Create(int id, bool comentario)
         {
+            
+            SessionInitialize();
             ComentarioViewModel coment = new ComentarioViewModel();
+            ComentarioCAD comentarioCAD = new ComentarioCAD(session);
+            ComentarioCEN comentarioCEN = new ComentarioCEN(comentarioCAD);
+            ComentarioEN comentarioEN = comentarioCEN.ReadOID(id);
+
+            if (!comentario) coment.Post = id;
+            else
+            {
+                coment.Id = id;
+                coment.Post = comentarioEN.Post.Id;
+            }
+
+            coment.Autor = comentarioEN.Usuario.Id;
+            SessionClose();
             return View(coment);
         }
 
@@ -101,10 +127,23 @@ namespace GoGaming.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
-                ComentarioCEN comentarioCEN = new ComentarioCEN();
-                //Hay que ver como recuperar la id del usuario (se que se puede acceder a los datos del usuario que tiene la sesion iniciada) y la id del post
-                comentarioCEN.NewRaiz(coment.Contenido, 32770, 65537, DateTime.Now);
+                int newComent = 0;
+                if (coment.Id != 0)
+                {
+                    ComentarioCP comentarioCP = new ComentarioCP();
+
+                    //Hay que ver como recuperar la id del usuario (se que se puede acceder a los datos del usuario que tiene la sesion iniciada) y la id del post
+                    ComentarioEN nuevoComent = comentarioCP.NewHijo(coment.Contenido, coment.Autor, coment.Post, DateTime.Now, coment.Id);
+                    newComent = nuevoComent.Id;
+                }
+                else
+                {
+                    ComentarioCEN comentarioCEN = new ComentarioCEN();
+                    newComent = comentarioCEN.NewRaiz(coment.Contenido, coment.Autor, coment.Post, DateTime.Now);
+                }
+
+                //ComentarioEN comentarioNuevo = new ComentarioCEN().ReadOID(newComent);
+                //coment = new ComentarioAssembler().ConvertENToModelUI(comentarioNuevo);
                 //comentarioCEN.NewRaiz(coment.Contenido, ((UsuarioEN)Session["Usuario"]).Id, idPost, DateTime.Now);
                 return RedirectToAction("Index");
             }
@@ -120,7 +159,7 @@ namespace GoGaming.Controllers
             ComentarioViewModel comentVM = new ComentarioViewModel();
             comentVM.Post = p_post;
             comentVM.Autor = p_usuario;
-            return View(comentVM);
+            return PartialView(comentVM);
         }
 
         // POST: Comentario/CreatePartial
@@ -130,25 +169,25 @@ namespace GoGaming.Controllers
             try
             {
                 // TODO: Add insert logic here
-                SessionInitialize();
-                ComentarioCAD comentarioCAD = new ComentarioCAD(session);
-
-                if (ViewData.ContainsKey("comentarioPrincipal"))
+                int newComent = 0;
+                if (coment.Id != 0)
                 {
-                    ComentarioCP comentarioCP = new ComentarioCP(session);
+                    ComentarioCP comentarioCP = new ComentarioCP();
+
                     //Hay que ver como recuperar la id del usuario (se que se puede acceder a los datos del usuario que tiene la sesion iniciada) y la id del post
-                    comentarioCP.NewHijo(coment.Contenido, coment.Autor, coment.Post, DateTime.Now, (int)ViewData["comentarioPrincipal"]);
+                    ComentarioEN nuevoComent = comentarioCP.NewHijo(coment.Contenido, coment.Autor, coment.Post, DateTime.Now, coment.Id);
+                    newComent = nuevoComent.Id;
                 }
                 else
                 {
-                    ComentarioCEN comentarioCEN = new ComentarioCEN(comentarioCAD);
-                    comentarioCEN.NewRaiz(coment.Contenido, coment.Autor, coment.Post, DateTime.Now);
+                    ComentarioCEN comentarioCEN = new ComentarioCEN();
+                    newComent = comentarioCEN.NewRaiz(coment.Contenido, coment.Autor, coment.Post, DateTime.Now);
                 }
 
-
+                //ComentarioEN comentarioNuevo = new ComentarioCEN().ReadOID(newComent);
+                //coment = new ComentarioAssembler().ConvertENToModelUI(comentarioNuevo);
                 //comentarioCEN.NewRaiz(coment.Contenido, ((UsuarioEN)Session["Usuario"]).Id, idPost, DateTime.Now);
-                SessionClose();
-                return View();
+                return View(coment);
             }
             catch
             {

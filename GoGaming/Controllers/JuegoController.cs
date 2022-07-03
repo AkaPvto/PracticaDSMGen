@@ -212,7 +212,7 @@ namespace GoGaming.Controllers
 
         // POST: Juego/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, JuegoViewModel juegoVM)
+        public ActionResult Edit(JuegoViewModel juegoVM)
         {
             try
             {
@@ -230,7 +230,7 @@ namespace GoGaming.Controllers
                 }
 
                 JuegoCP juegoCP = new JuegoCP();
-                juegoCP.Modify(id, juegoVM.Nombre, juegoVM.Descripcion, juegoVM.Portada, generos);
+                juegoCP.Modify(juegoVM.Id, juegoVM.Nombre, juegoVM.Descripcion, juegoVM.Portada, generos);
 
                 SessionClose();
                 return RedirectToAction("Index");
