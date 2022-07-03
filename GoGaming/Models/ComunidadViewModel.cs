@@ -8,12 +8,12 @@ namespace GoGaming.Models
 {
     public class ComunidadViewModel
     {
-        [Display(Prompt = "Código de la comunidad", Description = "Código de la comunidad", Name = "Código")]
+        [Display(Prompt = "Código de la comunidad", Description = "Código de la comunidad", Name = "Id")]
         [Required(ErrorMessage = "Debe indicar un valor para el código")]
         [Range(minimum: 0, maximum: 10000, ErrorMessage = "El código debe ser mayor que 0 y menor que 10000")]
         public int CodigoComunidad { get; set; }
 
-        [Display(Prompt = "Código del juego", Description = "Código del juego", Name = "Código")]
+        [Display(Prompt = "Código del juego", Description = "Código del juego", Name = "IdJuego")]
         [Required(ErrorMessage = "Debe indicar un valor para el código")]
         [Range(minimum: 0, maximum: 10000, ErrorMessage = "El código debe ser mayor que 0 y menor que 10000")]
         public int Juego { get; set; }
@@ -35,8 +35,12 @@ namespace GoGaming.Models
 
         [ScaffoldColumn(false)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-        [Display(Prompt = "Fecha de creación de la comunidad", Description = "Fecha de creación de la comunidad", Name = "Fecha creación")]
+        [Display(Prompt = "Fecha de creación de la comunidad", Description = "Fecha de creación de la comunidad", Name = "FechaCreación")]
         [DataType(DataType.Date, ErrorMessage = "La fecha debe ser en formato dd/MM/yyyy")]
         public DateTime FechaCreacion { get; set; }
+
+        [ScaffoldColumn(false)]
+        [Display(Prompt = "Portada", Description = "Imagen correspondiente a la comunidad", Name = "Portada")]
+        public string Portada { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using GoGaming.Models;
+using PracticaDSMGenNHibernate.CEN.DSMPracticas;
 using PracticaDSMGenNHibernate.EN.DSMPracticas;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace GoGaming.Assemblers
         public PostViewModel ConvertENToModelUI(PostEN en)
         {
             PostViewModel post = new PostViewModel();
+            int coments = new ComentarioCEN().GetComentariosFecha(en.Id).Count;
             post.Id = en.Id;
             post.Contenido = en.Contenido;
             post.Categoria = (int)en.Categoria;
@@ -19,6 +21,8 @@ namespace GoGaming.Assemblers
             post.Titulo = en.Titulo;
             post.Likes = en.Likes;
             post.Hora = (DateTime)en.Hora;
+            post.Comentarios = coments;
+            
             return post;
         }
 

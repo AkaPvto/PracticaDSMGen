@@ -1,13 +1,6 @@
 ﻿@model GoGaming.Models.ComentarioViewModel
 
-@{
-    ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-@{ Html.RenderAction("DetailsPartial", "Post", new { id = Model.Post });}
 <div>
-    @{ Html.RenderAction("PadresComentario", "Comentario", new { id = Model.Id });}
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Contenido)
@@ -35,6 +28,3 @@
     </dl>
 
 </div>
-@Html.ActionLink("Create", "Create", new { id = Model.Id, comentario = true })
-@{ Html.RenderAction("CreatePartial", "Comentario", new { p_usuario = Model.Autor, p_post = Model.Post });}
-@{ Html.RenderAction("HijosComentario", "Comentario", new { id = Model.Id });}
