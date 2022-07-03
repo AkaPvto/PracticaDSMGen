@@ -27,10 +27,44 @@ namespace GoGaming.Controllers
             return View(listViewModel);
         }
 
+        public ActionResult Seguidores(int id)
+        {
+            SessionInitialize();
+            UsuarioCAD usuCAD = new UsuarioCAD(session);
+            UsuarioCEN usuCEN = new UsuarioCEN(usuCAD);
+
+            IList<UsuarioEN> listEN = usuCEN.GetFollowing(id);
+            IEnumerable<UsuarioViewModel> listViewModel = new UsuarioAssembler().ConvertListENToModel(listEN).ToList();
+            SessionClose();
+
+            return View(listViewModel);
+        }
+
+        public ActionResult Seguidos(int id)
+        {
+            SessionInitialize();
+            UsuarioCAD usuCAD = new UsuarioCAD(session);
+            UsuarioCEN usuCEN = new UsuarioCEN(usuCAD);
+
+            IList<UsuarioEN> listEN = usuCEN.GetFollowed(id);
+            IEnumerable<UsuarioViewModel> listViewModel = new UsuarioAssembler().ConvertListENToModel(listEN).ToList();
+            SessionClose();
+
+            return View(listViewModel);
+        }
+
         // GET: Usuario/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            UsuarioEN usuarioEN = new UsuarioCEN().ReadOID(id);
+            int seguidores = new UsuarioCEN().GetFollowing(id).Count;
+            int seguidos = new UsuarioCEN().GetFollowed(id).Count;
+            UsuarioViewModel usuarioVM = new UsuarioAssembler().ConvertENToModelUI(usuarioEN);
+
+            ViewData["seguidores"] = seguidores;
+            ViewData["seguidos"] = seguidos;
+
+            return View(usuarioVM);
         }
 
         // GET: Usuario/Create

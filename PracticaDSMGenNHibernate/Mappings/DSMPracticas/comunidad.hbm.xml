@@ -65,5 +65,6 @@
 		 </class>	
 		  
 		  <query name="ComunidadENReadAllHQL">from ComunidadEN</query>
+		  <query name="ComunidadENgetComunidadesUsuarioHQL"><![CDATA[SELECT comunidades FROM ComunidadEN as comunidades INNER JOIN comunidades.Usuario as usuarios WHERE usuarios.Id = :p_usuario]]></query>
 		</hibernate-mapping>
 	

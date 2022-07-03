@@ -27,6 +27,19 @@ namespace GoGaming.Controllers
             return View(listViewModel);
         }
 
+        public ActionResult IndexPartial(int id)
+        {
+            SessionInitialize();
+            ComunidadCAD comCad = new ComunidadCAD(session);
+            ComunidadCEN comCEN = new ComunidadCEN(comCad);
+            IList<ComunidadEN> lista = comCEN.GetComunidadesUsuario(id);
+
+            IEnumerable<ComunidadViewModel> listViewModel = (IEnumerable<ComunidadViewModel>)new ComunidadAssembler().ConvertListENTModel(lista).ToList();
+            SessionClose();
+
+            return View(listViewModel);
+        }
+
         // GET: Comunidad/Details/5
         public ActionResult Details(int id)
         {

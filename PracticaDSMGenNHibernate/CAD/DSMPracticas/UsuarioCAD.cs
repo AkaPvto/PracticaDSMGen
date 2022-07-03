@@ -696,5 +696,43 @@ public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas
 
         return result;
 }
+public void DeleteJuego (int p_Usuario_OID, System.Collections.Generic.IList<int> p_juego_OIDs)
+{
+        try
+        {
+                SessionInitializeTransaction ();
+                PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN usuarioEN = null;
+                usuarioEN = (UsuarioEN)session.Load (typeof(UsuarioEN), p_Usuario_OID);
+
+                PracticaDSMGenNHibernate.EN.DSMPracticas.JuegoEN juegoENAux = null;
+                if (usuarioEN.Juego != null) {
+                        foreach (int item in p_juego_OIDs) {
+                                juegoENAux = (PracticaDSMGenNHibernate.EN.DSMPracticas.JuegoEN)session.Load (typeof(PracticaDSMGenNHibernate.EN.DSMPracticas.JuegoEN), item);
+                                if (usuarioEN.Juego.Contains (juegoENAux) == true) {
+                                        usuarioEN.Juego.Remove (juegoENAux);
+                                        juegoENAux.Usuario.Remove (usuarioEN);
+                                }
+                                else
+                                        throw new ModelException ("The identifier " + item + " in p_juego_OIDs you are trying to unrelationer, doesn't exist in UsuarioEN");
+                        }
+                }
+
+                session.Update (usuarioEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is PracticaDSMGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new PracticaDSMGenNHibernate.Exceptions.DataLayerException ("Error in UsuarioCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+}
 }
 }

@@ -1,0 +1,38 @@
+﻿@model IEnumerable<GoGaming.Models.ComunidadViewModel>
+
+<h2>Tus comunidades</h2>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Miembros)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Portada)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Nombre)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Descripcion)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Miembros)
+    </td>
+    <td>
+        <img height="60" width="100 " src="@Html.DisplayFor(modelItem => item.Portada)" />
+    </td>
+</tr>
+}
+
+</table>

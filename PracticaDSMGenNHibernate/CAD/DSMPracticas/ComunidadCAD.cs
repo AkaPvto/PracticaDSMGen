@@ -424,5 +424,35 @@ public void AddPost (int p_Comunidad_OID, System.Collections.Generic.IList<int> 
                 SessionClose ();
         }
 }
+public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.ComunidadEN> GetComunidadesUsuario (int p_usuario)
+{
+        System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.ComunidadEN> result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM ComunidadEN self where SELECT comunidades FROM ComunidadEN as comunidades INNER JOIN comunidades.Usuario as usuarios WHERE usuarios.Id = :p_usuario";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("ComunidadENgetComunidadesUsuarioHQL");
+                query.SetParameter ("p_usuario", p_usuario);
+
+                result = query.List<PracticaDSMGenNHibernate.EN.DSMPracticas.ComunidadEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is PracticaDSMGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new PracticaDSMGenNHibernate.Exceptions.DataLayerException ("Error in ComunidadCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

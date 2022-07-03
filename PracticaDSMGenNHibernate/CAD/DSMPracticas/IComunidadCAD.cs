@@ -38,5 +38,7 @@ void AddUsuarios (int p_Comunidad_OID, System.Collections.Generic.IList<int> p_u
 void DeleteUsuarios (int p_Comunidad_OID, System.Collections.Generic.IList<int> p_usuario_OIDs);
 
 void AddPost (int p_Comunidad_OID, System.Collections.Generic.IList<int> p_post_OIDs);
+
+System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.ComunidadEN> GetComunidadesUsuario (int p_usuario);
 }
 }

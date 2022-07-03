@@ -44,7 +44,7 @@ namespace GoGaming.Controllers
             return View(listVM);
         }
 
-        public ActionResult IndexPartial(int usuario)
+        public ActionResult IndexPartial(int id)
         {
             SessionInitialize();
             JuegoCAD juegoCAD = new JuegoCAD(session);
@@ -59,7 +59,7 @@ namespace GoGaming.Controllers
                 listaNombres.Add(genero.Nombre);
             }
 
-            IList<JuegoEN> listEN = juegoCEN.GetJuegosPorUsuario(usuario);
+            IList<JuegoEN> listEN = juegoCEN.GetJuegosPorUsuario(id);
             IEnumerable<JuegoViewModel> listVM = new JuegoAssembler().ConvertListENToModel(listEN).ToList();
 
 

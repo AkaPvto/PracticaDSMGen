@@ -151,6 +151,12 @@ public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas
 {
         return _IUsuarioCAD.GetUsuariosNotificacion (p_notificacion);
 }
+public void DeleteJuego (int p_Usuario_OID, System.Collections.Generic.IList<int> p_juego_OIDs)
+{
+        //Call to UsuarioCAD
+
+        _IUsuarioCAD.DeleteJuego (p_Usuario_OID, p_juego_OIDs);
+}
 
 
 

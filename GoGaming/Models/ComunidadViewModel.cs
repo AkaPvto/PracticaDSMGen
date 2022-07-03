@@ -8,14 +8,11 @@ namespace GoGaming.Models
 {
     public class ComunidadViewModel
     {
-        [Display(Prompt = "Código de la comunidad", Description = "Código de la comunidad", Name = "Id")]
-        [Required(ErrorMessage = "Debe indicar un valor para el código")]
-        [Range(minimum: 0, maximum: 10000, ErrorMessage = "El código debe ser mayor que 0 y menor que 10000")]
+
+        [ScaffoldColumn(false)]
         public int CodigoComunidad { get; set; }
 
-        [Display(Prompt = "Código del juego", Description = "Código del juego", Name = "IdJuego")]
-        [Required(ErrorMessage = "Debe indicar un valor para el código")]
-        [Range(minimum: 0, maximum: 10000, ErrorMessage = "El código debe ser mayor que 0 y menor que 10000")]
+        [ScaffoldColumn(false)]
         public int Juego { get; set; }
 
         [Display(Prompt = "Juego de la comunidad", Description = "Juego de la comunidad", Name = "Juego")]
@@ -42,5 +39,9 @@ namespace GoGaming.Models
         [ScaffoldColumn(false)]
         [Display(Prompt = "Portada", Description = "Imagen correspondiente a la comunidad", Name = "Portada")]
         public string Portada { get; set; }
+
+        [ScaffoldColumn(false)]
+        [Display(Prompt = "Miembros", Description = "Numero de miembros de la comunidad", Name = "Miembros")]
+        public int Miembros { get; set; }
     }
 }

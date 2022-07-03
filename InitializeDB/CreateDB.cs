@@ -132,8 +132,8 @@ public static void InitializeData ()
                 int comentario2 = comentarioCEN.NewRaiz ("No va a salir. Deja de hacerte ilusiones en cada Nintendo Direct.", carlos, post3, DateTime.Now);
                 ComentarioCP comentarioCP = new ComentarioCP ();
                 int comentario2_1 = comentarioCP.NewHijo ("Nunca va a salir. ", jorge, post3, DateTime.Now, comentario2).Id;
-                int comentario2_1_1 = comentarioCP.NewHijo("Yo creo que si que puede salir este anio. ", carlos, post3, DateTime.Now, comentario2_1).Id;
-                int comentario2_2 = comentarioCP.NewHijo("Callate, algunos seguimos teniendo la esperanza", jorge, post3, DateTime.Now, comentario2).Id;
+                int comentario2_1_1 = comentarioCP.NewHijo ("Yo creo que si que puede salir este anio. ", carlos, post3, DateTime.Now, comentario2_1).Id;
+                int comentario2_2 = comentarioCP.NewHijo ("Callate, algunos seguimos teniendo la esperanza", jorge, post3, DateTime.Now, comentario2).Id;
 
 
                 Console.WriteLine ("Introducimos avisos a la bbdd...");
@@ -186,7 +186,7 @@ public static void InitializeData ()
                         Console.WriteLine ("ID-> " + comentario.Id + ", Fecha-> " + comentario.Hora);
                 }
                 Console.WriteLine ("\n");
-                ComentarioEN comentarioPrueba = comentarioCEN.ReadOID(comentario2_1);
+                ComentarioEN comentarioPrueba = comentarioCEN.ReadOID (comentario2_1);
 
                 Console.WriteLine ("Usuario Candela sigue a otros usuarios (Carlos, Sergio y Sara):");
                 int[] followers = { sergio, carlos, sara };

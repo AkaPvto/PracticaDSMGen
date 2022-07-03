@@ -58,5 +58,8 @@ System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.Usuari
 
 
 System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN> GetUsuariosNotificacion (int p_notificacion);
+
+
+void DeleteJuego (int p_Usuario_OID, System.Collections.Generic.IList<int> p_juego_OIDs);
 }
 }
