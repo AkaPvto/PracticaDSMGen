@@ -47,7 +47,8 @@
             </td>
             <td>
                 @Html.ActionLink("Detalle", "Details", new { id = item.CodigoComunidad }) |
-                @Html.ActionLink("Editar", "Edit", new { id = item.CodigoComunidad }) 
+                @Html.ActionLink("Editar", "Edit", new { id = item.CodigoComunidad }) |
+                @Html.ActionLink("Borrar", "Delete", new { id = item.CodigoComunidad })
             </td>
         </tr>
     }

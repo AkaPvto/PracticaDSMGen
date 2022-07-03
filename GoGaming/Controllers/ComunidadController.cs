@@ -123,7 +123,6 @@ namespace GoGaming.Controllers
 
             ComunidadEN lista = comCEN.ReadOID(id);
             ComunidadViewModel listViewModel = new ComunidadAssembler().ConvertENToModelUI(lista);
-            //IEnumerable<ComunidadViewModel> listViewModel = (IEnumerable<ComunidadViewModel>)new ComunidadAssembler().ConvertListENTModel(lista).ToList();
             SessionClose();
 
             return View(listViewModel);

@@ -1,0 +1,56 @@
+﻿@model GoGaming.Models.ComunidadViewModel
+
+@{
+    ViewBag.Title = "Borrar Comunidad";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Borrar Comunidad</h2>
+
+<h3>¿Estás seguro de que quieres borrar este juego?</h3>
+<div>
+    <h4>Comunidad</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NomJuego)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomJuego)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaCreacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaCreacion)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Borrar" class="btn btn-default" /> |
+            @Html.ActionLink("Atrás", "Index")
+        </div>
+    }
+</div>

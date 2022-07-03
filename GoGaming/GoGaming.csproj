@@ -339,6 +339,7 @@
     <Content Include="Views\Post\DetailsPartial.cshtml" />
     <Content Include="Views\Comentario\PadresComentario.cshtml" />
     <Content Include="Views\Comentario\CreatePartial.cshtml" />
+    <Content Include="Views\Comunidad\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
