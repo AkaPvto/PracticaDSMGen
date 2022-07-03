@@ -1,4 +1,5 @@
 ﻿using GoGaming.Models;
+using PracticaDSMGenNHibernate.CEN.DSMPracticas;
 using PracticaDSMGenNHibernate.EN.DSMPracticas;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace GoGaming.Assemblers
         public ComunidadViewModel ConvertENToModelUI(ComunidadEN en)
         {
             ComunidadViewModel com = new ComunidadViewModel();
+            JuegoEN juegoEN = new JuegoCEN().ReadOID(en.Juego.Id);
 
             com.CodigoComunidad = en.Id;
             com.Nombre = en.Nombre;
@@ -21,6 +23,7 @@ namespace GoGaming.Assemblers
 
             com.Descripcion = en.Descripcion;
             com.FechaCreacion = (DateTime)en.FechaCreacion;
+            com.Portada = juegoEN.Portada;
 
             return com;
         }

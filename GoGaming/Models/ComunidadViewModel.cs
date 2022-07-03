@@ -38,5 +38,9 @@ namespace GoGaming.Models
         [Display(Prompt = "Fecha de creación de la comunidad", Description = "Fecha de creación de la comunidad", Name = "FechaCreación")]
         [DataType(DataType.Date, ErrorMessage = "La fecha debe ser en formato dd/MM/yyyy")]
         public DateTime FechaCreacion { get; set; }
+
+        [ScaffoldColumn(false)]
+        [Display(Prompt = "Portada", Description = "Imagen correspondiente a la comunidad", Name = "Portada")]
+        public string Portada { get; set; }
     }
 }
