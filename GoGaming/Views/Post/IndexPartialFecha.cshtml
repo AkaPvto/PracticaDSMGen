@@ -4,18 +4,18 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 @{ 
-    IList<string> a = (IList<string>)ViewData["enum"];
-    
+    IList<string> enums = (IList<string>)ViewData["enum"];
 }
 
 @foreach (var item in Model)
 {
 <div>
     <h3>@Html.DisplayFor(modelItem => item.Titulo)</h3>
-    <p class="control-label">Categoría: @a[item.Categoria - 1]</p>
+    <p class="control-label">Categoría: @enums[item.Categoria - 1]</p>
     <p>@Html.DisplayFor(modelItem => item.Contenido)</p>
     <img src="@Html.DisplayFor(modelItem => item.Imagen)" />
     <p>❤ @Html.DisplayFor(modelItem => item.Likes)</p>
+    <a href="/Post/Details/@item.Id">💬 @Html.DisplayFor(modelItem => item.Comentarios)</a>
 </div>
 }
 
