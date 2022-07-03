@@ -47,6 +47,13 @@ namespace GoGaming.Controllers
             IList<PostEN> listEN = postCEN.GetPostComunidadFecha(id);
             IEnumerable<PostViewModel> listViewModel = new PostAssembler().ConvertListENToModel(listEN).ToList();
             SessionClose();
+            Array values = Enum.GetValues(new Categoria_PostEnum().GetType());
+            IList<string> lista = new List<string>();
+            foreach(var value in values)
+            {
+                lista.Add(value.ToString());
+            }
+            ViewData["enum"] = lista;
             return View(listViewModel);
         }
 
@@ -58,6 +65,13 @@ namespace GoGaming.Controllers
             IList<PostEN> listEN = postCEN.GetPostComunidadLikes(id);
             IEnumerable<PostViewModel> listViewModel = new PostAssembler().ConvertListENToModel(listEN).ToList();
             SessionClose();
+            Array values = Enum.GetValues(new Categoria_PostEnum().GetType());
+            IList<string> lista = new List<string>();
+            foreach (var value in values)
+            {
+                lista.Add(value.ToString());
+            }
+            ViewData["enum"] = lista;
             return View(listViewModel);
         }
         // GET: Post/Details/5

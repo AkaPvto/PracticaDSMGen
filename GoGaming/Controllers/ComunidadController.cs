@@ -34,6 +34,7 @@ namespace GoGaming.Controllers
             ComunidadCAD comCad = new ComunidadCAD(session);
             ComunidadCEN comCEN = new ComunidadCEN(comCad);
             ComunidadEN lista = comCEN.ReadOID(id);
+            ViewData["imagen"] = lista.Juego.Portada;
             //ComunidadViewModel listViewModel = new ComunidadAssembler().ConvertENToModelUI(lista);
 
             SessionClose();

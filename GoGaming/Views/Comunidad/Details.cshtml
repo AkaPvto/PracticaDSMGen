@@ -3,8 +3,10 @@
 @{
     ViewBag.Title = "Detalle Comunidad";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    string Url = (string)ViewData["imagen"];
 }
 
+<img src="@Url"/>
 <h2>Comunidad de @Model.Nombre</h2>
 
 <div class="contenedor">
