@@ -88,7 +88,7 @@ namespace GoGaming.Controllers
         }
 
         // GET: Post/Create
-        public ActionResult Create()
+        public ActionResult Create(int id)
         {
             Array values = Enum.GetValues(new Categoria_PostEnum().GetType());
             IList<SelectListItem> enumLista = new List<SelectListItem>();
@@ -98,7 +98,11 @@ namespace GoGaming.Controllers
             }
 
             ViewData["Categoria"] = enumLista;
-            return View();
+
+            PostViewModel postVM = new PostViewModel();
+            postVM.Comunidad = id;
+            postVM.Categoria = -1;
+            return View(postVM);
         }
 
         // POST: Post/Create
@@ -112,13 +116,15 @@ namespace GoGaming.Controllers
                 Array values = Enum.GetValues(new Categoria_PostEnum().GetType());
                 Categoria_PostEnum prueba1 = (Categoria_PostEnum)post.Categoria;
                 Categoria_PostEnum prueba2 = (Categoria_PostEnum)values.GetValue(post.Categoria);
-                postCP.New_(post.Contenido, 32770, 0000, prueba1, post.Titulo, post.Imagen, DateTime.Now);
+                postCP.New_(post.Contenido, 32770, post.Id, prueba1, post.Titulo, post.Imagen, DateTime.Now);
                 //postCP.New_(post.Contenido, ((UsuarioEN)Session["Usuario"]).Id, idComunidad, post.Categoria, post.Titulo, post.Imagen, DateTime.Now);
                 return RedirectToAction("Index");
             }
-            catch
+            catch(Exception e)
             {
-                return View();
+                ViewData["error"] = e.ToString();
+                HandleErrorInfo error = new HandleErrorInfo(e, "Post", "Create");
+                return RedirectToAction("../Home/Error", error);
             }
         }
 

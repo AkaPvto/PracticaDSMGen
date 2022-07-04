@@ -39,5 +39,8 @@ namespace GoGaming.Models
         [ScaffoldColumn(false)]
         public int Comentarios { get; set; }
 
+        [ScaffoldColumn(false)]
+        public int Comunidad { get; set; }
+
     }
 }
