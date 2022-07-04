@@ -175,6 +175,7 @@
 			
 			
 			
+			
 	<Compile Include="EN\DSMPracticas\JuegoEN.cs" />
 	<Compile Include="CEN\DSMPracticas\JuegoCEN.cs" />
 	<Compile Include="CAD\DSMPracticas\IJuegoCAD.cs" />

@@ -51,6 +51,11 @@ namespace GoGaming.Controllers
             return View(listViewModel);
         }
 
+        public ActionResult Error(HandleErrorInfo error)
+        {
+            return View(error);
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Sobre Go-Gaming";

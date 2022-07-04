@@ -22,6 +22,7 @@ namespace GoGaming.Assemblers
             post.Likes = en.Likes;
             post.Hora = (DateTime)en.Hora;
             post.Comentarios = coments;
+            post.Comunidad = en.Comunidad.Id;
             
             return post;
         }

@@ -734,5 +734,36 @@ public void DeleteJuego (int p_Usuario_OID, System.Collections.Generic.IList<int
                 SessionClose ();
         }
 }
+public PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN GetUsuarioEmail (string p_email)
+{
+        PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM UsuarioEN self where FROM UsuarioEN as user WHERE user.Email = :p_email";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("UsuarioENgetUsuarioEmailHQL");
+                query.SetParameter ("p_email", p_email);
+
+
+                result = query.UniqueResult<PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is PracticaDSMGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new PracticaDSMGenNHibernate.Exceptions.DataLayerException ("Error in UsuarioCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }
