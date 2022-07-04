@@ -1,59 +1,73 @@
 ﻿@model GoGaming.Models.ComunidadViewModel
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalle Comunidad";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    string Url = (string)ViewData["imagen"];
 }
 
-<h2>Detalle</h2>
+<img src="@Url"/>
+<h2>Comunidad de @Model.Nombre</h2>
 
-<div>
-    <h4>Comunidad</h4>
+<div class="contenedor">
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.CodigoComunidad)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CodigoComunidad)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Juego)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Juego)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Descripcion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Descripcion)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FechaCreacion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FechaCreacion)
-        </dd>
-
-    </dl>
+    <p>Ordenar por:</p>
+    <select class="form-control" id="select">
+        <option value="Fecha">Fecha</option>
+        <option value="Likes">Likes</option>
+    </select>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { nom = Model.Nombre }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<div id="partialView">
+    <div id="fecha">
+        @{Html.RenderAction("IndexPartialFecha", "Post", new { id = Model.CodigoComunidad });}
+    </div>
+    <div id="likes">
+        @{Html.RenderAction("IndexPartialLikes", "Post", new { id = Model.CodigoComunidad });}
+    </div>
+</div>
+<button class="form-control" onclick="window.location = '/Post/Create/'+ @Model.CodigoComunidad;">Crear un Post</button>
+
+@section Scripts
+{
+    <script>
+        var fecha = "";
+        var likes = "";
+        window.onload = function () {
+            fecha =  document.querySelector("#fecha").innerHTML;
+            likes =  document.querySelector("#likes").innerHTML;
+            var toRemove = document.querySelector("#likes");
+            toRemove.parentNode.removeChild(toRemove);
+        }
+
+       
+
+        document.querySelector("#select").onchange = function () {
+            select = document.querySelector("#select");
+            switch (select.value) {
+                case "Fecha":
+
+                    var toRemove = document.querySelector("#likes");
+                    var parent = toRemove.parentNode;
+                    parent.removeChild(toRemove);
+                    var div = document.createElement('div');
+                    div.id = 'fecha';
+                    div.innerHTML = fecha;
+                    parent.appendChild(div);
+                    
+                    break;
+
+                case "Likes":
+
+                    var toRemove = document.querySelector("#fecha");
+                    var parent = toRemove.parentNode;
+                    parent.removeChild(toRemove);
+                    var div = document.createElement('div');
+                    div.id = 'likes';
+                    div.innerHTML = likes;
+                    parent.appendChild(div);
+
+                    break;
+            }
+        }
+    </script>
+}

@@ -127,5 +127,9 @@ public void AddPost (int p_Comunidad_OID, System.Collections.Generic.IList<int> 
 
         _IComunidadCAD.AddPost (p_Comunidad_OID, p_post_OIDs);
 }
+public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.ComunidadEN> GetComunidadesUsuario (int p_usuario)
+{
+        return _IComunidadCAD.GetComunidadesUsuario (p_usuario);
+}
 }
 }

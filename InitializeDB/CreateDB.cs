@@ -106,13 +106,13 @@ public static void InitializeData ()
                 JuegoCEN juegoCEN = new JuegoCEN ();
                 int[] aux_rocket = { gen1, gen2 };
                 IList<int> generos = aux_rocket;
-                int juego1 = juegoCEN.New_ ("Rocket League", "Juego de coches y futbol", "portada_rocket_league", generos);
+                int juego1 = juegoCEN.New_ ("Rocket League", "Juego de coches y futbol", "/Images/rocket.jpg", generos);
                 int[] aux_silksong = { gen3, gen2, gen4 };
                 generos = aux_silksong;
-                int juego2 = juegoCEN.New_ ("Hollow Knight: Silksong", "Solo existe en esta bbdd", "portada_silksong", generos);
+                int juego2 = juegoCEN.New_ ("Hollow Knight: Silksong", "Solo existe en esta bbdd", "/Images/hollow.jpg", generos);
                 int[] aux_tft = { gen5, gen6 };
                 generos = aux_tft;
-                int juego3 = juegoCEN.New_ ("League of Legends: TFT", "Solo apto para gente inteligente", "portada_tft", generos);
+                int juego3 = juegoCEN.New_ ("League of Legends: TFT", "Solo apto para gente inteligente", "/Images/portada_tft.jpeg", generos);
 
                 Console.WriteLine ("Introducimos comunidades a la bbdd...");
                 ComunidadCEN comunidadCEN = new ComunidadCEN ();
@@ -122,16 +122,19 @@ public static void InitializeData ()
                 Console.WriteLine ("Introducimos postst a la bbdd...");
                 PostCP postCP = new PostCP ();
                 int post1 = postCP.New_ ("Ultimamente he estado jugando mucho, estoy en diamante 3 y mi nickname es KaeseOrigin.", sergio, com_rl, Categoria_PostEnum.blanco, "Busco gente para jugar", "", new DateTime (2022, 01, 27, 15, 59, 00)).Id;
-                int post2 = postCP.New_ ("No jugueis con el BMW-200 (octane), la hitbox dista mucho del modelo 3D", candela, com_rl, Categoria_PostEnum.opinion, "Opinion sobre el BMW-200", "", new DateTime (2021, 02, 28, 17, 36, 00)).Id;
+                int post2 = postCP.New_ ("No jugueis con el BMW-200 (octane), la hitbox dista mucho del modelo 3D", candela, com_rl, Categoria_PostEnum.opinion, "Opinion sobre el BMW-200", "/Images/bmw.jpg", new DateTime (2021, 02, 28, 17, 36, 00)).Id;
                 int post3 = postCP.New_ ("Cuando va a salir el jueguito. Alguien lo sabe?. Se ha filtrado?", jorge, com_hks, Categoria_PostEnum.blanco, "Fecha de lanzamiento(?)", "", new DateTime (2021, 11, 10, 23, 06, 00)).Id;
 
 
                 Console.WriteLine ("Introducimos comentarios a la bbdd...");
                 ComentarioCEN comentarioCEN = new ComentarioCEN ();
                 int comentario1 = comentarioCEN.NewRaiz ("Yo puedo jugar contigo", candela, post1, DateTime.Now);
-                comentarioCEN.NewRaiz ("No va a salir. Deja de hacerte ilusiones en cada Nintendo Direct.", carlos, post1, DateTime.Now);
+                int comentario2 = comentarioCEN.NewRaiz ("No va a salir. Deja de hacerte ilusiones en cada Nintendo Direct.", carlos, post3, DateTime.Now);
                 ComentarioCP comentarioCP = new ComentarioCP ();
-                comentarioCP.NewHijo ("Nunca va a salir. ", jorge, post1, DateTime.Now, comentario1);
+                int comentario2_1 = comentarioCP.NewHijo ("Nunca va a salir. ", jorge, post3, DateTime.Now, comentario2).Id;
+                int comentario2_1_1 = comentarioCP.NewHijo ("Yo creo que si que puede salir este anio. ", carlos, post3, DateTime.Now, comentario2_1).Id;
+                int comentario2_2 = comentarioCP.NewHijo ("Callate, algunos seguimos teniendo la esperanza", jorge, post3, DateTime.Now, comentario2).Id;
+
 
                 Console.WriteLine ("Introducimos avisos a la bbdd...");
                 AvisoCEN avisoCEN = new AvisoCEN ();
@@ -183,6 +186,7 @@ public static void InitializeData ()
                         Console.WriteLine ("ID-> " + comentario.Id + ", Fecha-> " + comentario.Hora);
                 }
                 Console.WriteLine ("\n");
+                ComentarioEN comentarioPrueba = comentarioCEN.ReadOID (comentario2_1);
 
                 Console.WriteLine ("Usuario Candela sigue a otros usuarios (Carlos, Sergio y Sara):");
                 int[] followers = { sergio, carlos, sara };

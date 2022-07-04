@@ -37,5 +37,7 @@ System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.Coment
 void AddComentarioHijo (int p_Comentario_OID, System.Collections.Generic.IList<int> p_comentariosHijos_OIDs);
 
 int NewRaiz (ComentarioEN comentario);
+
+System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.ComentarioEN> GetHijosFromComentario (int p_comentario);
 }
 }

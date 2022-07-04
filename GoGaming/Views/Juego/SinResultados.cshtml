@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Sin Resultados";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-center">Sin Resultados</h2>
+<br />
+<div class="text-center">
+    <p>No se han encontrado resultados para el juego buscado</p>
+
+    <br />
+    <h3 align="center">Buscador de Juegos</h3>
+
+    @using (Html.BeginForm("Buscar", "Juego", FormMethod.Post, null))
+    {
+        <div class="form-inline" align="center">
+            <div class="form-group pl-2">
+                <input type="search" class="form-control" id="text" name="nom" placeholder="Introduce un juego...">
+            </div>
+            <button type="submit" class="btn btn-primary" style="color:#FFFFFF"> <span class="glyphicon glyphicon-search"></span> Buscar</button>
+
+        </div>
+
+        <br />
+    }
+</div>

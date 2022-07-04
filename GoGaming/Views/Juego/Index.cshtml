@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<GoGaming.Models.JuegoViewModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Juegos";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Juegos más recientes</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crear Nuevo Juego", "Create")
 </p>
 <table class="table">
     <tr>
@@ -17,6 +17,9 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Generos)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Portada)
@@ -33,12 +36,39 @@
             @Html.DisplayFor(modelItem => item.Descripcion)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Portada)
+            @{
+                var generos = item.Generos;
+                var genNombres = (string[])ViewData["nombresGenero"];
+                var first = false;
+            }
+            
+                @for (var i = 0; i < (int)ViewData["numGeneros"]; i++)
+                {
+                    if (generos[i])
+                    {
+                        if (!first)
+                        {
+                            @genNombres[i];
+                            first = true;
+                        }
+                        else
+                        {
+                            var aux = ", ";
+                            @aux;
+                            @genNombres[i];
+                        }
+                    }
+
+                }
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            <img height="60" width="100 " src="@Html.DisplayFor(modelItem => item.Portada)" />
+        </td>
+        <td>
+            @Html.ActionLink("Crear Comunidad", "../Comunidad/Create", new { id = item.Id }) |
+            @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Detalle", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Borrar", "Delete", new { id = item.Id })
         </td>
     </tr>
 }

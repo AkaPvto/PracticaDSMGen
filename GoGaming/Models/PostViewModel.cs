@@ -13,14 +13,14 @@ namespace GoGaming.Models
 
         public int Id { get; set; }
 
-        [Display(Prompt = "Comentario", Description = "Comentario", Name = "Contenido")]
+        [Display(Prompt = "Contenido", Description = "Contenido del post", Name = "Contenido")]
         [Required(ErrorMessage = "El contenido del post no puede estar vacío")]
         [StringLength(maximumLength: 800, ErrorMessage = "El post no puede tener más de 800 caracteres")]
         public string Contenido { get; set; }
 
-        [Display(Prompt = "Categoría del Post", Description = "Categoría del Post", Name = "Categoria")]
-        [Required(ErrorMessage = "El post debe tener una categoría")]
-        public Categoria_PostEnum Categoria { get; set; }
+        [ScaffoldColumn(false)]
+        [Display(Prompt = "Categoria", Description = "Categoría del Post", Name = "Categoria")]
+        public int Categoria { get; set; }
 
         [Display(Prompt = "Título del post", Description = "Título del post", Name = "Titulo")]
         [Required(ErrorMessage = "El post debe tener un título")]
@@ -35,6 +35,12 @@ namespace GoGaming.Models
 
         [ScaffoldColumn(false)]
         public int Likes { get; set; }
+
+        [ScaffoldColumn(false)]
+        public int Comentarios { get; set; }
+
+        [ScaffoldColumn(false)]
+        public int Comunidad { get; set; }
 
     }
 }

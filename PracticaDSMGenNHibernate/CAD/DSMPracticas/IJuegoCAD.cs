@@ -36,5 +36,10 @@ System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.JuegoE
 
 
 System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.JuegoEN> GetJuegosPorUsuario (int p_usuario);
+
+
+void AddGenero (int p_Juego_OID, System.Collections.Generic.IList<int> p_genero_OIDs);
+
+void DeleteGenero (int p_Juego_OID, System.Collections.Generic.IList<int> p_genero_OIDs);
 }
 }

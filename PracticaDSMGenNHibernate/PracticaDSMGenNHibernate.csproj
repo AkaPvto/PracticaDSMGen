@@ -126,6 +126,7 @@
 			
 			
 			
+			
 	<Compile Include="EN\DSMPracticas\PostEN.cs" />
 	<Compile Include="CEN\DSMPracticas\PostCEN.cs" />
 	<Compile Include="CAD\DSMPracticas\IPostCAD.cs" />
@@ -173,12 +174,14 @@
 			
 			
 			
+			
 	<Compile Include="EN\DSMPracticas\JuegoEN.cs" />
 	<Compile Include="CEN\DSMPracticas\JuegoCEN.cs" />
 	<Compile Include="CAD\DSMPracticas\IJuegoCAD.cs" />
 	<Compile Include="CAD\DSMPracticas\JuegoCAD.cs" />
 	<Compile Include="CP\DSMPracticas\JuegoCP.cs" />
 			
+			<Compile Include="CP\DSMPracticas\JuegoCP_Modify.cs" />
 			
 			
 			
@@ -187,11 +190,14 @@
 			<Compile Include="CP\DSMPracticas\JuegoCP_RecomendarJuego.cs" />
 			
 			
+			
+			
 	<Compile Include="EN\DSMPracticas\ComunidadEN.cs" />
 	<Compile Include="CEN\DSMPracticas\ComunidadCEN.cs" />
 	<Compile Include="CAD\DSMPracticas\IComunidadCAD.cs" />
 	<Compile Include="CAD\DSMPracticas\ComunidadCAD.cs" />
 	<Compile Include="CP\DSMPracticas\ComunidadCP.cs" />
+			
 			
 			
 			

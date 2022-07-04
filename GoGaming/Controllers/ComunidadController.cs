@@ -27,6 +27,19 @@ namespace GoGaming.Controllers
             return View(listViewModel);
         }
 
+        public ActionResult IndexPartial(int id)
+        {
+            SessionInitialize();
+            ComunidadCAD comCad = new ComunidadCAD(session);
+            ComunidadCEN comCEN = new ComunidadCEN(comCad);
+            IList<ComunidadEN> lista = comCEN.GetComunidadesUsuario(id);
+
+            IEnumerable<ComunidadViewModel> listViewModel = (IEnumerable<ComunidadViewModel>)new ComunidadAssembler().ConvertListENTModel(lista).ToList();
+            SessionClose();
+
+            return View(listViewModel);
+        }
+
         // GET: Comunidad/Details/5
         public ActionResult Details(int id)
         {
@@ -34,6 +47,7 @@ namespace GoGaming.Controllers
             ComunidadCAD comCad = new ComunidadCAD(session);
             ComunidadCEN comCEN = new ComunidadCEN(comCad);
             ComunidadEN lista = comCEN.ReadOID(id);
+            ViewData["imagen"] = lista.Juego.Portada;
             //ComunidadViewModel listViewModel = new ComunidadAssembler().ConvertENToModelUI(lista);
 
             SessionClose();
@@ -53,7 +67,7 @@ namespace GoGaming.Controllers
             return View();
         }
 
-        [Authorize]
+        //[Authorize]
         // GET: Comunidad/Create
         public ActionResult Create()
         {
@@ -62,14 +76,14 @@ namespace GoGaming.Controllers
 
         // POST: Comunidad/Create
         [HttpPost]
-        public ActionResult Create(ComunidadViewModel com)
+        public ActionResult Create(int id, ComunidadViewModel com)
         {
             try
             {
                 // TODO: Add insert logic here
 
                 ComunidadCEN comunidadCEN = new ComunidadCEN();
-                comunidadCEN.New_(com.Nombre, com.Descripcion, DateTime.Now, com.Juego);
+                comunidadCEN.New_(com.Nombre, com.Descripcion, DateTime.Now, id);
 
                 return RedirectToAction("Index");
             }
@@ -79,7 +93,7 @@ namespace GoGaming.Controllers
             }
         }
 
-        [Authorize]
+        //[Authorize]
         // GET: Comunidad/Edit/5
         public ActionResult Edit(int id)
         {
@@ -95,14 +109,16 @@ namespace GoGaming.Controllers
 
         // POST: Comunidad/Edit/5
         [HttpPost]
-        public ActionResult Edit(string nom, ComunidadViewModel com)
+        public ActionResult Edit(int id, ComunidadViewModel com)
         {
             try
             {
                 // TODO: Add insert logic here
 
                 ComunidadCEN comunidadCEN = new ComunidadCEN();
-                comunidadCEN.Modify(com.CodigoComunidad, com.Nombre, com.Descripcion, DateTime.Now);
+                ComunidadEN comunidadEN = comunidadCEN.ReadOID(id);
+
+                comunidadCEN.Modify(id, com.Nombre, com.Descripcion, comunidadEN.FechaCreacion);
 
                 return RedirectToAction("Index");
             }
@@ -118,22 +134,23 @@ namespace GoGaming.Controllers
             SessionInitialize();
             ComunidadCAD comCad = new ComunidadCAD(session);
             ComunidadCEN comCEN = new ComunidadCEN(comCad);
+
             ComunidadEN lista = comCEN.ReadOID(id);
             ComunidadViewModel listViewModel = new ComunidadAssembler().ConvertENToModelUI(lista);
-
             SessionClose();
+
             return View(listViewModel);
         }
 
         // POST: Comunidad/Delete/5
         [HttpPost]
-        public ActionResult Delete(ComunidadViewModel com)
+        public ActionResult Delete(int id, FormCollection collection)
         {
             try
             {
                 ComunidadCEN comCEN = new ComunidadCEN();
 
-                comCEN.Destroy(com.CodigoComunidad);
+                comCEN.Destroy(id);
 
                 return RedirectToAction("Index");
             }
@@ -142,6 +159,6 @@ namespace GoGaming.Controllers
                 return View();
             }
         }
-    
+
     }
 }

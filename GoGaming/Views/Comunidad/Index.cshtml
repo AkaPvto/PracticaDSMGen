@@ -7,16 +7,12 @@
 
 <h2>Comunidades más recientes</h2>
 
-<p>
-    @Html.ActionLink("Crear Nueva Comunidad", "Create")
-</p>
-
 <br />
 
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Juego)
+            @Html.DisplayNameFor(model => model.NomJuego)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Nombre)
@@ -34,7 +30,7 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Juego)
+                @Html.DisplayFor(modelItem => item.NomJuego)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Nombre)
@@ -46,8 +42,9 @@
                 @Html.DisplayFor(modelItem => item.FechaCreacion)
             </td>
             <td>
-                @Html.ActionLink("Detalle", "Details", new { nom = item.Nombre }) |
-                @Html.ActionLink("Editar", "Edit", new { nom = item.Nombre })
+                @Html.ActionLink("Detalle", "Details", new { id = item.CodigoComunidad }) |
+                @Html.ActionLink("Editar", "Edit", new { id = item.CodigoComunidad }) |
+                @Html.ActionLink("Borrar", "Delete", new { id = item.CodigoComunidad })
             </td>
         </tr>
     }

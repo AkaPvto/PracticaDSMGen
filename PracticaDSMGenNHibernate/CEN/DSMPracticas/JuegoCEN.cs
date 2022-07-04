@@ -72,21 +72,6 @@ public int New_ (string p_nombre, string p_descripcion, string p_portada, System
         return oid;
 }
 
-public void Modify (int p_Juego_OID, string p_nombre, string p_descripcion, string p_portada)
-{
-        JuegoEN juegoEN = null;
-
-        //Initialized JuegoEN
-        juegoEN = new JuegoEN ();
-        juegoEN.Id = p_Juego_OID;
-        juegoEN.Nombre = p_nombre;
-        juegoEN.Descripcion = p_descripcion;
-        juegoEN.Portada = p_portada;
-        //Call to JuegoCAD
-
-        _IJuegoCAD.Modify (juegoEN);
-}
-
 public void Destroy (int id
                      )
 {
@@ -116,6 +101,18 @@ public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas
 public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.JuegoEN> GetJuegosPorUsuario (int p_usuario)
 {
         return _IJuegoCAD.GetJuegosPorUsuario (p_usuario);
+}
+public void AddGenero (int p_Juego_OID, System.Collections.Generic.IList<int> p_genero_OIDs)
+{
+        //Call to JuegoCAD
+
+        _IJuegoCAD.AddGenero (p_Juego_OID, p_genero_OIDs);
+}
+public void DeleteGenero (int p_Juego_OID, System.Collections.Generic.IList<int> p_genero_OIDs)
+{
+        //Call to JuegoCAD
+
+        _IJuegoCAD.DeleteGenero (p_Juego_OID, p_genero_OIDs);
 }
 }
 }

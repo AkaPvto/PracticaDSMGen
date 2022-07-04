@@ -5,11 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
-
+@{ Html.RenderAction("DetailsPartial", "Post", new { id = Model.Post });}
 <div>
-    <h4>ComentarioViewModel</h4>
-    <hr />
+    @{ Html.RenderAction("PadresComentario", "Comentario", new { id = Model.Id });}
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Contenido)
@@ -26,10 +24,17 @@
         <dd>
             @Html.DisplayFor(model => model.Hora)
         </dd>
+        <dt>
+            @Html.DisplayName("Respuestas")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hijos)
+        </dd>
 
     </dl>
+
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+@Html.ActionLink("Create", "Create", new { id = Model.Id, comentario = true })
+@{ Html.RenderAction("CreatePartial", "Comentario", new { p_usuario = Model.Autor, p_post = Model.Post });}
+@{ Html.RenderAction("HijosComentario", "Comentario", new { id = Model.Id });}
