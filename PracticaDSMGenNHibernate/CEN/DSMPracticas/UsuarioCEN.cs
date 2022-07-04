@@ -157,6 +157,10 @@ public void DeleteJuego (int p_Usuario_OID, System.Collections.Generic.IList<int
 
         _IUsuarioCAD.DeleteJuego (p_Usuario_OID, p_juego_OIDs);
 }
+public PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN GetUsuarioEmail (string p_email)
+{
+        return _IUsuarioCAD.GetUsuarioEmail (p_email);
+}
 
 
 

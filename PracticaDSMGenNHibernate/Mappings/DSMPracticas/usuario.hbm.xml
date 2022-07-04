@@ -176,5 +176,6 @@
 		  <query name="UsuarioENgetFollowingHQL"><![CDATA[SELECT usuario FROM UsuarioEN as usuario INNER JOIN usuario.Usuario_0 as followed WHERE followed.Id = :p_usuario]]></query>
 		  <query name="UsuarioENgetFollowedHQL"><![CDATA[SELECT usuario FROM UsuarioEN as usuario INNER JOIN usuario.Usuario as followed WHERE followed.Id = :p_usuario]]></query>
 		  <query name="UsuarioENgetUsuariosNotificacionHQL"><![CDATA[SELECT usuarios FROM UsuarioEN as usuarios INNER JOIN usuarios.Notificacion as notificacion WHERE notificacion = :p_notificacion]]></query>
+		  <query name="UsuarioENgetUsuarioEmailHQL"><![CDATA[FROM UsuarioEN as user WHERE user.Email = :p_email]]></query>
 		</hibernate-mapping>
 	
