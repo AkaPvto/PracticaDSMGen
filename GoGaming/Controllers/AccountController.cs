@@ -81,9 +81,16 @@ namespace GoGaming.Controllers
             {
                 case SignInStatus.Success:
                     UsuarioCEN usuarioCEN = new UsuarioCEN();
-                    int idUsuario = usuarioCEN.getUsuarioEmail(model.Email).Id || -1;
+                    int idUsuario = usuarioCEN.GetUsuarioEmail(model.Email).Id | -1;
                     string token = usuarioCEN.Login(idUsuario, model.Password);
-                    return RedirectToLocal(returnUrl);
+                    Session["Usuario"] = usuarioCEN.ReadOID(idUsuario);
+                    if (token != null) return RedirectToLocal(returnUrl);
+                    else
+                    {
+                        ModelState.AddModelError("", "Intento de inicio de sesión no válido");
+                        return View(model);
+                    }
+
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -155,7 +162,7 @@ namespace GoGaming.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Nombre, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
