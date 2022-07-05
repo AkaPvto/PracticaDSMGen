@@ -350,6 +350,7 @@
     <Content Include="Views\Usuario\Details.cshtml" />
     <Content Include="Views\Usuario\Seguidores.cshtml" />
     <Content Include="Views\Usuario\Seguidos.cshtml" />
+    <Content Include="Views\Post\IndexPostsUsuario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

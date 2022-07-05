@@ -43,6 +43,9 @@ namespace GoGaming.Models
         public int Comunidad { get; set; }
 
         [ScaffoldColumn(false)]
+        public string ComunidadName { get; set; }
+
+        [ScaffoldColumn(false)]
         public int Usuario { get; set; }
 
         [ScaffoldColumn(false)]

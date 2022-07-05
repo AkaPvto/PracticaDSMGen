@@ -23,6 +23,7 @@ namespace GoGaming.Assemblers
             post.Hora = (DateTime)en.Hora;
             post.Comentarios = coments;
             post.Comunidad = en.Comunidad.Id;
+            post.ComunidadName = new ComunidadCEN().ReadOID(en.Comunidad.Id).Nombre;
             post.Usuario = en.UsuarioCreador.Id;
             post.UsuarioName = new UsuarioCEN().ReadOID(en.UsuarioCreador.Id).Nickname;
             
