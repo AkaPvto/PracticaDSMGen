@@ -33,7 +33,6 @@ namespace GoGaming.Models
         public string Email { get; set; }
 
         [Display(Prompt = "Número de teléfono", Description = "Teléfono del usuario", Name = "Teléfono ")]
-        [MinLength(9, ErrorMessage = "El número de teléfono debe tener 9 dígitos")]
         public int Telefono { get; set; }
 
         [Display(Prompt = "Dirección del usuario", Description = "Dirección del usuario", Name = "Dirección ")]

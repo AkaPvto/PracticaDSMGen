@@ -1,5 +1,5 @@
 ﻿@model GoGaming.Models.UsuarioViewModel
-@using PracticaDSMGenNHibernate.EN.DSMPracticas 
+@using PracticaDSMGenNHibernate.EN.DSMPracticas; 
 
 
 @{
@@ -17,9 +17,18 @@
 <div>
     <hr />
     <dl class="dl-horizontal">
-        <img src="/Images/@Html.DisplayFor(modelItem => Model.Foto)"/>
+        <img src="/Images/@Html.DisplayFor(modelItem => Model.Foto)" />
         <h3>@Html.DisplayFor(modelItem => Model.Nickname)</h3>
-        
+        @if (idUsuario == Model.Id)
+        {
+            <h2>Datos Personales</h2>
+            <h3>@Html.LabelFor(modelItem => Model.Nombre): @Html.DisplayFor(modelItem => Model.Nombre)</h3>
+            <h3>@Html.LabelFor(modelItem => Model.Apellidos): @Html.DisplayFor(modelItem => Model.Apellidos)</h3>
+            <h3>@Html.LabelFor(modelItem => Model.Email): @Html.DisplayFor(modelItem => Model.Email)</h3>
+            <h3>@Html.LabelFor(modelItem => Model.Direccion): @Html.DisplayFor(modelItem => Model.Direccion)</h3>
+            <h3>@Html.LabelFor(modelItem => Model.Telefono): @Html.DisplayFor(modelItem => Model.Telefono)</h3>
+        }
+
     </dl>
     <div>
         @ViewData["seguidores"]
