@@ -10,7 +10,7 @@
 <p>
     @Html.ActionLink("Crear Nuevo Juego", "Create")
 </p>
-<table class="table">
+@*<table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Nombre)
@@ -25,10 +25,48 @@
             @Html.DisplayNameFor(model => model.Portada)
         </th>
         <th></th>
-    </tr>
+    </tr>*@
 
 @foreach (var item in Model) {
-    <tr>
+<div class="card w-50 jumbotron" style="background-color: #222222 ">
+    <img class="card-img-top img-responsive center-block" src="@Html.DisplayFor(modelItem => item.Portada)" alt="Card image cap">
+    <div class="card-body">
+        <h2 class="card-title"> @Html.DisplayFor(modelItem => item.Nombre)</h2>
+        <h4 class="card-text"> @Html.DisplayFor(modelItem => item.Descripcion)</h4>
+        @{
+            var generos = item.Generos;
+            var genNombres = (string[])ViewData["nombresGenero"];
+            var first = false;
+        }
+
+        @for (var i = 0; i < (int)ViewData["numGeneros"]; i++)
+        {
+            if (generos[i])
+            {
+                if (!first)
+                {
+                    @genNombres[i];
+                    first = true;
+                }
+                else
+                {
+                    var aux = ", ";
+                    @aux;
+                    @genNombres[i];
+                }
+            }
+
+        }<br />
+        <div class="text-right">
+            @Html.ActionLink("Detalle", "Details", new { id = item.Id }, new { @class = "btn btn-primary stretched-link ", role = "button" })
+        </div>
+        @Html.ActionLink("Crear Comunidad", "../Comunidad/Create", new { id = item.Id }) |
+        @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+        @Html.ActionLink("Borrar", "Delete", new { id = item.Id })
+    </div>
+</div>
+
+    @*<tr>
         <td>
             @Html.DisplayFor(modelItem => item.Nombre)
         </td>
@@ -70,7 +108,7 @@
             @Html.ActionLink("Detalle", "Details", new { id = item.Id }) |
             @Html.ActionLink("Borrar", "Delete", new { id = item.Id })
         </td>
-    </tr>
+    </tr>*@
 }
 
-</table>
+@*</table>*@
