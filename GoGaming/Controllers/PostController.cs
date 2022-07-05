@@ -10,6 +10,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PracticaDSMGenNHibernate.Enumerated.DSMPracticas;
+using System.IO;
 
 namespace GoGaming.Controllers
 {
@@ -126,8 +127,14 @@ namespace GoGaming.Controllers
 
         // POST: Post/Create
         [HttpPost]
-        public ActionResult Create(PostViewModel post)
+        public ActionResult Create(PostViewModel post, HttpPostedFileBase file)
         {
+            if (file != null && file.ContentLength > 0)
+            {
+                post.Imagen = Path.GetFileName(file.FileName);
+                string path = Path.Combine(Server.MapPath("~/Images"), post.Imagen);
+                file.SaveAs(path);
+            }
             try
             {
                 // TODO: Add insert logic here

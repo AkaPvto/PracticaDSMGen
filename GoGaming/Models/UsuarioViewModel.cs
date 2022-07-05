@@ -14,7 +14,6 @@ namespace GoGaming.Models
         [Display(Prompt = "Nombre de usuario", Description = "Nombre de usuario", Name = "Nickname ")]
         [Required(ErrorMessage = "El nombre de usuario es obligatorio")]
         [StringLength(25, MinimumLength= 4, ErrorMessage = "El nombre de usuario debe tener entre 4 y 25 caracteres. ")]
-
         public string Nickname { get; set; }
 
         [Display(Prompt = "Nombre", Description = "Nombre real del usuario", Name = "Nombre ")]
@@ -46,7 +45,7 @@ namespace GoGaming.Models
 
         [Display(Prompt = "Contraseña", Description = "Contraseña del usuario", Name = "Password ")]
         [Required(ErrorMessage = "El campo contraseña no puede estar vacío")]
-        [StringLength(64, MinimumLength = 8, ErrorMessage = "La contraseña debe tener entre 8 y 64 caracteres")]
+        [StringLength(64, MinimumLength = 4, ErrorMessage = "La contraseña debe tener entre 8 y 64 caracteres")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
