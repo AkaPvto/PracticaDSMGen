@@ -1,8 +1,15 @@
 ﻿@model GoGaming.Models.UsuarioViewModel
+@using PracticaDSMGenNHibernate.EN.DSMPracticas 
+
 
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    int idUsuario = -1;
+    if (Session["Usuario"] != null)
+    {
+        idUsuario = ((UsuarioEN)Session["Usuario"]).Id;
+    }
 }
 
 <h2>Perfil de @Model.Nickname</h2>
@@ -10,7 +17,9 @@
 <div>
     <hr />
     <dl class="dl-horizontal">
-        <img src="Images/@Model.Foto"/>
+        <img src="/Images/@Html.DisplayFor(modelItem => Model.Foto)"/>
+        <h3>@Html.DisplayFor(modelItem => Model.Nickname)</h3>
+        
     </dl>
     <div>
         @ViewData["seguidores"]
