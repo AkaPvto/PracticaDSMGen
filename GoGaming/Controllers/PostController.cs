@@ -180,7 +180,8 @@ namespace GoGaming.Controllers
                 if (post.Imagen == null) post.Imagen = "";
                 postCEN.Modify(post.Id, post.Contenido, categoria, post.Titulo, post.Imagen, postEN.Hora, post.Likes);
                 //postCEN.Modify(post.Id, post.Contenido, post.Categoria, post.Titulo, post.Imagen, post.Hora, post.Likes);
-                return RedirectToAction("Index");
+                string url = "../Comunidad/Details/" + post.Id;
+                return RedirectToAction(url);
             }
             catch
             {
