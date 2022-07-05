@@ -207,10 +207,12 @@
     <Compile Include="Assemblers\ComunidadAssembler.cs" />
     <Compile Include="Assemblers\AvisoAssembler.cs" />
     <Compile Include="Assemblers\PostAssembler.cs" />
+    <Compile Include="Assemblers\AvisoAssembler.cs" />
     <Compile Include="Assemblers\ComentarioAssembler.cs" />
     <Compile Include="Assemblers\JuegoAssembler.cs" />
     <Compile Include="Assemblers\UsuarioAssembler.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AvisoController.cs" />
     <Compile Include="Controllers\BasicController.cs" />
     <Compile Include="Controllers\NotificacionControler.cs" />
     <Compile Include="Controllers\ComentarioController.cs" />
@@ -350,6 +352,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Aviso\" />
     <Folder Include="Views\Basic\" />
   </ItemGroup>
   <ItemGroup>
