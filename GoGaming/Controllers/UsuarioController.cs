@@ -132,5 +132,42 @@ namespace GoGaming.Controllers
                 return View();
             }
         }
+
+        public ActionResult Login()
+        {
+            UsuarioViewModel usuarioVM = new UsuarioViewModel();
+            usuarioVM.Apellidos = "";
+            usuarioVM.Direccion = "";
+            usuarioVM.Email = "";
+            usuarioVM.Foto = "";
+            usuarioVM.Nickname = "";
+            usuarioVM.Nombre = "";
+            usuarioVM.Password = "";
+            return View(usuarioVM);
+        }
+
+        [HttpPost]
+        public ActionResult Login(UsuarioViewModel usuario)
+        {
+            UsuarioCEN usuarioCEN = new UsuarioCEN();
+            int idUsuario = usuarioCEN.GetUsuarioEmail(usuario.Email).Id;
+            string loginResult = usuarioCEN.Login(idUsuario, usuario.Password);
+
+            if(loginResult != null)
+            {
+                Session["Usuario"] = usuarioCEN.ReadOID(idUsuario);
+                return RedirectToAction("../");
+            }
+            else
+            {
+                return View();
+            }
+        }
+
+        public ActionResult Logout()
+        {
+            Session["Usuario"] = null;
+            return RedirectToAction("../");
+        }
     }
 }
