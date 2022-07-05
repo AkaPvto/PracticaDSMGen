@@ -74,6 +74,25 @@ namespace GoGaming.Controllers
             ViewData["enum"] = lista;
             return View(listViewModel);
         }
+
+        public ActionResult IndexPostsUsuario(int id)
+        {
+            SessionInitialize();
+            PostCAD postCAD = new PostCAD(session);
+            PostCEN postCEN = new PostCEN(postCAD);
+            IList<PostEN> listEN = postCEN.GetPostsUsu(id);
+            IEnumerable<PostViewModel> listViewModel = new PostAssembler().ConvertListENToModel(listEN).ToList();
+            SessionClose();
+            Array values = Enum.GetValues(new Categoria_PostEnum().GetType());
+            IList<string> lista = new List<string>();
+            foreach (var value in values)
+            {
+                lista.Add(value.ToString());
+            }
+            ViewData["enum"] = lista;
+            return View(listViewModel);
+        }
+
         // GET: Post/Details/5
         public ActionResult Details(int id)
         {
