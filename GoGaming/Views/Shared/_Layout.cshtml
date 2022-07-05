@@ -6,10 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Go-Gaming</title>
     @Styles.Render("~/Content/css")
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
-<body style="background-color: #5F646D; font-family: 'Montserrat'; color: #FFFFFF">
+<body style="background-color: #5F646D; font-family: 'Poppins', sans-serif; color: #FFFFFF">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -22,12 +25,13 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><img src="~/Images/logo.png" width="40" height="40" /></li>
-                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
+                    @*<li><img src="~/Images/logo.png" width="40" height="40" /></li>*@
+                    @*<li>@Html.ActionLink("Inicio", "Index", "Home")</li>*@
                     <li>@Html.ActionLink("Comunidades", "Index", "Comunidad")</li>
                     <li>@Html.ActionLink("Juegos", "Index", "Juego")</li>
                     <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
                     <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
+
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

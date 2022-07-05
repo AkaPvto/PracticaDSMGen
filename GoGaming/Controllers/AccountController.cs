@@ -76,20 +76,18 @@ namespace GoGaming.Controllers
 
             // No cuenta los errores de inicio de sesión para el bloqueo de la cuenta
             // Para permitir que los errores de contraseña desencadenen el bloqueo de la cuenta, cambie a shouldLockout: true
-            //ApplicationUser signedUser = UserManager.FindByEmail(model.Email);
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
-            //result = SignInStatus.Success;
             switch (result)
             {
                 case SignInStatus.Success:
                     UsuarioCEN usuarioCEN = new UsuarioCEN();
-                    int idUsuario = usuarioCEN.GetUsuarioEmail(model.Email).Id ;
+                    int idUsuario = usuarioCEN.GetUsuarioEmail(model.Email).Id;
                     string token = usuarioCEN.Login(idUsuario, model.Password);
                     Session["Usuario"] = usuarioCEN.ReadOID(idUsuario);
                     if (token != null) return RedirectToLocal(returnUrl);
                     else
                     {
-                        ModelState.AddModelError("", "Intento de inicio de sesión no válido a");
+                        ModelState.AddModelError("", "Intento de inicio de sesión no válido");
                         return View(model);
                     }
 
@@ -99,7 +97,7 @@ namespace GoGaming.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Intento de inicio de sesión no válido a.");
+                    ModelState.AddModelError("", "Intento de inicio de sesión no válido.");
                     return View(model);
             }
         }
@@ -162,38 +160,31 @@ namespace GoGaming.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(UsuarioViewModel model)
         {
-            try
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var result = await UserManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
                 {
-                    var user = new ApplicationUser { UserName = model.Nombre, Email = model.Email };
-                    var result = await UserManager.CreateAsync(user, model.Password);
-                    if (result.Succeeded)
-                    {
-                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
 
 
-                        UsuarioCEN usuarioCEN = new UsuarioCEN();
-                        int idUsuario = usuarioCEN.New_(model.Nickname, model.Nombre, model.Apellidos, model.Email, model.Telefono, model.Direccion, model.Foto, model.Password);
-                        Session["Usuario"] = usuarioCEN.ReadOID(idUsuario);
-                        // Para obtener más información sobre cómo habilitar la confirmación de cuentas y el restablecimiento de contraseña, visite https://go.microsoft.com/fwlink/?LinkID=320771
-                        // Enviar correo electrónico con este vínculo
-                        // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                        // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                        // await UserManager.SendEmailAsync(user.Id, "Confirmar cuenta", "Para confirmar la cuenta, haga clic <a href=\"" + callbackUrl + "\">aquí</a>");
+                    UsuarioCEN usuarioCEN = new UsuarioCEN();
+                    int idUsuario = usuarioCEN.New_(model.Nickname, model.Nombre, model.Apellidos, model.Email, model.Telefono, model.Direccion, model.Foto, model.Password);
+                    Session["Usuario"] = usuarioCEN.ReadOID(idUsuario);
+                    // Para obtener más información sobre cómo habilitar la confirmación de cuentas y el restablecimiento de contraseña, visite https://go.microsoft.com/fwlink/?LinkID=320771
+                    // Enviar correo electrónico con este vínculo
+                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    // await UserManager.SendEmailAsync(user.Id, "Confirmar cuenta", "Para confirmar la cuenta, haga clic <a href=\"" + callbackUrl + "\">aquí</a>");
 
-                        return RedirectToAction("Index", "Home");
-                    }
-                    AddErrors(result);
+                    return RedirectToAction("Index", "Home");
                 }
-
-                // Si llegamos a este punto, es que se ha producido un error y volvemos a mostrar el formulario
-                return View(model);
-            }catch(Exception e)
-            {
-                string excepcion = e.ToString();
-                return View();
+                AddErrors(result);
             }
+
+            // Si llegamos a este punto, es que se ha producido un error y volvemos a mostrar el formulario
+            return View(model);
         }
 
         //

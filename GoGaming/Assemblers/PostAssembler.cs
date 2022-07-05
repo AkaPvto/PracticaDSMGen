@@ -16,13 +16,16 @@ namespace GoGaming.Assemblers
             int coments = new ComentarioCEN().GetComentariosFecha(en.Id).Count;
             post.Id = en.Id;
             post.Contenido = en.Contenido;
-            post.Categoria = (int)en.Categoria;
+            post.Categoria = Math.Max((int)en.Categoria -1, 0);
             post.Imagen = en.Imagen;
             post.Titulo = en.Titulo;
             post.Likes = en.Likes;
             post.Hora = (DateTime)en.Hora;
             post.Comentarios = coments;
             post.Comunidad = en.Comunidad.Id;
+            post.ComunidadName = new ComunidadCEN().ReadOID(en.Comunidad.Id).Nombre;
+            post.Usuario = en.UsuarioCreador.Id;
+            post.UsuarioName = new UsuarioCEN().ReadOID(en.UsuarioCreador.Id).Nickname;
             
             return post;
         }

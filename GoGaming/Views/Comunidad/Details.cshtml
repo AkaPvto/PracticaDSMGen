@@ -8,9 +8,10 @@
 
 <img src="@Url"/>
 <h2>Comunidad de @Model.Nombre</h2>
-
 <div class="contenedor">
     <hr />
+    @*No de donde meter el boton de crear post*@
+    <button class="form-control" onclick="window.location = '/Post/Create/'+ @Model.CodigoComunidad;">Crear un Post</button> 
     <p>Ordenar por:</p>
     <select class="form-control" id="select">
         <option value="Fecha">Fecha</option>
@@ -25,7 +26,7 @@
         @{Html.RenderAction("IndexPartialLikes", "Post", new { id = Model.CodigoComunidad });}
     </div>
 </div>
-<button class="form-control" onclick="window.location = '/Post/Create/'+ @Model.CodigoComunidad;">Crear un Post</button>
+
 
 @section Scripts
 {

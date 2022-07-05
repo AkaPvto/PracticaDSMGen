@@ -3,9 +3,30 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2 class="text-center">Sin Resultados</h2>
+<h2 align="center" style="margin-top:1.5em;">Resultados</h2>
 <br />
-<div class="text-center">
+
+@using (Html.BeginForm("Buscar", "Juego", FormMethod.Post, null))
+{
+    <div class="jumbotron" style="background-color: #222222;">
+        <h3 align="center">Busca tus juegos favoritos</h3><br />
+        <div class="form-inline" align="center">
+            <div class="form-group pl-2">
+                <input type="search" class="form-control" id="text" name="nom" placeholder="Introduce un juego...">
+            </div>
+            <button type="submit" class="btn btn-primary" style="color:#FFFFFF"> <span class="glyphicon glyphicon-search"></span> Buscar</button>
+
+        </div>
+    </div>
+
+    <br />
+}
+
+<div class="jumbotron" style="background-color: #222222; margin-top: 3em;">
+    <p align="center"> Lo sentimos! No se han encontrado resultados para el juego buscado</p>
+</div>
+
+@*<div class="text-center">
     <p>No se han encontrado resultados para el juego buscado</p>
 
     <br />
@@ -23,4 +44,4 @@
 
         <br />
     }
-</div>
+</div>*@

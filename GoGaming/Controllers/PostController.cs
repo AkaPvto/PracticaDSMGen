@@ -10,6 +10,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PracticaDSMGenNHibernate.Enumerated.DSMPracticas;
+using System.IO;
 
 namespace GoGaming.Controllers
 {
@@ -74,6 +75,25 @@ namespace GoGaming.Controllers
             ViewData["enum"] = lista;
             return View(listViewModel);
         }
+
+        public ActionResult IndexPostsUsuario(int id)
+        {
+            SessionInitialize();
+            PostCAD postCAD = new PostCAD(session);
+            PostCEN postCEN = new PostCEN(postCAD);
+            IList<PostEN> listEN = postCEN.GetPostsUsu(id);
+            IEnumerable<PostViewModel> listViewModel = new PostAssembler().ConvertListENToModel(listEN).ToList();
+            SessionClose();
+            Array values = Enum.GetValues(new Categoria_PostEnum().GetType());
+            IList<string> lista = new List<string>();
+            foreach (var value in values)
+            {
+                lista.Add(value.ToString());
+            }
+            ViewData["enum"] = lista;
+            return View(listViewModel);
+        }
+
         // GET: Post/Details/5
         public ActionResult Details(int id)
         {
@@ -107,18 +127,25 @@ namespace GoGaming.Controllers
 
         // POST: Post/Create
         [HttpPost]
-        public ActionResult Create(PostViewModel post)
+        public ActionResult Create(PostViewModel post, HttpPostedFileBase file)
         {
+            if (file != null && file.ContentLength > 0)
+            {
+                post.Imagen = Path.GetFileName(file.FileName);
+                string path = Path.Combine(Server.MapPath("~/Images"), post.Imagen);
+                file.SaveAs(path);
+            }
             try
             {
                 // TODO: Add insert logic here
                 PostCP postCP = new PostCP();
                 Array values = Enum.GetValues(new Categoria_PostEnum().GetType());
-                Categoria_PostEnum prueba1 = (Categoria_PostEnum)post.Categoria;
-                Categoria_PostEnum prueba2 = (Categoria_PostEnum)values.GetValue(post.Categoria);
-                postCP.New_(post.Contenido, 32770, post.Id, prueba1, post.Titulo, post.Imagen, DateTime.Now);
+                Categoria_PostEnum categoria = (Categoria_PostEnum)values.GetValue(post.Categoria);
+                if (post.Imagen == null) post.Imagen = "";
+                postCP.New_(post.Contenido, 32770, post.Id, categoria, post.Titulo, post.Imagen, DateTime.Now);
                 //postCP.New_(post.Contenido, ((UsuarioEN)Session["Usuario"]).Id, idComunidad, post.Categoria, post.Titulo, post.Imagen, DateTime.Now);
-                return RedirectToAction("Index");
+                string url = "../Comunidad/Details/" + post.Id;
+                return RedirectToAction(url);
             }
             catch(Exception e)
             {
@@ -131,11 +158,18 @@ namespace GoGaming.Controllers
         // GET: Post/Edit/5
         public ActionResult Edit(int id)
         {
-            PostViewModel post = null;
-            SessionInitialize();
-            PostEN postEN = new PostCAD(session).ReadOIDDefault(id);
-            post = new PostAssembler().ConvertENToModelUI(postEN);
-            SessionClose();
+            PostEN postEN = new PostCEN().ReadOID(id);
+            PostViewModel post = new PostAssembler().ConvertENToModelUI(postEN);
+
+            Array values = Enum.GetValues(new Categoria_PostEnum().GetType());
+            IList<SelectListItem> enumLista = new List<SelectListItem>();
+            for (int i = 0; i < values.Length; i++)
+            {
+                enumLista.Add(new SelectListItem { Text = values.GetValue(i).ToString(), Value = i.ToString() });
+            }
+
+            ViewData["Categoria"] = enumLista;
+
             return View(post);
         }
 
@@ -148,9 +182,13 @@ namespace GoGaming.Controllers
                 // TODO: Add update logic here
                 PostCEN postCEN = new PostCEN();
                 PostEN postEN = postCEN.ReadOID(post.Id);
-                postCEN.Modify(post.Id, post.Contenido, (Categoria_PostEnum)post.Categoria, post.Titulo, post.Imagen, postEN.Hora, post.Likes);
+                Array values = Enum.GetValues(new Categoria_PostEnum().GetType());
+                Categoria_PostEnum categoria = (Categoria_PostEnum)values.GetValue(post.Categoria);
+                if (post.Imagen == null) post.Imagen = "";
+                postCEN.Modify(post.Id, post.Contenido, categoria, post.Titulo, post.Imagen, postEN.Hora, post.Likes);
                 //postCEN.Modify(post.Id, post.Contenido, post.Categoria, post.Titulo, post.Imagen, post.Hora, post.Likes);
-                return RedirectToAction("Index");
+                string url = "../Comunidad/Details/" + post.Id;
+                return RedirectToAction(url);
             }
             catch
             {

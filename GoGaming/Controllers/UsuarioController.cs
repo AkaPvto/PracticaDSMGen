@@ -132,5 +132,76 @@ namespace GoGaming.Controllers
                 return View();
             }
         }
+
+        // POST: Usuario/Details/5
+        [HttpPost]
+        public ActionResult Details(int idFollower, int idFollowed)
+        {
+            try
+            {
+                // TODO: Add delete logic here
+                UsuarioCEN usuarioCEN = new UsuarioCEN();
+                IList<UsuarioEN> listEN = usuarioCEN.GetFollowing(idFollower);
+                IList<int> idUsuariosSeguidos = new List<int>();
+                foreach(UsuarioEN usuario in listEN)
+                {
+                    idUsuariosSeguidos.Add(usuario.Id);
+                }
+                bool siguiendo = idUsuariosSeguidos.Contains(idFollowed);
+
+                if (siguiendo)
+                {
+                    usuarioCEN.DeleteFollowing(idFollower, new List<int>() { idFollowed });
+                }
+                else
+                {
+                    usuarioCEN.AddFollowing(idFollower, new List<int>() { idFollowed });
+                }
+
+                ViewData["Siguiendo"] = !siguiendo;
+                return View();
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        public ActionResult Login()
+        {
+            UsuarioViewModel usuarioVM = new UsuarioViewModel();
+            usuarioVM.Apellidos = "";
+            usuarioVM.Direccion = "";
+            usuarioVM.Email = "";
+            usuarioVM.Foto = "";
+            usuarioVM.Nickname = "";
+            usuarioVM.Nombre = "";
+            usuarioVM.Password = "";
+            return View(usuarioVM);
+        }
+
+        [HttpPost]
+        public ActionResult Login(UsuarioViewModel usuario)
+        {
+            UsuarioCEN usuarioCEN = new UsuarioCEN();
+            int idUsuario = usuarioCEN.GetUsuarioEmail(usuario.Email).Id;
+            string loginResult = usuarioCEN.Login(idUsuario, usuario.Password);
+
+            if(loginResult != null)
+            {
+                Session["Usuario"] = usuarioCEN.ReadOID(idUsuario);
+                return RedirectToAction("../");
+            }
+            else
+            {
+                return View();
+            }
+        }
+
+        public ActionResult Logout()
+        {
+            Session["Usuario"] = null;
+            return RedirectToAction("../");
+        }
     }
 }

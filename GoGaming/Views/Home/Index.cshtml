@@ -5,19 +5,21 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2 align="center">Go-Gaming<img src="~/Images/logo.png" width="40" height="40" /></h2>
+<h1 align="center" style="margin-top: 1.5em;">Go-Gaming</h1>
 <br />
 
 
 @using (Html.BeginForm("Buscar", "Juego", FormMethod.Post, null))
 {
+    <div class="jumbotron" style="background-color: #222222;">
+        <h3 align="center">Busca tus juegos favoritos</h3><br />
+        <div class="form-inline" align="center">
+            <div class="form-group pl-2">
+                <input type="search" class="form-control" id="text" name="nom" placeholder="Introduce un juego...">
+            </div>
+            <button type="submit" class="btn btn-primary" style="color:#FFFFFF"> <span class="glyphicon glyphicon-search"></span> Buscar</button>
 
-    <div class="form-inline" align="center">
-        <div class="form-group pl-2">
-            <input type="search" class="form-control" id="text" name="nom" placeholder="Introduce un juego...">
         </div>
-        <button type="submit" class="btn btn-primary" style="color:#FFFFFF"> <span class="glyphicon glyphicon-search"></span> Buscar</button>
-
     </div>
 
     <br />
@@ -28,8 +30,8 @@
 
 <h3 align="center">Juegos Más Populares</h3>
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
-    
+<div id="myCarousel" class="jumbotron carousel slide" style="background-color: #222222; margin-top: 2em;" data-ride="carousel">
+
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
 
@@ -41,12 +43,13 @@
             if (int.Parse(ViewData["iter"].ToString()) == 0)
             {
                 <div class="item active" align="center">
-                    <img src=@item.Portada width="400" height="400" alt=""> @Html.ActionLink(item.Nombre, "../Juego/DetallesDesdeHome", new { id = item.Id })   @*@Html.ActionLink(linkText: item.Nombre, actionName: "Details", controllerName: "Juego", routeValues: new { id = item.Nombre }, htmlAttributes: null)*@
+                    <img src=@item.Portada style="max-height: 300px" alt=""><br />@Html.ActionLink("Ver juego", "../Juego/Details", new { id = item.Id })
+                    @*@Html.ActionLink(linkText: item.Nombre, actionName: "Details", controllerName: "Juego", routeValues: new { id = item.Nombre }, htmlAttributes: null)*@
                 </div>
             }
             else
             { <div class="item " align="center">
-                    <img src=@item.Portada width="400" height="400" alt="">  @Html.ActionLink(item.Nombre, "../Juego/DetallesDesdeHome", new { id = item.Id })
+                    <img src=@item.Portada style="max-height: 300px" alt=""><br />@Html.ActionLink("Ver juego", "../Juego/Details", new { id = item.Id })
                 </div>
             }
             ViewData["iter"] = 1;
@@ -69,42 +72,70 @@
 <h3 align="center">Comunidades Más Populares</h3>
 <br />
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.NomJuego)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Descripcion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FechaCreacion)
-        </th>
-
-    </tr>
-
-    @foreach (var item in Model)
-    {
+@*<table class="table">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.NomJuego)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descripcion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FechaCreacion)
-            </td>
-        </tr>
-    }
+            <th>
+                @Html.DisplayNameFor(model => model.NomJuego)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaCreacion)
+            </th>
 
-</table>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NomJuego)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaCreacion)
+                </td>
+            </tr>
+        }
+
+    </table>*@
+
+<div class="container">
+    <div class="row">
+
+        @foreach (var item in Model)
+        {
+            <div class="col-lg-4">
+                <div class="card w-50 jumbotron " style="background-color: #222222 ">
+                    @*<img class="card-img-top img-responsive center-block" src="@Html.DisplayFor(modelItem => item.Portada)" alt="Card image cap">*@
+
+                    <div class="card-header text-muted"> @Html.DisplayFor(modelItem => item.NomJuego)</div>
+                    <div class="card-body">
+                        <h2 class="card-title"> @Html.DisplayFor(modelItem => item.Nombre)</h2>
+                        <br />
+                        <h4 class="card-text"> @Html.DisplayFor(modelItem => item.Descripcion)</h4>
+                        <br />
+                        <h6 class="card-subtitle mb-2 text-muted"> @Html.DisplayFor(modelItem => item.FechaCreacion)</h6>
+                        <div class="text-right">
+                            @Html.ActionLink("Visitar", "../Comunidad/Details", new { id = item.CodigoComunidad }, new { @class = "btn btn-primary stretched-link ", role = "button" })
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
 
 <br />
 
