@@ -5,12 +5,17 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
-
 <div>
-    <h4>PostViewModel</h4>
+    <h4>@Html.DisplayFor(model => model.Titulo)</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Publicado por ")
+        </dt>
+
+        <dd>
+            @Html.ActionLink(Model.UsuarioName, "../Usuario/Details/", new { id = Model.Usuario })
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Contenido)
         </dt>
@@ -19,41 +24,25 @@
             @Html.DisplayFor(model => model.Contenido)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Titulo)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Titulo)
-        </dd>
+        @if (Model.Imagen != "")
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.Imagen)
+            </dt>
+            <dd>
+                <img src="/Images/@Html.DisplayFor(model => model.Imagen)" />
+            </dd>
+        }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Imagen)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Imagen)
-        </dd>
 
     </dl>
+    <h4>Comentarios</h4>
+    @{ Html.RenderAction("CreatePartial", "Comentario", new { p_usuario = Model.Usuario, p_post = Model.Id });}
     @{Html.RenderAction("IndexPartial", "Comentario", new { id = Model.Id });}
 </div>
-@section Scripts{
-    <script>
-        window.onload = function () {
-            aux = document.getElementsByTagName('footer');
-            aux2 = document.getElementsByClassName('navbar');
-            cont = aux.length - 1;
-            for (var i = 0; i < cont; i++) {
-                aux[0].parentNode.removeChild(aux[0]);
-                aux2[cont - i].parentNode.removeChild(aux2[cont - i]);
-            }
-        };
-    </script>
-    
-    }
 
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Volver", "../Comunidad/Details/", new { id = Model.Comunidad})
 </p>

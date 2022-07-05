@@ -114,11 +114,12 @@ namespace GoGaming.Controllers
                 // TODO: Add insert logic here
                 PostCP postCP = new PostCP();
                 Array values = Enum.GetValues(new Categoria_PostEnum().GetType());
-                Categoria_PostEnum prueba1 = (Categoria_PostEnum)post.Categoria;
-                Categoria_PostEnum prueba2 = (Categoria_PostEnum)values.GetValue(post.Categoria);
-                postCP.New_(post.Contenido, 32770, post.Id, prueba1, post.Titulo, post.Imagen, DateTime.Now);
+                Categoria_PostEnum categoria = (Categoria_PostEnum)values.GetValue(post.Categoria);
+                if (post.Imagen == null) post.Imagen = "";
+                postCP.New_(post.Contenido, 32770, post.Id, categoria, post.Titulo, post.Imagen, DateTime.Now);
                 //postCP.New_(post.Contenido, ((UsuarioEN)Session["Usuario"]).Id, idComunidad, post.Categoria, post.Titulo, post.Imagen, DateTime.Now);
-                return RedirectToAction("Index");
+                string url = "../Comunidad/Details/" + post.Id;
+                return RedirectToAction(url);
             }
             catch(Exception e)
             {
@@ -131,11 +132,18 @@ namespace GoGaming.Controllers
         // GET: Post/Edit/5
         public ActionResult Edit(int id)
         {
-            PostViewModel post = null;
-            SessionInitialize();
-            PostEN postEN = new PostCAD(session).ReadOIDDefault(id);
-            post = new PostAssembler().ConvertENToModelUI(postEN);
-            SessionClose();
+            PostEN postEN = new PostCEN().ReadOID(id);
+            PostViewModel post = new PostAssembler().ConvertENToModelUI(postEN);
+
+            Array values = Enum.GetValues(new Categoria_PostEnum().GetType());
+            IList<SelectListItem> enumLista = new List<SelectListItem>();
+            for (int i = 0; i < values.Length; i++)
+            {
+                enumLista.Add(new SelectListItem { Text = values.GetValue(i).ToString(), Value = i.ToString() });
+            }
+
+            ViewData["Categoria"] = enumLista;
+
             return View(post);
         }
 
@@ -148,7 +156,10 @@ namespace GoGaming.Controllers
                 // TODO: Add update logic here
                 PostCEN postCEN = new PostCEN();
                 PostEN postEN = postCEN.ReadOID(post.Id);
-                postCEN.Modify(post.Id, post.Contenido, (Categoria_PostEnum)post.Categoria, post.Titulo, post.Imagen, postEN.Hora, post.Likes);
+                Array values = Enum.GetValues(new Categoria_PostEnum().GetType());
+                Categoria_PostEnum categoria = (Categoria_PostEnum)values.GetValue(post.Categoria);
+                if (post.Imagen == null) post.Imagen = "";
+                postCEN.Modify(post.Id, post.Contenido, categoria, post.Titulo, post.Imagen, postEN.Hora, post.Likes);
                 //postCEN.Modify(post.Id, post.Contenido, post.Categoria, post.Titulo, post.Imagen, post.Hora, post.Likes);
                 return RedirectToAction("Index");
             }
