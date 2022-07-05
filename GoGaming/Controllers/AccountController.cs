@@ -81,7 +81,7 @@ namespace GoGaming.Controllers
             {
                 case SignInStatus.Success:
                     UsuarioCEN usuarioCEN = new UsuarioCEN();
-                    int idUsuario = usuarioCEN.GetUsuarioEmail(model.Email).Id | -1;
+                    int idUsuario = usuarioCEN.GetUsuarioEmail(model.Email).Id;
                     string token = usuarioCEN.Login(idUsuario, model.Password);
                     Session["Usuario"] = usuarioCEN.ReadOID(idUsuario);
                     if (token != null) return RedirectToLocal(returnUrl);
