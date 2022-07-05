@@ -15,7 +15,7 @@ namespace GoGaming.Models
 
         [Display(Prompt = "Contenido", Description = "Contenido del post", Name = "Contenido")]
         [Required(ErrorMessage = "El contenido del post no puede estar vacío")]
-        [StringLength(maximumLength: 800, ErrorMessage = "El post no puede tener más de 800 caracteres")]
+        [StringLength(maximumLength: 1000, ErrorMessage = "El post no puede tener más de 800 caracteres")]
         public string Contenido { get; set; }
 
         [ScaffoldColumn(false)]
@@ -24,7 +24,7 @@ namespace GoGaming.Models
 
         [Display(Prompt = "Título del post", Description = "Título del post", Name = "Titulo")]
         [Required(ErrorMessage = "El post debe tener un título")]
-        [StringLength(maximumLength: 30, ErrorMessage = "El título del post no puede tener más de 30 caracteres")]
+        [StringLength(maximumLength: 100, ErrorMessage = "El título del post no puede tener más de 30 caracteres")]
         public string Titulo { get; set; }
 
         [Display(Prompt = "Imagen del post", Description = "Imagen del post", Name = "Imagen")]
@@ -41,6 +41,12 @@ namespace GoGaming.Models
 
         [ScaffoldColumn(false)]
         public int Comunidad { get; set; }
+
+        [ScaffoldColumn(false)]
+        public int Usuario { get; set; }
+
+        [ScaffoldColumn(false)]
+        public string UsuarioName { get; set; }
 
     }
 }

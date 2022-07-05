@@ -61,5 +61,7 @@ System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.Usuari
 
 
 void DeleteJuego (int p_Usuario_OID, System.Collections.Generic.IList<int> p_juego_OIDs);
+
+PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN GetUsuarioEmail (string p_email);
 }
 }
