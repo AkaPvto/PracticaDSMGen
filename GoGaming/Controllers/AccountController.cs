@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using GoGaming.Models;
+using PracticaDSMGenNHibernate.CEN.DSMPracticas;
 
 namespace GoGaming.Controllers
 {
@@ -79,7 +80,17 @@ namespace GoGaming.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    UsuarioCEN usuarioCEN = new UsuarioCEN();
+                    int idUsuario = usuarioCEN.GetUsuarioEmail(model.Email).Id | -1;
+                    string token = usuarioCEN.Login(idUsuario, model.Password);
+                    Session["Usuario"] = usuarioCEN.ReadOID(idUsuario);
+                    if (token != null) return RedirectToLocal(returnUrl);
+                    else
+                    {
+                        ModelState.AddModelError("", "Intento de inicio de sesión no válido");
+                        return View(model);
+                    }
+
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -147,7 +158,7 @@ namespace GoGaming.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(UsuarioViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -156,7 +167,11 @@ namespace GoGaming.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+
+
+                    UsuarioCEN usuarioCEN = new UsuarioCEN();
+                    int idUsuario = usuarioCEN.New_(model.Nickname, model.Nombre, model.Apellidos, model.Email, model.Telefono, model.Direccion, model.Foto, model.Password);
+                    Session["Usuario"] = usuarioCEN.ReadOID(idUsuario);
                     // Para obtener más información sobre cómo habilitar la confirmación de cuentas y el restablecimiento de contraseña, visite https://go.microsoft.com/fwlink/?LinkID=320771
                     // Enviar correo electrónico con este vínculo
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
