@@ -381,7 +381,7 @@ public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM PostEN self where FROM PostEN as post WHERE post.UsuarioCreador.Id = :usu";
+                //String sql = @"FROM PostEN self where FROM PostEN as post WHERE post.UsuarioCreador.Id = :p_usu";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("PostENgetPostsUsuHQL");
                 query.SetParameter ("p_usu", p_usu);
