@@ -39,17 +39,17 @@ public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas
 
                 IList<UsuarioEN> seguidos = usuarioCEN.GetFollowed (p_usu);
 
-                List<string> juegos = new List<string>();
+                List<int> juegos = new List<int>();
                 foreach (UsuarioEN seguido in seguidos) { //recuperamos todos los juegos de los seguidos del usuario
                         IList<JuegoEN> juegosSeguido = juegoCEN.GetJuegosPorUsuario (seguido.Id);
                         foreach (JuegoEN juego in juegosSeguido) {
-                                juegos.Add (juego.Nombre);
+                                juegos.Add (juego.Id);
                         }
                 }
 
 
-                var dict = new Dictionary<string, int>(); //estas lineas cuentan cuantas veces se repiten los juegos
-                foreach (string juego in juegos) {
+                var dict = new Dictionary<int, int>(); //estas lineas cuentan cuantas veces se repiten los juegos
+                foreach (int juego in juegos) {
                         if (dict.ContainsKey (juego))
                                 dict [juego]++;
                         else
@@ -63,14 +63,17 @@ public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas
                 int salir = 0;
                 int maxJuegosRecomendados = 5;
                 foreach (var value in lista) {
-                        //Console.WriteLine (value.Key);
-                        listaJuegos.Add(juegoCEN.ReadOID(value.Value));
+                        
+                        listaJuegos.Add(juegoCEN.ReadOID(value.Key));
+                        Console.WriteLine (listaJuegos.Last().Nombre);
+                        
                         if (salir >= maxJuegosRecomendados)
                                 break;
                         salir++;
                 }
 
                 SessionCommit ();
+                return listaJuegos;
         }
         catch (Exception ex) {
                 SessionRollBack ();
