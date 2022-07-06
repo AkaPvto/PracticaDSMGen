@@ -160,12 +160,19 @@ namespace GoGaming.Controllers
             try
             {
                 // TODO: Add insert logic here
+                // Por algun motivo la id de la comunidad se guarda en post.Id
+                post.Comunidad = post.Id;
                 PostCP postCP = new PostCP();
                 Array values = Enum.GetValues(new Categoria_PostEnum().GetType());
                 Categoria_PostEnum categoria = (Categoria_PostEnum)values.GetValue(post.Categoria);
                 if (post.Imagen == null) post.Imagen = "";
-                postCP.New_(post.Contenido, 32770, post.Id, categoria, post.Titulo, post.Imagen, DateTime.Now);
-                //postCP.New_(post.Contenido, ((UsuarioEN)Session["Usuario"]).Id, idComunidad, post.Categoria, post.Titulo, post.Imagen, DateTime.Now);
+                int postId = postCP.New_(post.Contenido, ((UsuarioEN)Session["Usuario"]).Id, post.Comunidad, categoria, post.Titulo, post.Imagen, DateTime.Now).Id;
+
+                NotificacionCP notificacionCP = new NotificacionCP();
+                NotificacionCEN notificacionCEN = new NotificacionCEN();
+                int idNotificacion = notificacionCP.New_(postId).Id;
+                notificacionCP.EnviarNotificacion(idNotificacion);
+                
                 string url = "../Comunidad/Details/" + post.Id;
                 return RedirectToAction(url);
             }

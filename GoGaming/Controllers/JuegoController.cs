@@ -90,7 +90,10 @@ namespace GoGaming.Controllers
             ViewData["nombresGenero"] = listaNombres.ToArray();
 
             JuegoEN juegoEN = juegoCEN.ReadOID(id);
-            ViewData["comunidad"] = juegoEN.Comunidad.Id;
+            if(juegoEN.Comunidad != null)
+            {
+                ViewData["comunidad"] = juegoEN.Comunidad.Id;
+            }
             JuegoViewModel juegoVM = new JuegoAssembler().ConvertENToModelUI(juegoEN);
             bool guardado = false;
             if (Session["Usuario"] != null) { 

@@ -25,7 +25,45 @@
 
         <div class="form-group">
             <div class="col-md-10">
-                <input type="submit" value="Comentar" class="btn btn-default" />
+                @if (Session["Usuario"] == null)
+                {
+                    @Html.ActionLink("Comentar", "../Usuario/Login", new { error = "Tienes que iniciar sesión para poder comentar" })
+                }
+                else if (ViewData["comunidad"] != null && (bool)ViewData["comunidad"])
+                {
+                    <input type="submit" value="Comentar" class="btn btn-default" />
+                }
+                else
+                {
+                    
+                    <button style="bottom: 20px; right: 20px;" class="btn btn-primary stretched-link" id="boton-modal" data-toggle="modal" data-target="#exampleModal">Comentar</button>
+                    <script>
+                        $(document).ready(function () {
+                            $("#boton-modal").click(function () {
+                                $("#Contenido").val("");
+                            });
+                        });
+                    </script>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Aviso: No perteneces a la comunidad</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Necesitas pertecener a la comunidad para poder comentar en un post en ella
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
             </div>
         </div>
     </div>

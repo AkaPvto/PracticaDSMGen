@@ -128,18 +128,23 @@ namespace GoGaming.Controllers
             try
             {
                 int newComent = 0;
+                int autor = 0;
+                if (Session["Usuario"] != null)
+                {
+                    autor = ((UsuarioEN)Session["Usuario"]).Id;
+                }
                 if (coment.Id != 0)
                 {
                     ComentarioCP comentarioCP = new ComentarioCP();
 
                     //Hay que ver como recuperar la id del usuario (se que se puede acceder a los datos del usuario que tiene la sesion iniciada) y la id del post
-                    ComentarioEN nuevoComent = comentarioCP.NewHijo(coment.Contenido, coment.Autor, coment.Post, DateTime.Now, coment.Id);
+                    ComentarioEN nuevoComent = comentarioCP.NewHijo(coment.Contenido, autor, coment.Post, DateTime.Now, coment.Id);
                     newComent = nuevoComent.Id;
                 }
                 else
                 {
                     ComentarioCEN comentarioCEN = new ComentarioCEN();
-                    newComent = comentarioCEN.NewRaiz(coment.Contenido, coment.Autor, coment.Post, DateTime.Now);
+                    newComent = comentarioCEN.NewRaiz(coment.Contenido, autor, coment.Post, DateTime.Now);
                 }
 
                 //ComentarioEN comentarioNuevo = new ComentarioCEN().ReadOID(newComent);
@@ -156,12 +161,20 @@ namespace GoGaming.Controllers
         // GET: Comentario/CreatePartial
         public ActionResult CreatePartial(int p_usuario, int p_post)
         {
+            ComunidadCEN comunidadCEN = new ComunidadCEN();
             ComentarioViewModel comentVM = new ComentarioViewModel();
             PostEN postEN = new PostCEN().ReadOID(p_post);
 
+            bool unido = false;
+            if (Session["Usuario"] != null)
+            {
+                IList<ComunidadEN> listEN = new ComunidadCEN().GetComunidadesUsuario(((UsuarioEN)Session["Usuario"]).Id);
+                unido = listEN.Contains(comunidadCEN.ReadOID(postEN.Comunidad.Id));
+            }
+
             comentVM.Post = p_post;
             comentVM.Autor = p_usuario;
-            ViewData["comunidad"] = postEN.Comunidad.Id;
+            ViewData["comunidad"] = unido;
             return PartialView(comentVM);
         }
 
@@ -172,19 +185,25 @@ namespace GoGaming.Controllers
             try
             {
                 // TODO: Add insert logic here
+                int autor = 0;
+                if(Session["Usuario"] != null)
+                {
+                    autor = ((UsuarioEN)Session["Usuario"]).Id;
+                }
                 int newComent = 0;
                 if (coment.Id != 0)
                 {
                     ComentarioCP comentarioCP = new ComentarioCP();
 
+                    
                     //Hay que ver como recuperar la id del usuario (se que se puede acceder a los datos del usuario que tiene la sesion iniciada) y la id del post
-                    ComentarioEN nuevoComent = comentarioCP.NewHijo(coment.Contenido, coment.Autor, coment.Post, DateTime.Now, coment.Id);
+                    ComentarioEN nuevoComent = comentarioCP.NewHijo(coment.Contenido, autor, coment.Post, DateTime.Now, coment.Id);
                     newComent = nuevoComent.Id;
                 }
                 else
                 {
                     ComentarioCEN comentarioCEN = new ComentarioCEN();
-                    newComent = comentarioCEN.NewRaiz(coment.Contenido, coment.Autor, coment.Post, DateTime.Now);
+                    newComent = comentarioCEN.NewRaiz(coment.Contenido, autor, coment.Post, DateTime.Now);
                 }
 
                 //ComentarioEN comentarioNuevo = new ComentarioCEN().ReadOID(newComent);
