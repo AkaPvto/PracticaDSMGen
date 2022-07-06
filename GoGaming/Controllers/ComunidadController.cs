@@ -46,6 +46,14 @@ namespace GoGaming.Controllers
             SessionInitialize();
             ComunidadCAD comCad = new ComunidadCAD(session);
             ComunidadCEN comCEN = new ComunidadCEN(comCad);
+            bool unido = false;
+            if (Session["Usuario"] != null)
+            {
+                IList<ComunidadEN> listEN = new ComunidadCEN().GetComunidadesUsuario(((UsuarioEN)Session["Usuario"]).Id);
+                unido = listEN.Contains(comCEN.ReadOID(id));
+            }
+            ViewData["pertenece"] = unido;
+
             ComunidadEN lista = comCEN.ReadOID(id);
             ViewData["imagen"] = lista.Juego.Portada;
             bool unirme = false;
@@ -177,18 +185,20 @@ namespace GoGaming.Controllers
                 // TODO: Add delete logic here
                 UsuarioCEN usuarioCEN = new UsuarioCEN();
                 ComunidadCEN comunidadCEN = new ComunidadCEN();
-                IList<ComunidadEN> listEN = new ComunidadCEN().GetComunidadesUsuario(((UsuarioEN)Session["Usuario"]).Id);
-                bool unido = listEN.Contains(comunidadCEN.ReadOID(id));
-                if (unido)
+                if(Session["Usuario"] != null)
                 {
-                    usuarioCEN.DeleteComunidad(((UsuarioEN)Session["Usuario"]).Id, new List<int>() { id });
+                    IList<ComunidadEN> listEN = new ComunidadCEN().GetComunidadesUsuario(((UsuarioEN)Session["Usuario"]).Id);
+                    bool unido = listEN.Contains(comunidadCEN.ReadOID(id));
+                    if (unido)
+                    {
+                        usuarioCEN.DeleteComunidad(((UsuarioEN)Session["Usuario"]).Id, new List<int>() { id });
+                    }
+                    else
+                    {
+                        usuarioCEN.AddComunidad(((UsuarioEN)Session["Usuario"]).Id, new List<int>() { id });
+                    }
                 }
-                else
-                {
-                    usuarioCEN.AddComunidad(((UsuarioEN)Session["Usuario"]).Id, new List<int>() { id });
-                }
-
-               
+                
                 return RedirectToAction("../Comunidad/Details/" + id);
             }
             catch (Exception e)
