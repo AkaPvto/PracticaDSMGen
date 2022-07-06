@@ -122,7 +122,7 @@ public static void InitializeData ()
                 Console.WriteLine ("Introducimos postst a la bbdd...");
                 PostCP postCP = new PostCP ();
                 int post1 = postCP.New_ ("Ultimamente he estado jugando mucho, estoy en diamante 3 y mi nickname es KaeseOrigin.", sergio, com_rl, Categoria_PostEnum.blanco, "Busco gente para jugar", "", new DateTime (2022, 01, 27, 15, 59, 00)).Id;
-                int post2 = postCP.New_ ("No jugueis con el BMW-200 (octane), la hitbox dista mucho del modelo 3D", candela, com_rl, Categoria_PostEnum.opinion, "Opinion sobre el BMW-200", "/Images/bmw.jpg", new DateTime (2021, 02, 28, 17, 36, 00)).Id;
+                int post2 = postCP.New_ ("No jugueis con el BMW-200 (octane), la hitbox dista mucho del modelo 3D", candela, com_rl, Categoria_PostEnum.opinion, "Opinion sobre el BMW-200", "bmw.jpg", new DateTime (2021, 02, 28, 17, 36, 00)).Id;
                 int post3 = postCP.New_ ("Cuando va a salir el jueguito. Alguien lo sabe?. Se ha filtrado?", jorge, com_hks, Categoria_PostEnum.blanco, "Fecha de lanzamiento(?)", "", new DateTime (2021, 11, 10, 23, 06, 00)).Id;
 
 

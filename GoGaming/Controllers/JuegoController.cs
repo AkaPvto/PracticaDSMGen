@@ -92,9 +92,11 @@ namespace GoGaming.Controllers
             JuegoEN juegoEN = juegoCEN.ReadOID(id);
             ViewData["comunidad"] = juegoEN.Comunidad.Id;
             JuegoViewModel juegoVM = new JuegoAssembler().ConvertENToModelUI(juegoEN);
-
-            IList<JuegoEN> listEN = new JuegoCEN().GetJuegosPorUsuario(((UsuarioEN)Session["Usuario"]).Id);
-            bool guardado = listEN.Contains(juegoCEN.ReadOID(id));
+            bool guardado = false;
+            if (Session["Usuario"] != null) { 
+                IList<JuegoEN> listEN = new JuegoCEN().GetJuegosPorUsuario(((UsuarioEN)Session["Usuario"]).Id);
+                guardado = listEN.Contains(juegoCEN.ReadOID(id));
+            }
             ViewData["Guardado"] = guardado;
 
 
