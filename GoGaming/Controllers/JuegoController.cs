@@ -90,9 +90,14 @@ namespace GoGaming.Controllers
             ViewData["nombresGenero"] = listaNombres.ToArray();
 
             JuegoEN juegoEN = juegoCEN.ReadOID(id);
+            ViewData["comunidad"] = juegoEN.Comunidad.Id;
             JuegoViewModel juegoVM = new JuegoAssembler().ConvertENToModelUI(juegoEN);
 
-            
+            IList<JuegoEN> listEN = new JuegoCEN().GetJuegosPorUsuario(((UsuarioEN)Session["Usuario"]).Id);
+            bool guardado = listEN.Contains(juegoCEN.ReadOID(id));
+            ViewData["Guardado"] = guardado;
+
+
 
             SessionClose();
 
@@ -303,6 +308,32 @@ namespace GoGaming.Controllers
                 return View(listViewModel);
             }
 
+        }
+
+        public ActionResult Guardar(int idJuego)
+        {
+            try
+            {
+                // TODO: Add delete logic here
+                UsuarioCEN usuarioCEN = new UsuarioCEN();
+                JuegoCEN juegoCEN = new JuegoCEN();
+                IList<JuegoEN> listEN = new JuegoCEN().GetJuegosPorUsuario(((UsuarioEN)Session["Usuario"]).Id);
+                bool guardado = listEN.Contains(juegoCEN.ReadOID(idJuego));
+                if (guardado)
+                {
+                    usuarioCEN.DeleteJuego(((UsuarioEN)Session["Usuario"]).Id, new List<int>() { idJuego });
+                }
+                else
+                {
+                    usuarioCEN.AddJuego(((UsuarioEN)Session["Usuario"]).Id, new List<int>() { idJuego });
+                }
+                return RedirectToAction("../Juego/Details/" + idJuego);
+            }
+            catch(Exception e)
+            {
+                string exc = e.ToString();
+                return View();
+            }
         }
 
         public ActionResult SinResultados()

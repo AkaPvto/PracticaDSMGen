@@ -40,12 +40,16 @@ namespace GoGaming.Controllers
 
             IEnumerable<ComunidadViewModel> listViewModel = (IEnumerable<ComunidadViewModel>)new ComunidadAssembler().ConvertListENTModel(lista).ToList();
 
-            /*JuegoCP juCP = new JuegoCP(session);
-
-            String usuario_OID = "princesita23@gmail.com"; //Tiene que obtener el usuario que este loggeado
-            IList<JuegoEN> listEN2 = juCP.RecomendarJuego();
-            ViewData["JuegoRec"] = listEN2;
-            ViewData["iteraciones"] = 0;*/
+            JuegoCP juegoCP = new JuegoCP();
+            if (Session["Usuario"] != null)
+            {
+                IList<JuegoEN> juegosRecomendados = juegoCP.RecomendarJuego(((UsuarioEN)Session["Usuario"]).Id);
+                if (juegosRecomendados.Count() > 0)
+                {
+                    ViewData["JuegosRecomendados"] = juegosRecomendados;
+                }
+            }
+            
             SessionClose();
 
             return View(listViewModel);
