@@ -57,6 +57,7 @@ namespace GoGaming.Controllers
         // GET: Usuario/Details/5
         public ActionResult Details(int id)
         {
+            UsuarioCEN usuarioCEN = new UsuarioCEN();
             UsuarioEN usuarioEN = new UsuarioCEN().ReadOID(id);
             int seguidores = new UsuarioCEN().GetFollowing(id).Count;
             int seguidos = new UsuarioCEN().GetFollowed(id).Count;
@@ -65,7 +66,46 @@ namespace GoGaming.Controllers
             ViewData["seguidores"] = seguidores;
             ViewData["seguidos"] = seguidos;
 
+            IList<UsuarioEN> listEN = usuarioCEN.GetFollowed(((UsuarioEN)Session["Usuario"]).Id);
+            IList<int> idUsuariosSeguidos = new List<int>();
+            foreach (UsuarioEN usuario in listEN)
+            {
+                idUsuariosSeguidos.Add(usuario.Id);
+            }
+            bool siguiendo = idUsuariosSeguidos.Contains(id);
+            ViewData["Siguiendo"] = siguiendo;
             return View(usuarioVM);
+        }
+
+        // POST: Usuario/Details/5
+        public ActionResult Seguir(int idFollower, int idFollowed)
+        {
+            try
+            {
+                // TODO: Add delete logic here
+                UsuarioCEN usuarioCEN = new UsuarioCEN();
+                IList<UsuarioEN> listEN = usuarioCEN.GetFollowing(idFollowed);
+                IList<int> idUsuariosSeguidos = new List<int>();
+                foreach (UsuarioEN usuario in listEN)
+                {
+                    idUsuariosSeguidos.Add(usuario.Id);
+                }
+                bool siguiendo = idUsuariosSeguidos.Contains(idFollower);
+
+                if (siguiendo)
+                {
+                    usuarioCEN.DeleteFollowing(idFollowed, new List<int>() { idFollower });
+                }
+                else
+                {
+                    usuarioCEN.AddFollowing(idFollowed, new List<int>() { idFollower });
+                }
+                return RedirectToAction("Details/"+idFollowed);
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         // GET: Usuario/Create
@@ -134,39 +174,7 @@ namespace GoGaming.Controllers
             }
         }
 
-        // POST: Usuario/Details/5
-        [HttpPost]
-        public ActionResult Details(int idFollower, int idFollowed)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-                UsuarioCEN usuarioCEN = new UsuarioCEN();
-                IList<UsuarioEN> listEN = usuarioCEN.GetFollowing(idFollower);
-                IList<int> idUsuariosSeguidos = new List<int>();
-                foreach(UsuarioEN usuario in listEN)
-                {
-                    idUsuariosSeguidos.Add(usuario.Id);
-                }
-                bool siguiendo = idUsuariosSeguidos.Contains(idFollowed);
-
-                if (siguiendo)
-                {
-                    usuarioCEN.DeleteFollowing(idFollower, new List<int>() { idFollowed });
-                }
-                else
-                {
-                    usuarioCEN.AddFollowing(idFollower, new List<int>() { idFollowed });
-                }
-
-                ViewData["Siguiendo"] = !siguiendo;
-                return View();
-            }
-            catch
-            {
-                return View();
-            }
-        }
+       
 
         public ActionResult Login(string error)
         {

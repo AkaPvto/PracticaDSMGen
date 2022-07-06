@@ -10,6 +10,7 @@
 <p>
     @Html.ActionLink("Crear Nuevo Juego", "Create")
 </p>
+
 @*<table class="table">
     <tr>
         <th>
@@ -29,7 +30,7 @@
 
 @foreach (var item in Model) {
 <div class="card w-50 jumbotron" style="background-color: #222222 ">
-    <img class="card-img-top img-responsive center-block" src="@Html.DisplayFor(modelItem => item.Portada)" alt="Card image cap">
+    <img class="card-img-top img-responsive center-block" style="max-width:80%" src="@Html.DisplayFor(modelItem => item.Portada)" alt="Card image cap">
     <div class="card-body">
         <h2 class="card-title"> @Html.DisplayFor(modelItem => item.Nombre)</h2>
         <h4 class="card-text"> @Html.DisplayFor(modelItem => item.Descripcion)</h4>
@@ -45,14 +46,14 @@
             {
                 if (!first)
                 {
-                    @genNombres[i];
+        @genNombres[i];
                     first = true;
                 }
                 else
                 {
                     var aux = ", ";
-                    @aux;
-                    @genNombres[i];
+        @aux;
+        @genNombres[i];
                 }
             }
 
@@ -66,7 +67,7 @@
     </div>
 </div>
 
-    @*<tr>
+@*<tr>
         <td>
             @Html.DisplayFor(modelItem => item.Nombre)
         </td>
@@ -79,7 +80,7 @@
                 var genNombres = (string[])ViewData["nombresGenero"];
                 var first = false;
             }
-            
+
                 @for (var i = 0; i < (int)ViewData["numGeneros"]; i++)
                 {
                     if (generos[i])
