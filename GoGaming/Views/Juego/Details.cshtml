@@ -1,8 +1,29 @@
 ﻿@model GoGaming.Models.JuegoViewModel
+@using PracticaDSMGenNHibernate.EN.DSMPracticas;
+
 
 @{
     ViewBag.Title = "Detalle Juego";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    int idUsuario = -1;
+
+    if (Session["Usuario"] != null)
+    {
+        idUsuario = ((UsuarioEN)Session["Usuario"]).Id;
+    }
+    string guardar = "Guardar juego";
+    if (ViewData["Guardado"] != null && (bool)(ViewData["Guardado"]))
+    {
+        guardar = "Eliminar juego";
+    }
+    else
+    {
+        guardar = "Guardar juego";
+    }
+    int idComunidad = -1;
+    if(ViewData["comunidad"] != null) {
+        idComunidad = (int)ViewData["comunidad"];
+    }
 }
 
 <h2>Sobre el juego</h2>
@@ -37,78 +58,87 @@
 
         }
         <br /><br />
-        <div class="text-right">
-            @Html.ActionLink("Guardar", "Details", new { id = Model.Id }, new { @class = "btn btn-primary stretched-link ", role = "button" })
-        </div>
+        @if (idUsuario != -1)
+        {
+            <div class="text-right">
+                @Html.ActionLink(guardar, "Guardar", new { idJuego = Model.Id }, new { @class = "btn btn-primary stretched-link ", role = "button" })
+            </div>
+        }
+        @if (idComunidad != -1)
+        {
+            <div class="text-right">
+                @Html.ActionLink("Ir a comunidad", "../Comunidad/Details", new { id = idComunidad }, new { @class = "btn btn-primary stretched-link ", role = "button" })
+            </div>
+        }
         @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
         @Html.ActionLink("Atrás", "Index")
     </div>
 </div>
 
 @*<div>
-    <h4>Juego</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
+        <h4>Juego</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Nombre)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Descripcion)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Descripcion)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Descripcion)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Portada)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Portada)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Portada)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Portada)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Generos)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Generos)
+            </dt>
 
-        <dd>
-            @{
-                var generos = Model.Generos; 
-                var genNombres = (string[])ViewData["nombresGenero"];
-                var first = false;
-             }
-            <div>
-                @for (var i = 0; i < (int)ViewData["numGeneros"]; i++)
-                {
-                    if (generos[i])
+            <dd>
+                @{
+                    var generos = Model.Generos;
+                    var genNombres = (string[])ViewData["nombresGenero"];
+                    var first = false;
+                 }
+                <div>
+                    @for (var i = 0; i < (int)ViewData["numGeneros"]; i++)
                     {
-                        if (!first)
+                        if (generos[i])
                         {
-                            @genNombres[i];
-                            first = true;
+                            if (!first)
+                            {
+                                @genNombres[i];
+                                first = true;
+                            }
+                            else
+                            {
+                                var aux = ", ";
+                                @aux;
+                                @genNombres[i];
+                            }
                         }
-                        else
-                        {
-                            var aux = ", ";
-                            @aux;
-                            @genNombres[i];
-                        }
+
                     }
+                </div>
 
-                }
-            </div>
-            
-        </dd>
+            </dd>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Atrás", "Index")
-</p>*@
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Atrás", "Index")
+    </p>*@
