@@ -5,18 +5,18 @@
         IList<string> enums = (IList<string>)ViewData["enum"];
     }
 
-    @foreach (var item in Model)
-    {
-        <div>
-            <h3>@Html.DisplayFor(modelItem => item.Titulo)</h3>
-            <p>Comunidad: @Html.ActionLink(item.ComunidadName, "../Comunidad/Details/", new { id = item.Comunidad })</p>
-            <p class="control-label">Categoría: @enums[item.Categoria]</p>
-            <p>@Html.DisplayFor(modelItem => item.Contenido)</p>
-            @if (item.Imagen != "")
-            {
-                <img src="/Images/@Html.DisplayFor(modelItem => item.Imagen)" />
-            }
-            <p>❤ @Html.DisplayFor(modelItem => item.Likes)</p>
-            <a href="/Post/Details/@item.Id">💬 @Html.DisplayFor(modelItem => item.Comentarios)</a>
-        </div>
-    }
+@foreach (var item in Model)
+{
+    <div>
+        <h3>@Html.DisplayFor(modelItem => item.Titulo)</h3>
+        <p>Comunidad: @Html.ActionLink(item.ComunidadName, "../Comunidad/Details/", new { id = item.Comunidad })</p>
+        <p class="control-label">Categoría: @enums[item.Categoria]</p>
+        <p>@Html.DisplayFor(modelItem => item.Contenido)</p>
+        @if (item.Imagen != "")
+        {
+            <img src="/Images/@Html.DisplayFor(modelItem => item.Imagen)" />
+        }
+        <p>❤ @Html.DisplayFor(modelItem => item.Likes)</p>
+        <a href="/Post/Details/@item.Id">💬 @Html.DisplayFor(modelItem => item.Comentarios)</a>
+    </div>
+}
