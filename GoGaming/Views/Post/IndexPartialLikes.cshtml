@@ -1,8 +1,8 @@
 ﻿@model IEnumerable<GoGaming.Models.PostViewModel>
 
-<p>
+@*<p>
     @Html.ActionLink("Create New", "Create")
-</p>
+</p>*@
 
 @{
     IList<string> enums = (IList<string>)ViewData["enum"];
@@ -10,7 +10,7 @@
 
 @foreach (var item in Model)
 {
-    <div>
+    <div  onclick="window.location = '/Post/Details/@item.Id'" style="cursor: pointer;">
         <h3>@Html.DisplayFor(modelItem => item.Titulo)</h3>
         <p>Publicado por: @Html.ActionLink(item.UsuarioName, "../Usuario/Details/", new { id = item.Usuario })</p>
         <p class="control-label">Categoría: @enums[item.Categoria]</p>
@@ -19,6 +19,6 @@
             <img src="/Images/@Html.DisplayFor(modelItem => item.Imagen)" />
         }
         <p>❤ @Html.DisplayFor(modelItem => item.Likes)</p>
-        <a href="/Post/Details/@item.Id">💬 @Html.DisplayFor(modelItem => item.Comentarios)</a>
+        <p>💬 @Html.DisplayFor(modelItem => item.Comentarios)</p>
     </div>
 }
