@@ -11,12 +11,12 @@ namespace GoGaming.Models
         [ScaffoldColumn(false)]
         public int Id { get; set; }
 
-        [Display(Prompt = "Nombre de usuario", Description = "Nombre de usuario", Name = "Nickname ")]
+        [Display(Prompt = "Nombre de usuario", Description = "Nombre de usuario", Name = "Nickname")]
         [Required(ErrorMessage = "El nombre de usuario es obligatorio")]
-        [StringLength(25, MinimumLength= 4, ErrorMessage = "El nombre de usuario debe tener entre 4 y 25 caracteres. ")]
+        [StringLength(25, MinimumLength= 4, ErrorMessage = "El nombre de usuario debe tener entre 4 y 25 caracteres.")]
         public string Nickname { get; set; }
 
-        [Display(Prompt = "Nombre", Description = "Nombre real del usuario", Name = "Nombre ")]
+        [Display(Prompt = "Nombre", Description = "Nombre real del usuario", Name = "Nombre")]
         [Required(ErrorMessage = "El usuario debe tener un nombre")]
         [StringLength(100, MinimumLength = 2, ErrorMessage = "El nombre debe tener entre 2 y 100 caracteres")]
         public string Nombre { get; set; }

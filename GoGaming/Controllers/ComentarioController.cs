@@ -187,11 +187,13 @@ namespace GoGaming.Controllers
                 //ComentarioEN comentarioNuevo = new ComentarioCEN().ReadOID(newComent);
                 //coment = new ComentarioAssembler().ConvertENToModelUI(comentarioNuevo);
                 //comentarioCEN.NewRaiz(coment.Contenido, ((UsuarioEN)Session["Usuario"]).Id, idPost, DateTime.Now);
-                return View(new ComentarioViewModel());
+                ModelState.Clear();
+                Response.Redirect(Request.RawUrl, false);
+                return View();
             }
             catch
             {
-                return View(new ComentarioViewModel());
+                return View();
             }
         }
 
