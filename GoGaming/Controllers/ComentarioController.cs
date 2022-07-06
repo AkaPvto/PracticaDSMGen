@@ -157,8 +157,11 @@ namespace GoGaming.Controllers
         public ActionResult CreatePartial(int p_usuario, int p_post)
         {
             ComentarioViewModel comentVM = new ComentarioViewModel();
+            PostEN postEN = new PostCEN().ReadOID(p_post);
+
             comentVM.Post = p_post;
             comentVM.Autor = p_usuario;
+            ViewData["comunidad"] = postEN.Comunidad.Id;
             return PartialView(comentVM);
         }
 
