@@ -4,8 +4,11 @@
 <table class="table">
     @foreach (var item in Model)
     {
-        <tr>
-            <td style="cursor: pointer;" onclick="window.location = '/Comentario/Details/'+@item.Id;">
+        <tr style="cursor: pointer;" onclick="window.location = '/Comentario/Details/'+@item.Id;">
+            <td>
+                @Html.ActionLink(item.nameAutor, "../Usuario/Details/", new { id = item.Autor })
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Contenido)
             </td>
             <td>
