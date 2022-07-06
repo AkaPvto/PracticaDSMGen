@@ -156,12 +156,20 @@ namespace GoGaming.Controllers
         // GET: Comentario/CreatePartial
         public ActionResult CreatePartial(int p_usuario, int p_post)
         {
+            ComunidadCEN comunidadCEN = new ComunidadCEN();
             ComentarioViewModel comentVM = new ComentarioViewModel();
             PostEN postEN = new PostCEN().ReadOID(p_post);
 
+            bool unido = false;
+            if (Session["Usuario"] != null)
+            {
+                IList<ComunidadEN> listEN = new ComunidadCEN().GetComunidadesUsuario(((UsuarioEN)Session["Usuario"]).Id);
+                unido = listEN.Contains(comunidadCEN.ReadOID(postEN.Comunidad.Id));
+            }
+
             comentVM.Post = p_post;
             comentVM.Autor = p_usuario;
-            ViewData["comunidad"] = postEN.Comunidad.Id;
+            ViewData["comunidad"] = unido;
             return PartialView(comentVM);
         }
 
