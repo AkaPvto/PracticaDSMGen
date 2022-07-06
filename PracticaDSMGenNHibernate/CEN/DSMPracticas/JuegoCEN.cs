@@ -114,5 +114,17 @@ public void DeleteGenero (int p_Juego_OID, System.Collections.Generic.IList<int>
 
         _IJuegoCAD.DeleteGenero (p_Juego_OID, p_genero_OIDs);
 }
+public void AddComunidad (int p_Juego_OID, int p_comunidad_OID)
+{
+        //Call to JuegoCAD
+
+        _IJuegoCAD.AddComunidad (p_Juego_OID, p_comunidad_OID);
+}
+public void DeleteComunidad (int p_Juego_OID, int p_comunidad_OID)
+{
+        //Call to JuegoCAD
+
+        _IJuegoCAD.DeleteComunidad (p_Juego_OID, p_comunidad_OID);
+}
 }
 }

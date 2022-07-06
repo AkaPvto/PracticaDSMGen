@@ -41,5 +41,9 @@ System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.JuegoE
 void AddGenero (int p_Juego_OID, System.Collections.Generic.IList<int> p_genero_OIDs);
 
 void DeleteGenero (int p_Juego_OID, System.Collections.Generic.IList<int> p_genero_OIDs);
+
+void AddComunidad (int p_Juego_OID, int p_comunidad_OID);
+
+void DeleteComunidad (int p_Juego_OID, int p_comunidad_OID);
 }
 }
