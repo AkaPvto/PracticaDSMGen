@@ -128,6 +128,10 @@ namespace GoGaming.Controllers
         // GET: Post/Create
         public ActionResult Create(int id)
         {
+            if(Session["Usuario"] == null)
+            {
+                return RedirectToAction("../Usuario/Login", new { error = "Tienes que iniciar sesión para crear un post" });
+            }
             Array values = Enum.GetValues(new Categoria_PostEnum().GetType());
             IList<SelectListItem> enumLista = new List<SelectListItem>();
             for(int i=0; i < values.Length; i++)
