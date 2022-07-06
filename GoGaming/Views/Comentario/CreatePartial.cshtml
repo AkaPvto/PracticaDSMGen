@@ -25,7 +25,11 @@
 
         <div class="form-group">
             <div class="col-md-10">
-                @if (ViewData["comunidad"] != null && (bool)ViewData["comunidad"])
+                @if(Session["Usuario"] == null)
+                {
+                    @Html.ActionLink("Comentar", "../Usuario/Login", new { error = "Tienes que iniciar sesión para poder comentar"})
+                }
+                else if (ViewData["comunidad"] != null && (bool)ViewData["comunidad"])
                 {
                     <input type="submit" value="Comentar" class="btn btn-default" />
                 }
