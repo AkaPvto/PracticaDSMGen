@@ -44,7 +44,7 @@
         @{ var nombres = (string[])ViewData["nombresGenero"];}
         @for (var i = 0; i < (int)ViewData["numGeneros"]; i++)
         {
-            <div class="col-md-10, form-horizontal">
+            <div class="col-md-10, form-horizontal" align="left" style=" margin-left:180px">
                 @Html.CheckBoxFor(model => model.Generos[i], new { @value = true }) @nombres[i]
             </div>
 

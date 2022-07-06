@@ -22,7 +22,7 @@ namespace PracticaDSMGenNHibernate.CP.DSMPracticas
 {
 public partial class JuegoCP : BasicCP
 {
-public void RecomendarJuego (int p_usu)
+public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas.JuegoEN> RecomendarJuego (int p_usu)
 {
         /*PROTECTED REGION ID(PracticaDSMGenNHibernate.CP.DSMPracticas_Juego_recomendarJuego) ENABLED START*/
 
@@ -39,17 +39,17 @@ public void RecomendarJuego (int p_usu)
 
                 IList<UsuarioEN> seguidos = usuarioCEN.GetFollowed (p_usu);
 
-                List<string> juegos = new List<string>();
+                List<int> juegos = new List<int>();
                 foreach (UsuarioEN seguido in seguidos) { //recuperamos todos los juegos de los seguidos del usuario
                         IList<JuegoEN> juegosSeguido = juegoCEN.GetJuegosPorUsuario (seguido.Id);
                         foreach (JuegoEN juego in juegosSeguido) {
-                                juegos.Add (juego.Nombre);
+                                juegos.Add (juego.Id);
                         }
                 }
 
 
-                var dict = new Dictionary<string, int>(); //estas lineas cuentan cuantas veces se repiten los juegos
-                foreach (string juego in juegos) {
+                var dict = new Dictionary<int, int>(); //estas lineas cuentan cuantas veces se repiten los juegos
+                foreach (int juego in juegos) {
                         if (dict.ContainsKey (juego))
                                 dict [juego]++;
                         else
@@ -59,16 +59,21 @@ public void RecomendarJuego (int p_usu)
 
                 var lista = dict.ToList ();
                 lista.Sort ((pair1, pair2) => pair2.Value.CompareTo (pair1.Value)); //volcamos el diccionario en una lista para ordenarlo de mas a menos veces repetido
+                IList<JuegoEN> listaJuegos = new List<JuegoEN>();
                 int salir = 0;
                 int maxJuegosRecomendados = 5;
                 foreach (var value in lista) {
-                        Console.WriteLine (value.Key);
+                        
+                        listaJuegos.Add(juegoCEN.ReadOID(value.Key));
+                        Console.WriteLine (listaJuegos.Last().Nombre);
+                        
                         if (salir >= maxJuegosRecomendados)
                                 break;
                         salir++;
                 }
 
                 SessionCommit ();
+                return listaJuegos;
         }
         catch (Exception ex) {
                 SessionRollBack ();
