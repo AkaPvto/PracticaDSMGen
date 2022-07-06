@@ -17,6 +17,10 @@ namespace GoGaming.Models
         public int Autor { get; set; }
 
         [ScaffoldColumn(false)]
+        [Display(Prompt = "nameAutor", Description = "Nombre del autor del comentairo", Name= "Nombre del autor")]
+        public string nameAutor { get; set; }
+
+        [ScaffoldColumn(false)]
         [Display(Prompt = "Post", Description = "Post al que pertenece el comentario", Name = "Post")]
         public int Post { get; set; }
 
