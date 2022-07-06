@@ -164,8 +164,13 @@ namespace GoGaming.Controllers
                 Array values = Enum.GetValues(new Categoria_PostEnum().GetType());
                 Categoria_PostEnum categoria = (Categoria_PostEnum)values.GetValue(post.Categoria);
                 if (post.Imagen == null) post.Imagen = "";
-                postCP.New_(post.Contenido, 32770, post.Id, categoria, post.Titulo, post.Imagen, DateTime.Now);
-                //postCP.New_(post.Contenido, ((UsuarioEN)Session["Usuario"]).Id, idComunidad, post.Categoria, post.Titulo, post.Imagen, DateTime.Now);
+                postCP.New_(post.Contenido, ((UsuarioEN)Session["Usuario"]).Id, post.Id, categoria, post.Titulo, post.Imagen, DateTime.Now);
+
+                NotificacionCP notificacionCP = new NotificacionCP();
+                NotificacionCEN notificacionCEN = new NotificacionCEN();
+                int idNotificacion = notificacionCP.New_(post.Id).Id;
+                notificacionCP.EnviarNotificacion(idNotificacion);
+                
                 string url = "../Comunidad/Details/" + post.Id;
                 return RedirectToAction(url);
             }
