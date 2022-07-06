@@ -149,13 +149,16 @@ namespace GoGaming.Controllers
             try
             {
                 ComunidadCEN comCEN = new ComunidadCEN();
+                int juegoId = comCEN.ReadOID(id).Juego.Id;
+                new JuegoCEN().DeleteComunidad(juegoId, id);
 
                 comCEN.Destroy(id);
 
                 return RedirectToAction("Index");
             }
-            catch
+            catch(Exception e)
             {
+                string excp = e.ToString();
                 return View();
             }
         }

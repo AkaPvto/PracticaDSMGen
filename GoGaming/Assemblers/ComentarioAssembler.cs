@@ -23,6 +23,7 @@ namespace GoGaming.Assemblers
             coment.Contenido = en.Contenido;
             coment.Hora = (DateTime)en.Hora;
             coment.Autor = en.Usuario.Id;
+            coment.nameAutor = new UsuarioCEN().ReadOID(en.Usuario.Id).Nickname;
             coment.Post = en.Post.Id;
             coment.Hijos = comentarioCEN.GetHijosFromComentario(en.Id).Count;
 
