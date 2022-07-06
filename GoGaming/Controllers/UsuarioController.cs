@@ -65,14 +65,14 @@ namespace GoGaming.Controllers
 
             ViewData["seguidores"] = seguidores;
             ViewData["seguidos"] = seguidos;
-
-            IList<UsuarioEN> listEN = usuarioCEN.GetFollowed(((UsuarioEN)Session["Usuario"]).Id);
-            IList<int> idUsuariosSeguidos = new List<int>();
-            foreach (UsuarioEN usuario in listEN)
+            bool siguiendo = false;
+            if (Session["Usuario"] != null)
             {
-                idUsuariosSeguidos.Add(usuario.Id);
+                IList<UsuarioEN> listEN = usuarioCEN.GetFollowed(((UsuarioEN)Session["Usuario"]).Id);
+                siguiendo = listEN.Contains(usuarioCEN.ReadOID(id));
             }
-            bool siguiendo = idUsuariosSeguidos.Contains(id);
+
+            
             ViewData["Siguiendo"] = siguiendo;
             return View(usuarioVM);
         }
@@ -85,12 +85,8 @@ namespace GoGaming.Controllers
                 // TODO: Add delete logic here
                 UsuarioCEN usuarioCEN = new UsuarioCEN();
                 IList<UsuarioEN> listEN = usuarioCEN.GetFollowing(idFollowed);
-                IList<int> idUsuariosSeguidos = new List<int>();
-                foreach (UsuarioEN usuario in listEN)
-                {
-                    idUsuariosSeguidos.Add(usuario.Id);
-                }
-                bool siguiendo = idUsuariosSeguidos.Contains(idFollower);
+                
+                bool siguiendo = listEN.Contains(usuarioCEN.ReadOID(idFollower));
 
                 if (siguiendo)
                 {
@@ -258,6 +254,7 @@ namespace GoGaming.Controllers
             {
                 int idUsuario = usuarioCEN.New_(usuario.Nickname, usuario.Nombre, usuario.Apellidos, usuario.Email, usuario.Telefono, usuario.Direccion, usuario.Foto, usuario.Password);
                 UsuarioEN nuevoUsu = usuarioCEN.ReadOID(idUsuario);
+                Session["Usuario"] = nuevoUsu;
                 return RedirectToAction("../");
             }
             else
