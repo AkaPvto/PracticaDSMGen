@@ -1,22 +1,46 @@
 ﻿@model GoGaming.Models.ComunidadViewModel
+@using PracticaDSMGenNHibernate.EN.DSMPracticas;
+
 
 @{
     ViewBag.Title = "Detalle Comunidad";
     Layout = "~/Views/Shared/_Layout.cshtml";
     string Url = (string)ViewData["imagen"];
+
+    int idUsuario = -1;
+    if (Session["Usuario"] != null)
+    {
+        idUsuario = ((UsuarioEN)Session["Usuario"]).Id;
+    }
+    string unirme = "Unirme";
+    if (ViewData["Unido"] != null && (bool)(ViewData["Unido"]))
+    {
+        unirme = "Salir de la comunidad";
+    }
+    else
+    {
+        unirme = "Unirme";
+    }
 }
 
 <h2>Comunidad de @Model.Nombre</h2>
 <div class="card w-50 jumbotron" style="background-color: #222222 ">
     <div class="text-right">
         @*esto lo he hecho para poner el boton bonito, esta mal*@
-        @Html.ActionLink("Unirme", "Details", new { id = "id" }, new { @class = "btn btn-primary stretched-link ", role = "button" })
+        @if (idUsuario != -1)
+        {
+            @Html.ActionLink(unirme, "Unirme", new { id = Model.CodigoComunidad }, new { @class = "btn btn-primary stretched-link ", role = "button" })
+        }
+        else
+        {
+            @Html.ActionLink("Unirme", "../Usuario/Login", new { error = "Tienes que iniciar sesión para unirte a la comunidad." }, new { @class = "btn btn-primary stretched-link ", role = "button" })
+        }
     </div>
     <br />
     <img src="@Url" class="card-img-top img-responsive center-block" style="max-width:80%" />
     <br />
     @*No de donde meter el boton de crear post*@
-    <button style="position:fixed; bottom: 20px; right: 20px;"class="btn btn-primary stretched-link " onclick="window.location = '/Post/Create/'+ @Model.CodigoComunidad;">Crear un Post</button>
+    <button style="position:fixed; bottom: 20px; right: 20px;" class="btn btn-primary stretched-link " onclick="window.location = '/Post/Create/'+ @Model.CodigoComunidad;">Crear un Post</button>
     <br />
     <div align="right">
         <p style="font-size: medium;">Ordenar por:</p>
@@ -45,13 +69,13 @@
         var fecha = "";
         var likes = "";
         window.onload = function () {
-            fecha =  document.querySelector("#fecha").innerHTML;
-            likes =  document.querySelector("#likes").innerHTML;
+            fecha = document.querySelector("#fecha").innerHTML;
+            likes = document.querySelector("#likes").innerHTML;
             var toRemove = document.querySelector("#likes");
             toRemove.parentNode.removeChild(toRemove);
         }
 
-       
+
 
         document.querySelector("#select").onchange = function () {
             select = document.querySelector("#select");
@@ -65,7 +89,7 @@
                     div.id = 'fecha';
                     div.innerHTML = fecha;
                     parent.appendChild(div);
-                    
+
                     break;
 
                 case "Likes":

@@ -48,6 +48,13 @@ namespace GoGaming.Controllers
             ComunidadCEN comCEN = new ComunidadCEN(comCad);
             ComunidadEN lista = comCEN.ReadOID(id);
             ViewData["imagen"] = lista.Juego.Portada;
+            bool unirme = false;
+            if (Session["Usuario"] != null)
+            {
+                IList<ComunidadEN> listEN = new ComunidadCEN().GetComunidadesUsuario (((UsuarioEN)Session["Usuario"]).Id);
+                unirme = listEN.Contains(comCEN.ReadOID(id));
+            }
+            ViewData["Unido"] = unirme;
             //ComunidadViewModel listViewModel = new ComunidadAssembler().ConvertENToModelUI(lista);
 
             SessionClose();
@@ -159,6 +166,34 @@ namespace GoGaming.Controllers
             catch(Exception e)
             {
                 string excp = e.ToString();
+                return View();
+            }
+        }
+
+        public ActionResult Unirme(int id)
+        {
+            try
+            {
+                // TODO: Add delete logic here
+                UsuarioCEN usuarioCEN = new UsuarioCEN();
+                ComunidadCEN comunidadCEN = new ComunidadCEN();
+                IList<ComunidadEN> listEN = new ComunidadCEN().GetComunidadesUsuario(((UsuarioEN)Session["Usuario"]).Id);
+                bool unido = listEN.Contains(comunidadCEN.ReadOID(id));
+                if (unido)
+                {
+                    usuarioCEN.DeleteComunidad(((UsuarioEN)Session["Usuario"]).Id, new List<int>() { id });
+                }
+                else
+                {
+                    usuarioCEN.AddComunidad(((UsuarioEN)Session["Usuario"]).Id, new List<int>() { id });
+                }
+
+               
+                return RedirectToAction("../Comunidad/Details/" + id);
+            }
+            catch (Exception e)
+            {
+                string exc = e.ToString();
                 return View();
             }
         }
