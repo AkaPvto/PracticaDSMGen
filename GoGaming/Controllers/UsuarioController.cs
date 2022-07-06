@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -167,7 +168,7 @@ namespace GoGaming.Controllers
             }
         }
 
-        public ActionResult Login()
+        public ActionResult Login(string error)
         {
             UsuarioViewModel usuarioVM = new UsuarioViewModel();
             usuarioVM.Apellidos = "";
@@ -177,6 +178,7 @@ namespace GoGaming.Controllers
             usuarioVM.Nickname = "";
             usuarioVM.Nombre = "";
             usuarioVM.Password = "";
+            ViewData["Error"] = error;
             return View(usuarioVM);
         }
 
@@ -194,7 +196,65 @@ namespace GoGaming.Controllers
             }
             else
             {
-                return View();
+                return RedirectToAction("Login", "Usuario", new { error = "El usuario o la contrasenia no son correctos"});
+            }
+        }
+
+        public ActionResult Register(string error)
+        {
+            UsuarioViewModel usuarioVM = new UsuarioViewModel();
+            usuarioVM.Apellidos = "";
+            usuarioVM.Direccion = "";
+            usuarioVM.Email = "";
+            usuarioVM.Foto = "";
+            usuarioVM.Nickname = "";
+            usuarioVM.Nombre = "";
+            usuarioVM.Password = "";
+            ViewData["Error"] = error;
+            return View(usuarioVM);
+        }
+
+        [HttpPost]
+        public ActionResult Register(UsuarioViewModel usuario, HttpPostedFileBase file)
+        {
+            if (file != null && file.ContentLength > 0)
+            {
+                usuario.Foto = Path.GetFileName(file.FileName);
+                string path = Path.Combine(Server.MapPath("~/Images"), usuario.Foto);
+                file.SaveAs(path);
+
+            }
+            else
+            {
+                usuario.Foto = "usuario.png";
+            }
+            UsuarioCEN usuarioCEN = new UsuarioCEN();
+            IList<UsuarioEN> lista = usuarioCEN.ReadAll(0, -1);
+            List<string> listaNicknames = new List<string>();
+            string errorString = "";
+            foreach(UsuarioEN usu in lista)
+            {
+                listaNicknames.Add(usu.Nickname);
+            }
+            if (usuarioCEN.GetUsuarioEmail(usuario.Email) != null)
+            {
+                errorString += "El email introducido esta en uso";
+            }
+            if(listaNicknames.Contains(usuario.Nickname))
+            {
+                if(errorString == "") errorString += "El nickname introducido esta en uso";
+                else errorString += " y el nickname introducido esta en uso";
+            }
+
+            if(errorString == "")
+            {
+                int idUsuario = usuarioCEN.New_(usuario.Nickname, usuario.Nombre, usuario.Apellidos, usuario.Email, usuario.Telefono, usuario.Direccion, usuario.Foto, usuario.Password);
+                UsuarioEN nuevoUsu = usuarioCEN.ReadOID(idUsuario);
+                return RedirectToAction("../");
+            }
+            else
+            {
+                return RedirectToAction("Register", "Usuario", new { error = errorString });
             }
         }
 

@@ -23,7 +23,7 @@ namespace GoGaming.Models
 
         [Display(Prompt = "Apellidos", Description = "Apellidos del usuario", Name = "Apellidos ")]
         [Required(ErrorMessage = "El usuario debe tener al menos un apellido")]
-        [StringLength(500, MinimumLength = 6, ErrorMessage = "El apellido debe tener al menos 6 caracteres")]
+        [StringLength(500, MinimumLength = 2, ErrorMessage = "El apellido debe tener al menos 6 caracteres")]
         public string Apellidos { get; set; }
 
         [Display(Prompt = "Email del usuario", Description = "Email del usuario", Name = "Email ")]
@@ -40,7 +40,7 @@ namespace GoGaming.Models
 
         [Display(Prompt = "Foto de perfil", Description = "Foto de perfil del usuario", Name = "Foto ")]
         //[Required(ErrorMessage = "El aviso debe tener un texto explicando su motivo")]
-        [StringLength(maximumLength: 3000, ErrorMessage = "La ruta de la imagen es inaccesible")]
+        [StringLength(maximumLength: 300, ErrorMessage = "La ruta de la imagen es demasiado larga")]
         public string Foto { get; set; }
 
         [Display(Prompt = "Contraseña", Description = "Contraseña del usuario", Name = "Password ")]

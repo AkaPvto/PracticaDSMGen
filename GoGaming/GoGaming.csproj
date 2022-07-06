@@ -352,6 +352,7 @@
     <Content Include="Views\Usuario\Seguidos.cshtml" />
     <Content Include="Views\Post\IndexPostsUsuario.cshtml" />
     <Content Include="Views\Usuario\Login.cshtml" />
+    <Content Include="Views\Usuario\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
