@@ -9,32 +9,33 @@
 <h2>Comunidad de @Model.Nombre</h2>
 <div class="card w-50 jumbotron" style="background-color: #222222 ">
     <div class="text-right">
-        @*implementar!!*@
+        @*esto lo he hecho para poner el boton bonito, esta mal*@
         @Html.ActionLink("Unirme", "Details", new { id = "id" }, new { @class = "btn btn-primary stretched-link ", role = "button" })
     </div>
     <br />
     <img src="@Url" class="card-img-top img-responsive center-block" style="max-width:80%" />
     <br />
     @*No de donde meter el boton de crear post*@
-    <button class="form-control" onclick="window.location = '/Post/Create/'+ @Model.CodigoComunidad;">Crear un Post</button>
+    <button style="position:fixed; bottom: 20px; right: 20px;"class="btn btn-primary stretched-link " onclick="window.location = '/Post/Create/'+ @Model.CodigoComunidad;">Crear un Post</button>
     <br />
     <div align="right">
-        <p>Ordenar por:</p>
-        <select class="form-control" id="select">
+        <p style="font-size: medium;">Ordenar por:</p>
+        <select class="form-control" id="select" style="max-width:100px;">
             <option value="Fecha">Fecha</option>
             <option value="Likes">Likes</option>
         </select>
     </div>
-</div>
-<div id="partialView">
-    <div id="fecha">
-        @{Html.RenderAction("IndexPartialFecha", "Post", new { id = Model.CodigoComunidad });}
-    </div>
-    <div id="likes">
-        @{Html.RenderAction("IndexPartialLikes", "Post", new { id = Model.CodigoComunidad });}
-    </div>
+
+    <div id="partialView">
+        <div id="fecha">
+            @{Html.RenderAction("IndexPartialFecha", "Post", new { id = Model.CodigoComunidad });}
+        </div>
+        <div id="likes">
+            @{Html.RenderAction("IndexPartialLikes", "Post", new { id = Model.CodigoComunidad });}
+        </div>
 
 
+    </div>
 </div>
 
 
