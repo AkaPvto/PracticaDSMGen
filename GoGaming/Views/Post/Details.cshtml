@@ -1,10 +1,17 @@
 ﻿@model GoGaming.Models.PostViewModel
 
+@using PracticaDSMGenNHibernate.EN.DSMPracticas
+
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@{ 
+    int idUsuario = -1;
+    if(Session["Usuario"] != null) {
+        idUsuario = ((UsuarioEN)Session["Usuario"]).Id;
+    }
+}
 <div>
     <h4>@Html.DisplayFor(model => model.Titulo)</h4>
     <hr />
@@ -23,6 +30,14 @@
         <dd>
             @Html.DisplayFor(model => model.Contenido)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Likes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Likes)
+        </dd>
+
 
 
         @if (Model.Imagen != "")
@@ -34,15 +49,30 @@
                 <img src="/Images/@Html.DisplayFor(model => model.Imagen)" />
             </dd>
         }
-
-
+        @if (idUsuario != -1)
+        {
+            if (ViewData["liked"] != null)
+            {
+                if ((bool)ViewData["liked"])
+                {
+                    @Html.ActionLink("Dislike", "Interact", new { id = Model.Id });
+                }
+                else
+                {
+                    @Html.ActionLink("Like", "Interact", new { id = Model.Id });
+                }
+            }
+        }
     </dl>
+    @if (idUsuario != -1 && idUsuario == Model.Usuario)
+    {
+        @Html.ActionLink("Editar post", "Edit", new { id = Model.Id });
+    }
     <h4>Comentarios</h4>
     @{ Html.RenderAction("CreatePartial", "Comentario", new { p_usuario = Model.Usuario, p_post = Model.Id });}
     @{Html.RenderAction("IndexPartial", "Comentario", new { id = Model.Id });}
 </div>
 
 <p>
-    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Volver", "../Comunidad/Details/", new { id = Model.Comunidad})
 </p>
