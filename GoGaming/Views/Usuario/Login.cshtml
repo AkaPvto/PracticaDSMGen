@@ -29,6 +29,10 @@
             @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger"})
         </div>
     </div>
+    @if (ViewData["error"] != null)
+    {
+        <p style="color: #DD0505; font-size: 16px;">@ViewData["error"].ToString()</p>
+    }
 
     <div class="form-group">
         <div class="text-right">

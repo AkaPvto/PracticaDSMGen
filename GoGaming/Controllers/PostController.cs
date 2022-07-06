@@ -97,19 +97,41 @@ namespace GoGaming.Controllers
         // GET: Post/Details/5
         public ActionResult Details(int id)
         {
-            SessionInitialize();
-            PostCAD postCAD = new PostCAD(session);
-            PostCEN postCEN = new PostCEN(postCAD);
+            PostCEN postCEN = new PostCEN();
 
             PostEN postEN = postCEN.ReadOID(id);
             PostViewModel postViewModel = new PostAssembler().ConvertENToModelUI(postEN);
-            SessionClose();
+
+            bool liked = false;
+            if (Session["Usuario"] != null)
+            {
+                IList<PostEN> listEN = postCEN.GetPostLiked(((UsuarioEN)Session["Usuario"]).Id);
+                liked = listEN.Contains(postCEN.ReadOID(id));
+            }
+
+            ViewData["Liked"] = liked;
             return View(postViewModel);
         }
 
+        public ActionResult Interact(int id)
+        {
+            UsuarioCP usuarioCP = new UsuarioCP();
+            
+            if(Session["Usuario"] != null)
+            {
+                usuarioCP.InteractPost(((UsuarioEN)Session["Usuario"]).Id, id);
+            }
+            
+
+            return RedirectToAction("Details/" + id);
+        }
         // GET: Post/Create
         public ActionResult Create(int id)
         {
+            if(Session["Usuario"] == null)
+            {
+                return RedirectToAction("../Usuario/Login", new { error = "Tienes que iniciar sesión para crear un post" });
+            }
             Array values = Enum.GetValues(new Categoria_PostEnum().GetType());
             IList<SelectListItem> enumLista = new List<SelectListItem>();
             for(int i=0; i < values.Length; i++)

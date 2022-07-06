@@ -25,7 +25,6 @@
     <br />
 }
 
-
 <br />
 
 <h3 align="center">Juegos Más Populares</h3>
@@ -68,46 +67,10 @@
     </a>
 </div>
 
+
 <br />
 <h3 align="center">Comunidades Más Populares</h3>
 <br />
-
-@*<table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.NomJuego)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Nombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Descripcion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FechaCreacion)
-            </th>
-
-        </tr>
-
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NomJuego)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nombre)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Descripcion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FechaCreacion)
-                </td>
-            </tr>
-        }
-
-    </table>*@
 
 <div class="container">
     <div class="row">
@@ -138,5 +101,49 @@
 </div>
 
 <br />
+
+@if (ViewData["JuegosRecomendados"] != null)
+{
+    ViewData["iter"] = 0;
+    <h3 align="center">Juegos Recomendados Para Ti</h3>
+    <div id="myCarousel2" class="jumbotron carousel slide" style="background-color: #222222; margin-top: 2em;" data-ride="carousel">
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+
+
+            @foreach (var item in (IList<JuegoEN>)ViewData["JuegosRecomendados"])
+            {
+                string ruta2 = "/Images/" + item.Portada + ".jpg";
+
+                if (int.Parse(ViewData["iter"].ToString()) == 0)
+                {
+                    <div class="item active" align="center">
+                        <img src=@item.Portada style="max-height: 300px" alt=""><br />@Html.ActionLink("Ver juego", "../Juego/Details", new { id = item.Id })
+                        @*@Html.ActionLink(linkText: item.Nombre, actionName: "Details", controllerName: "Juego", routeValues: new { id = item.Nombre }, htmlAttributes: null)*@
+                    </div>
+                }
+                else
+                {
+                    <div class="item " align="center">
+                        <img src=@item.Portada style="max-height: 300px" alt=""><br />@Html.ActionLink("Ver juego", "../Juego/Details", new { id = item.Id })
+                    </div>
+                }
+                ViewData["iter"] = 1;
+
+            }
+        </div>
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="#myCarousel2" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel2" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+}
 
 
