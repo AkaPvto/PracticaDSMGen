@@ -83,11 +83,14 @@ public static void InitializeData ()
 
                 Console.WriteLine ("Introducimos usuarios a la bbdd...");
                 UsuarioCEN usuarioCEN = new UsuarioCEN ();
-                int sergio = usuarioCEN.New_ ("Kaese", "Sergio", "Miedes", "smg163@alu.ua.es", 666666666, "C/carton", "usuario.png", "1234");
-                int candela = usuarioCEN.New_ ("FroggyChair", "Candela", "Urh", "curh1@alu.ua.es", 666999666, "C/cartulina", "usuario.png", "1234");
-                int carlos = usuarioCEN.New_ ("Jaxtified", "Carlos", "Izquierdo", "cil4@alu.ua.es", 666999888, "C/carta", "usuario.png", "1234");
-                int jorge = usuarioCEN.New_ ("Akapvto", "Jorge", "Reig", "jrv37@alu.ua.es", 666222888, "C/cartones", "usuario.png", "1234");
-                int sara = usuarioCEN.New_ ("Sariwii", "Sara", "Morote", "smb86@alu.ua.es", 666999222, "C/cartulinas", "usuario.png", "1234");
+                int sergio = usuarioCEN.New_ ("Kaese", "Sergio", "Miedes", "smg163@alu.ua.es", 666666666, "C/Machamp", "usuario.png", "1234");
+                int candela = usuarioCEN.New_ ("FroggyChair", "Candela", "Urh", "curh1@alu.ua.es", 666999666, "C/Coosto", "usuario.png", "1234");
+                int carlos = usuarioCEN.New_ ("Jaxtified", "Carlos", "Izquierdo", "cil4@alu.ua.es", 666999888, "C/Orden sin contacto", "usuario.png", "1234");
+                int jorge = usuarioCEN.New_ ("Akapvto", "Jorge", "Reig", "jrv37@alu.ua.es", 666222888, "C/Equipo Cereza", "usuario.png", "1234");
+                int sara = usuarioCEN.New_ ("Sariwii", "Sara", "Morote", "smb86@alu.ua.es", 666999222, "C/Alameda de Jijón", "usuario.png", "1234");
+                int juanmi = usuarioCEN.New_("JuanMi", "Juan Miguel", "López", "jmll2@alu.ua.es", 666999667, "C/Caronte", "usuario.png", "1234");
+                int ruben = usuarioCEN.New_("Rubi", "Rubén", "Castillo", "rcp103@alu.ua.es", 666999664, "C/Calderón de la barca", "usuario.png", "1234");
+                int estela = usuarioCEN.New_("Estelar_xX", "Estela", "Martínez", "emd149@alu.ua.es", 666999644, "C/Melocotón", "usuario.png", "1234");
 
                 Console.WriteLine ("Introducimos los generos a laa bbdd...");
                 GeneroCEN generoCEN = new GeneroCEN ();
@@ -101,18 +104,16 @@ public static void InitializeData ()
                 int gen8 = generoCEN.New_ ("Roguelike");
                 int gen9 = generoCEN.New_ ("Soulslike");
                 int genA = generoCEN.New_ ("FirstPersonShooter");
+                int genB = generoCEN.New_ ("Cartas");
+                int genC = generoCEN.New_ ("Trivia");
+                int genD = generoCEN.New_ ("Deportes");
+                int genE = generoCEN.New_ ("Simulación");
 
                 Console.WriteLine ("Introducimos juegos a la bbdd...");
                 JuegoCEN juegoCEN = new JuegoCEN ();
-                int[] aux_rocket = { gen1, gen2 };
-                IList<int> generos = aux_rocket;
-                int juego1 = juegoCEN.New_ ("Rocket League", "Juego de coches y futbol", "/Images/rocket.jpg", generos);
-                int[] aux_silksong = { gen3, gen2, gen4 };
-                generos = aux_silksong;
-                int juego2 = juegoCEN.New_ ("Hollow Knight: Silksong", "Solo existe en esta bbdd", "/Images/hollow.jpg", generos);
-                int[] aux_tft = { gen5, gen6 };
-                generos = aux_tft;
-                int juego3 = juegoCEN.New_ ("League of Legends: TFT", "Solo apto para gente inteligente", "/Images/portada_tft.jpeg", generos);
+                int juego1 = juegoCEN.New_ ("Rocket League", "¡Te damos la bienvenida a este híbrido de alta potencia que mezcla fútbol de estilo arcade y vehículos caóticos!", "/Images/rocket.jpg", new List<int>() { gen1, gen2 });
+                int juego2 = juegoCEN.New_ ("Hollow Knight", "Hollow Knight cuenta la historia del Caballero, en su búsqueda por descubrir los secretos del largamente abandonado reino de los insectos de Hallownest, cuyas profundidades atraen a los aventureros y valientes con la promesa de tesoros o la respuesta a misterios antiguos...", "/Images/hollow.jpg", new List<int>() { gen3, gen2, gen4 });
+                int juego3 = juegoCEN.New_ ("Teamfight Tactics", "Teamfight Tactics mezcla las adictivas mecánicas del autochess con los carismáticos personajes de Runeterra.", "/Images/portada_tft.jpeg", new List<int>() { gen5, gen6 });
 
                 Console.WriteLine ("Introducimos comunidades a la bbdd...");
                 ComunidadCEN comunidadCEN = new ComunidadCEN ();
