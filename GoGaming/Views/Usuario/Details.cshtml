@@ -27,8 +27,8 @@
     @*<hr />*@
     <div class="card w-50 jumbotron " style="background-color: #222222 ">
 
-        <img align="center" class="card-img-top img-responsive center-block rounded-circle" style="max-width:20%" src="/Images/@Html.DisplayFor(modelItem => Model.Foto)" />
-        <div class="row" align="center">
+        <img class="card-img-top rounded center-block img-circle" style="max-width:20%" src="/Images/@Html.DisplayFor(modelItem => Model.Foto)" />
+        <div class="row" align="center" style="margin-top: 10px;">
             <div class="col">
                 @ViewData["seguidores"]
                 @Html.ActionLink("Seguidores", "Seguidores", new { id = Model.Id })
