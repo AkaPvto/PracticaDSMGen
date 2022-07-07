@@ -51,7 +51,7 @@
             @Html.ActionLink("Mis avisos", "../Aviso/IndexUsuario", new { idUsuario = Model.Id})
             <h3>@Html.LabelFor(modelItem => Model.Telefono): @Html.DisplayFor(modelItem => Model.Telefono)</h3>*@
             <div align="center" style="margin-top:10px;">
-                @Html.ActionLink("Editar Perfil", "Editar", new { id = Model.Id }, new { @class = "btn btn-primary stretched-link ", role = "button" })
+                @Html.ActionLink("Editar Perfil", "Edit", new { id = Model.Id, error = "" }, new { @class = "btn btn-primary stretched-link ", role = "button" })
             </div>
         }
         else if (idUsuario != -1)
