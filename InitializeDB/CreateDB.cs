@@ -84,13 +84,13 @@ public static void InitializeData ()
                 Console.WriteLine ("Introducimos usuarios a la bbdd...");
                 UsuarioCEN usuarioCEN = new UsuarioCEN ();
                 int sergio = usuarioCEN.New_ ("Kaese", "Sergio", "Miedes", "smg163@alu.ua.es", 666666666, "C/Machamp", "usuario.png", "1234", true);
-                int candela = usuarioCEN.New_ ("FroggyChair", "Candela", "Urh", "curh1@alu.ua.es", 666999666, "C/Coosto", "usuario.png", "1234" ,true);
+                int candela = usuarioCEN.New_ ("FroggyChair", "Candela", "Urh", "curh1@alu.ua.es", 666999666, "C/Coosto", "usuario.png", "1234", true);
                 int carlos = usuarioCEN.New_ ("Jaxtified", "Carlos", "Izquierdo", "cil4@alu.ua.es", 666999888, "C/Orden sin contacto", "usuario.png", "1234", true);
                 int jorge = usuarioCEN.New_ ("Akapvto", "Jorge", "Reig", "jrv37@alu.ua.es", 666222888, "C/Equipo Cereza", "usuario.png", "1234", true);
-                int sara = usuarioCEN.New_ ("Sariwii", "Sara", "Morote", "smb86@alu.ua.es", 666999222, "C/Alameda de Jijón", "usuario.png", "1234", true);
-                int juanmi = usuarioCEN.New_("JuanMi", "Juan Miguel", "López", "jmll2@alu.ua.es", 666999667, "C/Caronte", "usuario.png", "1234", false);
-                int ruben = usuarioCEN.New_("Rubi", "Rubén", "Castillo", "rcp103@alu.ua.es", 666999664, "C/Calderón de la barca", "usuario.png", "1234", false);
-                int estela = usuarioCEN.New_("Estelar_xX", "Estela", "Martínez", "emd149@alu.ua.es", 666999644, "C/Melocotón", "usuario.png", "1234", false);
+                int sara = usuarioCEN.New_ ("Sariwii", "Sara", "Morote", "smb86@alu.ua.es", 666999222, "C/Alameda de Jijï¿½n", "usuario.png", "1234", true);
+                int juanmi = usuarioCEN.New_ ("JuanMi", "Juan Miguel", "Lï¿½pez", "jmll2@alu.ua.es", 666999667, "C/Caronte", "usuario.png", "1234", false);
+                int ruben = usuarioCEN.New_ ("Rubi", "Rubï¿½n", "Castillo", "rcp103@alu.ua.es", 666999664, "C/Calderï¿½n de la barca", "usuario.png", "1234", false);
+                int estela = usuarioCEN.New_ ("Estelar_xX", "Estela", "Martï¿½nez", "emd149@alu.ua.es", 666999644, "C/Melocotï¿½n", "usuario.png", "1234", false);
 
                 Console.WriteLine ("Introducimos los generos a laa bbdd...");
                 GeneroCEN generoCEN = new GeneroCEN ();
@@ -107,13 +107,19 @@ public static void InitializeData ()
                 int genB = generoCEN.New_ ("Cartas");
                 int genC = generoCEN.New_ ("Trivia");
                 int genD = generoCEN.New_ ("Deportes");
-                int genE = generoCEN.New_ ("Simulación");
+                int genE = generoCEN.New_ ("Simulaciï¿½n");
 
                 Console.WriteLine ("Introducimos juegos a la bbdd...");
                 JuegoCEN juegoCEN = new JuegoCEN ();
-                int juego1 = juegoCEN.New_ ("Rocket League", "¡Te damos la bienvenida a este híbrido de alta potencia que mezcla fútbol de estilo arcade y vehículos caóticos!", "/Images/rocket.jpg", new List<int>() { gen1, gen2 });
-                int juego2 = juegoCEN.New_ ("Hollow Knight", "Hollow Knight cuenta la historia del Caballero, en su búsqueda por descubrir los secretos del largamente abandonado reino de los insectos de Hallownest, cuyas profundidades atraen a los aventureros y valientes con la promesa de tesoros o la respuesta a misterios antiguos...", "/Images/hollow.jpg", new List<int>() { gen3, gen2, gen4 });
-                int juego3 = juegoCEN.New_ ("Teamfight Tactics", "Teamfight Tactics mezcla las adictivas mecánicas del autochess con los carismáticos personajes de Runeterra.", "/Images/portada_tft.jpeg", new List<int>() { gen5, gen6 });
+                int juego1 = juegoCEN.New_ ("Rocket League", "ï¿½Te damos la bienvenida a este hï¿½brido de alta potencia que mezcla fï¿½tbol de estilo arcade y vehï¿½culos caï¿½ticos!", "/Images/rocket.jpg", new List<int>() {
+                                gen1, gen2
+                        });
+                int juego2 = juegoCEN.New_ ("Hollow Knight", "Hollow Knight cuenta la historia del Caballero, en su bï¿½squeda por descubrir los secretos del largamente abandonado reino de los insectos de Hallownest, cuyas profundidades atraen a los aventureros y valientes con la promesa de tesoros o la respuesta a misterios antiguos...", "/Images/hollow.jpg", new List<int>() {
+                                gen3, gen2, gen4
+                        });
+                int juego3 = juegoCEN.New_ ("Teamfight Tactics", "Teamfight Tactics mezcla las adictivas mecï¿½nicas del autochess con los carismï¿½ticos personajes de Runeterra.", "/Images/portada_tft.jpeg", new List<int>() {
+                                gen5, gen6
+                        });
 
                 Console.WriteLine ("Introducimos comunidades a la bbdd...");
                 ComunidadCEN comunidadCEN = new ComunidadCEN ();

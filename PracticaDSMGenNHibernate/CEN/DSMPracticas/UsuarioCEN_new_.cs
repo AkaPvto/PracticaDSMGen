@@ -45,7 +45,7 @@ public int New_ (string p_nickname, string p_nombre, string p_apellidos, string 
 
         usuarioEN.Baneado = false;
 
-        usuarioEN.Admin = p_admin;
+        usuarioEN.Administrator = p_admin;
 
         usuarioEN.Pass = Utils.Util.GetEncondeMD5 (p_pass);
 

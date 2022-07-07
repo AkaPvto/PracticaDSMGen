@@ -127,7 +127,7 @@ public void ModifyDefault (UsuarioEN usuario)
 
 
 
-                usuarioEN.Admin = usuario.Admin;
+                usuarioEN.Administrator = usuario.Administrator;
 
                 session.Update (usuarioEN);
                 SessionCommit ();
