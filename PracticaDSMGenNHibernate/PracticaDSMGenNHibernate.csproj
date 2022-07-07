@@ -155,6 +155,7 @@
 			
 			<Compile Include="CEN\DSMPracticas\UsuarioCEN_New_.cs" />
 			
+			<Compile Include="CEN\DSMPracticas\UsuarioCEN_Modify.cs" />
 			
 			
 			
