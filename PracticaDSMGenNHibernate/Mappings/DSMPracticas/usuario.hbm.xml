@@ -39,6 +39,9 @@
 					<property name="Baneado" type="boolean"> 
 						<column name="baneado"  not-null="true"/>
 					</property>
+					<property name="Admin" type="boolean"> 
+						<column name="admin"  not-null="true"/>
+					</property>
 			
 			
 			
@@ -149,6 +152,8 @@
 									<column name="FK_idNotificacion_idNotificacion"/> 
       						</many-to-many>
     					</bag>
+			
+					
 					
 					
 					
