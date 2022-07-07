@@ -127,20 +127,53 @@ namespace GoGaming.Controllers
         }
 
         // GET: Usuario/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int id, string error)
         {
-            return View();
+            UsuarioEN usuarioEN = new UsuarioCEN().ReadOID(id);
+            UsuarioViewModel usuarioVM = new UsuarioAssembler().ConvertENToModelUI(usuarioEN);
+            if (error == null) error = "";
+            ViewData["Error"] = error;
+
+
+            return View(usuarioVM);
         }
 
         // POST: Usuario/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(UsuarioViewModel usuario, HttpPostedFileBase file)
         {
+            if (file != null && file.ContentLength > 0)
+            {
+                usuario.Foto = Path.GetFileName(file.FileName);
+                string path = Path.Combine(Server.MapPath("~/Images"), usuario.Foto);
+                file.SaveAs(path);
+
+            }
             try
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                UsuarioCEN usuarioCEN = new UsuarioCEN();
+                IList<UsuarioEN> lista = usuarioCEN.ReadAll(0, -1);
+                List<string> listaNicknames = new List<string>();
+                string errorString = "";
+                foreach (UsuarioEN usu in lista)
+                {
+                    listaNicknames.Add(usu.Nickname);
+                }
+                if (listaNicknames.Contains(usuario.Nickname))
+                {
+                    errorString += "El nickname introducido esta en uso";
+                }
+                if (errorString == "")
+                {
+                    usuarioCEN.Modify(usuario.Id, usuario.Nickname, usuario.Nombre, usuario.Apellidos, usuario.Telefono, usuario.Direccion, usuario.Foto);
+                    UsuarioEN nuevoUsu = usuarioCEN.ReadOID(usuario.Id);
+                    Session["Usuario"] = nuevoUsu;
+                    return RedirectToAction("../");
+                }
+                else
+                {
+                    return RedirectToAction("Edit", "Usuario", new { id = usuario.Id, error = errorString });
+                }
             }
             catch
             {
@@ -252,7 +285,7 @@ namespace GoGaming.Controllers
 
             if(errorString == "")
             {
-                int idUsuario = usuarioCEN.New_(usuario.Nickname, usuario.Nombre, usuario.Apellidos, usuario.Email, usuario.Telefono, usuario.Direccion, usuario.Foto, usuario.Password);
+                int idUsuario = usuarioCEN.New_(usuario.Nickname, usuario.Nombre, usuario.Apellidos, usuario.Email, usuario.Telefono, usuario.Direccion, usuario.Foto, usuario.Password, false);
                 UsuarioEN nuevoUsu = usuarioCEN.ReadOID(idUsuario);
                 Session["Usuario"] = nuevoUsu;
                 return RedirectToAction("../");

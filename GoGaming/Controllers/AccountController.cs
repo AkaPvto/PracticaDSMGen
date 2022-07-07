@@ -174,7 +174,7 @@ namespace GoGaming.Controllers
 
 
                         UsuarioCEN usuarioCEN = new UsuarioCEN();
-                        int idUsuario = usuarioCEN.New_(model.Nickname, model.Nombre, model.Apellidos, model.Email, model.Telefono, model.Direccion, model.Foto, model.Password);
+                        int idUsuario = usuarioCEN.New_(model.Nickname, model.Nombre, model.Apellidos, model.Email, model.Telefono, model.Direccion, model.Foto, model.Password, false);
                         Session["Usuario"] = usuarioCEN.ReadOID(idUsuario);
                         // Para obtener más información sobre cómo habilitar la confirmación de cuentas y el restablecimiento de contraseña, visite https://go.microsoft.com/fwlink/?LinkID=320771
                         // Enviar correo electrónico con este vínculo
