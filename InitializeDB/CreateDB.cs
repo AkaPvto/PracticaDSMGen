@@ -119,7 +119,7 @@ public static void InitializeData ()
                 int juego3 = juegoCEN.New_ ("Teamfight Tactics", "Teamfight Tactics mezcla las adictivas mecánicas del autochess con los carismáticos personajes de Runeterra.", "/Images/portada_tft.jpeg", new List<int>() { gen5, gen6 });
                 int juego4 = juegoCEN.New_("Dark Souls 3", "Dark Souls 3 es el final de la saga y presenta un mundo, el Reino de Lothric, al borde del Apocalipsis por culpa de 'la maldición de los no muertos', y la razón por la que el mundo aún no se ha sumido en la oscuridad totalmente es el sacrificio que muchos héroes e incluso dioses hicieron al reavivar la llama original, la cual se encarga de mantener la 'Era del fuego', dejando que esta consumiera sus respectivas almas y cuerpos.", "/Images/darksouls3.jpg", new List<int>() { genF, gen9, gen2 });
                 int juego5 = juegoCEN.New_("HearthsStone", "Te damos la bienvenida a Hearthstone, un juego de cartas de estrategia fácil de aprender pero salvajemente entretenido.", "/Images/hearthstone.jpg", new List<int>() { gen5, genB });
-                int juego6 = juegoCEN.New_("Valorant", "Shooter táctico en primera persona 5v5 basado en personajes, en el que importan tanto el dominio de las armas como la habilidad con los Agentes.", "/Images/valorant.jpg", new List<int>() { gen5, gen6 });
+                int juego6 = juegoCEN.New_("Valorant", "Shooter táctico en primera persona 5v5 basado en personajes, en el que importan tanto el dominio de las armas como la habilidad con los Agentes.", "/Images/valorant.jpg", new List<int>() { gen2, genA });
                 int juego7 = juegoCEN.New_("Team Sonic Racing", "Encarna a Sonic y sus amigos en este juego de carreras en el que tendrás que formar equipos de 3 para ganar a tus oponentes.", "/Images/sonicteamracing.jpg", new List<int>() { gen5, gen6, gen1 });
                 int juego8 = juegoCEN.New_("League of Legends", "League of Legends es un juego en equipo con más de 140 campeones con los que realizar jugadas épicas.", "/Images/leagueoflegends.jpg", new List<int>() { genH, gen2 });
 
@@ -278,15 +278,15 @@ public static void InitializeData ()
                 int not8 = notificacionCP.New_(post8).Id;
 
 
-                Console.WriteLine ("\nYa va siendo hora de mandar las notificaciones...");
-                notificacionCP.EnviarNotificacion (not1);
-                notificacionCP.EnviarNotificacion (not2);
-                notificacionCP.EnviarNotificacion (not3);
-                notificacionCP.EnviarNotificacion(not4);
-                notificacionCP.EnviarNotificacion(not5);
-                notificacionCP.EnviarNotificacion(not6);
-                notificacionCP.EnviarNotificacion(not7);
-                notificacionCP.EnviarNotificacion(not8);
+                //Console.WriteLine ("\nYa va siendo hora de mandar las notificaciones...");
+                //notificacionCP.EnviarNotificacion (not1);
+                //notificacionCP.EnviarNotificacion (not2);
+                //notificacionCP.EnviarNotificacion (not3);
+                //notificacionCP.EnviarNotificacion(not4);
+                //notificacionCP.EnviarNotificacion(not5);
+                //notificacionCP.EnviarNotificacion(not6);
+                //notificacionCP.EnviarNotificacion(not7);
+                //notificacionCP.EnviarNotificacion(not8);
 
 
                 Console.WriteLine ("\nFiltramos entre todos los juegos por el nombre League:");
