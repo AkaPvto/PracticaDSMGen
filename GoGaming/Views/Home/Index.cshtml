@@ -42,13 +42,13 @@
             if (int.Parse(ViewData["iter"].ToString()) == 0)
             {
                 <div class="item active" align="center">
-                    <img src=@item.Portada style="max-height: 300px" alt=""><br />@Html.ActionLink("Ver juego", "../Juego/Details", new { id = item.Id })
+                    <img src=@item.Portada style="max-height: 300px; cursor:pointer;" alt="" onclick="window.location = '/Juego/Details/@item.Id'"><br />@Html.ActionLink("Ver juego", "../Juego/Details", new { id = item.Id })
                     @*@Html.ActionLink(linkText: item.Nombre, actionName: "Details", controllerName: "Juego", routeValues: new { id = item.Nombre }, htmlAttributes: null)*@
                 </div>
             }
             else
             { <div class="item " align="center">
-                    <img src=@item.Portada style="max-height: 300px" alt=""><br />@Html.ActionLink("Ver juego", "../Juego/Details", new { id = item.Id })
+                    <img src=@item.Portada style="max-height: 300px; cursor: pointer;" alt="" onclick="window.location = '/Juego/Details/@item.Id'"><br />@Html.ActionLink("Ver juego", "../Juego/Details", new { id = item.Id })
                 </div>
             }
             ViewData["iter"] = 1;
