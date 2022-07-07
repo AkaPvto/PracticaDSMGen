@@ -159,7 +159,7 @@ namespace GoGaming.Controllers
                 {
                     listaNicknames.Add(usu.Nickname);
                 }
-                if (listaNicknames.Contains(usuario.Nickname))
+                if (((UsuarioEN)Session["Usuario"]).Nickname != usuario.Nickname && listaNicknames.Contains(usuario.Nickname))
                 {
                     errorString += "El nickname introducido esta en uso";
                 }
@@ -168,15 +168,16 @@ namespace GoGaming.Controllers
                     usuarioCEN.Modify(usuario.Id, usuario.Nickname, usuario.Nombre, usuario.Apellidos, usuario.Telefono, usuario.Direccion, usuario.Foto);
                     UsuarioEN nuevoUsu = usuarioCEN.ReadOID(usuario.Id);
                     Session["Usuario"] = nuevoUsu;
-                    return RedirectToAction("../");
+                    return RedirectToAction("Details/"+usuario.Id);
                 }
                 else
                 {
                     return RedirectToAction("Edit", "Usuario", new { id = usuario.Id, error = errorString });
                 }
             }
-            catch
+            catch(Exception e)
             {
+                string exp = e.ToString();
                 return View();
             }
         }

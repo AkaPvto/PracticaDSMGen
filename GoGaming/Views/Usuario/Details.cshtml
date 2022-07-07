@@ -27,8 +27,8 @@
     @*<hr />*@
     <div class="card w-50 jumbotron " style="background-color: #222222 ">
 
-        <img align="center" class="card-img-top img-responsive center-block" style="max-width:20%" src="/Images/@Html.DisplayFor(modelItem => Model.Foto)" />
-        <div class="row" align="center">
+        <img class="card-img-top rounded center-block img-circle" style="max-width:20%" src="/Images/@Html.DisplayFor(modelItem => Model.Foto)" />
+        <div class="row" align="center" style="margin-top: 10px;">
             <div class="col">
                 @ViewData["seguidores"]
                 @Html.ActionLink("Seguidores", "Seguidores", new { id = Model.Id })
@@ -51,7 +51,7 @@
             <div align="center" style="margin-top:10px;">
                 @Html.ActionLink("Editar Perfil", "Edit", new { id = Model.Id, error = "" }, new { @class = "btn btn-primary stretched-link ", role = "button" })
             </div>
-            <div align="center" style="margin-top:10px;">
+            <div align="center" style="margin-top:30px;">
             @Html.ActionLink("Mis avisos", "../Aviso/IndexUsuario", new { idUsuario = Model.Id })
             </div>
         }
