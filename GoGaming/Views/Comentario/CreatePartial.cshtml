@@ -25,9 +25,9 @@
 
         <div class="form-group">
             <div class="col-md-10">
-                @if(Session["Usuario"] == null)
+                @if (Session["Usuario"] == null)
                 {
-                    @Html.ActionLink("Comentar", "../Usuario/Login", new { error = "Tienes que iniciar sesión para poder comentar"})
+                    @Html.ActionLink("Comentar", "../Usuario/Login", new { error = "Tienes que iniciar sesión para poder comentar" })
                 }
                 else if (ViewData["comunidad"] != null && (bool)ViewData["comunidad"])
                 {
@@ -35,7 +35,15 @@
                 }
                 else
                 {
-                    <button style="bottom: 20px; right: 20px;" class="btn btn-primary stretched-link " data-toggle="modal" data-target="#exampleModal">Comentar</button>
+                    
+                    <button style="bottom: 20px; right: 20px;" class="btn btn-primary stretched-link" id="boton-modal" data-toggle="modal" data-target="#exampleModal">Comentar</button>
+                    <script>
+                        $(document).ready(function () {
+                            $("#boton-modal").click(function () {
+                                $("#Contenido").val("");
+                            });
+                        });
+                    </script>
                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">

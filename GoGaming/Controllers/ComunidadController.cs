@@ -143,6 +143,8 @@ namespace GoGaming.Controllers
             }
         }
 
+
+        //[Authorize]
         // GET: Comunidad/Delete/5
         public ActionResult Delete(int id)
         {

@@ -39,6 +39,7 @@
         }
         else if (idUsuario != -1)
         {
+            @Html.ActionLink("Mis avisos", "IndexUsuario", "Aviso",  new { idFollower = idUsuario, idFollowed = Model.Id })
             @Html.ActionLink(seguir, "Seguir", new { idFollower = idUsuario, idFollowed = Model.Id })
         }
     </dl>
