@@ -11,25 +11,45 @@
         @Html.ActionLink("Create New", "Create")
     </p>*@
 
+
+
 @if (Model.Count() == 0)
 {
-    <h3>No tienes Avisos. ¡Sigue haciendo las cosas así de bien!</h3>
+  
+    <div class="card w-50 jumbotron" style="background-color: #222222; margin-top: 3em;">
+      <h3>No tienes Avisos. ¡Sigue haciendo las cosas así de bien!</h3>
+   </div>
+    
 }
 else
 {
-<div class="table">
+    @*<div class="table">
 
-    @foreach (var item in Model)
-    {
+        @foreach (var item in Model)
+        {
             <div>
                 @Html.DisplayFor(modelItem => item.Texto)
             </div>
             <div>
                 @Html.DisplayFor(modelItem => item.Hora)
             </div>
+        }
+    </div>*@
+
+    @foreach (var item in Model)
+    {
+
+        <div class="card w-50 jumbotron" style="background-color: #222222; margin-top: 3em;">
+            @*<img class="card-img-top img-responsive center-block" src="@Html.DisplayFor(modelItem => item.Portada)" alt="Card image cap">*@
+            <div class="card-header text-muted"> @Html.DisplayFor(modelItem => item.Hora)</div>
+            <div class="card-body">
+                <h4 class="card-text"> @Html.DisplayFor(modelItem => item.Texto)</h4>
+                <br />
+            </div>
+        </div>
     }
-</div>
+
 }
 
 
-    
+

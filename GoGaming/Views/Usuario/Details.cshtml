@@ -47,11 +47,12 @@
             <h3>@Html.LabelFor(modelItem => Model.Direccion): @Html.DisplayFor(modelItem => Model.Direccion)</h3>
             <h3>@Html.LabelFor(modelItem => Model.Telefono): @Html.DisplayFor(modelItem => Model.Telefono)</h3>
             @Html.ActionLink("Editar perfil", "Editar", new { id = Model.Id })
-            <br />
-            @Html.ActionLink("Mis avisos", "../Aviso/IndexUsuario", new { idUsuario = Model.Id})
-            <h3>@Html.LabelFor(modelItem => Model.Telefono): @Html.DisplayFor(modelItem => Model.Telefono)</h3>*@
+            <br />*@
             <div align="center" style="margin-top:10px;">
                 @Html.ActionLink("Editar Perfil", "Editar", new { id = Model.Id }, new { @class = "btn btn-primary stretched-link ", role = "button" })
+            </div>
+            <div align="center" style="margin-top:10px;">
+            @Html.ActionLink("Mis avisos", "../Aviso/IndexUsuario", new { idUsuario = Model.Id })
             </div>
         }
         else if (idUsuario != -1)
