@@ -12,7 +12,7 @@
 
     <ul class="nav navbar-nav navbar-right">
         <li>
-            @Html.ActionLink("Hola " + usuario.Nickname + "!", "../Usuario/Details", new { id = usuario.Id })
+            @Html.ActionLink("Hola, " + usuario.Nickname + "!", "../Usuario/Details", new { id = usuario.Id })
         </li>
         <li>@Html.ActionLink("Cerrar sesión", "../Usuario/Logout")</li>
     </ul>

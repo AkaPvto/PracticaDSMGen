@@ -30,8 +30,8 @@
         <img class="card-img-top img-responsive center-block" src="@Html.DisplayFor(modelItem => item.Portada)" alt="Card image cap">
         <div class="card-body">
             <h2 class="card-title"> @Html.DisplayFor(modelItem => item.Nombre)</h2>
-            <h4 class="card-text"> @Html.DisplayFor(modelItem => item.Descripcion)</h4>
-            @{
+            @*<h4 class="card-text"> @Html.DisplayFor(modelItem => item.Descripcion)</h4>*@
+            @*@{
                 var generos = item.Generos;
                 var genNombres = (string[])ViewData["nombresGenero"];
                 var first = false;
@@ -54,7 +54,7 @@
                     }
                 }
 
-            }<br />
+            }<br />*@
              <div class="text-right">
                  @*@Html.ActionLink("Detalle", "DetallesDesdeBuscador", new { id = item.Id }, new { @class = "btn btn-primary stretched-link ", role = "button" })*@
                  @Html.ActionLink("Detalle", "Details", new { id = item.Id }, new { @class = "btn btn-primary stretched-link ", role = "button" })
