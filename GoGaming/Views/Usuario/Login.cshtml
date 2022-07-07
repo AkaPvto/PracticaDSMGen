@@ -29,7 +29,7 @@
                 @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
             </div>
         </div>
-        @if (ViewData["error"] != null)
+        @if (ViewData["error"] != null && (string)ViewData["error"] != "Baneado")
         {
             <p style="color: #DD0505; font-size: 16px;">@ViewData["error"].ToString()</p>
         }
@@ -43,13 +43,13 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Aviso: No perteneces a la comunidad</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Aviso: Este usuario esta baneado</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        Necesitas pertecener a la comunidad para poder comentar en un post en ella
+                        El usuario que has introducio ha recibido 3 avisos y por lo tanto su cuenta ha sido suspendida
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
@@ -73,13 +73,12 @@
         @Html.ActionLink("Atrás", "../Home/Index") |
         @Html.ActionLink("Registrarse", "../Usuario/Register")
     </div>
-</div>
 }
 
 
 @if (ViewData["error"] != null && (string)ViewData["error"] == "Baneado") {
 <script>
-        window.onload = document.getElementById('exampleModal').modal('toggle');
+        window.onload = function (){ $("#exampleModal").modal('toggle');}
 </script>
 }
 
