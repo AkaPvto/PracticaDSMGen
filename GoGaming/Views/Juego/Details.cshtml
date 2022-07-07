@@ -70,8 +70,11 @@
                 @Html.ActionLink("Ir a comunidad", "../Comunidad/Details", new { id = idComunidad }, new { @class = "btn btn-primary stretched-link ", role = "button" })
             </div>
         }
-        @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
-        @Html.ActionLink("Atrás", "Index")
+        @if (idUsuario != -1 && ((UsuarioEN)Session["Usuario"]).Administrator)
+        {
+            @Html.ActionLink("Editar", "Edit", new { id = Model.Id })
+        }
+            @Html.ActionLink("Atrás", "Index")
     </div>
 </div>
 
