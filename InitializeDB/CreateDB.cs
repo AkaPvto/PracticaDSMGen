@@ -84,13 +84,13 @@ public static void InitializeData ()
                 Console.WriteLine ("Introducimos usuarios a la bbdd...");
                 UsuarioCEN usuarioCEN = new UsuarioCEN ();
                 int sergio = usuarioCEN.New_ ("Kaese", "Sergio", "Miedes", "smg163@alu.ua.es", 666666666, "C/Machamp", "usuario.png", "1234", true);
-                int candela = usuarioCEN.New_ ("FroggyChair", "Candela", "Urh", "curh1@alu.ua.es", 666999666, "C/Coosto", "usuario.png", "1234" ,true);
+                int candela = usuarioCEN.New_ ("FroggyChair", "Candela", "Urh", "curh1@alu.ua.es", 666999666, "C/Coosto", "usuario.png", "1234", true);
                 int carlos = usuarioCEN.New_ ("Jaxtified", "Carlos", "Izquierdo", "cil4@alu.ua.es", 666999888, "C/Orden sin contacto", "usuario.png", "1234", true);
                 int jorge = usuarioCEN.New_ ("Akapvto", "Jorge", "Reig", "jrv37@alu.ua.es", 666222888, "C/Equipo Cereza", "usuario.png", "1234", true);
-                int sara = usuarioCEN.New_ ("Sariwii", "Sara", "Morote", "smb86@alu.ua.es", 666999222, "C/Alameda de Jijón", "usuario.png", "1234", true);
-                int juanmi = usuarioCEN.New_("JuanMi", "Juan Miguel", "López", "jmll2@alu.ua.es", 666999667, "C/Caronte", "usuario.png", "1234", false);
-                int ruben = usuarioCEN.New_("Rubi", "Rubén", "Castillo", "rcp103@alu.ua.es", 666999664, "C/Calderón de la barca", "usuario.png", "1234", false);
-                int estela = usuarioCEN.New_("Estelar_xX", "Estela", "Martínez", "emd149@alu.ua.es", 666999644, "C/Melocotón", "usuario.png", "1234", false);
+                int sara = usuarioCEN.New_ ("Sariwii", "Sara", "Morote", "smb86@alu.ua.es", 666999222, "C/Alameda de Jijï¿½n", "usuario.png", "1234", true);
+                int juanmi = usuarioCEN.New_ ("JuanMi", "Juan Miguel", "Lï¿½pez", "jmll2@alu.ua.es", 666999667, "C/Caronte", "usuario.png", "1234", false);
+                int ruben = usuarioCEN.New_ ("Rubi", "Rubï¿½n", "Castillo", "rcp103@alu.ua.es", 666999664, "C/Calderï¿½n de la barca", "usuario.png", "1234", false);
+                int estela = usuarioCEN.New_ ("Estelar_xX", "Estela", "Martï¿½nez", "emd149@alu.ua.es", 666999644, "C/Melocotï¿½n", "usuario.png", "1234", false);
 
                 Console.WriteLine ("Introducimos los generos a laa bbdd...");
                 GeneroCEN generoCEN = new GeneroCEN ();
@@ -107,60 +107,60 @@ public static void InitializeData ()
                 int genB = generoCEN.New_ ("Cartas");
                 int genC = generoCEN.New_ ("Trivia");
                 int genD = generoCEN.New_ ("Deportes");
-                int genE = generoCEN.New_ ("Simulación");
+                int genE = generoCEN.New_ ("SimulaciÃ³n");
                 int genF = generoCEN.New_ ("RPG");
                 int genG = generoCEN.New_ ("Carreras");
                 int genH = generoCEN.New_("MOBA");
 
                 Console.WriteLine ("Introducimos juegos a la bbdd...");
                 JuegoCEN juegoCEN = new JuegoCEN ();
-                int juego1 = juegoCEN.New_ ("Rocket League", "¡Te damos la bienvenida a este híbrido de alta potencia que mezcla fútbol de estilo arcade y vehículos caóticos!", "/Images/rocket.jpg", new List<int>() { gen1, gen2 });
-                int juego2 = juegoCEN.New_ ("Hollow Knight", "Hollow Knight cuenta la historia del Caballero, en su búsqueda por descubrir los secretos del largamente abandonado reino de los insectos de Hallownest, cuyas profundidades atraen a los aventureros y valientes con la promesa de tesoros o la respuesta a misterios antiguos...", "/Images/hollow.jpg", new List<int>() { gen3, gen2, gen4 });
-                int juego3 = juegoCEN.New_ ("Teamfight Tactics", "Teamfight Tactics mezcla las adictivas mecánicas del autochess con los carismáticos personajes de Runeterra.", "/Images/portada_tft.jpeg", new List<int>() { gen5, gen6 });
-                int juego4 = juegoCEN.New_("Dark Souls 3", "Dark Souls 3 es el final de la saga y presenta un mundo, el Reino de Lothric, al borde del Apocalipsis por culpa de 'la maldición de los no muertos', y la razón por la que el mundo aún no se ha sumido en la oscuridad totalmente es el sacrificio que muchos héroes e incluso dioses hicieron al reavivar la llama original, la cual se encarga de mantener la 'Era del fuego', dejando que esta consumiera sus respectivas almas y cuerpos.", "/Images/darksouls3.jpg", new List<int>() { genF, gen9, gen2 });
-                int juego5 = juegoCEN.New_("HearthsStone", "Te damos la bienvenida a Hearthstone, un juego de cartas de estrategia fácil de aprender pero salvajemente entretenido.", "/Images/hearthstone.jpg", new List<int>() { gen5, genB });
-                int juego6 = juegoCEN.New_("Valorant", "Shooter táctico en primera persona 5v5 basado en personajes, en el que importan tanto el dominio de las armas como la habilidad con los Agentes.", "/Images/valorant.jpg", new List<int>() { gen5, gen6 });
-                int juego7 = juegoCEN.New_("Team Sonic Racing", "Encarna a Sonic y sus amigos en este juego de carreras en el que tendrás que formar equipos de 3 para ganar a tus oponentes.", "/Images/sonicteamracing.jpg", new List<int>() { gen5, gen6, gen1 });
-                int juego8 = juegoCEN.New_("League of Legends", "League of Legends es un juego en equipo con más de 140 campeones con los que realizar jugadas épicas.", "/Images/leagueoflegends.jpg", new List<int>() { genH, gen2 });
+                int juego1 = juegoCEN.New_ ("Rocket League", "Â¡Te damos la bienvenida a este hÃ­brido de alta potencia que mezcla fÃºtbol de estilo arcade y vehÃ­culos caÃ³ticos!", "/Images/rocket.jpg", new List<int>() { gen1, gen2 });
+                int juego2 = juegoCEN.New_ ("Hollow Knight", "Hollow Knight cuenta la historia del Caballero, en su bÃºsqueda por descubrir los secretos del largamente abandonado reino de los insectos de Hallownest, cuyas profundidades atraen a los aventureros y valientes con la promesa de tesoros o la respuesta a misterios antiguos...", "/Images/hollow.jpg", new List<int>() { gen3, gen2, gen4 });
+                int juego3 = juegoCEN.New_ ("Teamfight Tactics", "Teamfight Tactics mezcla las adictivas mecÃ¡nicas del autochess con los carismÃ¡ticos personajes de Runeterra.", "/Images/portada_tft.jpeg", new List<int>() { gen5, gen6 });
+                int juego4 = juegoCEN.New_("Dark Souls 3", "Dark Souls 3 es el final de la saga y presenta un mundo, el Reino de Lothric, al borde del Apocalipsis por culpa de 'la maldiciÃ³n de los no muertos', y la razÃ³n por la que el mundo aÃºn no se ha sumido en la oscuridad totalmente es el sacrificio que muchos hÃ©roes e incluso dioses hicieron al reavivar la llama original, la cual se encarga de mantener la 'Era del fuego', dejando que esta consumiera sus respectivas almas y cuerpos.", "/Images/darksouls3.jpg", new List<int>() { genF, gen9, gen2 });
+                int juego5 = juegoCEN.New_("HearthsStone", "Te damos la bienvenida a Hearthstone, un juego de cartas de estrategia fÃ¡cil de aprender pero salvajemente entretenido.", "/Images/hearthstone.jpg", new List<int>() { gen5, genB });
+                int juego6 = juegoCEN.New_("Valorant", "Shooter tÃ¡ctico en primera persona 5v5 basado en personajes, en el que importan tanto el dominio de las armas como la habilidad con los Agentes.", "/Images/valorant.jpg", new List<int>() { gen5, gen6 });
+                int juego7 = juegoCEN.New_("Team Sonic Racing", "Encarna a Sonic y sus amigos en este juego de carreras en el que tendrÃ¡s que formar equipos de 3 para ganar a tus oponentes.", "/Images/sonicteamracing.jpg", new List<int>() { gen5, gen6, gen1 });
+                int juego8 = juegoCEN.New_("League of Legends", "League of Legends es un juego en equipo con mÃ¡s de 140 campeones con los que realizar jugadas Ã©picas.", "/Images/leagueoflegends.jpg", new List<int>() { genH, gen2 });
 
                 Console.WriteLine ("Introducimos comunidades a la bbdd...");
                 ComunidadCEN comunidadCEN = new ComunidadCEN ();
-                int com_rl = comunidadCEN.New_ ("Rocket League", "Comunidad de Rocket League. ¡Calienten motores!", new DateTime (2022, 1, 1), juego1);
-                int com_hk = comunidadCEN.New_ ("Hollow Knight", "Comunidad del Hollow Knight. ¡Preparen las pelucas!", new DateTime (2019, 11, 15), juego2);
+                int com_rl = comunidadCEN.New_ ("Rocket League", "Comunidad de Rocket League. Â¡Calienten motores!", new DateTime (2022, 1, 1), juego1);
+                int com_hk = comunidadCEN.New_ ("Hollow Knight", "Comunidad del Hollow Knight. Â¡Preparen las pelucas!", new DateTime (2019, 11, 15), juego2);
                 int com_lol = comunidadCEN.New_("League of Legends", "Comunidad del LoL. Acceso denegado a jugadores de Vayne top.", new DateTime(2018, 12, 3), juego8);
 
                 Console.WriteLine ("Introducimos postst a la bbdd...");
                 PostCP postCP = new PostCP ();
                 int post1 = postCP.New_ ("Ultimamente he estado jugando mucho, estoy en diamante 3 y mi nickname es KaeseOrigin.", sergio, com_rl, Categoria_PostEnum.blanco, "Busco gente para jugar", "", new DateTime (2022, 01, 27, 15, 59, 00)).Id;
                 int post2 = postCP.New_ ("No jugueis con el BMW-200 (octane), la hitbox dista mucho del modelo 3D", candela, com_rl, Categoria_PostEnum.opinion, "Opinion sobre el BMW-200", "bmw.jpg", new DateTime (2021, 02, 28, 17, 36, 00)).Id;
-                int post3 = postCP.New_ ("Cuando va a salir el SilkSong. ¿Alguien lo sabe? ¿Se ha filtrado?", jorge, com_hk, Categoria_PostEnum.blanco, "Fecha de lanzamiento Silksong(?)", "", new DateTime (2021, 11, 10, 23, 06, 00)).Id;
-                int post4 = postCP.New_("¿Os habéis fijado en que la ulti de Fizz no deja restos de los campeones enemigos cuando son pequeños? Me pasó jugando contra un Amumu", sergio, com_lol, Categoria_PostEnum.easterEgg, "Pasiva oculta de Fizz", "ultifizz.jpg", new DateTime(2022, 10, 2, 11, 04, 00)).Id;
+                int post3 = postCP.New_ ("Cuando va a salir el SilkSong. Â¿Alguien lo sabe? Â¿Se ha filtrado?", jorge, com_hk, Categoria_PostEnum.blanco, "Fecha de lanzamiento Silksong(?)", "", new DateTime (2021, 11, 10, 23, 06, 00)).Id;
+                int post4 = postCP.New_("Â¿Os habÃ©is fijado en que la ulti de Fizz no deja restos de los campeones enemigos cuando son pequeÃ±os? Me pasÃ³ jugando contra un Amumu", sergio, com_lol, Categoria_PostEnum.easterEgg, "Pasiva oculta de Fizz", "ultifizz.jpg", new DateTime(2022, 10, 2, 11, 04, 00)).Id;
                 int post5 = postCP.New_("Ya ha salido el nuevo parche 20.22. Tercer parche consecutivo que nerfean a Aphelios.", jorge, com_lol, Categoria_PostEnum.noticia, "Parche 20.22", "", new DateTime(2022, 3, 3, 11, 45, 00)).Id;
-                int post6 = postCP.New_("Me gusta mucho este escenario porque los recargadores de nitro contrastan mejor y se aprecian mejor las distancias. ¿Vosotros que pensáis?", carlos, com_rl, Categoria_PostEnum.opinion, "Mi opinión sobre el mapa de Sunrise Field", "", new DateTime(2021, 11, 10, 23, 06, 00)).Id;
-                int post7 = postCP.New_("He vuelto a sacarme el platino. Y me he pasado el juego en poco más de 2 horas. Podía haber sido menos si no me hubiesen costado tanto las mantis.", jorge, com_hk, Categoria_PostEnum.noticia, "Otra vez que me saco el platino", "", new DateTime(2022, 5, 2, 11, 35, 00)).Id;
-                int post8 = postCP.New_("Mi campeón favorito es Anivia. No tendrá mucho ataque, no tendrá mucha defensa, pero Anivia, la criofénix es uno de los campeones que más te premia por jugarlo bien.", ruben, com_lol, Categoria_PostEnum.opinion, "Por qué me gusta tanto Anivia", "anivia.jpg", new DateTime(2022, 6, 12, 09, 22, 00)).Id;
+                int post6 = postCP.New_("Me gusta mucho este escenario porque los recargadores de nitro contrastan mejor y se aprecian mejor las distancias. Â¿Vosotros que pensÃ¡is?", carlos, com_rl, Categoria_PostEnum.opinion, "Mi opiniÃ³n sobre el mapa de Sunrise Field", "", new DateTime(2021, 11, 10, 23, 06, 00)).Id;
+                int post7 = postCP.New_("He vuelto a sacarme el platino. Y me he pasado el juego en poco mÃ¡s de 2 horas. PodÃ­a haber sido menos si no me hubiesen costado tanto las mantis.", jorge, com_hk, Categoria_PostEnum.noticia, "Otra vez que me saco el platino", "", new DateTime(2022, 5, 2, 11, 35, 00)).Id;
+                int post8 = postCP.New_("Mi campeÃ³n favorito es Anivia. No tendrÃ¡ mucho ataque, no tendrÃ¡ mucha defensa, pero Anivia, la criofÃ©nix es uno de los campeones que mÃ¡s te premia por jugarlo bien.", ruben, com_lol, Categoria_PostEnum.opinion, "Por quÃ© me gusta tanto Anivia", "anivia.jpg", new DateTime(2022, 6, 12, 09, 22, 00)).Id;
 
 
                 Console.WriteLine ("Introducimos comentarios a la bbdd...");
                 ComentarioCEN comentarioCEN = new ComentarioCEN ();
                 int comentario1 = comentarioCEN.NewRaiz ("Yo puedo jugar contigo, te agrego", candela, post1, DateTime.Now);
                 int comentario2 = comentarioCEN.NewRaiz ("No va a salir. Deja de hacerte ilusiones en cada Nintendo Direct.", carlos, post3, DateTime.Now);
-                int comentario3 = comentarioCEN.NewRaiz ("Anivia no está mal, pero me fastidia mucho como Rengar player que soy porque el huevo me impide burstearla", sergio, post8, DateTime.Now);
-                int comentario4 = comentarioCEN.NewRaiz ("Me encanta Anivia, pero la ulti es un poco débil para el meta actual", sara, post8, DateTime.Now);
+                int comentario3 = comentarioCEN.NewRaiz ("Anivia no estÃ¡ mal, pero me fastidia mucho como Rengar player que soy porque el huevo me impide burstearla", sergio, post8, DateTime.Now);
+                int comentario4 = comentarioCEN.NewRaiz ("Me encanta Anivia, pero la ulti es un poco dÃ©bil para el meta actual", sara, post8, DateTime.Now);
                 int comentario5 = comentarioCEN.NewRaiz ("Uno de los mejores escenarios sin duda", ruben, post6, DateTime.Now);
-                int comentario6 = comentarioCEN.NewRaiz ("¿Enserio? En ese caso practicaré mis vuelos en ese mapa", candela, post6, DateTime.Now);
+                int comentario6 = comentarioCEN.NewRaiz ("Â¿Enserio? En ese caso practicarÃ© mis vuelos en ese mapa", candela, post6, DateTime.Now);
                 int comentario7 = comentarioCEN.NewRaiz ("Y menos mal porque se juega en todas las partidas", sergio, post5, DateTime.Now);
-                int comentario8 = comentarioCEN.NewRaiz ("Pues ya me dirás cómo lo haces porque yo no bajo de las 4 horas", estela, post7, DateTime.Now);
+                int comentario8 = comentarioCEN.NewRaiz ("Pues ya me dirÃ¡s cÃ³mo lo haces porque yo no bajo de las 4 horas", estela, post7, DateTime.Now);
                 ComentarioCP comentarioCP = new ComentarioCP ();
                 int comentario2_1 = comentarioCP.NewHijo ("Nunca va a salir.", jorge, post3, DateTime.Now, comentario2).Id;
                 int comentario2_1_1 = comentarioCP.NewHijo ("Yo creo que si que puede salir este anio.", carlos, post3, DateTime.Now, comentario2_1).Id;
                 int comentario2_2 = comentarioCP.NewHijo ("Callate, algunos seguimos teniendo la esperanza", jorge, post3, DateTime.Now, comentario2).Id;
-                int comentario4_1 = comentarioCP.NewHijo("Es cierto que algunas mejoras le vendrían muy bien", carlos, post8, DateTime.Now, comentario3).Id;
-                int comentario4_1_1 = comentarioCP.NewHijo("¿Tú cómo te la buildeas?", sara, post8, DateTime.Now, comentario4_1).Id;
-                int comentario8_1 = comentarioCP.NewHijo("El truco está en saltarte el powerup del soble salto, no es necesario y lleva mucho tiempo conseguirlo", jorge, post7, DateTime.Now, comentario8).Id;
-                int comentario8_1_1 = comentarioCP.NewHijo("Ahh, eso tiene mucho sentido. He estado hacíéndolo mal todo este tiempo", estela, post7, DateTime.Now, comentario8_1).Id;
-                int comentario8_1_2 = comentarioCP.NewHijo("Yo lo he hecho en el mismo tiempo con el doble salto. Hay otra ruta, sólo tienes que esquivar a los guardianes", carlos, post7, DateTime.Now, comentario8_1).Id;
-                int comentario6_1 = comentarioCP.NewHijo("Lo malo es que es un poco más bajo y no puedes volar tanto", sergio, post6, DateTime.Now, comentario6).Id;
+                int comentario4_1 = comentarioCP.NewHijo("Es cierto que algunas mejoras le vendrÃ­an muy bien", carlos, post8, DateTime.Now, comentario3).Id;
+                int comentario4_1_1 = comentarioCP.NewHijo("Â¿TÃº cÃ³mo te la buildeas?", sara, post8, DateTime.Now, comentario4_1).Id;
+                int comentario8_1 = comentarioCP.NewHijo("El truco estÃ¡ en saltarte el powerup del soble salto, no es necesario y lleva mucho tiempo conseguirlo", jorge, post7, DateTime.Now, comentario8).Id;
+                int comentario8_1_1 = comentarioCP.NewHijo("Ahh, eso tiene mucho sentido. He estado hacÃ­Ã©ndolo mal todo este tiempo", estela, post7, DateTime.Now, comentario8_1).Id;
+                int comentario8_1_2 = comentarioCP.NewHijo("Yo lo he hecho en el mismo tiempo con el doble salto. Hay otra ruta, sÃ³lo tienes que esquivar a los guardianes", carlos, post7, DateTime.Now, comentario8_1).Id;
+                int comentario6_1 = comentarioCP.NewHijo("Lo malo es que es un poco mÃ¡s bajo y no puedes volar tanto", sergio, post6, DateTime.Now, comentario6).Id;
 
 
                 Console.WriteLine ("Introducimos avisos a la bbdd...");

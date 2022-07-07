@@ -127,7 +127,7 @@ public void ModifyDefault (UsuarioEN usuario)
 
 
 
-                usuarioEN.Admin = usuario.Admin;
+                usuarioEN.Administrator = usuario.Administrator;
 
                 session.Update (usuarioEN);
                 SessionCommit ();
@@ -229,9 +229,6 @@ public void Modify (UsuarioEN usuario)
                 usuarioEN.Apellidos = usuario.Apellidos;
 
 
-                usuarioEN.Email = usuario.Email;
-
-
                 usuarioEN.Telefono = usuario.Telefono;
 
 
@@ -239,15 +236,6 @@ public void Modify (UsuarioEN usuario)
 
 
                 usuarioEN.Foto = usuario.Foto;
-
-
-                usuarioEN.Pass = usuario.Pass;
-
-
-                usuarioEN.Baneado = usuario.Baneado;
-
-
-                usuarioEN.Admin = usuario.Admin;
 
                 session.Update (usuarioEN);
                 SessionCommit ();

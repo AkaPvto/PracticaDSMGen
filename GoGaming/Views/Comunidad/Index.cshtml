@@ -1,17 +1,25 @@
 ﻿@model IEnumerable<GoGaming.Models.ComunidadViewModel>
+@using PracticaDSMGenNHibernate.EN.DSMPracticas;
 
 @{
     ViewBag.Title = "Comunidades";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    int idUsuario = -1;
+    if (Session["Usuario"] != null)
+    {
+        idUsuario = ((UsuarioEN)Session["Usuario"]).Id;
+    }
 }
 
 <h2>Comunidades recientes</h2>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
 
     <div class="card w-50 jumbotron" style="background-color: #222222; margin-top: 3em;">
         @*<img class="card-img-top img-responsive center-block" src="@Html.DisplayFor(modelItem => item.Portada)" alt="Card image cap">*@
-        <div class="card-header text-muted"> @Html.DisplayFor(modelItem => item.NomJuego)</div> 
+        <div class="card-header text-muted"> @Html.DisplayFor(modelItem => item.NomJuego)</div>
         <div class="card-body">
             <h2 class="card-title"> @Html.DisplayFor(modelItem => item.Nombre)</h2>
             <br />
@@ -21,8 +29,11 @@
             <div class="text-right">
                 @Html.ActionLink("Visitar", "Details", new { id = item.CodigoComunidad }, new { @class = "btn btn-primary stretched-link ", role = "button" })
             </div>
-            @Html.ActionLink("Editar", "Edit", new { id = item.CodigoComunidad }) |
-            @Html.ActionLink("Borrar", "Delete", new { id = item.CodigoComunidad })
+            @if (idUsuario != -1 && ((UsuarioEN)Session["Usuario"]).Administrator)
+            {
+                @Html.ActionLink("Editar", "Edit", new { id = item.CodigoComunidad }) 
+                @Html.ActionLink("Borrar", "Delete", new { id = item.CodigoComunidad })
+            }
         </div>
     </div>
 }

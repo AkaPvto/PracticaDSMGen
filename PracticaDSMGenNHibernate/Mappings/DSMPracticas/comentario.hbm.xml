@@ -13,7 +13,7 @@
 			
 					
 					<property name="Contenido" type="string"> 
-						<column name="contenido"  not-null="true"/>
+						<column name="contenido" length="1000" not-null="true"/>
 					</property>
 					<property name="Hora" type="timestamp"> 
 						<column name="hora"  not-null="true"/>

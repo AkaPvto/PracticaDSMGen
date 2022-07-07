@@ -16,7 +16,7 @@
 						<column name="attribute"  unique="true" not-null="true"/>
 					</property>
 					<property name="Descripcion" type="string"> 
-						<column name="descripcion"  not-null="true"/>
+						<column name="descripcion" length="1000" not-null="true"/>
 					</property>
 					<property name="FechaCreacion" type="date"> 
 						<column name="fechaCreacion"  not-null="true"/>

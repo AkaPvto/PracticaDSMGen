@@ -17,114 +17,127 @@
     }
     else
     {
-        seguir = "Seguir usuario";
+        seguir = "Seguir";
     }
 }
 
 <h2>Perfil de @Model.Nickname</h2>
 
 <div>
-    <hr />
-    <dl class="dl-horizontal">
-        <img src="/Images/@Html.DisplayFor(modelItem => Model.Foto)" />
+    @*<hr />*@
+    <div class="card w-50 jumbotron " style="background-color: #222222 ">
+
+        <img align="center" class="card-img-top img-responsive center-block rounded-circle" style="max-width:20%" src="/Images/@Html.DisplayFor(modelItem => Model.Foto)" />
+        <div class="row" align="center">
+            <div class="col">
+                @ViewData["seguidores"]
+                @Html.ActionLink("Seguidores", "Seguidores", new { id = Model.Id })
+            </div>
+            <div class="col">
+                @ViewData["seguidos"]
+                @Html.ActionLink("Seguidos", "Seguidos", new { id = Model.Id })
+            </div>
+        </div>
         @if (idUsuario == Model.Id)
         {
-            <h2>Datos Personales</h2>
+            @*<h2>Datos Personales</h2>
             <h3>@Html.LabelFor(modelItem => Model.Nombre): @Html.DisplayFor(modelItem => Model.Nombre)</h3>
             <h3>@Html.LabelFor(modelItem => Model.Apellidos): @Html.DisplayFor(modelItem => Model.Apellidos)</h3>
             <h3>@Html.LabelFor(modelItem => Model.Email): @Html.DisplayFor(modelItem => Model.Email)</h3>
             <h3>@Html.LabelFor(modelItem => Model.Direccion): @Html.DisplayFor(modelItem => Model.Direccion)</h3>
             <h3>@Html.LabelFor(modelItem => Model.Telefono): @Html.DisplayFor(modelItem => Model.Telefono)</h3>
             @Html.ActionLink("Editar perfil", "Editar", new { id = Model.Id })
-            <br />
-            @Html.ActionLink("Mis avisos", "../Aviso/IndexUsuario", new { idUsuario = Model.Id})
+            <br />*@
+            <div align="center" style="margin-top:10px;">
+                @Html.ActionLink("Editar Perfil", "Edit", new { id = Model.Id, error = "" }, new { @class = "btn btn-primary stretched-link ", role = "button" })
+            </div>
+            <div align="center" style="margin-top:30px;">
+            @Html.ActionLink("Mis avisos", "../Aviso/IndexUsuario", new { idUsuario = Model.Id })
+            </div>
         }
         else if (idUsuario != -1)
         {
-            @Html.ActionLink(seguir, "Seguir", new { idFollower = idUsuario, idFollowed = Model.Id })
+            <div align="center" style="margin-top:10px;">
+                @Html.ActionLink(seguir, "Seguir", new { idFollower = idUsuario, idFollowed = Model.Id }, new { @class = "btn btn-primary stretched-link ", role = "button" })
+            </div>
         }
-    </dl>
-    <div>
-        @ViewData["seguidores"]
-        @Html.ActionLink("Seguidores", "Seguidores", new { id = Model.Id })
     </div>
-    <div>
-        @ViewData["seguidos"]
-        @Html.ActionLink("Seguidos", "Seguidos", new { id = Model.Id })
-    </div>
+    
 
 </div>
-<select class="form-control" id="select">
-    <option value="Comunidad">Comunidades</option>
-    <option value="Juego">Juegos</option>
-    <option value="Post">Posts</option>
-</select>
-<div id="changediv">
-    <div id="juego">
-        @{ Html.RenderAction("IndexPartial", "Juego", new { id = Model.Id });}
-    </div>
-    <div id="post">
-        @{ Html.RenderAction("IndexPostsUsuario", "Post", new { id = Model.Id });}
-    </div>
-    <div id="comunidad">
-        @{ Html.RenderAction("IndexPartial", "Comunidad", new { id = Model.Id });}
-    </div>  
+<div align="right">
+    <select class="form-control" id="select" style="max-width:150px;">
+        <option value="Comunidad">Comunidades</option>
+        <option value="Juego">Juegos</option>
+        <option value="Post">Posts</option>
+    </select>
 </div>
+    <div id="changediv">
+        <div id="juego">
+            @{ Html.RenderAction("IndexPartial", "Juego", new { id = Model.Id });}
+        </div>
+        <div id="post">
+            @{ Html.RenderAction("IndexPostsUsuario", "Post", new { id = Model.Id });}
+        </div>
+        <div id="comunidad">
+            @{ Html.RenderAction("IndexPartial", "Comunidad", new { id = Model.Id });}
+        </div>
+    </div>
 
 
-@section Scripts
+    @section Scripts
 {
-    <script>
-        var comunidad = "";
-        var post = "";
-        var juego = "";
-        window.onload = function () {
-            comunidad =  document.querySelector("#comunidad").innerHTML;
-            post = document.querySelector("#post").innerHTML;
-            juego = document.querySelector("#juego").innerHTML;
-            var toRemovePost = document.querySelector("#post");
-            var toRemoveJuego = document.querySelector("#juego");
-            toRemovePost.parentNode.removeChild(toRemovePost);
-            toRemoveJuego.parentNode.removeChild(toRemoveJuego);
-        }
-
-        document.querySelector("#select").onchange = function () {
-            select = document.querySelector("#select");
-            parent = document.querySelector("#changediv");
-            switch (select.value) {
-                case "Comunidad":
-
-                    parent.innerHTML = "";
-                    
-                    var div = document.createElement('div');
-                    div.id = 'comunidad';
-                    div.innerHTML = comunidad;
-                    parent.appendChild(div);
-
-                    break;
-
-                case "Post":
-
-                    parent.innerHTML = "";
-                    var div = document.createElement('div');
-                    div.id = 'post';
-                    div.innerHTML = post;
-                    parent.appendChild(div);
-
-                    break;
-
-                case "Juego":
-
-                    parent.innerHTML = "";
-
-                    var div = document.createElement('div');
-                    div.id = 'juego';
-                    div.innerHTML = juego;
-                    parent.appendChild(div);
-
-                    break;
+        <script>
+            var comunidad = "";
+            var post = "";
+            var juego = "";
+            window.onload = function () {
+                comunidad = document.querySelector("#comunidad").innerHTML;
+                post = document.querySelector("#post").innerHTML;
+                juego = document.querySelector("#juego").innerHTML;
+                var toRemovePost = document.querySelector("#post");
+                var toRemoveJuego = document.querySelector("#juego");
+                toRemovePost.parentNode.removeChild(toRemovePost);
+                toRemoveJuego.parentNode.removeChild(toRemoveJuego);
             }
-        }
-    </script>
-}
+
+            document.querySelector("#select").onchange = function () {
+                select = document.querySelector("#select");
+                parent = document.querySelector("#changediv");
+                switch (select.value) {
+                    case "Comunidad":
+
+                        parent.innerHTML = "";
+
+                        var div = document.createElement('div');
+                        div.id = 'comunidad';
+                        div.innerHTML = comunidad;
+                        parent.appendChild(div);
+
+                        break;
+
+                    case "Post":
+
+                        parent.innerHTML = "";
+                        var div = document.createElement('div');
+                        div.id = 'post';
+                        div.innerHTML = post;
+                        parent.appendChild(div);
+
+                        break;
+
+                    case "Juego":
+
+                        parent.innerHTML = "";
+
+                        var div = document.createElement('div');
+                        div.id = 'juego';
+                        div.innerHTML = juego;
+                        parent.appendChild(div);
+
+                        break;
+                }
+            }
+        </script>
+    }
 

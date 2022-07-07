@@ -29,6 +29,12 @@
 <h2>Sobre el juego</h2>
 
 <div class="card w-50 jumbotron" style="background-color: #222222 ">
+    @if (idUsuario != -1)
+    {
+        <div class="text-right" style="margin-bottom: 10px;">
+            @Html.ActionLink(guardar, "Guardar", new { idJuego = Model.Id }, new { @class = "btn btn-primary stretched-link ", role = "button" })
+        </div>
+    }
     <img class="card-img-top img-responsive center-block" style="max-width:80%" src="@Html.DisplayFor(model => model.Portada)" alt="Card image cap">
     <div class="card-body">
         <h2 class="card-title"> @Html.DisplayFor(model => model.Nombre)</h2>
@@ -58,20 +64,17 @@
 
         }
         <br /><br />
-        @if (idUsuario != -1)
-        {
-            <div class="text-right">
-                @Html.ActionLink(guardar, "Guardar", new { idJuego = Model.Id }, new { @class = "btn btn-primary stretched-link ", role = "button" })
-            </div>
-        }
         @if (idComunidad != -1)
         {
             <div class="text-right">
                 @Html.ActionLink("Ir a comunidad", "../Comunidad/Details", new { id = idComunidad }, new { @class = "btn btn-primary stretched-link ", role = "button" })
             </div>
         }
-        @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
-        @Html.ActionLink("Atrás", "Index")
+        @if (idUsuario != -1 && ((UsuarioEN)Session["Usuario"]).Administrator)
+        {
+            @Html.ActionLink("Editar", "Edit", new { id = Model.Id })
+        }
+            @Html.ActionLink("Atrás", "Index")
     </div>
 </div>
 

@@ -1,8 +1,16 @@
 ﻿@model GoGaming.Models.ComentarioViewModel
+@using PracticaDSMGenNHibernate.EN.DSMPracticas;
 
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    int idUsuario = -1;
+
+    if (Session["Usuario"] != null)
+    {
+        idUsuario = ((UsuarioEN)Session["Usuario"]).Id;
+    }
 }
 
 @{ Html.RenderAction("DetailsPartial", "Post", new { id = Model.Post });}
@@ -42,11 +50,16 @@
     </dl>
 
 </div>
-@Html.ActionLink("Create", "Create", new { id = Model.Id, comentario = true })
-@{ Html.RenderAction("CreatePartial", "Comentario", new { p_usuario = Model.Autor, p_post = Model.Post });}
-@if(Session["redir"] != null && (bool)Session["redir"]) {
-    <script> window.onload = function () {
-     window.location = "Details/" + Model.Id;
-        }</script>
+@if (idUsuario != -1 && ((UsuarioEN)Session["Usuario"]).Administrator)
+{
+    @Html.ActionLink("Create", "Create", new { id = Model.Id, comentario = true })
 }
-@{ Html.RenderAction("HijosComentario", "Comentario", new { id = Model.Id });}
+    @{ Html.RenderAction("CreatePartial", "Comentario", new { p_usuario = Model.Autor, p_post = Model.Post });}
+    @if (Session["redir"] != null && (bool)Session["redir"])
+    {
+        <script>
+            window.onload = function () {
+                window.location = "Details/" + Model.Id;
+            }</script>
+    }
+    @{ Html.RenderAction("HijosComentario", "Comentario", new { id = Model.Id });}

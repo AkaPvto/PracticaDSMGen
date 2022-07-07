@@ -39,8 +39,8 @@
 					<property name="Baneado" type="boolean"> 
 						<column name="baneado"  not-null="true"/>
 					</property>
-					<property name="Admin" type="boolean"> 
-						<column name="admin"  not-null="true"/>
+					<property name="Administrator" type="boolean"> 
+						<column name="administrator"  not-null="true"/>
 					</property>
 			
 			
