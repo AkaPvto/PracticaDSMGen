@@ -66,9 +66,9 @@ namespace GoGaming.Controllers
             try
             {
                 // TODO: Add insert logic here
-                AvisoCEN avisoCEN = new AvisoCEN();
+                AvisoCP avisoCP = new AvisoCP();
                 //avisoCEN.New_(aviso.Texto, ((UsuarioEN)Session["Usuario"]).Id, DateTime.Now);
-                avisoCEN.New_(aviso.Texto, 32770, DateTime.Now);
+                avisoCP.New_(aviso.Texto, 32770, DateTime.Now);
                 return RedirectToAction("Index");
             }
             catch

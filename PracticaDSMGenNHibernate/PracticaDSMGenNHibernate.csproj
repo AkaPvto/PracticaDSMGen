@@ -162,7 +162,7 @@
 			
 			
 			
-			<Compile Include="CEN\DSMPracticas\UsuarioCEN_BanearUsuario.cs" />
+			<Compile Include="CP\DSMPracticas\UsuarioCP_BanearUsuario.cs" />
 			
 			
 			
@@ -232,6 +232,7 @@
 	<Compile Include="CAD\DSMPracticas\IAvisoCAD.cs" />
 	<Compile Include="CAD\DSMPracticas\AvisoCAD.cs" />
 	<Compile Include="CP\DSMPracticas\AvisoCP.cs" />
+			<Compile Include="CP\DSMPracticas\AvisoCP_New_.cs" />
 			
 			
 			

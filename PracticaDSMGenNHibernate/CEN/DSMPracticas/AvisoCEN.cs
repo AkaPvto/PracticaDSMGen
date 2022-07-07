@@ -39,31 +39,6 @@ public IAvisoCAD get_IAvisoCAD ()
         return this._IAvisoCAD;
 }
 
-public int New_ (string p_texto, int p_usuario, Nullable<DateTime> p_hora)
-{
-        AvisoEN avisoEN = null;
-        int oid;
-
-        //Initialized AvisoEN
-        avisoEN = new AvisoEN ();
-        avisoEN.Texto = p_texto;
-
-
-        if (p_usuario != -1) {
-                // El argumento p_usuario -> Property usuario es oid = false
-                // Lista de oids id
-                avisoEN.Usuario = new PracticaDSMGenNHibernate.EN.DSMPracticas.UsuarioEN ();
-                avisoEN.Usuario.Id = p_usuario;
-        }
-
-        avisoEN.Hora = p_hora;
-
-        //Call to AvisoCAD
-
-        oid = _IAvisoCAD.New_ (avisoEN);
-        return oid;
-}
-
 public void Modify (int p_Aviso_OID, string p_texto, Nullable<DateTime> p_hora)
 {
         AvisoEN avisoEN = null;

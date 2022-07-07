@@ -29,7 +29,6 @@ public void BanearUsuario (int p_oid)
         AvisoCEN aviso = new AvisoCEN ();
 
         IList<AvisoEN> avisos = aviso.GetAvisosUsu (p_oid);
-
         Console.WriteLine ("El usuario " + usuario.Nickname + " tiene " + avisos.Count + " avisos\n");
 
         if (avisos.Count >= 3) {

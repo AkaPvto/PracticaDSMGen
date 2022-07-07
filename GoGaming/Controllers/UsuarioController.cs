@@ -229,8 +229,17 @@ namespace GoGaming.Controllers
 
             if(loginResult != null)
             {
-                Session["Usuario"] = usuarioCEN.ReadOID(idUsuario);
-                return RedirectToAction("../");
+                UsuarioEN usuarioEN = usuarioCEN.ReadOID(idUsuario);
+                if (usuarioEN.Baneado)
+                {
+                    return RedirectToAction("Login", "Usuario", new { error = "Baneado" });
+                }
+                else
+                {
+                    Session["Usuario"] = usuarioEN;
+                    return RedirectToAction("../");
+                }
+                
             }
             else
             {

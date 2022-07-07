@@ -8,46 +8,72 @@
 <h2>Iniciar Sesión</h2>
 
 
-@using (Html.BeginForm("Login", "Usuario", FormMethod.Post, new { enctype = "multipart/form-data" })) 
+@using (Html.BeginForm("Login", "Usuario", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
-<div class="card w-50 jumbotron" style="background-color: #222222; margin-top: 3em;">
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10" style="margin-bottom: 10px;">
-            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+    <div class="card w-50 jumbotron" style="background-color: #222222; margin-top: 3em;">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" style="margin-bottom: 10px;">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" style="margin-bottom: 10px;">
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @if (ViewData["error"] != null)
+        {
+            <p style="color: #DD0505; font-size: 16px;">@ViewData["error"].ToString()</p>
+        }
+
+        <div class="form-group">
+            <div class="text-right">
+                <input type="submit" style="margin-top: 20px;" value="Aceptar" class="btn btn-primary stretched-link" />
+            </div>
+        </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Aviso: No perteneces a la comunidad</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Necesitas pertecener a la comunidad para poder comentar en un post en ella
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            @Html.ActionLink("Atrás", "../Home/Index")
         </div>
     </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10" style="margin-bottom: 10px;">
-            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger"})
-        </div>
-    </div>
-    @if (ViewData["error"] != null)
-    {
-        <p style="color: #DD0505; font-size: 16px;">@ViewData["error"].ToString()</p>
-    }
 
-    <div class="form-group">
-        <div class="text-right">
-            <input type="submit" style="margin-top: 20px;" value="Aceptar" class="btn btn-primary stretched-link" />
-        </div>
-    </div>
-
-    <div>
-        @Html.ActionLink("Atrás", "../Home/Index")
-    </div>
-</div>
 }
 
+
+@if (ViewData["error"] != null && (string)ViewData["error"] == "Baneado") {
+<script>
+        window.onload = document.getElementById('exampleModal').modal('toggle');
+</script>
+}
 
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
 }
