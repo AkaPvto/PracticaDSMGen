@@ -83,11 +83,11 @@ public static void InitializeData ()
 
                 Console.WriteLine ("Introducimos usuarios a la bbdd...");
                 UsuarioCEN usuarioCEN = new UsuarioCEN ();
-                int sergio = usuarioCEN.New_ ("Kaese", "Sergio", "Miedes", "smg163@alu.ua.es", 666666666, "C/Machamp", "usuario.png", "1234", true);
-                int candela = usuarioCEN.New_ ("FroggyChair", "Candela", "Urh", "curh1@alu.ua.es", 666999666, "C/Coosto", "usuario.png", "1234", true);
-                int carlos = usuarioCEN.New_ ("Jaxtified", "Carlos", "Izquierdo", "cil4@alu.ua.es", 666999888, "C/Orden sin contacto", "usuario.png", "1234", true);
-                int jorge = usuarioCEN.New_ ("Akapvto", "Jorge", "Reig", "jrv37@alu.ua.es", 666222888, "C/Equipo Cereza", "usuario.png", "1234", true);
-                int sara = usuarioCEN.New_ ("Sariwii", "Sara", "Morote", "smb86@alu.ua.es", 666999222, "C/Alameda de Jijon", "usuario.png", "1234", true);
+                int sergio = usuarioCEN.New_ ("Kaese", "Sergio", "Miedes", "smg163@alu.ua.es", 666666666, "C/Machamp", "sergio.jpg", "1234", true);
+                int candela = usuarioCEN.New_ ("FroggyChair", "Candela", "Urh", "curh1@alu.ua.es", 666999666, "C/Coosto", "candela.jpg", "1234", true);
+                int carlos = usuarioCEN.New_ ("Jaxtified", "Carlos", "Izquierdo", "cil4@alu.ua.es", 666999888, "C/Orden sin contacto", "carlos.jpg", "1234", true);
+                int jorge = usuarioCEN.New_ ("Akapvto", "Jorge", "Reig", "jrv37@alu.ua.es", 666222888, "C/Equipo Cereza", "jorge.jpg", "1234", true);
+                int sara = usuarioCEN.New_ ("Sariwii", "Sara", "Morote", "smb86@alu.ua.es", 666999222, "C/Alameda de Jijon", "sara.jpg", "1234", true);
                 int juanmi = usuarioCEN.New_ ("JuanMi", "Juan Miguel", "Lopez", "jmll2@alu.ua.es", 666999667, "C/Caronte", "usuario.png", "1234", false);
                 int ruben = usuarioCEN.New_ ("Rubi", "Ruben", "Castillo", "rcp103@alu.ua.es", 666999664, "C/Calderon de la barca", "usuario.png", "1234", false);
                 int estela = usuarioCEN.New_ ("Estelar_xX", "Estela", "Martinez", "emd149@alu.ua.es", 666999644, "C/Melocoton", "usuario.png", "1234", false);
