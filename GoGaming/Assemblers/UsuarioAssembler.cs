@@ -22,6 +22,7 @@ namespace GoGaming.Assemblers
             usu.Foto = en.Foto;
             usu.Password = en.Pass;
             usu.Baneado = en.Baneado;
+            usu.Admin = en.Admin;
 
             return usu;
         }

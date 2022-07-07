@@ -51,5 +51,8 @@ namespace GoGaming.Models
 
         [ScaffoldColumn(false)]
         public bool Baneado { get; set; }
+
+        [ScaffoldColumn(false)]
+        public bool Admin { get; set; }
     }
 }

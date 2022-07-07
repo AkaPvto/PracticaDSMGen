@@ -252,7 +252,7 @@ namespace GoGaming.Controllers
 
             if(errorString == "")
             {
-                int idUsuario = usuarioCEN.New_(usuario.Nickname, usuario.Nombre, usuario.Apellidos, usuario.Email, usuario.Telefono, usuario.Direccion, usuario.Foto, usuario.Password);
+                int idUsuario = usuarioCEN.New_(usuario.Nickname, usuario.Nombre, usuario.Apellidos, usuario.Email, usuario.Telefono, usuario.Direccion, usuario.Foto, usuario.Password, false);
                 UsuarioEN nuevoUsu = usuarioCEN.ReadOID(idUsuario);
                 Session["Usuario"] = nuevoUsu;
                 return RedirectToAction("../");
