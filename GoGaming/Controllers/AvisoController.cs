@@ -27,6 +27,18 @@ namespace GoGaming.Controllers
             return View(listViewModel);
         }
 
+        public ActionResult IndexUsuario(int idUsuario)
+        {
+            SessionInitialize();
+            AvisoCAD avisoCAD = new AvisoCAD(session);
+            AvisoCEN avisoCEN = new AvisoCEN(avisoCAD);
+
+            IList<AvisoEN> listEN = avisoCEN.GetAvisosUsu(idUsuario);
+            IEnumerable<AvisoViewModel> listViewModel = new AvisoAssembler().ConvertListENToModel(listEN).ToList();
+            SessionClose();
+            return View(listViewModel);
+        }
+
         // GET: Aviso/Details/5
         public ActionResult Details(int id)
         {
