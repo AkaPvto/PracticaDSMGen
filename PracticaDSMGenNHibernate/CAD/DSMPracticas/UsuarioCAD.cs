@@ -126,6 +126,9 @@ public void ModifyDefault (UsuarioEN usuario)
 
 
 
+
+                usuarioEN.Admin = usuario.Admin;
+
                 session.Update (usuarioEN);
                 SessionCommit ();
         }
@@ -242,6 +245,9 @@ public void Modify (UsuarioEN usuario)
 
 
                 usuarioEN.Baneado = usuario.Baneado;
+
+
+                usuarioEN.Admin = usuario.Admin;
 
                 session.Update (usuarioEN);
                 SessionCommit ();
