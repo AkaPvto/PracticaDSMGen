@@ -63,10 +63,9 @@ public System.Collections.Generic.IList<PracticaDSMGenNHibernate.EN.DSMPracticas
                 int salir = 0;
                 int maxJuegosRecomendados = 5;
                 foreach (var value in lista) {
-                        
-                        listaJuegos.Add(juegoCEN.ReadOID(value.Key));
-                        Console.WriteLine (listaJuegos.Last().Nombre);
-                        
+                        listaJuegos.Add (juegoCEN.ReadOID (value.Key));
+                        Console.WriteLine (listaJuegos.Last ().Nombre);
+
                         if (salir >= maxJuegosRecomendados)
                                 break;
                         salir++;

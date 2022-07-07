@@ -45,7 +45,7 @@ public void AddJuego (int p_Usuario_OID, System.Collections.Generic.IList<int> p
 
         _IUsuarioCAD.AddJuego (p_Usuario_OID, p_juego_OIDs);
 }
-public void Modify (int p_Usuario_OID, string p_nickname, string p_nombre, string p_apellidos, string p_email, int p_telefono, string p_direccion, string p_foto, String p_pass, bool p_baneado)
+public void Modify (int p_Usuario_OID, string p_nickname, string p_nombre, string p_apellidos, string p_email, int p_telefono, string p_direccion, string p_foto, String p_pass, bool p_baneado, bool p_admin)
 {
         UsuarioEN usuarioEN = null;
 
@@ -61,6 +61,7 @@ public void Modify (int p_Usuario_OID, string p_nickname, string p_nombre, strin
         usuarioEN.Foto = p_foto;
         usuarioEN.Pass = Utils.Util.GetEncondeMD5 (p_pass);
         usuarioEN.Baneado = p_baneado;
+        usuarioEN.Admin = p_admin;
         //Call to UsuarioCAD
 
         _IUsuarioCAD.Modify (usuarioEN);

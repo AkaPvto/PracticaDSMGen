@@ -38,7 +38,7 @@ public PracticaDSMGenNHibernate.EN.DSMPracticas.NotificacionEN New_ (int p_post)
                 notificacionCEN = new  NotificacionCEN (notificacionCAD);
 
                 PostCAD postCAD = new PostCAD (session);
-                PostCEN postCEN = new PostCEN(postCAD);
+                PostCEN postCEN = new PostCEN (postCAD);
                 PostEN postEN = postCEN.ReadOID (p_post);
                 UsuarioCAD usuarioCAD = new UsuarioCAD ();
                 UsuarioEN usuarioEN = usuarioCAD.ReadOID (postEN.UsuarioCreador.Id);
