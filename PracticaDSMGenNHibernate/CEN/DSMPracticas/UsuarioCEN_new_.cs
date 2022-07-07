@@ -19,7 +19,7 @@ namespace PracticaDSMGenNHibernate.CEN.DSMPracticas
 {
 public partial class UsuarioCEN
 {
-public int New_ (string p_nickname, string p_nombre, string p_apellidos, string p_email, int p_telefono, string p_direccion, string p_foto, String p_pass)
+public int New_ (string p_nickname, string p_nombre, string p_apellidos, string p_email, int p_telefono, string p_direccion, string p_foto, String p_pass, bool p_admin)
 {
         /*PROTECTED REGION ID(PracticaDSMGenNHibernate.CEN.DSMPracticas_Usuario_new__customized) ENABLED START*/
 
@@ -44,6 +44,8 @@ public int New_ (string p_nickname, string p_nombre, string p_apellidos, string 
         usuarioEN.Foto = p_foto;
 
         usuarioEN.Baneado = false;
+
+        usuarioEN.Admin = p_admin;
 
         usuarioEN.Pass = Utils.Util.GetEncondeMD5 (p_pass);
 
