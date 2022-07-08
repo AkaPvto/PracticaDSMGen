@@ -95,6 +95,10 @@ namespace GoGaming.Controllers
 
             ComentarioEN listEN = comentCEN.ReadOID(id);
             ComentarioViewModel comentViewModel = new ComentarioAssembler().ConvertENToModelUI(listEN);
+            if(listEN.ComentarioPadre != null)
+            {
+                ViewData["padre"] = listEN.ComentarioPadre.Id;
+            }
             SessionClose();
             return View(comentViewModel);
         }

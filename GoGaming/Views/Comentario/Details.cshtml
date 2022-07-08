@@ -48,7 +48,19 @@
         </dd>
 
     </dl>
+    @if (ViewData["padre"] != null)
+    {
+        <p>
+            @Html.ActionLink("Volver", "Details/", new { id = (int)ViewData["padre"] })
+        </p>
 
+    }
+    else
+    {
+        <p>
+            @Html.ActionLink("Volver", "../Post/Details/", new { id = Model.Post })
+        </p>
+    }
 </div>
     @{ Html.RenderAction("CreatePartial", "Comentario", new {p_post = Model.Post });}
     @if (Session["redir"] != null && (bool)Session["redir"])
