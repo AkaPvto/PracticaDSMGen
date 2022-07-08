@@ -11,7 +11,14 @@
     if(Session["Usuario"] != null) {
         idUsuario = ((UsuarioEN)Session["Usuario"]).Id;
     }
+    IList<string> enums = null;
+    if (ViewData["enum"] != null)
+    {
+        enums = (IList<string>)ViewData["enum"];
+    }
+
 }
+
 <div>
     <h4>@Html.DisplayFor(model => model.Titulo)</h4>
     <hr />
@@ -39,7 +46,7 @@
         </dd>
 
 
-
+        <h4 class="card-subtitle mb-2 text-muted">Categoría: <i style="color:white;">@enums[Model.Categoria]</i></h4>
         @if (Model.Imagen != "")
         {
             <dt>
