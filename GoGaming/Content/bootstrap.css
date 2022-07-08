@@ -12,6 +12,11 @@ html {
 body {
   margin: 0;
 }
+
+.navbar-brand:hover {
+    color: white !important;
+}
+
 article,
 aside,
 details,
