@@ -16,80 +16,82 @@
 <div class="card w-50 jumbotron" style="background-color: #222222; margin-top: 3em;">
 
     @{ Html.RenderAction("DetailsPartial", "Post", new { id = Model.Post });}
-    <h3 align="left">&nbsp;&nbsp;|</h3>
-    <br />
-    <div class="card w-50 jumbotron" style="background-color: #2C2F33;">
-        @{ Html.RenderAction("PadresComentario", "Comentario", new { id = Model.Id });}
-    </div>
-
-    <dl class="dl-horizontal">
-    @{ Html.RenderAction("PadresComentario", "Comentario", new { id = Model.Id });}
-
-    <div class="card w-50 jumbotron" style="background-color: #2C2F33;">
-        <div style=" margin-top:0;">
-            <h4 class="card-subtitle mb-2 text-muted"><i>@Html.ActionLink(Model.nameAutor, "../Usuario/Details/", new { id = Model.Autor })</i></h4>
-            <h4 class="card-subtitle mb-2 text-muted">@Html.DisplayFor(model=> model.Hora)</h4>
-            <p style="margin-top:1.5em; font-size: medium" ;>@Html.DisplayFor(model => model.Contenido)</p>
-            <h4 class="card-subtitle mb-2 text-muted">@Html.DisplayFor(model => model.Hijos) respuestas</h4>
+    @if((bool)Model.Padre){
+        <h3 align="left">&nbsp;&nbsp;|</h3>
+        <br />
+        <div class="card w-50 jumbotron" style="background-color: #2C2F33;">
+            @{ Html.RenderAction("PadresComentario", "Comentario", new { id = Model.Id });}
         </div>
-    </div>
-
-    @*<dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.nameAutor)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.nameAutor)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Contenido)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Contenido)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Hora)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Hora)
-        </dd>
-        <dt>
-            @Html.DisplayName("Respuestas")
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Hijos)
-        </dd>
-
-    </dl>*@
-
-    <h3>Respuestas al comentario</h3>
-    <div class="card w-50 jumbotron" style="background-color: #2C2F33;">
-        @{ Html.RenderAction("CreatePartial", "Comentario", new { p_post = Model.Post });}
-        @{ Html.RenderAction("HijosComentario", "Comentario", new { id = Model.Id });}
-    </div>
-    @if (Session["redir"] != null && (bool)Session["redir"])
-    {
-        <script>
-            window.onload = function () {
-                window.location = "Details/" + Model.Id;
-            }</script>
     }
-    @if (ViewData["padre"] != null)
-    {
-        <p>
-            @Html.ActionLink("Volver", "Details/", new { id = (int)ViewData["padre"] })
-        </p>
 
-    }
-    else
-    {
-        <p style="font-size: small">
-            @Html.ActionLink("Volver", "../Post/Details/", new { id = Model.Post })
-        </p>
-    }
+    <h3 align="left">&nbsp;&nbsp;|</h3>
+        <br />
+    <dl class="dl-horizontal">
+        <div class="card w-50 jumbotron" style="background-color: #2C2F33;">
+            <div style=" margin-top:0;">
+                <h4 class="card-subtitle mb-2 text-muted"><i>@Html.ActionLink(Model.nameAutor, "../Usuario/Details/", new { id = Model.Autor })</i></h4>
+                <h4 class="card-subtitle mb-2 text-muted">@Html.DisplayFor(model => model.Hora)</h4>
+                <p style="margin-top:1.5em; font-size: medium" ;>@Html.DisplayFor(model => model.Contenido)</p>
+                <h4 class="card-subtitle mb-2 text-muted">@Html.DisplayFor(model => model.Hijos) respuestas</h4>
+            </div>
+        </div>
+
+        @*<dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.nameAutor)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.nameAutor)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Contenido)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Contenido)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Hora)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Hora)
+                </dd>
+                <dt>
+                    @Html.DisplayName("Respuestas")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Hijos)
+                </dd>
+
+            </dl>*@
+
+        <h3>Respuestas al comentario</h3>
+        <div class="card w-50 jumbotron" style="background-color: #2C2F33;">
+            @{ Html.RenderAction("CreatePartial", "Comentario", new { p_post = Model.Post });}
+            @{ Html.RenderAction("HijosComentario", "Comentario", new { id = Model.Id });}
+        </div>
+        @if (Session["redir"] != null && (bool)Session["redir"])
+        {
+            <script>
+                window.onload = function () {
+                    window.location = "Details/" + Model.Id;
+                }</script>
+        }
+        @if (ViewData["padre"] != null)
+        {
+            <p>
+                @Html.ActionLink("Volver", "Details/", new { id = (int)ViewData["padre"] })
+            </p>
+
+        }
+        else
+        {
+            <p style="font-size: small">
+                @Html.ActionLink("Volver", "../Post/Details/", new { id = Model.Post })
+            </p>
+        }
 </div>

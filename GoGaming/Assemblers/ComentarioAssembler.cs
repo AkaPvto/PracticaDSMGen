@@ -26,6 +26,8 @@ namespace GoGaming.Assemblers
             coment.nameAutor = new UsuarioCEN().ReadOID(en.Usuario.Id).Nickname;
             coment.Post = en.Post.Id;
             coment.Hijos = comentarioCEN.GetHijosFromComentario(en.Id).Count;
+            if (en.ComentarioPadre != null) coment.Padre = true;
+            else coment.Padre = false;
 
             return coment;
         }
