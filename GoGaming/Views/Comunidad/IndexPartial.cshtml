@@ -15,7 +15,7 @@
             <br />
             <h6 class="card-subtitle mb-2 text-muted"> @Html.DisplayFor(modelItem => item.FechaCreacion)</h6>
             <div class="text-right">
-                @Html.ActionLink("Visitar", "Details", new { id = item.CodigoComunidad }, new { @class = "btn btn-primary stretched-link ", role = "button" })
+                @Html.ActionLink("Ir", "Details", new { id = item.CodigoComunidad }, new { @class = "btn btn-primary stretched-link ", role = "button" })
             </div>
             @*@Html.ActionLink("Editar", "Edit", new { id = item.CodigoComunidad }) |
             @Html.ActionLink("Borrar", "Delete", new { id = item.CodigoComunidad })*@
