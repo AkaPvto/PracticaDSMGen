@@ -255,10 +255,13 @@ public static void InitializeData ()
                                 candela, ruben, juanmi
                         });
                 usuarioCEN.AddFollowing (jorge, new List<int>() {
-                                sergio, estela, juanmi, carlos, ruben
+                                sergio, estela, juanmi, carlos, ruben, sara, candela
                         });
                 usuarioCEN.AddFollowing (ruben, new List<int>() {
                                 sergio, carlos
+                        });
+                usuarioCEN.AddFollowing(sara, new List<int>() {
+                                sergio, juanmi
                         });
 
                 Console.WriteLine ("El usuario Candela deja de seguir a otro usuario (Carlos):");
