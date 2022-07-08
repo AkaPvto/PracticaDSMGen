@@ -61,8 +61,11 @@
             @Html.ActionLink("Volver", "../Post/Details/", new { id = Model.Post })
         </p>
     }
-
-    @{ Html.RenderAction("CreatePartial", "Comentario", new { p_post = Model.Post });}
+    <h3>Comentarios</h3>
+    <div class="card w-50 jumbotron" style="background-color: #2C2F33;">
+        @{ Html.RenderAction("CreatePartial", "Comentario", new { p_post = Model.Post });}
+        @{ Html.RenderAction("HijosComentario", "Comentario", new { id = Model.Id });}
+    </div>
     @if (Session["redir"] != null && (bool)Session["redir"])
     {
         <script>
@@ -70,5 +73,4 @@
                 window.location = "Details/" + Model.Id;
             }</script>
     }
-    @{ Html.RenderAction("HijosComentario", "Comentario", new { id = Model.Id });}
 </div>
