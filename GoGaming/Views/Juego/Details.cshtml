@@ -72,9 +72,9 @@
         }
         @if (idUsuario != -1 && ((UsuarioEN)Session["Usuario"]).Administrator)
         {
-            @Html.ActionLink("Editar", "Edit", new { id = Model.Id })
+            @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) <span> | </span>
         }
-            @Html.ActionLink("Atrás", "Index")
+        @Html.ActionLink("Atrás", "Index")
     </div>
 </div>
 

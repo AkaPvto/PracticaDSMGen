@@ -17,7 +17,7 @@
     <p>@Html.DisplayFor(modelItem => item.Contenido)</p>
     @if (item.Imagen != "")
     {
-        <img src="/Images/@Html.DisplayFor(modelItem => item.Imagen)" />
+        <img src="/Images/@Html.DisplayFor(modelItem => item.Imagen)" style="width:80%" />
     }
     <p>❤ @Html.DisplayFor(modelItem => item.Likes)</p>
     <p>💬 @Html.DisplayFor(modelItem => item.Comentarios)</p>
