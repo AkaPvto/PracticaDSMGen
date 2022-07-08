@@ -13,7 +13,7 @@ body {
   margin: 0;
 }
 
-.navbar-brand:hover {
+.navbar-brand:hover, .navbar-brand:active {
     color: white !important;
 }
 
