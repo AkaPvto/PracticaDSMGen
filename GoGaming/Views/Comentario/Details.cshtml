@@ -50,11 +50,7 @@
     </dl>
 
 </div>
-@if (idUsuario != -1 && ((UsuarioEN)Session["Usuario"]).Administrator)
-{
-    @Html.ActionLink("Create", "Create", new { id = Model.Id, comentario = true })
-}
-    @{ Html.RenderAction("CreatePartial", "Comentario", new { p_usuario = Model.Autor, p_post = Model.Post });}
+    @{ Html.RenderAction("CreatePartial", "Comentario", new {p_post = Model.Post });}
     @if (Session["redir"] != null && (bool)Session["redir"])
     {
         <script>
