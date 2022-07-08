@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<GoGaming.Models.ComentarioViewModel>
 
 
-<table class="table">
+@*<table class="table">*@
     @foreach (var item in Model)
     {
         <tr style="cursor: pointer;" onclick="window.location = '/Comentario/Details/'+@item.Id;">
@@ -19,4 +19,4 @@
             </td>
         </tr>
     }
-</table>
+@*</table>*@
