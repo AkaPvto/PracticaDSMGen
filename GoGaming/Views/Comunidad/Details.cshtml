@@ -39,7 +39,7 @@
     <br />
     <img src="@Url" class="card-img-top img-responsive center-block" style="max-width:80%" />
     <br />
-    @*No de donde meter el boton de crear post*@
+    
     @if (ViewData["pertenece"] != null && (bool)ViewData["pertenece"])
     {
         <button style="position:fixed; bottom: 20px; right: 20px;" class="btn btn-primary stretched-link btn-lg" onclick="window.location = '/Post/Create/'+ @Model.CodigoComunidad;">Crear un Post</button>
@@ -47,7 +47,7 @@
     }
     else
     {
-        <button style="position:fixed; bottom: 20px; right: 20px;" class="btn btn-primary stretched-link " data-toggle="modal" data-target="#exampleModal">Crear un Post</button>
+        <button style="position:fixed; bottom: 20px; right: 20px;" class="btn btn-primary stretched-link btn-lg" data-toggle="modal" data-target="#exampleModal">Crear un Post</button>
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
