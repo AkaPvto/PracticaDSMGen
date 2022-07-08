@@ -67,7 +67,7 @@
         @if (idComunidad != -1)
         {
             <div class="text-right">
-                @Html.ActionLink("Ir a comunidad", "../Comunidad/Details", new { id = idComunidad }, new { @class = "btn btn-primary stretched-link ", role = "button" })
+                @Html.ActionLink("Visitar comunidad", "../Comunidad/Details", new { id = idComunidad }, new { @class = "btn btn-primary stretched-link ", role = "button" })
             </div>
         }
         @if (idUsuario != -1 && ((UsuarioEN)Session["Usuario"]).Administrator)
