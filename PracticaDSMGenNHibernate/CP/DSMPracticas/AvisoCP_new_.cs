@@ -61,7 +61,7 @@ public PracticaDSMGenNHibernate.EN.DSMPracticas.AvisoEN New_ (string p_texto, in
 
 
                 SessionCommit ();
-                new UsuarioCP().BanearUsuario (p_usuario);
+                new UsuarioCP ().BanearUsuario (p_usuario);
         }
         catch (Exception ex)
         {
