@@ -12,11 +12,10 @@
         @foreach (var item in Model)
          {
         <div class="col-lg-4">
-            <div class="card w-50 jumbotron" style="background-color: #222222; margin-top: 3em;">
-                @*<img class="card-img-top img-responsive center-block" src="@Html.DisplayFor(modelItem => item.Portada)" alt="Card image cap">*@
+            <div class="card w-50 jumbotron" style="background-color: #222222; margin-top: 3em; height:400px;">
                 <div align="center" class="card-header text-muted" style="cursor:pointer;"><h2>@Html.ActionLink(item.Nickname, "../Usuario/Details/", new { id = item.Id })</h2></div>
                 <div class="card-body">
-                    <img align="center" class="card-img-top img-responsive center-block" src="/Images/@Html.DisplayFor(modelItem => item.Foto)" alt="Card image cap" style="max-width:30%; cursor:pointer;" onclick="window.location = '/Usuario/Details/@item.Id'">
+                    <img align="center" class="card-img-top img-responsive rounded center-block img-circle" src="/Images/@Html.DisplayFor(modelItem => item.Foto)" alt="Card image cap" style="max-width:30%; cursor:pointer;" onclick="window.location = '/Usuario/Details/@item.Id'">
                     <div class="row" align="center">
                         <div class="col">
                             <h4 class="card-text">@Html.DisplayFor(modelItem => item.Nombre)</h4>

@@ -3,7 +3,7 @@
 
 
 @{
-    ViewBag.Title = "IndexUsuario";
+    ViewBag.Title = "Mis Avisos";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
     int idUsuario = -1;
@@ -18,7 +18,7 @@
 @if (idUsuario != -1 && ((UsuarioEN)Session["Usuario"]).Administrator)
 {
     <p>
-        @Html.ActionLink("Create New", "Create")
+        @Html.ActionLink("Crear Nuevo Aviso", "Create")
     </p>
 }
 
