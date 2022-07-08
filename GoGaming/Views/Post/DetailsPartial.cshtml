@@ -27,21 +27,6 @@
     }
     <p style="margin-top: 1em;">❤ @Html.DisplayFor(model => model.Likes)&nbsp;&nbsp;💬@Html.DisplayFor(model => model.Comentarios)</p>
 
-    @if (idUsuario != -1)
-    {
-        if (ViewData["liked"] != null)
-        {
-            if ((bool)ViewData["liked"])
-            {
-                @Html.ActionLink("Dislike", "Interact", new { id = Model.Id }, new { @class = "btn btn-primary stretched-link ", role = "button" });
-            }
-            else
-            {
-                @Html.ActionLink("Like", "Interact", new { id = Model.Id }, new { @class = "btn btn-primary stretched-link ", role = "button" });
-            }
-        }
-    }
-
     @if (idUsuario != -1 && idUsuario == Model.Usuario)
     {
         @Html.ActionLink("Editar post", "Edit", new { id = Model.Id });

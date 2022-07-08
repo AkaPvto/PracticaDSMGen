@@ -72,13 +72,17 @@
         {
             if (ViewData["liked"] != null)
             {
+                
                 if ((bool)ViewData["liked"])
-                {
-                    @Html.ActionLink("Dislike", "Interact", new { id = Model.Id }, new { @class = "btn btn-primary stretched-link ", role = "button" });
+                {   <div align="left">
+                        @Html.ActionLink("🗙 Dislike", "Interact", new { id = Model.Id }, new { @class = "btn btn-primary stretched-link ", role = "button" })
+                    </div>
                 }
                 else
                 {
-                    @Html.ActionLink("Like", "Interact", new { id = Model.Id }, new { @class = "btn btn-primary stretched-link ", role = "button" });
+                    <div align="left">
+                    @Html.ActionLink("❤ Like", "Interact", new { id = Model.Id }, new { @class = "btn btn-primary stretched-link ", role = "button" })
+                    </div>
                 }
             }
         }
