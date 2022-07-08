@@ -9,8 +9,7 @@
             <h4 class="card-subtitle mb-2 text-muted"><i>@Html.ActionLink(item.nameAutor, "../Usuario/Details/", new { id = item.Autor })</i></h4>
             <h4 class="card-subtitle mb-2 text-muted">@Html.DisplayFor(modelItem => item.Hora)</h4>
             <p style="margin-top:1.5em; font-size: medium" ;>@Html.DisplayFor(modelItem => item.Contenido)</p>
-
-
+            <h4 class="card-subtitle mb-2 text-muted">@Html.DisplayFor(modelItem => item.Hijos) respuestas</h4>
         </div>
     </div>
 }
