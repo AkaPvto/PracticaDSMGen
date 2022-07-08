@@ -19,13 +19,10 @@
 
 }
 
-<div>
-    <h4>@Html.DisplayFor(model => model.Titulo)</h4>
-}
 <div class="card w-50 jumbotron" style="background-color: #222222; margin-top: 3em;">
     <h3>@Html.DisplayFor(model => model.Titulo)</h3>
     <h4 class="card-subtitle mb-2 text-muted"> Publicado por: <i>@Html.ActionLink(Model.UsuarioName, "../Usuario/Details/", new { id = Model.Usuario })</i></h4>
-    <h4 class="card-subtitle mb-2 text-muted">Categoría: <i style="color:white;">@enums[item.Categoria]</i></h4>
+    <h4 class="card-subtitle mb-2 text-muted">Categoría: <i style="color:white;">@enums[Model.Categoria]</i></h4>
     <p style="margin-top:1.5em; font-size: medium" ;>@Html.DisplayFor(model => model.Contenido)</p>
     <br />
     @if (Model.Imagen != "")
