@@ -12,8 +12,20 @@
         idUsuario = ((UsuarioEN)Session["Usuario"]).Id;
     }
 }
-<div>
-    <h4>@Html.DisplayFor(model => model.Titulo)</h4>
+<div class="card w-50 jumbotron" style="background-color: #222222; margin-top: 3em;">
+    <h3>@Html.DisplayFor(model => model.Titulo)</h3>
+    <h4 class="card-subtitle mb-2 text-muted"> Publicado por: <i>@Html.ActionLink(Model.UsuarioName, "../Usuario/Details/", new { id = Model.Usuario })</i></h4>
+    <h4 class="card-subtitle mb-2 text-muted">Categoría: <i style="color:white;">@enums[item.Categoria]</i></h4>
+    <p style="margin-top:1.5em; font-size: medium" ;>@Html.DisplayFor(model => model.Contenido)</p>
+    <br />
+    @if (Model.Imagen != "")
+    {
+        <img class="center-block" src="/Images/@Html.DisplayFor(model => model.Imagen)" style="width: 100%" />
+    }
+    <p style="margin-top: 1em;">❤ @Html.DisplayFor(model => model.Likes)&nbsp;&nbsp;💬@Html.DisplayFor(model => model.Comentarios)</p>
+
+
+    @*<h4>@Html.DisplayFor(model => model.Titulo)</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -48,22 +60,22 @@
             <dd>
                 <img src="/Images/@Html.DisplayFor(model => model.Imagen)" style="width: 80%" />
             </dd>
-        }
+        }*@
         @if (idUsuario != -1)
         {
             if (ViewData["liked"] != null)
             {
                 if ((bool)ViewData["liked"])
                 {
-                    @Html.ActionLink("Dislike", "Interact", new { id = Model.Id });
+                    @Html.ActionLink("Dislike", "Interact", new { id = Model.Id }, new { @class = "btn btn-primary stretched-link ", role = "button" });
                 }
                 else
                 {
-                    @Html.ActionLink("Like", "Interact", new { id = Model.Id });
+                    @Html.ActionLink("Like", "Interact", new { id = Model.Id }, new { @class = "btn btn-primary stretched-link ", role = "button" });
                 }
             }
         }
-    </dl>
+
     @if (idUsuario != -1 && idUsuario == Model.Usuario)
     {
         @Html.ActionLink("Editar post", "Edit", new { id = Model.Id });
