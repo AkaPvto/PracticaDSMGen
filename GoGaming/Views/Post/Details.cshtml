@@ -94,6 +94,7 @@
         }
     </div>
     <h4>Comentarios</h4>
+
     @{ Html.RenderAction("CreatePartial", "Comentario", new { p_post = Model.Id });}
     @{Html.RenderAction("IndexPartial", "Comentario", new { id = Model.Id });}
 </div>

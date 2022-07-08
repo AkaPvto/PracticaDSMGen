@@ -2,11 +2,18 @@
 
 
 @*<table class="table">*@
-    @foreach (var item in Model)
-    {
-        <tr style="cursor: pointer;" onclick="window.location = '/Comentario/Details/'+@item.Id;">
+@foreach (var item in Model)
+{
+<div class="card w-50 jumbotron" style="background-color: #2C2F33;">
+    <div style=" margin-top:0" onclick="window.location = '/Comentario/Details/'+@item.Id;">
+        <h6 class="card-subtitle mb-2 text-muted"><i>@Html.ActionLink(item.nameAutor, "../Usuario/Details/", new { id = item.Autor })</i></h6>
+        <h6 class="card-subtitle mb-2 text-muted"><i> @Html.DisplayFor(modelItem => item.Hora)</i></h6>
+        <p style="margin-top:1.5em; font-size: small" ;>@Html.DisplayFor(modelItem => item.Contenido)</p>
+
+    </div>
+    @*<tr style="" onclick="window.location = '/Comentario/Details/'+@item.Id;">
             <td>
-                @Html.ActionLink(item.nameAutor, "../Usuario/Details/", new { id = item.Autor })
+                
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Contenido)
@@ -17,6 +24,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Hijos)
             </td>
-        </tr>
-    }
-@*</table>*@
+        </tr>*@
+</div>
+        }
+        @*</table>*@
