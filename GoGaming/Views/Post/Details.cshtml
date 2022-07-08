@@ -69,7 +69,7 @@
         @Html.ActionLink("Editar post", "Edit", new { id = Model.Id });
     }
     <h4>Comentarios</h4>
-    @{ Html.RenderAction("CreatePartial", "Comentario", new { p_usuario = Model.Usuario, p_post = Model.Id });}
+    @{ Html.RenderAction("CreatePartial", "Comentario", new { p_post = Model.Id });}
     @{Html.RenderAction("IndexPartial", "Comentario", new { id = Model.Id });}
 </div>
 
