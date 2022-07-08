@@ -1,21 +1,24 @@
 ﻿@model IEnumerable<GoGaming.Models.ComentarioViewModel>
 
-<table class="table">
-@foreach (var item in Model) {
-    <tr style="cursor: pointer;" onclick="window.location = '/Comentario/Details/'+@item.Id;">
-        <td>
-            @Html.ActionLink(item.nameAutor, "../Usuario/Details/", new { id = item.Autor })
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Contenido)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Hora)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Hijos)
-        </td>
-    </tr>
-}
+@{ int cont = 0;}
+@foreach (var item in Model)
+{
+    cont++;
+    <div class="card w-50 jumbotron" style="background-color: #222222;">
+        <div style=" margin-top:0; cursor: pointer;" onclick="window.location = '/Comentario/Details/'+@item.Id;">
 
-</table>
+            <h4 class="card-subtitle mb-2 text-muted"><i>@Html.ActionLink(item.nameAutor, "../Usuario/Details/", new { id = item.Autor })</i></h4>
+            <h4 class="card-subtitle mb-2 text-muted">@Html.DisplayFor(modelItem => item.Hora)</h4>
+            <p style="margin-top:1.5em; font-size: medium" ;>@Html.DisplayFor(modelItem => item.Contenido)</p>
+            <h4 class="card-subtitle mb-2 text-muted">@Html.DisplayFor(modelItem => item.Hijos) respuestas</h4>
+
+        </div>
+    </div>
+    if (cont >= (int)Model.Count()) { }
+    else
+    {
+        <h3 align="left"> &nbsp;|</h3>
+        <br />
+    }
+
+}
