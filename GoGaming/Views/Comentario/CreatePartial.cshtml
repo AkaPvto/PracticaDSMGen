@@ -7,7 +7,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    <div class="card w-50 jumbotron" style="background-color: #2C2F33;">
+    <div style="margin-bottom: 25px;">
     <div class="container">
         @*<hr />*@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })

@@ -93,10 +93,12 @@
             @Html.ActionLink("Editar post", "Edit", new { id = Model.Id });
         }
     </div>
-    <h4>Comentarios</h4>
-
-    @{ Html.RenderAction("CreatePartial", "Comentario", new { p_post = Model.Id });}
-    @{Html.RenderAction("IndexPartial", "Comentario", new { id = Model.Id });}
+    <h3>Comentarios</h3>
+    <div class="card w-50 jumbotron" style="background-color: #2C2F33;">
+        @{ Html.RenderAction("CreatePartial", "Comentario", new { p_post = Model.Id });}
+        @{Html.RenderAction("IndexPartial", "Comentario", new { id = Model.Id });}
+    </div>
+    
 </div>
 
 <p>
