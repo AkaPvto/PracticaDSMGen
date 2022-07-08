@@ -88,7 +88,7 @@ public static void InitializeData ()
                 int carlos = usuarioCEN.New_ ("Jaxtified", "Carlos", "Izquierdo", "cil4@alu.ua.es", 666999888, "C/Orden sin contacto", "carlos.jpg", "1234", true);
                 int jorge = usuarioCEN.New_ ("Akapvto", "Jorge", "Reig", "jrv37@alu.ua.es", 666222888, "C/Equipo Cereza", "jorge.jpg", "1234", true);
                 int sara = usuarioCEN.New_ ("Sariwii", "Sara", "Morote", "smb86@alu.ua.es", 666999222, "C/Alameda de Jijon", "sara.jpg", "1234", true);
-                int juanmi = usuarioCEN.New_ ("JuanMi", "Juan Miguel", "Lopez", "jmll2@alu.ua.es", 666999667, "C/Caronte", "usuario.png", "1234", false);
+                int juanmi = usuarioCEN.New_ ("JuanMi", "Juan Miguel", "Lopez", "jmll2@alu.ua.es", 666999667, "C/Caronte", "juanmi.png", "1234", false);
                 int ruben = usuarioCEN.New_ ("Rubi", "Ruben", "Castillo", "rcp103@alu.ua.es", 666999664, "C/Calderon de la barca", "usuario.png", "1234", false);
                 int estela = usuarioCEN.New_ ("Estelar_xX", "Estela", "Martinez", "emd149@alu.ua.es", 666999644, "C/Melocoton", "usuario.png", "1234", false);
 
@@ -255,10 +255,13 @@ public static void InitializeData ()
                                 candela, ruben, juanmi
                         });
                 usuarioCEN.AddFollowing (jorge, new List<int>() {
-                                sergio, estela, juanmi, carlos, ruben
+                                sergio, estela, juanmi, carlos, ruben, sara, candela
                         });
                 usuarioCEN.AddFollowing (ruben, new List<int>() {
                                 sergio, carlos
+                        });
+                usuarioCEN.AddFollowing(sara, new List<int>() {
+                                sergio, juanmi
                         });
 
                 Console.WriteLine ("El usuario Candela deja de seguir a otro usuario (Carlos):");
