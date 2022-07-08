@@ -27,8 +27,8 @@
             <div class="col-md-10" style="width: 100%" align="right">
                 @if (Session["Usuario"] == null)
                 {
-                    <div>
-                         @Html.ActionLink("Comentar", "../Usuario/Login", new { error = "Tienes que iniciar sesión para poder comentar" }, new { @style = "margin-top: 1em;", @class = "btn btn-primary", role = "button" })
+                    <div  style="margin-top: 1em;">
+                         @Html.ActionLink("Comentar", "../Usuario/Login", new { error = "Tienes que iniciar sesión para poder comentar" }, new { @class = "btn btn-primary", role = "button" })
                     </div>
                          }
                          else if (ViewData["comunidad"] !=null && (bool)ViewData["comunidad"])
@@ -41,7 +41,7 @@
             else
             {
 
-                <button style="bottom: 20px; right: 20px;" class="btn btn-primary stretched-link" id="boton-modal" data-toggle="modal" data-target="#exampleModal">Comentar</button>
+                <button style="bottom: 20px; right: 20px; margin-top: 1em" class="btn btn-primary stretched-link" id="boton-modal" data-toggle="modal" data-target="#exampleModal">Comentar</button>
                 <script>
                     $(document).ready(function () {
                         $("#boton-modal").click(function () {
