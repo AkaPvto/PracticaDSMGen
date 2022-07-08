@@ -23,7 +23,7 @@
     <br />
     @if (Model.Imagen != "")
     {
-        <img class="center-block" src="/Images/@Html.DisplayFor(model => model.Imagen)" style="width: 100%" />
+        <img src="/Images/@Html.DisplayFor(model => model.Imagen)" style="width: 65%" />
     }
     <p style="margin-top: 1em;">❤ @Html.DisplayFor(model => model.Likes)&nbsp;&nbsp;💬@Html.DisplayFor(model => model.Comentarios)</p>
 
