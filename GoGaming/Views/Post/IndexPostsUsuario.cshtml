@@ -1,22 +1,25 @@
 ﻿@model IEnumerable<GoGaming.Models.PostViewModel>
 
- 
-    @{
-        IList<string> enums = (IList<string>)ViewData["enum"];
-    }
+
+@{
+    IList<string> enums = (IList<string>)ViewData["enum"];
+}
 
 @foreach (var item in Model)
 {
-    <div>
+    <div class="card w-50 jumbotron" style="background-color: #222222; margin-top: 3em;">
         <h3>@Html.DisplayFor(modelItem => item.Titulo)</h3>
-        <p>Comunidad: @Html.ActionLink(item.ComunidadName, "../Comunidad/Details/", new { id = item.Comunidad })</p>
-        <p class="control-label">Categoría: @enums[item.Categoria]</p>
-        <p>@Html.DisplayFor(modelItem => item.Contenido)</p>
+        <h4 class="card-subtitle mb-2">Comunidad: @Html.ActionLink(item.ComunidadName, "../Comunidad/Details/", new { id = item.Comunidad })</h4>
+        <h4 class="card-subtitle mb-2 text-muted"> Publicado por: <i>@Html.ActionLink(item.UsuarioName, "../Usuario/Details/", new { id = item.Usuario })</i></h4>
+        <h4 class="card-subtitle mb-2 text-muted">Categoría: <i style="color:white;">@enums[item.Categoria]</i></h4>
+        <p style="margin-top:1.5em; font-size: medium" ;>@Html.DisplayFor(modelItem => item.Contenido)</p>
+        <br />
         @if (item.Imagen != "")
         {
-            <img src="/Images/@Html.DisplayFor(modelItem => item.Imagen)" />
+            <img class="center-block" src="/Images/@Html.DisplayFor(modelItem => item.Imagen)" style="width: 100%" />
         }
-        <p>❤ @Html.DisplayFor(modelItem => item.Likes)</p>
-        <a href="/Post/Details/@item.Id">💬 @Html.DisplayFor(modelItem => item.Comentarios)</a>
+        <p style="margin-top: 1em;">❤ @Html.DisplayFor(modelItem => item.Likes)&nbsp;&nbsp;💬@Html.DisplayFor(modelItem => item.Comentarios)</p>
+
     </div>
+
 }
