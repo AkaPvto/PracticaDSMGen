@@ -11,7 +11,7 @@
         @foreach (var item in Model)
         {
             <div class="col-lg-4">
-                <div class="card w-50 jumbotron" style="background-color: #222222; margin-top: 3em; height:400px">
+                <div class="card w-50 jumbotron" style="background-color: #222222; margin-top: 3em; height:300px">
                     @*<img class="card-img-top img-responsive center-block" src="@Html.DisplayFor(modelItem => item.Portada)" alt="Card image cap">*@
                     <div align="center" class="card-header text-muted" style="cursor:pointer;"><h2>@Html.ActionLink(item.Nickname, "../Usuario/Details/", new { id = item.Id })</h2></div>
                     <div class="card-body">
