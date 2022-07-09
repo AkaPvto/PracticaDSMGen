@@ -1,40 +1,34 @@
 ﻿@model GoGaming.Models.PostViewModel
+@using PracticaDSMGenNHibernate.EN.DSMPracticas
 
+@{
+    int idUsuario = -1;
+    if (Session["Usuario"] != null)
+    {
+        idUsuario = ((UsuarioEN)Session["Usuario"]).Id;
+    }
+    IList<string> enums = null;
+    if (ViewData["enum"] != null)
+    {
+        enums = (IList<string>)ViewData["enum"];
+    }
 
-<div style="cursor: pointer;" onclick="window.location = '/Post/Details/'+@Model.Id;">
-    <h4>@Html.DisplayFor(model => model.Titulo)</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayName("Publicado por ")
-        </dt>
+}
 
-        <dd>
-            @Html.ActionLink(Model.UsuarioName, "../Usuario/Details/", new { id = Model.Usuario })
-        </dd>
+<div class="card w-50 jumbotron" style="background-color: #2C2F33;">
+    <h3 style="margin-top:0">@Html.DisplayFor(model => model.Titulo)</h3>
+    <h4 class="card-subtitle mb-2 text-muted"> Publicado por: <i>@Html.ActionLink(Model.UsuarioName, "../Usuario/Details/", new { id = Model.Usuario })</i></h4>
+    <h4 class="card-subtitle mb-2 text-muted">Categoría: <i style="color:white;">@enums[Model.Categoria]</i></h4>
+    <p style="margin-top:1.5em; font-size: medium" ;>@Html.DisplayFor(model => model.Contenido)</p>
+    <br />
+    @if (Model.Imagen != "")
+    {
+        <img src="/Images/@Html.DisplayFor(model => model.Imagen)" style="width: 65%" />
+    }
+    <p style="margin-top: 1em;">❤ @Html.DisplayFor(model => model.Likes)&nbsp;&nbsp;💬@Html.DisplayFor(model => model.Comentarios)</p>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Contenido)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Contenido)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Imagen)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Imagen)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Likes)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Likes)
-        </dd>
-
-    </dl>
+    @if (idUsuario != -1 && idUsuario == Model.Usuario)
+    {
+        @Html.ActionLink("Editar post", "Edit", new { id = Model.Id });
+    }
 </div>

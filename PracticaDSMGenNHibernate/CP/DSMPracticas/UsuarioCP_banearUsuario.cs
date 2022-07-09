@@ -39,27 +39,24 @@ public void BanearUsuario (int p_oid)
 
 
                 // Write here your custom code...
-                UsuarioEN usuario = usuarioCEN.ReadOID(p_oid);
+                UsuarioEN usuario = usuarioCEN.ReadOID (p_oid);
 
-                AvisoCEN aviso = new AvisoCEN();
+                AvisoCEN aviso = new AvisoCEN ();
 
-                IList<AvisoEN> avisos = aviso.GetAvisosUsu(p_oid);
-                Console.WriteLine("El usuario " + usuario.Nickname + " tiene " + avisos.Count + " avisos\n");
+                IList<AvisoEN> avisos = aviso.GetAvisosUsu (p_oid);
+                Console.WriteLine ("El usuario " + usuario.Nickname + " tiene " + avisos.Count + " avisos\n");
 
-                if (avisos.Count >= 3)
-                {
-                    if (usuario.Baneado)
-                    {
-                        Console.WriteLine("El usuario ya esta baneado");
-                    }
-                    else
-                    {
-                        usuario.Baneado = true;
-                        Console.WriteLine("El usuario " + usuario.Nickname + " ha sido baneado.\n");
-                    }
+                if (avisos.Count >= 3) {
+                        if (usuario.Baneado) {
+                                Console.WriteLine ("El usuario ya esta baneado");
+                        }
+                        else{
+                                usuario.Baneado = true;
+                                Console.WriteLine ("El usuario " + usuario.Nickname + " ha sido baneado.\n");
+                        }
                 }
 
-                usuarioCAD.Modify(usuario);
+                usuarioCAD.Modify (usuario);
 
 
 

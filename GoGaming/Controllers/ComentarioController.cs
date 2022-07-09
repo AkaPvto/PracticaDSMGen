@@ -95,6 +95,10 @@ namespace GoGaming.Controllers
 
             ComentarioEN listEN = comentCEN.ReadOID(id);
             ComentarioViewModel comentViewModel = new ComentarioAssembler().ConvertENToModelUI(listEN);
+            if(listEN.ComentarioPadre != null)
+            {
+                ViewData["padre"] = listEN.ComentarioPadre.Id;
+            }
             SessionClose();
             return View(comentViewModel);
         }
@@ -159,7 +163,7 @@ namespace GoGaming.Controllers
         }
 
         // GET: Comentario/CreatePartial
-        public ActionResult CreatePartial(int p_usuario, int p_post)
+        public ActionResult CreatePartial(int p_post)
         {
             ComunidadCEN comunidadCEN = new ComunidadCEN();
             ComentarioViewModel comentVM = new ComentarioViewModel();
@@ -173,7 +177,6 @@ namespace GoGaming.Controllers
             }
 
             comentVM.Post = p_post;
-            comentVM.Autor = p_usuario;
             ViewData["comunidad"] = unido;
             return PartialView(comentVM);
         }
@@ -191,7 +194,7 @@ namespace GoGaming.Controllers
                     autor = ((UsuarioEN)Session["Usuario"]).Id;
                 }
                 int newComent = 0;
-                if (coment.Id != 0)
+                if (coment.Id != coment.Post)
                 {
                     ComentarioCP comentarioCP = new ComentarioCP();
 

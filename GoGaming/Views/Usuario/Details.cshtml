@@ -3,7 +3,7 @@
 
 
 @{
-    ViewBag.Title = "Mi Perfil";
+    ViewBag.Title = "Perfil";
     Layout = "~/Views/Shared/_Layout.cshtml";
     int idUsuario = -1;
     if (Session["Usuario"] != null)
@@ -21,7 +21,7 @@
     }
 }
 
-<h2>Perfil de @Model.Nickname</h2>
+<h1>Perfil de @Model.Nickname</h1>
 
 <div>
     @*<hr />*@

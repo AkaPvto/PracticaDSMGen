@@ -36,6 +36,9 @@ namespace GoGaming.Models
         [ScaffoldColumn(false)]
         public int Hijos { get; set; }
 
+        [ScaffoldColumn(false)]
+        public bool Padre { get; set; }
+
 
     }
 }

@@ -11,66 +11,94 @@
     if(Session["Usuario"] != null) {
         idUsuario = ((UsuarioEN)Session["Usuario"]).Id;
     }
+    IList<string> enums = null;
+    if (ViewData["enum"] != null)
+    {
+        enums = (IList<string>)ViewData["enum"];
+    }
+
 }
-<div>
-    <h4>@Html.DisplayFor(model => model.Titulo)</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayName("Publicado por ")
-        </dt>
 
-        <dd>
-            @Html.ActionLink(Model.UsuarioName, "../Usuario/Details/", new { id = Model.Usuario })
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Contenido)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Contenido)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Likes)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Likes)
-        </dd>
-
-
-
+<div class="card w-50 jumbotron" style="background-color: #222222; margin-top: 3em;">
+    <div class="card w-50 jumbotron" style="background-color: #2C2F33;">
+        <h3 style="margin-top:0">@Html.DisplayFor(model => model.Titulo)</h3>
+        <h4 class="card-subtitle mb-2 text-muted"> Publicado por: <i>@Html.ActionLink(Model.UsuarioName, "../Usuario/Details/", new { id = Model.Usuario })</i></h4>
+        <h4 class="card-subtitle mb-2 text-muted">Categoría: <i style="color:white;">@enums[Model.Categoria]</i></h4>
+        <p style="margin-top:1.5em; font-size: medium" ;>@Html.DisplayFor(model => model.Contenido)</p>
+        <br />
         @if (Model.Imagen != "")
         {
-            <dt>
-                @Html.DisplayNameFor(model => model.Imagen)
-            </dt>
-            <dd>
-                <img src="/Images/@Html.DisplayFor(model => model.Imagen)" style="width: 80%" />
-            </dd>
+            <img class="center-block" src="/Images/@Html.DisplayFor(model => model.Imagen)" style="width: 100%" />
         }
+        <p style="margin-top: 1em;">❤ @Html.DisplayFor(model => model.Likes)&nbsp;&nbsp;💬@Html.DisplayFor(model => model.Comentarios)</p>
+
+
+        @*<h4>@Html.DisplayFor(model => model.Titulo)</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayName("Publicado por ")
+            </dt>
+
+            <dd>
+                @Html.ActionLink(Model.UsuarioName, "../Usuario/Details/", new { id = Model.Usuario })
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Contenido)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Contenido)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Likes)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Likes)
+            </dd>
+
+
+            <h4 class="card-subtitle mb-2 text-muted">Categoría: <i style="color:white;">@enums[Model.Categoria]</i></h4>
+            @if (Model.Imagen != "")
+            {
+                <dt>
+                    @Html.DisplayNameFor(model => model.Imagen)
+                </dt>
+                <dd>
+                    <img src="/Images/@Html.DisplayFor(model => model.Imagen)" style="width: 80%" />
+                </dd>
+            }*@
         @if (idUsuario != -1)
         {
             if (ViewData["liked"] != null)
             {
+
                 if ((bool)ViewData["liked"])
-                {
-                    @Html.ActionLink("Dislike", "Interact", new { id = Model.Id });
+                {<div align="left">
+                        @Html.ActionLink("🗙 Dislike", "Interact", new { id = Model.Id }, new { @class = "btn btn-primary stretched-link ", role = "button" })
+                    </div>
                 }
                 else
                 {
-                    @Html.ActionLink("Like", "Interact", new { id = Model.Id });
+                    <div align="left">
+                        @Html.ActionLink("❤ Like", "Interact", new { id = Model.Id }, new { @class = "btn btn-primary stretched-link ", role = "button" })
+                    </div>
                 }
             }
         }
-    </dl>
-    @if (idUsuario != -1 && idUsuario == Model.Usuario)
-    {
-        @Html.ActionLink("Editar post", "Edit", new { id = Model.Id });
-    }
-    <h4>Comentarios</h4>
-    @{ Html.RenderAction("CreatePartial", "Comentario", new { p_usuario = Model.Usuario, p_post = Model.Id });}
-    @{Html.RenderAction("IndexPartial", "Comentario", new { id = Model.Id });}
+
+        @if (idUsuario != -1 && idUsuario == Model.Usuario)
+        {
+            @Html.ActionLink("Editar post", "Edit", new { id = Model.Id });
+        }
+    </div>
+    <h3>Comentarios</h3>
+    <div class="card w-50 jumbotron" style="background-color: #2C2F33;">
+        @{ Html.RenderAction("CreatePartial", "Comentario", new { p_post = Model.Id });}
+        @{Html.RenderAction("IndexPartial", "Comentario", new { id = Model.Id });}
+    </div>
+    
 </div>
 
 <p>

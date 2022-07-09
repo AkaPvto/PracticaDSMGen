@@ -224,12 +224,16 @@ namespace GoGaming.Controllers
         public ActionResult Login(UsuarioViewModel usuario)
         {
             UsuarioCEN usuarioCEN = new UsuarioCEN();
-            int idUsuario = usuarioCEN.GetUsuarioEmail(usuario.Email).Id;
+            UsuarioEN usuarioEN = usuarioCEN.GetUsuarioEmail(usuario.Email);
+            int idUsuario = 0;
+            if (usuarioEN == null) { return RedirectToAction("Login", "Usuario", new { error = "Ese correo electrónico no existe" }); }
+            else { idUsuario = usuarioEN.Id; }
+            
             string loginResult = usuarioCEN.Login(idUsuario, usuario.Password);
 
             if(loginResult != null)
             {
-                UsuarioEN usuarioEN = usuarioCEN.ReadOID(idUsuario);
+                usuarioEN = usuarioCEN.ReadOID(idUsuario);
                 if (usuarioEN.Baneado)
                 {
                     return RedirectToAction("Login", "Usuario", new { error = "Baneado" });
@@ -243,7 +247,7 @@ namespace GoGaming.Controllers
             }
             else
             {
-                return RedirectToAction("Login", "Usuario", new { error = "El usuario o la contrasenia no son correctos"});
+                return RedirectToAction("Login", "Usuario", new { error = "La contraseña no es correta"});
             }
         }
 
